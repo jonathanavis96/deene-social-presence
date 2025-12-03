@@ -8,10 +8,34 @@ const Contact = () => {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [status, setStatus] = useState<
+    "idle" | "submitting" | "success" | "error"
+  >("idle");
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log(formData);
+    setStatus("submitting");
+
+    try {
+      const res = await fetch("https://formspree.io/f/YOUR_FORM_ID", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (res.ok) {
+        setStatus("success");
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        setStatus("error");
+      }
+    } catch (err) {
+      console.error(err);
+      setStatus("error");
+    }
   };
 
   return (
@@ -26,7 +50,8 @@ const Contact = () => {
             Let's Connect
           </h2>
           <p className="font-sans text-muted-foreground text-base md:text-lg font-light max-w-lg mx-auto">
-            If you'd like to work together or chat through your vision, reach out anytime.
+            If you'd like to work together or chat through your vision, reach
+            out anytime.
           </p>
         </div>
 
@@ -39,10 +64,14 @@ const Contact = () => {
               </label>
               <input
                 type="text"
+                name="name"
                 value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, name: e.target.value })
+                }
                 className="w-full bg-transparent border-b border-border py-3 font-sans text-foreground focus:outline-none focus:border-accent transition-colors placeholder:text-muted-foreground/50"
                 placeholder="Your name"
+                required
               />
             </div>
 
@@ -52,10 +81,14 @@ const Contact = () => {
               </label>
               <input
                 type="email"
+                name="email"
                 value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, email: e.target.value })
+                }
                 className="w-full bg-transparent border-b border-border py-3 font-sans text-foreground focus:outline-none focus:border-accent transition-colors placeholder:text-muted-foreground/50"
                 placeholder="your@email.com"
+                required
               />
             </div>
 
@@ -64,22 +97,40 @@ const Contact = () => {
                 Message
               </label>
               <textarea
+                name="message"
                 value={formData.message}
-                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, message: e.target.value })
+                }
                 rows={4}
                 className="w-full bg-transparent border-b border-border py-3 font-sans text-foreground focus:outline-none focus:border-accent transition-colors resize-none placeholder:text-muted-foreground/50"
                 placeholder="Tell me about your project..."
+                required
               />
             </div>
           </div>
 
-          <button
-            type="submit"
-            className="group flex items-center gap-3 font-sans text-sm uppercase tracking-widest text-foreground hover:text-accent transition-colors"
-          >
-            Send Message
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </button>
+          <div className="space-y-3">
+            <button
+              type="submit"
+              disabled={status === "submitting"}
+              className="group flex items-center gap-3 font-sans text-sm uppercase tracking-widest text-foreground hover:text-accent transition-colors disabled:opacity-60"
+            >
+              {status === "submitting" ? "Sending..." : "Send Message"}
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </button>
+
+            {status === "success" && (
+              <p className="text-xs font-sans text-emerald-600">
+                Thank you — your message has been sent.
+              </p>
+            )}
+            {status === "error" && (
+              <p className="text-xs font-sans text-red-600">
+                Something went wrong. Please try again or email me directly.
+              </p>
+            )}
+          </div>
         </form>
 
         {/* Divider */}
