@@ -1,6 +1,6 @@
 const About = () => {
   return (
-    <section className="py-24 md:py-32 px-6 bg-background">
+    <section id="about" className="py-24 md:py-32 px-6 bg-background">
       <div className="max-w-6xl mx-auto">
         <div className="grid md:grid-cols-2 gap-16 md:gap-24 items-center">
           {/* Portrait Placeholder */}
