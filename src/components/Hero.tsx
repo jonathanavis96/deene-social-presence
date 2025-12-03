@@ -1,69 +1,84 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { ChevronDown } from "lucide-react";
 
 const Hero = () => {
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const [logoLocked, setLogoLocked] = useState(false);
-  const heroRef = useRef<HTMLElement | null>(null);
+  const [scrollY, setScrollY] = useState(0);
+  const [viewportHeight, setViewportHeight] = useState<number | null>(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (!heroRef.current) return;
+    // Set initial viewport height
+    if (typeof window !== "undefined") {
+      setViewportHeight(window.innerHeight);
+    }
 
-      const heroHeight = heroRef.current.offsetHeight || window.innerHeight;
-      // Distance over which the logo should move/shrink
-      const lockDistance = heroHeight * 0.5; // tweakable: 0.4–0.6 range
-      const scrollY = window.scrollY;
-      const progress = Math.min(scrollY / lockDistance, 1);
-
-      setScrollProgress(progress);
-      setLogoLocked(progress >= 1);
+    const handleResize = () => {
+      setViewportHeight(window.innerHeight);
     };
 
-    handleScroll(); // initialise on load
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const handleScroll = () => {
+      setScrollY(window.scrollY || window.pageYOffset || 0);
+    };
+
+    window.addEventListener("resize", handleResize);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
-  // Smooth scale from 1 → 0.6 as we scroll, never smaller than 0.6
-  const logoScale = Math.max(0.6, 1 - scrollProgress * 0.4);
+  // If we don't yet know the viewport height, just render the centered hero
+  const vh = viewportHeight ?? 0;
 
-  // Move the logo upward as we scroll (in px)
-  // 0 at start, up to -120px when fully locked
-  const logoTranslateY = -scrollProgress * 120;
+  // --- Scroll animation logic ---
+  // We start animating after a little nudge (20% of viewport),
+  // and finish the logo → nav transition around 60% of viewport.
+  const start = vh * 0.2;
+  const end = vh * 0.6;
+  const rawProgress = vh === 0 ? 0 : (scrollY - start) / (end - start);
+  const clamped = Math.min(1, Math.max(0, rawProgress));
+
+  // When clamped === 1, the logo is "locked" as the nav bar
+  const logoLocked = clamped >= 1;
+
+  // Scale from 1 → 0.35 as we scroll
+  const logoScale = 1 - 0.65 * clamped;
+
+  // Move the logo upwards by ~40% of viewport as we scroll
+  const translateY = -clamped * (vh * 0.4);
 
   return (
-    <section
-      ref={heroRef}
-      className="min-h-screen flex flex-col justify-center items-center px-6 py-24 bg-card relative overflow-hidden"
-    >
+    <section className="min-h-screen flex flex-col justify-center items-center px-6 py-24 bg-card relative overflow-hidden">
       {/* Subtle background texture */}
       <div className="absolute inset-0 opacity-30 pointer-events-none bg-gradient-to-b from-transparent via-cream/20 to-transparent" />
 
-      <div className="relative z-10 max-w-4xl mx-auto opacity-0 animate-fade-up">
-        {/* Logo + Nav container */}
+      <div className="relative z-10 text-center max-w-4xl mx-auto">
+        {/* Logo & Nav container */}
         <div
-          className={`mb-16 ${
+          className={
             logoLocked
               ? "fixed top-0 left-0 right-0 z-50 py-4 bg-card/95 backdrop-blur-sm border-b border-border"
-              : ""
-          }`}
+              : "relative mb-16"
+          }
           style={
             logoLocked
-              ? undefined
+              ? {}
               : {
-                  transform: `scale(${logoScale}) translateY(${logoTranslateY}px)`,
-                  transition: "transform 0.05s ease-out",
+                  transform: `translateY(${translateY}px) scale(${logoScale})`,
+                  transformOrigin: "center center",
+                  transition: "transform 0.08s ease-out",
                 }
           }
         >
           <div
             className={
               logoLocked
-                ? "max-w-5xl mx-auto px-8 flex items-center justify-between"
-                : "flex flex-col items-center text-center"
+                ? "flex items-center justify-center gap-12"
+                : "flex flex-col items-center"
             }
           >
+            {/* Logo (acts as hero + nav logo) */}
             <button
               onClick={() =>
                 window.scrollTo({ top: 0, behavior: "smooth" })
@@ -92,15 +107,10 @@ const Hero = () => {
               </p>
             </button>
 
-            {/* Nav links - only when locked */}
+            {/* Nav links – only visible once logo is locked into the bar */}
             {logoLocked && (
-              <nav
-                className="flex items-center gap-8 opacity-0 animate-fade-in"
-                style={{
-                  animationDuration: "0.5s",
-                  animationFillMode: "forwards",
-                }}
-              >
+              <nav className="flex items-center gap-8 opacity-0 animate-fade-in"
+                   style={{ animationDuration: "0.5s", animationFillMode: "forwards" }}>
                 <button
                   onClick={() =>
                     document
@@ -149,23 +159,23 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Spacer when logo is locked to prevent content jump */}
+        {/* Spacer to prevent content jump when nav becomes fixed */}
         {logoLocked && <div className="mb-16 h-20" />}
 
-        {/* Divider */}
+        {/* Divider under hero logo */}
         <div className="w-px h-16 bg-border mx-auto mb-12 opacity-0 animate-fade-in animation-delay-400" />
 
         {/* Tagline */}
-        <p className="text-center font-serif text-lg md:text-xl lg:text-2xl text-muted-foreground italic opacity-0 animate-fade-in animation-delay-600">
+        <p className="font-serif text-lg md:text-xl lg:text-2xl text-muted-foreground italic opacity-0 animate-fade-in animation-delay-600">
           Where authenticity leads, conversation follows.
         </p>
       </div>
 
-      {/* Scroll indicator - clearer line + chevron with pulse */}
+      {/* Scroll indicator – long line + pulsing downward chevron */}
       <div className="absolute bottom-12 left-1/2 -translate-x-1/2 opacity-0 animate-fade-in animation-delay-800 flex flex-col items-center">
-        <div className="w-px h-10 bg-muted-foreground/50 animate-scroll-pulse" />
+        <div className="w-px h-10 md:h-12 bg-muted-foreground/40 animate-scroll-pulse" />
         <ChevronDown
-          className="w-5 h-5 text-muted-foreground/70 -mt-1 animate-scroll-pulse"
+          className="w-4 h-4 text-muted-foreground/70 -mt-1 animate-scroll-pulse"
           strokeWidth={1.5}
         />
       </div>
