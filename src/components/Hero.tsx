@@ -31,29 +31,27 @@ const Hero = () => {
   const vh = viewportHeight ?? 0;
 
   // --- Scroll animation logic ---
-  // We only shrink the logo (no vertical movement).
-  // Shrink happens between scroll 0 and ~40% of the viewport height.
   let progress = 0;
   let logoLocked = false;
 
   if (vh > 0) {
     const start = 0;
-    const end = vh * 0.363; // scroll a tiny bit more before locking (was 0.35)
+    const end = vh * 0.363; // slight delay before locking
     const raw = (scrollY - start) / (end - start);
     progress = Math.min(1, Math.max(0, raw));
     logoLocked = progress >= 1;
   }
 
-  // Scale from 1 → 0.35 as you scroll (slightly smaller nav logo than before)
-  const logoScale = 1 - 0.725 * progress; // was 0.6 → now min scale is 0.35
+  // Scale from 1 → 0.35
+  const logoScale = 1 - 0.725 * progress;
 
   return (
     <section className="min-h-screen flex flex-col justify-center items-center px-6 py-24 bg-card relative overflow-hidden">
-      {/* Subtle background texture */}
+      {/* Background texture */}
       <div className="absolute inset-0 opacity-30 pointer-events-none bg-gradient-to-b from-transparent via-cream/20 to-transparent" />
 
       <div className="relative z-10 text-center max-w-4xl mx-auto">
-        {/* Logo & Nav container */}
+        {/* Logo + Nav Container */}
         <div
           className={
             logoLocked
@@ -77,7 +75,7 @@ const Hero = () => {
                 : "flex flex-col items-center"
             }
           >
-            {/* Logo (same element for hero + nav) */}
+            {/* Logo */}
             <button
               onClick={() =>
                 window.scrollTo({ top: 0, behavior: "smooth" })
@@ -104,56 +102,59 @@ const Hero = () => {
               </p>
             </button>
 
-            {/* Nav links – only visible once logo is locked */}
+            {/* Nav Links */}
             {logoLocked && (
               <nav
-                className="flex items-center gap-8 opacity-0 animate-fade-in"
+                className="
+                  flex items-center justify-center
+                  gap-6 sm:gap-8
+                  px-4
+                  opacity-0 animate-fade-in
+                "
                 style={{
-                  animationDuration: "1s",      // slower fade-in
-                  animationDelay: "0.15s",      // small delay so it feels smoother
+                  animationDuration: "1s",
+                  animationDelay: "0.15s",
                   animationFillMode: "forwards",
                 }}
               >
                 <button
                   onClick={() =>
-                    document
-                      .getElementById("about")
-                      ?.scrollIntoView({ behavior: "smooth" })
+                    document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })
                   }
-                  className="text-xs text-muted-foreground hover:text-foreground transition-colors font-sans font-light uppercase tracking-wider"
+                  className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors font-sans font-light uppercase tracking-wider"
                 >
                   About
                 </button>
+
                 <span className="text-border">·</span>
+
                 <button
                   onClick={() =>
-                    document
-                      .getElementById("services")
-                      ?.scrollIntoView({ behavior: "smooth" })
+                    document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })
                   }
-                  className="text-xs text-muted-foreground hover:text-foreground transition-colors font-sans font-light uppercase tracking-wider"
+                  className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors font-sans font-light uppercase tracking-wider"
                 >
                   Services
                 </button>
+
                 <span className="text-border">·</span>
+
                 <button
                   onClick={() =>
-                    document
-                      .getElementById("clients")
-                      ?.scrollIntoView({ behavior: "smooth" })
+                    document.getElementById("clients")?.scrollIntoView({ behavior: "smooth" })
                   }
-                  className="text-xs text-muted-foreground hover:text-foreground transition-colors font-sans font-light uppercase tracking-wider"
+                  className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors font-sans font-light uppercase tracking-wider"
                 >
                   Clients
                 </button>
+
                 <span className="text-border">·</span>
+
                 <button
                   onClick={() =>
-                    document
-                      .getElementById("contact")
-                      ?.scrollIntoView({ behavior: "smooth" })
+                    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
                   }
-                  className="text-xs text-muted-foreground hover:text-foreground transition-colors font-sans font-light uppercase tracking-wider"
+                  className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors font-sans font-light uppercase tracking-wider"
                 >
                   Contact
                 </button>
@@ -162,10 +163,10 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Spacer to prevent jump when the nav becomes fixed */}
+        {/* Spacer to prevent jump */}
         {logoLocked && <div className="mb-16 h-20" />}
 
-        {/* Divider under hero logo */}
+        {/* Divider */}
         <div className="w-px h-16 bg-border mx-auto mb-12 opacity-0 animate-fade-in animation-delay-400" />
 
         {/* Tagline */}
@@ -174,7 +175,7 @@ const Hero = () => {
         </p>
       </div>
 
-      {/* Scroll indicator – line + pulsing chevron */}
+      {/* Scroll Indicator */}
       <div className="absolute bottom-12 left-1/2 -translate-x-1/2 opacity-0 animate-fade-in animation-delay-800 flex flex-col items-center">
         <div className="w-px h-10 md:h-12 bg-muted-foreground/40 animate-scroll-pulse" />
         <ChevronDown
