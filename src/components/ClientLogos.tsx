@@ -2,7 +2,7 @@ const ClientLogos = () => {
   const placeholders = Array(6).fill(null);
 
   return (
-    <section className="py-24 md:py-32 px-6 bg-background">
+    <section id="clients" className="py-24 md:py-32 px-6 bg-background">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16 space-y-4">

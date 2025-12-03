@@ -25,7 +25,8 @@ const Hero = () => {
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 opacity-0 animate-fade-in animation-delay-800">
+      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 opacity-0 animate-fade-in animation-delay-800 flex flex-col items-center gap-3">
+        <p className="text-xs text-muted-foreground font-sans font-light uppercase tracking-widest">Scroll</p>
         <div className="w-px h-12 bg-border animate-pulse" />
       </div>
     </section>
