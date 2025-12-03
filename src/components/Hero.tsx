@@ -6,7 +6,6 @@ const Hero = () => {
   const [viewportHeight, setViewportHeight] = useState<number | null>(null);
 
   useEffect(() => {
-    // Set initial viewport height
     if (typeof window !== "undefined") {
       setViewportHeight(window.innerHeight);
     }
@@ -16,7 +15,8 @@ const Hero = () => {
     };
 
     const handleScroll = () => {
-      setScrollY(window.scrollY || window.pageYOffset || 0);
+      const currentY = window.scrollY || window.pageYOffset || 0;
+      setScrollY(currentY);
     };
 
     window.addEventListener("resize", handleResize);
@@ -28,25 +28,24 @@ const Hero = () => {
     };
   }, []);
 
-  // If we don't yet know the viewport height, just render the centered hero
   const vh = viewportHeight ?? 0;
 
   // --- Scroll animation logic ---
-  // We start animating after a little nudge (20% of viewport),
-  // and finish the logo → nav transition around 60% of viewport.
-  const start = vh * 0.2;
-  const end = vh * 0.6;
-  const rawProgress = vh === 0 ? 0 : (scrollY - start) / (end - start);
-  const clamped = Math.min(1, Math.max(0, rawProgress));
+  // We only shrink the logo (no vertical movement).
+  // Shrink happens between scroll 0 and ~40% of the viewport height.
+  let progress = 0;
+  let logoLocked = false;
 
-  // When clamped === 1, the logo is "locked" as the nav bar
-  const logoLocked = clamped >= 1;
+  if (vh > 0) {
+    const start = 0;
+    const end = vh * 0.363; // scroll a tiny bit more before locking (was 0.35)
+    const raw = (scrollY - start) / (end - start);
+    progress = Math.min(1, Math.max(0, raw));
+    logoLocked = progress >= 1;
+  }
 
-  // Scale from 1 → 0.35 as we scroll
-  const logoScale = 1 - 0.65 * clamped;
-
-  // Move the logo upwards by ~40% of viewport as we scroll
-  const translateY = -clamped * (vh * 0.4);
+  // Scale from 1 → 0.35 as you scroll (slightly smaller nav logo than before)
+  const logoScale = 1 - 0.725 * progress; // was 0.6 → now min scale is 0.35
 
   return (
     <section className="min-h-screen flex flex-col justify-center items-center px-6 py-24 bg-card relative overflow-hidden">
@@ -63,9 +62,9 @@ const Hero = () => {
           }
           style={
             logoLocked
-              ? {}
+              ? undefined
               : {
-                  transform: `translateY(${translateY}px) scale(${logoScale})`,
+                  transform: `scale(${logoScale})`,
                   transformOrigin: "center center",
                   transition: "transform 0.08s ease-out",
                 }
@@ -74,18 +73,16 @@ const Hero = () => {
           <div
             className={
               logoLocked
-                ? "flex items-center justify-center gap-12"
+                ? "flex flex-col items-center gap-3"
                 : "flex flex-col items-center"
             }
           >
-            {/* Logo (acts as hero + nav logo) */}
+            {/* Logo (same element for hero + nav) */}
             <button
               onClick={() =>
                 window.scrollTo({ top: 0, behavior: "smooth" })
               }
-              className={`flex flex-col items-center hover:opacity-70 transition-opacity ${
-                logoLocked ? "cursor-pointer" : ""
-              }`}
+              className="flex flex-col items-center hover:opacity-70 transition-opacity cursor-pointer"
             >
               <h1
                 className={`font-serif tracking-tight text-foreground ${
@@ -107,10 +104,16 @@ const Hero = () => {
               </p>
             </button>
 
-            {/* Nav links – only visible once logo is locked into the bar */}
+            {/* Nav links – only visible once logo is locked */}
             {logoLocked && (
-              <nav className="flex items-center gap-8 opacity-0 animate-fade-in"
-                   style={{ animationDuration: "0.5s", animationFillMode: "forwards" }}>
+              <nav
+                className="flex items-center gap-8 opacity-0 animate-fade-in"
+                style={{
+                  animationDuration: "1s",      // slower fade-in
+                  animationDelay: "0.15s",      // small delay so it feels smoother
+                  animationFillMode: "forwards",
+                }}
+              >
                 <button
                   onClick={() =>
                     document
@@ -159,7 +162,7 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Spacer to prevent content jump when nav becomes fixed */}
+        {/* Spacer to prevent jump when the nav becomes fixed */}
         {logoLocked && <div className="mb-16 h-20" />}
 
         {/* Divider under hero logo */}
@@ -171,7 +174,7 @@ const Hero = () => {
         </p>
       </div>
 
-      {/* Scroll indicator – long line + pulsing downward chevron */}
+      {/* Scroll indicator – line + pulsing chevron */}
       <div className="absolute bottom-12 left-1/2 -translate-x-1/2 opacity-0 animate-fade-in animation-delay-800 flex flex-col items-center">
         <div className="w-px h-10 md:h-12 bg-muted-foreground/40 animate-scroll-pulse" />
         <ChevronDown
