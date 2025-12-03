@@ -160,6 +160,21 @@
   }
 }
 
+@keyframes scrollPulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateY(3px);
+  }
+}
+
+.animate-scroll-pulse {
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
 /* The Seasons font face - fallback to elegant serif */
 @font-face {
   font-family: 'The Seasons';

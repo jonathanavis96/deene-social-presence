@@ -1,8 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ChevronDown } from "lucide-react";
 
 const Hero = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [logoLocked, setLogoLocked] = useState(false);
+  const heroRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -10,39 +12,65 @@ const Hero = () => {
       const heroHeight = window.innerHeight * 0.6;
       const progress = Math.min(scrollY / heroHeight, 1);
       setScrollProgress(progress);
+      setLogoLocked(progress >= 0.95);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Calculate logo transformation
-  const logoScale = 1 - (scrollProgress * 0.6); // Scale from 1 to 0.4
-  const logoOpacity = scrollProgress >= 0.95 ? 0 : 1;
-  const logoTranslateY = scrollProgress * -200; // Move upward
+  // Calculate logo transformation - moves from center to top
+  const logoScale = Math.max(0.35, 1 - (scrollProgress * 0.65)); // Scale from 1 to 0.35
+  
+  // Calculate vertical position - starts at center, moves to top (nav position)
+  const startY = 0; // Starting position (relative to its natural position)
+  const endY = -(window.innerHeight * 0.4); // Move up toward nav area
+  const logoTranslateY = startY + (scrollProgress * (endY - startY));
 
   return (
-    <section className="min-h-screen flex flex-col justify-center items-center px-6 py-24 bg-card relative overflow-hidden">
+    <section ref={heroRef} className="min-h-screen flex flex-col justify-center items-center px-6 py-24 bg-card relative overflow-hidden">
       {/* Subtle background texture */}
       <div className="absolute inset-0 opacity-30 pointer-events-none bg-gradient-to-b from-transparent via-cream/20 to-transparent" />
       
       <div className="relative z-10 text-center max-w-4xl mx-auto opacity-0 animate-fade-up">
-        {/* Logo - Animated on scroll */}
+        {/* Logo - Single element that moves from hero to nav */}
         <div 
-          className="mb-16 transition-opacity duration-300"
-          style={{
+          className={`mb-16 ${logoLocked ? 'fixed top-0 left-0 right-0 z-50 py-4 bg-card/95 backdrop-blur-sm border-b border-border' : ''}`}
+          style={logoLocked ? {} : {
             transform: `scale(${logoScale}) translateY(${logoTranslateY}px)`,
-            opacity: logoOpacity,
-            transition: 'transform 0.1s ease-out, opacity 0.2s ease-out',
+            transition: 'transform 0.05s ease-out',
           }}
         >
-          <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl tracking-tight text-foreground mb-4">
-            DEENE
-          </h1>
-          <p className="text-spaced text-xs md:text-sm text-muted-foreground font-sans font-light uppercase">
-            S O C I A L
-          </p>
+          <div className={logoLocked ? 'flex items-center justify-center gap-12' : ''}>
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              className={`flex flex-col items-center hover:opacity-70 transition-opacity ${logoLocked ? 'cursor-pointer' : ''}`}
+            >
+              <h1 className={`font-serif tracking-tight text-foreground ${logoLocked ? 'text-xl mb-0' : 'text-5xl md:text-7xl lg:text-8xl mb-4'}`}>
+                DEENE
+              </h1>
+              <p className={`text-muted-foreground font-sans font-light uppercase ${logoLocked ? 'text-[8px] tracking-[0.25em]' : 'text-spaced text-xs md:text-sm'}`}>
+                {logoLocked ? 'SOCIAL' : 'S O C I A L'}
+              </p>
+            </button>
+            
+            {/* Nav links - only show when locked */}
+            {logoLocked && (
+              <nav className="flex items-center gap-8 opacity-0 animate-fade-in" style={{ animationDuration: '0.5s', animationFillMode: 'forwards' }}>
+                <button onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })} className="text-xs text-muted-foreground hover:text-foreground transition-colors font-sans font-light uppercase tracking-wider">About</button>
+                <span className="text-border">·</span>
+                <button onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })} className="text-xs text-muted-foreground hover:text-foreground transition-colors font-sans font-light uppercase tracking-wider">Services</button>
+                <span className="text-border">·</span>
+                <button onClick={() => document.getElementById("clients")?.scrollIntoView({ behavior: "smooth" })} className="text-xs text-muted-foreground hover:text-foreground transition-colors font-sans font-light uppercase tracking-wider">Clients</button>
+                <span className="text-border">·</span>
+                <button onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })} className="text-xs text-muted-foreground hover:text-foreground transition-colors font-sans font-light uppercase tracking-wider">Contact</button>
+              </nav>
+            )}
+          </div>
         </div>
+        
+        {/* Spacer when logo is locked to prevent content jump */}
+        {logoLocked && <div className="mb-16 h-20" />}
         
         {/* Divider */}
         <div className="w-px h-16 bg-border mx-auto mb-12 opacity-0 animate-fade-in animation-delay-400" />
@@ -53,11 +81,12 @@ const Hero = () => {
         </p>
       </div>
 
-      {/* Scroll indicator - Subtle arrow only */}
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 opacity-0 animate-fade-in animation-delay-800">
+      {/* Scroll indicator - Line with chevron and pulse animation */}
+      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 opacity-0 animate-fade-in animation-delay-800 flex flex-col items-center">
+        <div className="w-px h-8 bg-muted-foreground/40 animate-scroll-pulse" />
         <ChevronDown 
-          className="w-5 h-5 text-border animate-pulse" 
-          strokeWidth={1}
+          className="w-4 h-4 text-muted-foreground/60 -mt-1 animate-scroll-pulse" 
+          strokeWidth={1.5}
         />
       </div>
     </section>
