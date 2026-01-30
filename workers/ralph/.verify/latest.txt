@@ -1,6 +1,6 @@
 Ralph Verifier Report
-Time: 2026-01-30 14:50:34
-Git:  f66f34e
+Time: 2026-01-30 15:01:01
+Git:  74b0202
 AC:   /home/grafe/code/deene-social/workers/ralph/rules/AC.rules
 Approvals: /home/grafe/code/deene-social/workers/ralph/rules/MANUAL_APPROVALS.rules
 ------------------------------------------------------------
@@ -87,11 +87,13 @@ Approvals: /home/grafe/code/deene-social/workers/ralph/rules/MANUAL_APPROVALS.ru
   cmd:  sha256sum verifier.sh | cut -d' ' -f1 | diff -q - .verify/verifier.sha256 >/dev/null 2>&1 && echo match || echo mismatch
   exit: 0
   stdout: match
-[PASS] Protected.3
+[WARN] Protected.3 (auto check failed but warn gate)
   desc: PROMPT.md differs from baseline (allowed in projects)
   cmd:  sha256sum PROMPT.md | cut -d' ' -f1 | diff -q - .verify/prompt.sha256 >/dev/null 2>&1 && echo match || echo mismatch
   exit: 0
-  stdout: match
+  stdout: mismatch
+  reasons:
+    - stdout mismatch expected='match' got='mismatch'
 [PASS] VerifyMeta.1
   desc: Verifier run_id.txt exists and is non-empty
   cmd:  test -s .verify/run_id.txt && echo OK || echo FAIL
@@ -110,7 +112,6 @@ Approvals: /home/grafe/code/deene-social/workers/ralph/rules/MANUAL_APPROVALS.ru
   cmd:  bash -c 'command -v markdownlint &>/dev/null && markdownlint NEURONS.md 2>&1 | head -10 || echo "ok (markdownlint not installed)"'
   exit: 0
   stdout: NEURONS.md:12:81 error MD013/line-length Line length [Expected: 80; Actual: 139]
-NEURONS.md:36 error MD040/fenced-code-language Fenced code blocks should have a language specified [Context: "```"]
 NEURONS.md:76:81 error MD013/line-length Line length [Expected: 80; Actual: 102]
 [PASS] Lint.Markdownlint.THOUGHTS
   desc: THOUGHTS.md passes markdownlint (if installed)
@@ -119,9 +120,9 @@ NEURONS.md:76:81 error MD013/line-length Line length [Expected: 80; Actual: 102]
   stdout: 
 ------------------------------------------------------------
 SUMMARY
-  PASS: 20
+  PASS: 19
   FAIL: 0
-  WARN: 2 (manual_warn=1)
+  WARN: 3 (manual_warn=1)
   SKIP: 0
   Manual gate=block failures: 0
   Hash guard: OK
