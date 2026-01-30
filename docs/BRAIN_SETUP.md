@@ -11,7 +11,7 @@ This project now has AI-assisted development capabilities through the Brain syst
 
 ## Directory Structure
 
-```
+```text
 deene-social/
 ├── cortex/                    # Cortex planning helpers
 │   ├── cortex-deene.bash     # Project-specific entrypoint

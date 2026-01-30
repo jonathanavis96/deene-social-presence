@@ -57,30 +57,20 @@ Brain skills (open only if relevant to the current item):
 
 ## Phase 0-Warn: Verifier Warnings
 
-- [x] **0-W.1** Fix MD024 in brain_upstream/cortex/PLAN_DONE.md
-  - **Goal:** Resolve duplicate heading "Archived on 2026-01-26".
-  - **AC:** `markdownlint brain_upstream/cortex/PLAN_DONE.md` passes (no MD024 errors)
-  - **If Blocked:** Rename one instance to include time or add distinguishing context.
-
-- [ ] **0-W.2** Fix MD056 table column count errors in brain_upstream/TEMPLATE_DRIFT_REPORT.md
-  - **Goal:** Correct table structure inconsistencies (lines 61, 77, 87).
-  - **AC:** `markdownlint brain_upstream/TEMPLATE_DRIFT_REPORT.md` passes (no MD056 errors)
-  - **If Blocked:** Add missing pipe separators or merge cells to match expected column count.
-
-- [ ] **0-W.3** Fix MD032/MD009/MD040 in brain_upstream/TEMPLATE_DRIFT_REPORT.md
-  - **Goal:** Add blank lines around lists, remove trailing spaces, add language to fenced code blocks.
-  - **AC:** `markdownlint brain_upstream/TEMPLATE_DRIFT_REPORT.md` passes (no MD032, MD009, MD040 errors)
-  - **If Blocked:** Follow markdownlint rules for list spacing and code block language identifiers.
-
-- [ ] **0-W.4** Fix MD056 table column count errors in brain_upstream/workers/ralph/THUNK.md
-  - **Goal:** Correct table structure inconsistencies (lines 829, 839, 841-848).
-  - **AC:** `markdownlint brain_upstream/workers/ralph/THUNK.md` passes (no MD056 errors)
-  - **If Blocked:** Adjust pipe separators to match expected 5-column format.
-
 - [ ] **0-W.5** Fix MD040/MD032/MD022/MD031 in docs/BRAIN_SETUP.md
   - **Goal:** Add language specs to code blocks, add blank lines around lists/headings/fences.
   - **AC:** `markdownlint docs/BRAIN_SETUP.md` passes (no MD040, MD032, MD022, MD031 errors)
   - **If Blocked:** Add `bash` language identifier and proper spacing per markdownlint rules.
+
+- [ ] **0-W.6** Fix MD040 in NEURONS.md
+  - **Goal:** Add language specification to fenced code block at line 36.
+  - **AC:** `markdownlint NEURONS.md` passes (no MD040 errors)
+  - **If Blocked:** Add appropriate language identifier (likely `text` or `plaintext`) to the code fence.
+
+- [ ] **0-W.7** Fix MD040 in workers/ralph/NEURONS.md
+  - **Goal:** Add language specification to fenced code block at line 36.
+  - **AC:** `markdownlint workers/ralph/NEURONS.md` passes (no MD040 errors)
+  - **If Blocked:** Add appropriate language identifier (likely `text` or `plaintext`) to the code fence.
 
 ## Phase 0: Align docs/contracts to the real project (HIGH PRIORITY)
 
