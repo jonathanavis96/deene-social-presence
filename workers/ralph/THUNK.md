@@ -96,4 +96,5 @@ Started: 2026-01-30
 | 79 | 2026-01-30 | fix(links) | Fixed 3 broken links in skills/playbooks/task-optimization-review.md pointing to brain_upstream locations | Phase 6.12 |
 | 157 | 2026-01-30 | fix(skills) | Fixed 6 broken links in skills/playbooks/debug-ralph-stuck.md pointing to brain_upstream locations | All links validated |
 | 47 | 2026-01-30 | fix(docs): repair broken links in decompose-large-tasks.md | Fixed 3 broken relative links to point to brain_upstream/ locations. All links validated successfully. | skills/playbooks/decompose-large-tasks.md |
-| 47 | 2026-01-30 16:43 | fix(docs): fix broken links in fix-markdown-lint.md | Fixed 9 broken links pointing to ../domains/code-quality/* by updating them to ../../brain_upstream/skills/domains/code-quality/* (lines 34, 80, 120, 148, 223, 301-304) | 6.15 |
+| 47 | 2026-01-30 16:43 | fix(docs): fix broken links in fix-markdown-lint.md | Fixed 9 broken links pointing to ../domains/code-quality/*by updating them to ../../brain_upstream/skills/domains/code-quality/* (lines 34, 80, 120, 148, 223, 301-304) | 6.15 |
+| 48 | 2026-01-30 16:50 | docs(skills): fix all broken links in SUMMARY.md | Updated 117 broken links to point to ../brain_upstream/skills/ paths instead of local domains/ paths. All links now resolve correctly. | 6.16 |

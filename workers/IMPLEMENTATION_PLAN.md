@@ -58,11 +58,7 @@ Brain skills (open only if relevant to the current item):
 ## Phase 6: Fix broken links in workers/ralph and local skills/
 
 
-
-
-
-
-- [ ] **6.16** BATCH: Fix skills/SUMMARY.md broken links
+- [x] **6.16** BATCH: Fix skills/SUMMARY.md broken links
   - **Scope:** Lines 12-18, 27-33, 42-44 (18 broken links)
   - **Fix Type:** Point to brain_upstream/ locations
     - Lines 12-15: `domains/languages/shell/variable-patterns.md` → `../brain_upstream/skills/domains/languages/shell/variable-patterns.md` (4 occurrences)
