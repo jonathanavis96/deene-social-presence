@@ -1,0 +1,149 @@
+Ralph Verifier Report
+Time: 2026-01-30 14:19:01
+Git:  b380c95
+AC:   /home/grafe/code/deene-social/workers/ralph/rules/AC.rules
+Approvals: /home/grafe/code/deene-social/workers/ralph/rules/MANUAL_APPROVALS.rules
+------------------------------------------------------------
+[2026-01-30 14:19:01] FAIL: AC hash mismatch (rules/AC.rules modified).
+Expected: 95ae151811b27955e48c7bcee4d47881c1f8c48a11e847cc9a4cb5f6e2867091
+Actual:   afd90815190eabc357a5bdd277476fdeb5755812e56e88ad1803000cd69f44a3
+Fix: If intentional, update:
+  sha256sum "/home/grafe/code/deene-social/workers/ralph/rules/AC.rules" > "/home/grafe/code/deene-social/workers/ralph/.verify/ac.sha256"
+[PASS] Structure.Dirs.1
+  desc: src/ directory exists at project root
+  cmd:  test -d ../../src && echo yes
+  exit: 0
+  stdout: yes
+[PASS] Structure.Dirs.2
+  desc: public/ directory exists
+  cmd:  test -d ../../public && echo yes
+  exit: 0
+  stdout: yes
+[PASS] Structure.Dirs.3
+  desc: docs/ directory exists
+  cmd:  test -d ../../docs && echo yes
+  exit: 0
+  stdout: yes
+[PASS] Structure.Gitignore.1
+  desc: .gitignore exists
+  cmd:  test -f ../../.gitignore && echo yes
+  exit: 0
+  stdout: yes
+[FAIL] Syntax.Bash.1
+  desc: All workers/ralph/*.sh scripts pass bash -n syntax check
+  cmd:  for f in ./*.sh; do [ -f \"$f\" ] && bash -n \"$f\" || exit 1; done && echo pass
+  exit: 1
+  stdout: 
+  reasons:
+    - exit=1 expected=0
+    - stdout mismatch expected='pass' got=''
+[PASS] Syntax.JSON.1
+  desc: package.json is valid JSON
+  cmd:  jq '.' ../../package.json >/dev/null 2>&1 && echo valid
+  exit: 0
+  stdout: valid
+[FAIL] Standards.Shebang.1
+  desc: All shell scripts have proper shebang
+  cmd:  for f in ./*.sh; do head -1 \"$f\" | grep -q '#!/usr/bin/env bash' || exit 1; done && echo pass
+  exit: 1
+  stdout: 
+  stderr: head: cannot open '"./capture_gap.sh"' for reading: No such file or directory
+  reasons:
+    - exit=1 expected=0
+    - stdout mismatch expected='pass' got=''
+[FAIL] Standards.StrictMode.1
+  desc: All shell scripts use set -euo pipefail
+  cmd:  for f in ./*.sh; do grep -q 'set -euo pipefail' \"$f\" || exit 1; done && echo pass
+  exit: 1
+  stdout: 
+  stderr: grep: "./capture_gap.sh": No such file or directory
+  reasons:
+    - exit=1 expected=0
+    - stdout mismatch expected='pass' got=''
+[PASS] Standards.Permissions.1
+  desc: All bin/*.sh scripts are executable
+  cmd:  find ../bin/ -name '*.sh' ! -perm -111 | wc -l | xargs
+  exit: 0
+  stdout: 0
+  stderr: find: ‘../bin/’: No such file or directory
+[FAIL] Security.NoHardcodedSecrets.1
+  desc: No hardcoded passwords in scripts
+  cmd:  grep -rn 'password\\s*=\\s*[\"'\\''\"'\\''']' ../../src/ --include='*.ts' --include='*.tsx' --include='*.js' 2>/dev/null | wc -l | xargs
+  exit: 2
+  stdout: 
+  stderr: bash: -c: line 1: unexpected EOF while looking for matching `''
+  reasons:
+    - exit=2 expected=0
+    - stdout mismatch expected='0' got=''
+[FAIL] Security.NoHardcodedTokens.1
+  desc: No hardcoded API tokens in scripts
+  cmd:  grep -rn 'api_token\\s*=\\s*[\"'\\''\"'\\''']' ../../src/ --include='*.ts' --include='*.tsx' --include='*.js' 2>/dev/null | wc -l | xargs
+  exit: 2
+  stdout: 
+  stderr: bash: -c: line 1: unexpected EOF while looking for matching `''
+  reasons:
+    - exit=2 expected=0
+    - stdout mismatch expected='0' got=''
+[PASS] Docs.README.1
+  desc: README.md exists
+  cmd:  test -f ../../README.md && echo yes
+  exit: 0
+  stdout: yes
+[PASS] Docs.NEURONS.1
+  desc: ralph/NEURONS.md exists
+  cmd:  test -f NEURONS.md && echo yes
+  exit: 0
+  stdout: yes
+[PASS] Docs.THOUGHTS.1
+  desc: ralph/THOUGHTS.md exists
+  cmd:  test -f THOUGHTS.md && echo yes
+  exit: 0
+  stdout: yes
+[PASS] Protected.1
+  desc: loop.sh differs from baseline (allowed in projects)
+  cmd:  sha256sum loop.sh | cut -d' ' -f1 | diff -q - .verify/loop.sha256 >/dev/null 2>&1 && echo match || echo mismatch
+  exit: 0
+  stdout: match
+[PASS] Protected.2
+  desc: verifier.sh differs from baseline (allowed in projects)
+  cmd:  sha256sum verifier.sh | cut -d' ' -f1 | diff -q - .verify/verifier.sha256 >/dev/null 2>&1 && echo match || echo mismatch
+  exit: 0
+  stdout: match
+[PASS] Protected.3
+  desc: PROMPT.md differs from baseline (allowed in projects)
+  cmd:  sha256sum PROMPT.md | cut -d' ' -f1 | diff -q - .verify/prompt.sha256 >/dev/null 2>&1 && echo match || echo mismatch
+  exit: 0
+  stdout: match
+[PASS] VerifyMeta.1
+  desc: Verifier run_id.txt exists and is non-empty
+  cmd:  test -s .verify/run_id.txt && echo OK || echo FAIL
+  exit: 0
+  stdout: OK
+[WARN] Manual.Integration.1 (manual review)
+  desc: Core integration tested manually
+  instructions: Run main workflow end-to-end and verify expected behavior
+[PASS] Lint.Markdownlint.AGENTS
+  desc: AGENTS.md passes markdownlint (if installed)
+  cmd:  bash -c 'command -v markdownlint &>/dev/null && markdownlint AGENTS.md 2>&1 | head -10 || echo "ok (markdownlint not installed)"'
+  exit: 0
+  stdout: 
+[PASS] Lint.Markdownlint.NEURONS
+  desc: NEURONS.md passes markdownlint (if installed)
+  cmd:  bash -c 'command -v markdownlint &>/dev/null && markdownlint NEURONS.md 2>&1 | head -10 || echo "ok (markdownlint not installed)"'
+  exit: 0
+  stdout: NEURONS.md:12:81 error MD013/line-length Line length [Expected: 80; Actual: 139]
+NEURONS.md:36 error MD040/fenced-code-language Fenced code blocks should have a language specified [Context: "```"]
+NEURONS.md:76:81 error MD013/line-length Line length [Expected: 80; Actual: 102]
+[PASS] Lint.Markdownlint.THOUGHTS
+  desc: THOUGHTS.md passes markdownlint (if installed)
+  cmd:  bash -c 'command -v markdownlint &>/dev/null && markdownlint THOUGHTS.md 2>&1 | head -10 || echo "ok (markdownlint not installed)"'
+  exit: 0
+  stdout: 
+------------------------------------------------------------
+SUMMARY
+  PASS: 16
+  FAIL: 5
+  WARN: 1 (manual_warn=1)
+  SKIP: 0
+  Manual gate=block failures: 0
+  Hash guard: FAIL
