@@ -55,6 +55,33 @@ Brain skills (open only if relevant to the current item):
 
 ---
 
+## Phase 0-Warn: Verifier Warnings
+
+- [x] **0-W.1** Fix MD024 in brain_upstream/cortex/PLAN_DONE.md
+  - **Goal:** Resolve duplicate heading "Archived on 2026-01-26".
+  - **AC:** `markdownlint brain_upstream/cortex/PLAN_DONE.md` passes (no MD024 errors)
+  - **If Blocked:** Rename one instance to include time or add distinguishing context.
+
+- [ ] **0-W.2** Fix MD056 table column count errors in brain_upstream/TEMPLATE_DRIFT_REPORT.md
+  - **Goal:** Correct table structure inconsistencies (lines 61, 77, 87).
+  - **AC:** `markdownlint brain_upstream/TEMPLATE_DRIFT_REPORT.md` passes (no MD056 errors)
+  - **If Blocked:** Add missing pipe separators or merge cells to match expected column count.
+
+- [ ] **0-W.3** Fix MD032/MD009/MD040 in brain_upstream/TEMPLATE_DRIFT_REPORT.md
+  - **Goal:** Add blank lines around lists, remove trailing spaces, add language to fenced code blocks.
+  - **AC:** `markdownlint brain_upstream/TEMPLATE_DRIFT_REPORT.md` passes (no MD032, MD009, MD040 errors)
+  - **If Blocked:** Follow markdownlint rules for list spacing and code block language identifiers.
+
+- [ ] **0-W.4** Fix MD056 table column count errors in brain_upstream/workers/ralph/THUNK.md
+  - **Goal:** Correct table structure inconsistencies (lines 829, 839, 841-848).
+  - **AC:** `markdownlint brain_upstream/workers/ralph/THUNK.md` passes (no MD056 errors)
+  - **If Blocked:** Adjust pipe separators to match expected 5-column format.
+
+- [ ] **0-W.5** Fix MD040/MD032/MD022/MD031 in docs/BRAIN_SETUP.md
+  - **Goal:** Add language specs to code blocks, add blank lines around lists/headings/fences.
+  - **AC:** `markdownlint docs/BRAIN_SETUP.md` passes (no MD040, MD032, MD022, MD031 errors)
+  - **If Blocked:** Add `bash` language identifier and proper spacing per markdownlint rules.
+
 ## Phase 0: Align docs/contracts to the real project (HIGH PRIORITY)
 
 - [ ] **0.1** Replace this plan’s legacy content with Deene Social Presence plan (sanity check)
@@ -145,6 +172,20 @@ Brain skills (open only if relevant to the current item):
     - Remove or rewrite any tasks that reference unrelated infrastructure (e.g., “produce `.verify/latest.txt`”).
     - Ensure any suggested tasks point to real files and real commands (`npm run build`, `npm run lint`).
   - **If Blocked:** Minimal acceptable: replace placeholders + delete the fake bootstrap tasks section.
+
+- [ ] **0.11** Fix Ralph loop scripts that still assume the plan is at repo root (`IMPLEMENTATION_PLAN.md`)
+  - **Goal:** Eliminate the startup error: `Error: IMPLEMENTATION_PLAN.md not found at <repo>/IMPLEMENTATION_PLAN.md`.
+  - **Context:** This repo’s canonical plan is `workers/IMPLEMENTATION_PLAN.md`, but some Ralph infrastructure scripts still hard-code `$ROOT/IMPLEMENTATION_PLAN.md`.
+  - **AC:**
+    - `workers/ralph/cleanup_plan.sh` uses `PLAN_FILE="${REPO_ROOT}/workers/IMPLEMENTATION_PLAN.md"`.
+    - `workers/ralph/loop.sh` uses `workers/IMPLEMENTATION_PLAN.md` consistently for:
+      - plan cleanup pre-PLAN (`cleanup_plan.sh`)
+      - plan snapshot / drift detection
+      - “all tasks done” check
+      - scoped staging default plan path (should stage `workers/IMPLEMENTATION_PLAN.md`, not root)
+    - `workers/ralph/render_ac_status.sh` uses `PLAN_FILE="${SCRIPT_DIR}/../IMPLEMENTATION_PLAN.md"` (or otherwise correctly targets `workers/IMPLEMENTATION_PLAN.md`).
+    - Running `bash loop.sh --iterations 1 --plan-every 1` no longer prints a plan-not-found error.
+  - **If Blocked:** As a short-term workaround, create a root `IMPLEMENTATION_PLAN.md` that clearly redirects humans to `workers/IMPLEMENTATION_PLAN.md`, but still fix scripts in a follow-up.
 
 ---
 
