@@ -25,6 +25,18 @@ If the `# VERIFIER STATUS` section shows `[WARN]` lines:
 2. Create ONE task per (RULE_ID + file), not per line/occurrence (batch within a file)
 3. **NEVER** mark `[x]` until verifier confirms fix (re-run shows `[PASS]`)
 
+### Markdownlint (MD\*) Efficiency Rules
+
+When markdownlint issues are present:
+
+1. **ALWAYS run auto-fix first**: `bash workers/ralph/fix-markdown.sh .`
+   - Do this BEFORE writing manual-fix tasks.
+2. **Batch manual fixes**:
+   - Group by **(rule ID + file)**, not by individual line.
+   - Prefer fixing multiple occurrences in the same file in one pass.
+3. When you add plan tasks for remaining markdownlint issues, include the rule ID(s) and file(s) in the task title and keep them atomic per file.
+
+
 ---
 
 ## MANDATORY: Startup Procedure (Cheap First)

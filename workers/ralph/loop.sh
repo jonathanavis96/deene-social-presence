@@ -880,7 +880,7 @@ emit_marker() {
 # =============================================================================
 # Scoped Staging - Stage only intended files, exclude noise
 # =============================================================================
-# Always stages: IMPLEMENTATION_PLAN.md, workers/ralph/THUNK.md (canonical layout)
+# Always stages: workers/IMPLEMENTATION_PLAN.md, workers/ralph/THUNK.md (canonical layout)
 # Never stages: artifacts/**, */rollflow_cache/**, *.sqlite
 # Conditionally stages: Other changed files not in denylist
 #
@@ -2214,18 +2214,39 @@ else
         echo ""
       fi
 
-      # Capture remaining markdown lint errors for PLAN phase
-      # PLAN Ralph should see these so he can add tasks to fix them
+      # Capture remaining markdown lint errors for PLAN phase.
+      # If issues exist, run fix-markdown.sh FIRST (auto-fix), then re-lint and only
+      # surface remaining errors for the LLM to handle manually.
       MARKDOWN_LINT_ERRORS=""
       if command -v markdownlint &>/dev/null; then
         echo "Checking for markdown lint errors..."
+
         lint_output=$(markdownlint "$ROOT" 2>&1 | grep -E "error MD" | head -40) || true
+
         if [[ -n "$lint_output" ]]; then
-          MARKDOWN_LINT_ERRORS="$lint_output"
-          echo "Found $(echo "$lint_output" | wc -l) markdown lint errors for PLAN review"
+          echo "Found $(echo "$lint_output" | wc -l) markdown lint errors; running auto-fix first..."
+
+          if [[ -f "$RALPH/fix-markdown.sh" ]]; then
+            fix_md_id="$(tool_call_id)"
+            fix_md_key="fix-markdown|plan|${git_sha}"
+            run_tool "$fix_md_id" "fix-markdown" "$fix_md_key" "$git_sha" \
+              "(cd \"$ROOT\" && bash \"$RALPH/fix-markdown.sh\" . 2>/dev/null) || true" || true
+          else
+            echo "Warning: fix-markdown.sh not found; skipping auto-fix"
+          fi
+
+          # Re-run lint after auto-fix and only surface remaining errors
+          lint_output=$(markdownlint "$ROOT" 2>&1 | grep -E "error MD" | head -40) || true
+          if [[ -n "$lint_output" ]]; then
+            MARKDOWN_LINT_ERRORS="$lint_output"
+            echo "Remaining markdown lint errors after auto-fix: $(echo "$lint_output" | wc -l)"
+          else
+            echo "Markdown lint errors resolved by auto-fix"
+          fi
         else
           echo "No markdown lint errors found"
         fi
+
         unset lint_output
       fi
 
