@@ -58,11 +58,6 @@ Brain skills (open only if relevant to the current item):
 ## Phase 0: Align docs/contracts to the real project (HIGH PRIORITY)
 
 
-
-
-
-
-
 - [ ] **0.8** Update `cortex/CORTEX_SYSTEM_PROMPT.md` to be Deene Social Presence–specific + fix THUNK path typo
   - **Goal:** Ensure Cortex prompt aligns with the repo, and remove known incorrect references.
   - **AC:**
