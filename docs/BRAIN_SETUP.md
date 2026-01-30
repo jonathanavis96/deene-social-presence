@@ -168,7 +168,7 @@ DO NOT run `current_ralph_tasks.sh` or `thunk_ralph_tasks.sh` - they are interac
 
 ## Brain Skills Access
 
-This project has access to the shared `brain/skills/` knowledge base, which contains:
+This project has access to the shared `skills/` knowledge base, which contains:
 
 - Best practices and patterns
 - Domain-specific expertise
