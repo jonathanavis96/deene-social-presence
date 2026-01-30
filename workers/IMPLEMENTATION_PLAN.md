@@ -46,12 +46,12 @@ Repo files:
 Brain skills (open only if relevant to the current item):
 
 - Frontend:
-  - `brain/skills/domains/frontend/react-patterns.md`
-  - `brain/skills/domains/frontend/accessibility-patterns.md`
+  - `skills/domains/frontend/react-patterns.md`
+  - `skills/domains/frontend/accessibility-patterns.md`
 - Websites:
-  - `brain/skills/domains/websites/architecture/section-composer.md`
-  - `brain/skills/domains/websites/design/spacing-layout.md`
-  - `brain/skills/domains/marketing/seo/seo-audit.md`
+  - `skills/domains/websites/architecture/section-composer.md`
+  - `skills/domains/websites/design/spacing-layout.md`
+  - `skills/domains/marketing/seo/seo-audit.md`
 
 ---
 

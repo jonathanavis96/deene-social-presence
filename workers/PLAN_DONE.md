@@ -32,3 +32,12 @@ Completed tasks archived from `workers/IMPLEMENTATION_PLAN.md`.
 | 2026-01-30 | 0.5 | - [x] **0.5** Rewrite root `README.md` to remove Lovable boilerplate and document the actual site |
 | 2026-01-30 | 0.6 | - [x] **0.6** Clarify "monitoring tools" in `docs/BRAIN_SETUP.md` / `docs/SETUP_COMPLETE.md` |
 | 2026-01-30 | 0.7 | - [x] **0.7** Update `cortex/AGENTS.md` to be Deene Social Presence–specific (remove placeholders) |
+
+### Archived on 2026-01-30 15:18:14
+
+| Date | Task ID | Description |
+|------|---------|-------------|
+| 2026-01-30 | 0.8 | - [x] **0.8** Update `cortex/CORTEX_SYSTEM_PROMPT.md` to be Deene Social Presence–specific + fix THUNK path typo |
+| 2026-01-30 | 0.9 | - [x] **0.9** Update `cortex/GAP_CAPTURE.md` header and format to reference Deene Social Presence |
+| 2026-01-30 | 0.10 | - [x] **0.10** Update `cortex/IMPLEMENTATION_PLAN.md` so it is not a bootstrapped template |
+| 2026-01-30 | 0.11 | - [x] **0.11** Fix Ralph loop scripts that still assume the plan is at repo root (`IMPLEMENTATION_PLAN.md`) |

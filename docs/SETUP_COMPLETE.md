@@ -43,11 +43,11 @@
 - **docs/BRAIN_SETUP.md** - Detailed setup guide
 - **docs/SETUP_COMPLETE.md** - This file
 
-### ✓ Brain Skills (`brain/skills/`)
+### ✓ Brain Skills (`skills/`)
 
 - Linked/copied from main brain repository
 - Contains best practices and patterns
-- Note: There's a nested symlink structure; access via `brain/skills/skills/`
+- Note: There's a nested symlink structure; access via `skills/skills/`
 
 ## Quick Start
 
