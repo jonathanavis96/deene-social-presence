@@ -98,3 +98,7 @@ Started: 2026-01-30
 | 47 | 2026-01-30 | fix(docs): repair broken links in decompose-large-tasks.md | Fixed 3 broken relative links to point to brain_upstream/ locations. All links validated successfully. | skills/playbooks/decompose-large-tasks.md |
 | 47 | 2026-01-30 16:43 | fix(docs): fix broken links in fix-markdown-lint.md | Fixed 9 broken links pointing to ../domains/code-quality/*by updating them to ../../brain_upstream/skills/domains/code-quality/* (lines 34, 80, 120, 148, 223, 301-304) | 6.15 |
 | 48 | 2026-01-30 16:50 | docs(skills): fix all broken links in SUMMARY.md | Updated 117 broken links to point to ../brain_upstream/skills/ paths instead of local domains/ paths. All links now resolve correctly. | 6.16 |
+| 2026-01-30 16:57 | 0.1 | Fixed broken placeholder link in skills/conventions.md line 204 by replacing example with actual valid reference |
+| 2 | 2026-01-30 | 0.2 | Synced 6 backend domain pattern files from brain_upstream to skills/domains/backend/ | COMPLETE |
+| 3 | 2026-01-30 | 0.3 | Synced 10 code-quality domain pattern files from brain_upstream to skills/domains/code-quality/ | COMPLETE |
+| 4 | 2026-01-30 | 0.4 | Synced 5 anti-patterns domain pattern files from brain_upstream to skills/domains/anti-patterns/ | COMPLETE |
