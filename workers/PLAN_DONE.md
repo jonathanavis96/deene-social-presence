@@ -88,3 +88,12 @@ Completed tasks archived from `workers/IMPLEMENTATION_PLAN.md`.
 | 2026-01-30 | 6.5 | - [x] **6.5** BATCH: Fix .verify/plan_snapshot.md broken links |
 | 2026-01-30 | 6.6 | - [x] **6.6** BATCH: Fix skills/playbooks/investigate-test-failures.md broken links |
 | 2026-01-30 | 6.7 | - [x] **6.7** BATCH: Fix skills/playbooks/bootstrap-new-project.md broken links |
+
+### Archived on 2026-01-30 16:36:53
+
+| Date | Task ID | Description |
+|------|---------|-------------|
+| 2026-01-30 | 6.8 | - [x] **6.8** Fix brain_upstream/skills/domains/infrastructure/observability-patterns.md broken link |
+| 2026-01-30 | 6.9 | - [x] **6.9** BATCH: Fix skills/playbooks/resolve-verifier-failures.md broken links |
+| 2026-01-30 | 6.10 | - [x] **6.10** BATCH: Fix skills/playbooks/fix-shellcheck-failures.md broken links |
+| 2026-01-30 | 6.11 | - [x] **6.11** BATCH: Fix skills/playbooks/safe-template-sync.md broken links |
