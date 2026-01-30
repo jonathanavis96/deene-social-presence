@@ -71,3 +71,12 @@ Completed tasks archived from `workers/IMPLEMENTATION_PLAN.md`.
 | 2026-01-30 | 5.1 | - [x] **5.1** Fix IMPLEMENTATION_PLAN.md reference in brain_upstream/THOUGHTS.md |
 | 2026-01-30 | 5.2 | - [x] **5.2** Fix skill doc references in brain_upstream/workers/ralph/THUNK.md |
 | 2026-01-30 | 5.3 | - [x] **5.3** BATCH: Fix broken skill cross-references in brain_upstream/skills/ |
+
+### Archived on 2026-01-30 16:21:30
+
+| Date | Task ID | Description |
+|------|---------|-------------|
+| 2026-01-30 | 6.1 | - [x] **6.1** BATCH: Fix cortex/IMPLEMENTATION_PLAN.md broken links |
+| 2026-01-30 | 6.2 | - [x] **6.2** BATCH: Fix workers/IMPLEMENTATION_PLAN.md broken links |
+| 2026-01-30 | 6.3 | - [x] **6.3** BATCH: Fix workers/ralph/THUNK.md broken links |
+| 2026-01-30 | 6.4 | - [x] **6.4** BATCH: Fix workers/ralph/README.md broken links |

@@ -57,47 +57,9 @@ Brain skills (open only if relevant to the current item):
 
 ## Phase 6: Fix broken links in workers/ralph and local skills/
 
-- [x] **6.1** BATCH: Fix cortex/IMPLEMENTATION_PLAN.md broken links
-  - **Scope:** Lines 63-65, 71-72
-  - **Fix Type:** Point to brain_upstream/ locations (files exist there)
-    - Line 63: `../brain_upstream/docs/BOOTSTRAPPING.md` → `../brain_upstream/docs/BOOTSTRAPPING.md`
-    - Line 64: `../brain_upstream/skills/domains/ralph/ralph-patterns.md` → `../brain_upstream/skills/domains/ralph/ralph-patterns.md`
-    - Line 65: `../brain_upstream/skills/domains/ralph/change-propagation.md` → `../brain_upstream/skills/domains/ralph/change-propagation.md`
-    - Line 71: `../brain_upstream/skills/domains/code-quality/testing-patterns.md` → `../brain_upstream/skills/domains/code-quality/testing-patterns.md`
-    - Line 72: `../brain_upstream/templates/README.md` → `../brain_upstream/templates/README.md`
-  - **AC:** `bash tools/validate_links.sh cortex/IMPLEMENTATION_PLAN.md` passes
-  - **Estimated Time:** [S] 2-3 minutes (1 file, 5 links)
 
-- [x] **6.2** BATCH: Fix workers/IMPLEMENTATION_PLAN.md broken links
-  - **Scope:** Lines 74-78, 85-89, 96-98, 105-109, 116-125, 132-137, 144 (all task description examples)
-  - **Fix Type:** Removed markdown link syntax from task descriptions to prevent validator treating documentation as broken links
-    - Line 74: `../../docs/BOOTSTRAPPING.md` → `../brain_upstream/docs/BOOTSTRAPPING.md`
-    - Line 75: `../../skills/domains/ralph/ralph-patterns.md` → `../brain_upstream/skills/domains/ralph/ralph-patterns.md`
-    - Line 76: `../../skills/domains/ralph/change-propagation.md` → `../brain_upstream/skills/domains/ralph/change-propagation.md`
-    - Line 77: `../domains/code-quality/testing-patterns.md` → `../brain_upstream/skills/domains/code-quality/testing-patterns.md`
-    - Line 78: `../../templates/README.md` → `../brain_upstream/templates/README.md`
-  - **AC:** `bash tools/validate_links.sh workers/IMPLEMENTATION_PLAN.md` passes
-  - **Estimated Time:** [S] 2-3 minutes (1 file, 5 links)
 
-- [x] **6.3** BATCH: Fix workers/ralph/THUNK.md broken links
-  - **Scope:** Line 83 (5 broken links in one line)
-  - **Fix Type:** Point to brain_upstream/ locations
-    - `../code-hygiene.md` → `../../brain_upstream/skills/domains/code-quality/code-hygiene.md`
-    - `../../skills/domains/code-quality/code-hygiene.md` → `../../brain_upstream/skills/domains/code-quality/code-hygiene.md`
-    - `../ralph-patterns.md` → `../../brain_upstream/skills/domains/ralph/ralph-patterns.md`
-    - `../../skills/domains/ralph/ralph-patterns.md` → `../../brain_upstream/skills/domains/ralph/ralph-patterns.md`
-    - `target.md` → Remove or fix (malformed link)
-  - **AC:** `bash tools/validate_links.sh workers/ralph/THUNK.md` passes
-  - **Estimated Time:** [S] 2-3 minutes (1 file, 1 line with 5 links)
 
-- [x] **6.4** BATCH: Fix workers/ralph/README.md broken links
-  - **Scope:** Lines 117-119 (3 broken links)
-  - **Fix Type:** Point to brain_upstream/ locations
-    - Line 117: `../../docs/BOOTSTRAPPING.md` → `../../brain_upstream/docs/BOOTSTRAPPING.md`
-    - Line 118: `../../skills/domains/ralph/ralph-patterns.md` → `../../brain_upstream/skills/domains/ralph/ralph-patterns.md`
-    - Line 119: `../../skills/domains/ralph/change-propagation.md` → `../../brain_upstream/skills/domains/ralph/change-propagation.md`
-  - **AC:** `bash tools/validate_links.sh workers/ralph/README.md` passes
-  - **Estimated Time:** [S] 2-3 minutes (1 file, 3 links)
 
 - [ ] **6.5** BATCH: Fix .verify/plan_snapshot.md broken links
   - **Scope:** Lines 63-65, 71-72 (identical to IMPLEMENTATION_PLAN.md files)
