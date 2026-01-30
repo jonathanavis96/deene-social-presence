@@ -1,14 +1,9 @@
 Ralph Verifier Report
-Time: 2026-01-30 14:25:10
-Git:  2a956c2
+Time: 2026-01-30 14:28:45
+Git:  c3c3f35
 AC:   /home/grafe/code/deene-social/workers/ralph/rules/AC.rules
 Approvals: /home/grafe/code/deene-social/workers/ralph/rules/MANUAL_APPROVALS.rules
 ------------------------------------------------------------
-[2026-01-30 14:25:10] FAIL: AC hash mismatch (rules/AC.rules modified).
-Expected: 95ae151811b27955e48c7bcee4d47881c1f8c48a11e847cc9a4cb5f6e2867091
-Actual:   afd90815190eabc357a5bdd277476fdeb5755812e56e88ad1803000cd69f44a3
-Fix: If intentional, update:
-  sha256sum "/home/grafe/code/deene-social/workers/ralph/rules/AC.rules" > "/home/grafe/code/deene-social/workers/ralph/.verify/ac.sha256"
 [PASS] Structure.Dirs.1
   desc: src/ directory exists at project root
   cmd:  test -d ../../src && echo yes
@@ -29,61 +24,42 @@ Fix: If intentional, update:
   cmd:  test -f ../../.gitignore && echo yes
   exit: 0
   stdout: yes
-[FAIL] Syntax.Bash.1
+[PASS] Syntax.Bash.1
   desc: All workers/ralph/*.sh scripts pass bash -n syntax check
-  cmd:  for f in ./*.sh; do [ -f \"$f\" ] && bash -n \"$f\" || exit 1; done && echo pass
-  exit: 1
-  stdout: 
-  reasons:
-    - exit=1 expected=0
-    - stdout mismatch expected='pass' got=''
+  cmd:  bash -c 'for f in ./*.sh; do [ -f "$f" ] && bash -n "$f" || exit 1; done && echo pass'
+  exit: 0
+  stdout: pass
 [PASS] Syntax.JSON.1
   desc: package.json is valid JSON
   cmd:  jq '.' ../../package.json >/dev/null 2>&1 && echo valid
   exit: 0
   stdout: valid
-[FAIL] Standards.Shebang.1
+[PASS] Standards.Shebang.1
   desc: All shell scripts have proper shebang
-  cmd:  for f in ./*.sh; do head -1 \"$f\" | grep -q '#!/usr/bin/env bash' || exit 1; done && echo pass
-  exit: 1
-  stdout: 
-  stderr: head: cannot open '"./capture_gap.sh"' for reading: No such file or directory
-  reasons:
-    - exit=1 expected=0
-    - stdout mismatch expected='pass' got=''
-[FAIL] Standards.StrictMode.1
+  cmd:  bash -c 'for f in ./*.sh; do head -1 "$f" | grep -q "#!/usr/bin/env bash" || exit 1; done && echo pass'
+  exit: 0
+  stdout: pass
+[PASS] Standards.StrictMode.1
   desc: All shell scripts use set -euo pipefail
-  cmd:  for f in ./*.sh; do grep -q 'set -euo pipefail' \"$f\" || exit 1; done && echo pass
-  exit: 1
-  stdout: 
-  stderr: grep: "./capture_gap.sh": No such file or directory
-  reasons:
-    - exit=1 expected=0
-    - stdout mismatch expected='pass' got=''
+  cmd:  bash -c 'for f in ./*.sh; do grep -q "set -euo pipefail" "$f" || exit 1; done && echo pass'
+  exit: 0
+  stdout: pass
 [PASS] Standards.Permissions.1
   desc: All bin/*.sh scripts are executable
   cmd:  find ../bin/ -name '*.sh' ! -perm -111 | wc -l | xargs
   exit: 0
   stdout: 0
   stderr: find: ‘../bin/’: No such file or directory
-[FAIL] Security.NoHardcodedSecrets.1
+[PASS] Security.NoHardcodedSecrets.1
   desc: No hardcoded passwords in scripts
-  cmd:  grep -rn 'password\\s*=\\s*[\"'\\''\"'\\''']' ../../src/ --include='*.ts' --include='*.tsx' --include='*.js' 2>/dev/null | wc -l | xargs
-  exit: 2
-  stdout: 
-  stderr: bash: -c: line 1: unexpected EOF while looking for matching `''
-  reasons:
-    - exit=2 expected=0
-    - stdout mismatch expected='0' got=''
-[FAIL] Security.NoHardcodedTokens.1
+  cmd:  grep -rnE password[[:space:]]*=[[:space:]]* ../../src/ --include='*.ts' --include='*.tsx' --include='*.js' 2>/dev/null | wc -l | xargs
+  exit: 0
+  stdout: 0
+[PASS] Security.NoHardcodedTokens.1
   desc: No hardcoded API tokens in scripts
-  cmd:  grep -rn 'api_token\\s*=\\s*[\"'\\''\"'\\''']' ../../src/ --include='*.ts' --include='*.tsx' --include='*.js' 2>/dev/null | wc -l | xargs
-  exit: 2
-  stdout: 
-  stderr: bash: -c: line 1: unexpected EOF while looking for matching `''
-  reasons:
-    - exit=2 expected=0
-    - stdout mismatch expected='0' got=''
+  cmd:  grep -rnE api_token[[:space:]]*=[[:space:]]* ../../src/ --include='*.ts' --include='*.tsx' --include='*.js' 2>/dev/null | wc -l | xargs
+  exit: 0
+  stdout: 0
 [PASS] Docs.README.1
   desc: README.md exists
   cmd:  test -f ../../README.md && echo yes
@@ -99,13 +75,11 @@ Fix: If intentional, update:
   cmd:  test -f THOUGHTS.md && echo yes
   exit: 0
   stdout: yes
-[WARN] Protected.1 (auto check failed but warn gate)
+[PASS] Protected.1
   desc: loop.sh differs from baseline (allowed in projects)
   cmd:  sha256sum loop.sh | cut -d' ' -f1 | diff -q - .verify/loop.sha256 >/dev/null 2>&1 && echo match || echo mismatch
   exit: 0
-  stdout: mismatch
-  reasons:
-    - stdout mismatch expected='match' got='mismatch'
+  stdout: match
 [PASS] Protected.2
   desc: verifier.sh differs from baseline (allowed in projects)
   cmd:  sha256sum verifier.sh | cut -d' ' -f1 | diff -q - .verify/verifier.sha256 >/dev/null 2>&1 && echo match || echo mismatch
@@ -143,9 +117,9 @@ NEURONS.md:76:81 error MD013/line-length Line length [Expected: 80; Actual: 102]
   stdout: 
 ------------------------------------------------------------
 SUMMARY
-  PASS: 15
-  FAIL: 5
-  WARN: 2 (manual_warn=1)
+  PASS: 21
+  FAIL: 0
+  WARN: 1 (manual_warn=1)
   SKIP: 0
   Manual gate=block failures: 0
-  Hash guard: FAIL
+  Hash guard: OK

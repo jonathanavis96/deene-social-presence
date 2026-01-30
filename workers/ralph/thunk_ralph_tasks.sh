@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+set -euo pipefail
 # Thunk Ralph Tasks Monitor - Persistent completion log display
 #
 # Usage: bash thunk_ralph_tasks.sh

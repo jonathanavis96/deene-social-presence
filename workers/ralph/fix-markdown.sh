@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # fix-markdown.sh - Auto-fix markdown lint issues
 #
 # Usage: bash fix-markdown.sh [file1.md file2.md ...] or [directory]

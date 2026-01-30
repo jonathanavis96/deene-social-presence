@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+set -euo pipefail
 # Ralph Task Monitor - Real-time display of IMPLEMENTATION_PLAN.md tasks
 #
 # Usage: bash current_ralph_tasks.sh [--hide-completed]
