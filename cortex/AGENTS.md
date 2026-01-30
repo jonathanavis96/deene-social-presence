@@ -99,7 +99,7 @@ When creating tasks for Ralph in `workers/IMPLEMENTATION_PLAN.md`:
     - [ ] Services component renders all service cards
     - [ ] Responsive layout works on mobile/desktop
     - [ ] TypeScript compiles without errors
-  - **If Blocked:** Check React patterns in brain/skills/domains/frontend/
+  - **If Blocked:** Check React patterns in skills/domains/frontend/
 ```text
 
 ### Compact Format (for simple tasks)
@@ -151,7 +151,7 @@ When patterns emerge or architectural choices are made:
 
 If `./brain/` repository exists:
 
-- Reference `brain/skills/` for common patterns
+- Reference `skills/` for common patterns
 - Suggest skills for Ralph to use in Task Contracts
 - Capture new patterns in Brain's skills/self-improvement/GAP_BACKLOG.md
 

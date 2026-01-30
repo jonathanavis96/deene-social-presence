@@ -1,4 +1,4 @@
-# Gap Capture - PROJECT_NAME
+# Gap Capture - Deene Social Presence
 
 Local gap capture for this project. Gaps are synced to brain's `skills/self-improvement/GAP_BACKLOG.md` via marker file protocol.
 
@@ -18,7 +18,7 @@ Local gap capture for this project. Gaps are synced to brain's `skills/self-impr
 - **When triggered:** <what you were trying to do>
 - **Evidence:** <paths, filenames, snippets, observations>
 - **Priority:** P0 / P1 / P2
-- **Project:** PROJECT_NAME
+- **Project:** Deene Social Presence
 ```
 
 ## Captured Gaps

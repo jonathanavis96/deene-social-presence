@@ -889,7 +889,7 @@ emit_marker() {
 stage_scoped_changes() {
   local staged_count=0
 
-  # Canonical paths for this repo layout
+  # Detect canonical paths based on ADR-0001
   local plan_file="workers/IMPLEMENTATION_PLAN.md"
   local thunk_file="workers/ralph/THUNK.md"
 
@@ -1484,6 +1484,26 @@ run_once() {
       echo "# Errors to fix:"
       echo "#"
       echo "$MARKDOWN_LINT_ERRORS"
+      echo ""
+      echo "# ═══════════════════════════════════════════════════════════════"
+      echo ""
+    fi
+
+    # PLAN Ralph should see broken links too
+    if [[ "$phase" == "plan" ]] && [[ -n "${BROKEN_LINKS:-}" ]]; then
+      echo "# ═══════════════════════════════════════════════════════════════"
+      echo "# BROKEN INTERNAL LINKS (add tasks to IMPLEMENTATION_PLAN.md)"
+      echo "# ═══════════════════════════════════════════════════════════════"
+      echo "#"
+      echo "# The following markdown files have broken internal links."
+      echo "# Add tasks to IMPLEMENTATION_PLAN.md using this format:"
+      echo "#"
+      echo "#   - [ ] **X.Y** Fix broken links in <filename>"
+      echo "#     - **AC:** \`bash tools/validate_links.sh <file>\` passes"
+      echo "#"
+      echo "# Broken links:"
+      echo "#"
+      echo "$BROKEN_LINKS"
       echo ""
       echo "# ═══════════════════════════════════════════════════════════════"
       echo ""
@@ -2196,7 +2216,6 @@ else
       fi
 
       # Snapshot plan BEFORE sync for drift detection (prevents direct-edit bypass)
-      # Ensure root .verify dir exists (some repos only have workers/ralph/.verify)
       mkdir -p "$ROOT/.verify"
       PLAN_SNAPSHOT="$ROOT/.verify/plan_snapshot.md"
       if [[ -f "$ROOT/workers/IMPLEMENTATION_PLAN.md" ]]; then
@@ -2214,9 +2233,8 @@ else
         echo ""
       fi
 
-      # Capture remaining markdown lint errors for PLAN phase.
-      # If issues exist, run fix-markdown.sh FIRST (auto-fix), then re-lint and only
-      # surface remaining errors for the LLM to handle manually.
+      # Capture remaining markdown lint errors for PLAN phase
+      # Auto-fix markdown issues before checking for remaining errors
       MARKDOWN_LINT_ERRORS=""
       if command -v markdownlint &>/dev/null; then
         echo "Running auto-fix for markdown lint errors..."
@@ -2226,33 +2244,27 @@ else
         
         echo "Checking for remaining markdown lint errors..."
         lint_output=$(markdownlint "$ROOT" 2>&1 | grep -E "error MD" | head -40) || true
-
         if [[ -n "$lint_output" ]]; then
-          echo "Found $(echo "$lint_output" | wc -l) markdown lint errors; running auto-fix first..."
-
-          if [[ -f "$RALPH/fix-markdown.sh" ]]; then
-            plan_git_sha="$(git rev-parse --short HEAD 2>/dev/null || echo 'unknown')"
-            fix_md_id="$(tool_call_id)"
-            fix_md_key="fix-markdown|plan|${plan_git_sha}"
-            run_tool "$fix_md_id" "fix-markdown" "$fix_md_key" "$plan_git_sha" \
-              "(cd \"$ROOT\" && bash \"$RALPH/fix-markdown.sh\" . 2>/dev/null) || true" || true
-          else
-            echo "Warning: fix-markdown.sh not found; skipping auto-fix"
-          fi
-
-          # Re-run lint after auto-fix and only surface remaining errors
-          lint_output=$(markdownlint "$ROOT" 2>&1 | grep -E "error MD" | head -40) || true
-          if [[ -n "$lint_output" ]]; then
-            MARKDOWN_LINT_ERRORS="$lint_output"
-            echo "Remaining markdown lint errors after auto-fix: $(echo "$lint_output" | wc -l)"
-          else
-            echo "Markdown lint errors resolved by auto-fix"
-          fi
+          MARKDOWN_LINT_ERRORS="$lint_output"
+          echo "Found $(echo "$lint_output" | wc -l) markdown lint errors for PLAN review"
         else
           echo "No markdown lint errors found"
         fi
-
         unset lint_output
+      fi
+
+      # Validate internal markdown links
+      BROKEN_LINKS=""
+      if [[ -f "$ROOT/tools/validate_links.sh" ]]; then
+        echo "Validating internal markdown links..."
+        link_output=$(bash "$ROOT/tools/validate_links.sh" "$ROOT" 2>&1 | grep -E "BROKEN|ERROR" | head -40) || true
+        if [[ -n "$link_output" ]]; then
+          BROKEN_LINKS="$link_output"
+          echo "Found broken links for PLAN review"
+        else
+          echo "All internal links valid"
+        fi
+        unset link_output
       fi
 
       emit_event --event phase_start --iter "$i" --phase "plan"

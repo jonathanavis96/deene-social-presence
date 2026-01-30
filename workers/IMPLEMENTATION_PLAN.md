@@ -58,7 +58,7 @@ Brain skills (open only if relevant to the current item):
 ## Phase 0: Align docs/contracts to the real project (HIGH PRIORITY)
 
 
-- [ ] **0.8** Update `cortex/CORTEX_SYSTEM_PROMPT.md` to be Deene Social Presence–specific + fix THUNK path typo
+- [x] **0.8** Update `cortex/CORTEX_SYSTEM_PROMPT.md` to be Deene Social Presence–specific + fix THUNK path typo
   - **Goal:** Ensure Cortex prompt aligns with the repo, and remove known incorrect references.
   - **AC:**
     - No `{{PROJECT_NAME}}`, `{{PROJECT_PURPOSE}}`, or `{{TIMESTAMP}}` placeholders remain.
@@ -69,7 +69,7 @@ Brain skills (open only if relevant to the current item):
       - Last updated: uses seconds (`YYYY-MM-DD HH:MM:SS`).
   - **If Blocked:** At minimum, fix the THUNK path typo and replace placeholders in headings/identity sections.
 
-- [ ] **0.9** Update `cortex/GAP_CAPTURE.md` header and format to reference Deene Social Presence
+- [x] **0.9** Update `cortex/GAP_CAPTURE.md` header and format to reference Deene Social Presence
   - **Goal:** Make gap capture entries unambiguous for this project.
   - **AC:**
     - Header reads: `# Gap Capture - Deene Social Presence`
@@ -77,7 +77,7 @@ Brain skills (open only if relevant to the current item):
     - Timestamp format guidance remains consistent with seconds standard where applicable.
   - **If Blocked:** Only update the header + template “Project:” line.
 
-- [ ] **0.10** Update `cortex/IMPLEMENTATION_PLAN.md` so it is not a bootstrapped template
+- [x] **0.10** Update `cortex/IMPLEMENTATION_PLAN.md` so it is not a bootstrapped template
   - **Goal:** Make Cortex’s view of the plan match the Deene Social mission (even if Ralph primarily uses `workers/IMPLEMENTATION_PLAN.md`).
   - **AC:**
     - No `{{PROJECT_NAME}}`, `{{PROJECT_PURPOSE}}`, or `{{TIMESTAMP}}` placeholders remain.
@@ -87,7 +87,7 @@ Brain skills (open only if relevant to the current item):
     - Ensure any suggested tasks point to real files and real commands (`npm run build`, `npm run lint`).
   - **If Blocked:** Minimal acceptable: replace placeholders + delete the fake bootstrap tasks section.
 
-- [ ] **0.11** Fix Ralph loop scripts that still assume the plan is at repo root (`IMPLEMENTATION_PLAN.md`)
+- [x] **0.11** Fix Ralph loop scripts that still assume the plan is at repo root (`IMPLEMENTATION_PLAN.md`)
   - **Goal:** Eliminate the startup error: `Error: IMPLEMENTATION_PLAN.md not found at <repo>/IMPLEMENTATION_PLAN.md`.
   - **Context:** This repo’s canonical plan is `workers/IMPLEMENTATION_PLAN.md`, but some Ralph infrastructure scripts still hard-code `$ROOT/IMPLEMENTATION_PLAN.md`.
   - **AC:**

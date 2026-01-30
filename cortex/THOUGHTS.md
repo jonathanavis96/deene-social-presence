@@ -50,7 +50,7 @@ Maintain and evolve the Deene Social Presence marketing site: a clean, minimal, 
 **Actions Taken:**
 
 1. Updated `workers/IMPLEMENTATION_PLAN.md` to match this repo (Deene Social Presence) and to include atomic doc-fix tasks.
-2. Vendored Brain skills into `brain/skills/` as real files (no symlink).
+2. Vendored Brain skills into `skills/` as real files (no symlink).
 
 **Next Steps:**
 
