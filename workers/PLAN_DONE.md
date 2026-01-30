@@ -55,3 +55,10 @@ Completed tasks archived from `workers/IMPLEMENTATION_PLAN.md`.
 | 2026-01-30 | 1.2 | - [x] **1.2** Document (and keep consistent) the routing/base-path strategy |
 | 2026-01-30 | 2.1 | - [x] **2.1** Make Contact form configurable (Formspree) without committing the form id |
 | 2026-01-30 | 2.2 | - [x] **2.2** Validate contact success/error UX and ensure no console errors |
+
+### Archived on 2026-01-30 15:40:38
+
+| Date | Task ID | Description |
+|------|---------|-------------|
+| 2026-01-30 | 3.1 | - [x] **3.1** Decide what to do with `src/components/Navigation.tsx` (currently renders null) |
+| 2026-01-30 | 3.2 | - [x] **3.2** Add a short "non-obvious behaviors" section to README |

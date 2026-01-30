@@ -147,6 +147,14 @@ src/
 └── main.tsx         # Application entry point
 ```
 
+## Non-Obvious Behaviors
+
+This section documents UI details that are easy to break if you're not aware:
+
+- **Hero "logo lock" / fixed header behavior**: The hero section has specific positioning that maintains the logo placement during scroll
+- **Base path + routing constraints**: The site uses React Router with specific base path configuration for deployment
+- **Contact form (Formspree)**: The contact form uses Formspree for submissions - configuration requires the Formspree endpoint to be set correctly in the Contact component
+
 ## Contributing
 
 1. Create a feature branch

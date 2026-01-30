@@ -55,25 +55,6 @@ Brain skills (open only if relevant to the current item):
 
 ---
 
-## Phase 3: Small UX/content alignment and cleanup
-
-- [ ] **3.1** Decide what to do with `src/components/Navigation.tsx` (currently renders null)
-  - **Goal:** Avoid confusing dead code and document intent.
-  - **AC:**
-    - Either remove the component (and references) OR document why it intentionally returns null.
-    - Index page remains correct.
-  - **If Blocked:** Add a comment in `Navigation.tsx` explaining the design decision and add a follow-up task.
-
-- [ ] **3.2** Add a short “non-obvious behaviors” section to README
-  - **Goal:** Capture easy-to-break UI details.
-  - **AC:** README notes:
-    - Hero “logo lock” / fixed header behavior
-    - Base path + routing constraints
-    - Contact Formspree configuration
-  - **If Blocked:** Put these notes under a “Notes” heading.
-
----
-
 ## Phase 4: Fix broken links in brain_upstream templates (website)
 
 - [ ] **4.1** BATCH: Fix template placeholder links in brain_upstream/templates/website/
