@@ -2227,9 +2227,11 @@ else
           echo "Found $(echo "$lint_output" | wc -l) markdown lint errors; running auto-fix first..."
 
           if [[ -f "$RALPH/fix-markdown.sh" ]]; then
+            local plan_git_sha
+            plan_git_sha="$(git rev-parse --short HEAD 2>/dev/null || echo 'unknown')"
             fix_md_id="$(tool_call_id)"
-            fix_md_key="fix-markdown|plan|${git_sha}"
-            run_tool "$fix_md_id" "fix-markdown" "$fix_md_key" "$git_sha" \
+            fix_md_key="fix-markdown|plan|${plan_git_sha}"
+            run_tool "$fix_md_id" "fix-markdown" "$fix_md_key" "$plan_git_sha" \
               "(cd \"$ROOT\" && bash \"$RALPH/fix-markdown.sh\" . 2>/dev/null) || true" || true
           else
             echo "Warning: fix-markdown.sh not found; skipping auto-fix"
