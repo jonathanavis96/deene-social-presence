@@ -58,53 +58,10 @@ Brain skills (open only if relevant to the current item):
 ## Phase 0: Align docs/contracts to the real project (HIGH PRIORITY)
 
 
-- [x] **0.3** Update `workers/ralph/PROMPT.md` commit policy: do NOT commit in BUILD
-  - **Goal:** Enforce the desired workflow: BUILD implements changes, PLAN performs the commit.
-  - **AC:**
-    - BUILD completion instructions do not require committing.
-    - PLAN completion instructions clearly require committing after updating plan + THUNK.
-    - Any other files that contradict this are updated (or explicitly documented as legacy).
-  - **If Blocked:** Add a short "Commit Policy" section and mark other conflicting instructions as deprecated.
-  - **Completed:** 2026-01-30 - Removed 3 contradictory commit instructions from BUILD mode sections (verifier feedback line 19, batch example line 340, BUILD actions line 449). Policy now consistent: BUILD stages only, loop.sh commits at PLAN phase.
 
-- [x] **0.4** Update `workers/ralph/VALIDATION_CRITERIA.md` and remove `[PROJECT_NAME]` placeholders
-  - **Goal:** Ensure quality gates are project-specific and runnable.
-  - **AC:**
-    - Title references "Deene Social Presence".
-    - Includes the actual commands used in this repo:
-      - `npm run lint`
-      - `npm run build`
-      - `npm run preview` (optional)
-  - **If Blocked:** Keep criteria minimal (lint + build) and add a follow-up task for optional checks.
-  - **Completed:** 2026-01-30 - Updated title, purpose, and validation criteria to reference Deene Social Presence. Replaced generic template examples with actual project structure (React+TypeScript+Vite), commands (npm run lint/build/preview), and specific file requirements (vite.config.ts base path, component structure, etc.). Verified build succeeds and lint runs.
 
-- [x] **0.5** Rewrite root `README.md` to remove Lovable boilerplate and document the actual site
-  - **Goal:** Make the repo understandable without Lovable references.
-  - **AC:** README includes:
-    - What the site is (Deene Social Presence landing page)
-    - Local dev commands (`npm i`, `npm run dev`, `npm run build`, `npm run preview`)
-    - GitHub Pages base path details (`/deene-social-presence/`)
-    - Contact form setup notes (Formspree)
-  - **If Blocked:** Provide a minimal README and add TODO bullets for missing details.
-  - **Completed:** 2026-01-30 - Removed all Lovable boilerplate and replaced with comprehensive Deene Social Presence documentation including project description, setup instructions, tech stack (React 18.3, TypeScript, Vite, Tailwind, shadcn-ui), GitHub Pages configuration, Formspree setup guide, project structure, and contributing guidelines. Verified lint and build pass.
 
-- [ ] **0.6** Clarify “monitoring tools” in `docs/BRAIN_SETUP.md` / `docs/SETUP_COMPLETE.md`
-  - **Goal:** Keep monitors as human-only utilities and ensure agents don’t run interactive scripts.
-  - **AC:**
-    - Docs explicitly say: humans may run `current_ralph_tasks.sh` / `thunk_ralph_tasks.sh`, but Cortex/Ralph agents should avoid interactive scripts.
-    - Timestamp formatting is consistent where practical.
-  - **If Blocked:** Add a short note under “Monitoring Tools” stating the policy.
 
-- [ ] **0.7** Update `cortex/AGENTS.md` to be Deene Social Presence–specific (remove placeholders)
-  - **Goal:** Make Cortex guidance reflect this repo’s actual project and prevent outdated/template behaviors.
-  - **AC:**
-    - No `{{PROJECT_NAME}}`, `{{PROJECT_PURPOSE}}`, or `{{TECH_STACK}}` placeholders remain.
-    - Replace project-specific context with:
-      - Project: `Deene Social Presence`
-      - Purpose: static marketing site / landing page
-      - Tech stack: React + TypeScript + Vite + Tailwind + shadcn-ui + React Router
-    - Remove or rewrite any example tasks that refer to unrelated backends (e.g., FastAPI/JWT).
-  - **If Blocked:** Keep the file’s structure but replace placeholders and add a short “Project-Specific Context” section only.
 
 - [ ] **0.8** Update `cortex/CORTEX_SYSTEM_PROMPT.md` to be Deene Social Presence–specific + fix THUNK path typo
   - **Goal:** Ensure Cortex prompt aligns with the repo, and remove known incorrect references.

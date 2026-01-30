@@ -76,6 +76,7 @@ The contact form uses Formspree for form handling. To configure:
 1. Sign up at [Formspree](https://formspree.io)
 2. Create a new form
 3. Update `src/components/Contact.tsx` with your form ID:
+
    ```typescript
    const res = await fetch("https://formspree.io/f/YOUR_FORM_ID", {
    ```
