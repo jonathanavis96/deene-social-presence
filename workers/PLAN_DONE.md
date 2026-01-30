@@ -80,3 +80,11 @@ Completed tasks archived from `workers/IMPLEMENTATION_PLAN.md`.
 | 2026-01-30 | 6.2 | - [x] **6.2** BATCH: Fix workers/IMPLEMENTATION_PLAN.md broken links |
 | 2026-01-30 | 6.3 | - [x] **6.3** BATCH: Fix workers/ralph/THUNK.md broken links |
 | 2026-01-30 | 6.4 | - [x] **6.4** BATCH: Fix workers/ralph/README.md broken links |
+
+### Archived on 2026-01-30 16:29:54
+
+| Date | Task ID | Description |
+|------|---------|-------------|
+| 2026-01-30 | 6.5 | - [x] **6.5** BATCH: Fix .verify/plan_snapshot.md broken links |
+| 2026-01-30 | 6.6 | - [x] **6.6** BATCH: Fix skills/playbooks/investigate-test-failures.md broken links |
+| 2026-01-30 | 6.7 | - [x] **6.7** BATCH: Fix skills/playbooks/bootstrap-new-project.md broken links |
