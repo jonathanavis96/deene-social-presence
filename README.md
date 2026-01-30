@@ -1,73 +1,110 @@
-# Welcome to your Lovable project
+# Deene Social Presence
 
-## Project info
+A professional landing page and social presence website for Deene, built with React, TypeScript, and modern web technologies.
 
-**URL**: <https://lovable.dev/projects/e4ba5689-10a1-4647-b4e1-1977a77d105a>
+## About This Site
 
-## How can I edit this code?
+This is a static marketing site showcasing Deene's services, expertise, and contact information. The site features:
 
-There are several ways of editing your application.
+- Hero section with call-to-action
+- Services overview
+- About section
+- Client logos
+- Contact form
+- Responsive design optimized for all devices
 
-**Use Lovable**
+## Local Development
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/e4ba5689-10a1-4647-b4e1-1977a77d105a) and start prompting.
+### Prerequisites
 
-Changes made via Lovable will be committed automatically to this repo.
+- Node.js & npm - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
-**Use your preferred IDE**
+### Setup
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
+```bash
+# Clone the repository
 git clone <YOUR_GIT_URL>
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+# Navigate to the project directory
+cd deene-social-presence
 
-# Step 3: Install the necessary dependencies.
-npm i
+# Install dependencies
+npm install
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start the development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+The site will be available at `http://localhost:5173`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Available Commands
 
-**Use GitHub Codespaces**
+```bash
+npm run dev      # Start development server with hot reload
+npm run build    # Build for production
+npm run preview  # Preview production build locally
+npm run lint     # Run ESLint to check code quality
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Technology Stack
 
-## What technologies are used for this project?
+- **React 18.3** - UI framework
+- **TypeScript** - Type safety
+- **Vite** - Build tool and dev server
+- **Tailwind CSS** - Utility-first styling
+- **shadcn-ui** - Component library
+- **React Router** - Client-side routing
 
-This project is built with:
+## Deployment
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+This site is configured for GitHub Pages deployment with the base path `/deene-social-presence/`.
 
-## How can I deploy this project?
+### GitHub Pages Configuration
 
-Simply open [Lovable](https://lovable.dev/projects/e4ba5689-10a1-4647-b4e1-1977a77d105a) and click on Share -> Publish.
+The `vite.config.ts` includes:
 
-## Can I connect a custom domain to my Lovable project?
+```typescript
+base: "/deene-social-presence/"
+```
 
-Yes, you can!
+This ensures all assets and routes work correctly when deployed to GitHub Pages.
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+### Contact Form Setup
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+The contact form uses Formspree for form handling. To configure:
+
+1. Sign up at [Formspree](https://formspree.io)
+2. Create a new form
+3. Update `src/components/Contact.tsx` with your form ID:
+   ```typescript
+   const res = await fetch("https://formspree.io/f/YOUR_FORM_ID", {
+   ```
+
+## Project Structure
+
+```text
+src/
+├── components/       # React components
+│   ├── ui/          # shadcn-ui primitives
+│   ├── Hero.tsx     # Hero section
+│   ├── About.tsx    # About section
+│   ├── Services.tsx # Services overview
+│   ├── Contact.tsx  # Contact form
+│   └── ...
+├── pages/           # Page components
+├── hooks/           # Custom React hooks
+├── lib/             # Utility functions
+└── main.tsx         # Application entry point
+```
+
+## Contributing
+
+1. Create a feature branch
+2. Make your changes
+3. Run `npm run lint` to check code quality
+4. Run `npm run build` to verify production build
+5. Submit a pull request
+
+## License
+
+All rights reserved.

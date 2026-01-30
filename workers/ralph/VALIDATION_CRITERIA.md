@@ -1,50 +1,51 @@
-# Validation Criteria - [PROJECT_NAME]
+# Validation Criteria - Deene Social Presence
 
-Last verified: [YYYY-MM-DD HH:MM:SS]
+Last verified: 2026-01-30 15:03:00
 
 ## Purpose
 
-Quality gates and acceptance criteria for [PROJECT_NAME].
+Quality gates and acceptance criteria for Deene Social Presence landing page.
 Check these after completing implementation tasks to ensure the system meets requirements.
 
-[REPLACE: Describe what this validation criteria file checks. What quality standards must the project meet?]
+This validation file checks that the static marketing site builds correctly, passes linting, and meets basic quality standards for a production React + TypeScript + Vite project.
 
 ## Structure Validation
 
-[REPLACE: Define structural requirements - files that must exist, directory layout, configuration files, etc.]
+Structural requirements for the Deene Social Presence site:
 
-Example structure checks:
-
-- [ ] Core directory structure exists (src/, bin/, config/, docs/, drivers/)
-- [ ] Configuration files present and valid
-- [ ] Required dependencies installed
-- [ ] Entry points properly configured
+- [ ] Core directory structure exists (src/, public/, docs/)
+- [ ] Configuration files present and valid (vite.config.ts, tsconfig.json, tailwind.config.ts)
+- [ ] Required dependencies installed (node_modules/)
+- [ ] Entry points properly configured (index.html, src/main.tsx)
 - [ ] Source code in project root src/, NOT workers/ralph/src/
-- [ ] Scripts in project root bin/, NOT workers/ralph/bin/
+- [ ] Component structure organized (src/components/, src/pages/)
 
-Example specific checks:
+Specific structural checks:
 
-- [ ] `[critical-file].ext` exists with required sections
-- [ ] `[directory/]` contains expected subdirectories
-- [ ] `[config-file]` has all required fields
+- [ ] `vite.config.ts` exists with base path `/deene-social-presence/`
+- [ ] `src/App.tsx` contains React Router configuration
+- [ ] `src/pages/Index.tsx` exists as main landing page
+- [ ] `src/components/` contains Hero, About, Services, ClientLogos, Contact, Footer
+- [ ] `public/` contains required assets (favicon, OG image)
 
 ## Functional Validation
 
-[REPLACE: Define functional requirements - what must work, what behavior is expected, performance criteria, etc.]
+Functional requirements for the marketing site:
 
-Example functional checks:
+- [ ] Site builds without errors
+- [ ] TypeScript compilation succeeds
+- [ ] ESLint passes with no errors
+- [ ] All React components render correctly
+- [ ] Navigation links work properly
+- [ ] Contact form integrates with Formspree
 
-- [ ] Core feature X works as specified
-- [ ] Integration with Y functions correctly
-- [ ] Error handling covers edge cases
-- [ ] Performance meets targets (response time, throughput, etc.)
+Specific functional checks:
 
-Example specific checks:
-
-- [ ] [Feature name] produces expected output
-- [ ] [API endpoint] returns correct data format
-- [ ] [Module] handles [error condition] gracefully
-- [ ] [Process] completes within [time threshold]
+- [ ] `npm run build` completes successfully
+- [ ] `npm run lint` passes with no errors
+- [ ] Production build preview runs (`npm run preview`)
+- [ ] All routes resolve correctly with base path
+- [ ] Responsive design works on mobile/tablet/desktop
 
 ## Content Validation
 
