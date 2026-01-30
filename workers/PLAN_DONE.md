@@ -62,3 +62,12 @@ Completed tasks archived from `workers/IMPLEMENTATION_PLAN.md`.
 |------|---------|-------------|
 | 2026-01-30 | 3.1 | - [x] **3.1** Decide what to do with `src/components/Navigation.tsx` (currently renders null) |
 | 2026-01-30 | 3.2 | - [x] **3.2** Add a short "non-obvious behaviors" section to README |
+
+### Archived on 2026-01-30 15:55:04
+
+| Date | Task ID | Description |
+|------|---------|-------------|
+| 2026-01-30 | 4.1 | - [x] **4.1** BATCH: Fix template placeholder links in brain_upstream/templates/website/ |
+| 2026-01-30 | 5.1 | - [x] **5.1** Fix IMPLEMENTATION_PLAN.md reference in brain_upstream/THOUGHTS.md |
+| 2026-01-30 | 5.2 | - [x] **5.2** Fix skill doc references in brain_upstream/workers/ralph/THUNK.md |
+| 2026-01-30 | 5.3 | - [x] **5.3** BATCH: Fix broken skill cross-references in brain_upstream/skills/ |
