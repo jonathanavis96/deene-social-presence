@@ -57,7 +57,7 @@ Brain skills (open only if relevant to the current item):
 
 ## Phase 0-Warn: Verifier Warnings
 
-- [ ] **0-W.5** Fix MD040/MD032/MD022/MD031 in docs/BRAIN_SETUP.md
+- [x] **0-W.5** Fix MD040/MD032/MD022/MD031 in docs/BRAIN_SETUP.md
   - **Goal:** Add language specs to code blocks, add blank lines around lists/headings/fences.
   - **AC:** `markdownlint docs/BRAIN_SETUP.md` passes (no MD040, MD032, MD022, MD031 errors)
   - **If Blocked:** Add `bash` language identifier and proper spacing per markdownlint rules.

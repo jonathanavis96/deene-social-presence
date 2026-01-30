@@ -56,3 +56,5 @@ Started: 2026-01-30
 
 | 2026-01-30T14:15 | 0-W.1 | Fixed MD024 duplicate heading errors in brain_upstream/cortex/PLAN_DONE.md by adding batch numbers (11, 12) to distinguish duplicate "Archived on 2026-01-26" headings | brain_upstream/cortex/PLAN_DONE.md |
 | 2026-01-30T14:17 | AC-FIX | Fixed AC.rules for frontend React project: updated all path references from ../ to ../../ (ralph is nested in workers/), changed structure checks from backend dirs (bin/, config/) to frontend dirs (src/, public/, docs/), updated syntax checks for TypeScript files instead of Python/backend scripts | workers/ralph/rules/AC.rules |
+
+| 0-W.5 | Fix MD040 in docs/BRAIN_SETUP.md | Added `text` language specifier to directory structure code block at line 13. Markdownlint now passes. | 2026-01-30 |
