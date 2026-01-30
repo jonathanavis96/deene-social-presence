@@ -58,3 +58,4 @@ Started: 2026-01-30
 | 2026-01-30T14:17 | AC-FIX | Fixed AC.rules for frontend React project: updated all path references from ../ to ../../ (ralph is nested in workers/), changed structure checks from backend dirs (bin/, config/) to frontend dirs (src/, public/, docs/), updated syntax checks for TypeScript files instead of Python/backend scripts | workers/ralph/rules/AC.rules |
 
 | 0-W.5 | Fix MD040 in docs/BRAIN_SETUP.md | Added `text` language specifier to directory structure code block at line 13. Markdownlint now passes. | 2026-01-30 |
+| 0-W.6 | Fix MD040 in NEURONS.md | Added `text` language specifier to directory structure code block at line 36. Markdownlint now passes with no MD040 errors. | 2026-01-30 |

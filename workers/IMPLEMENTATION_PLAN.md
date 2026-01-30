@@ -58,7 +58,7 @@ Brain skills (open only if relevant to the current item):
 ## Phase 0-Warn: Verifier Warnings
 
 
-- [ ] **0-W.6** Fix MD040 in NEURONS.md
+- [x] **0-W.6** Fix MD040 in NEURONS.md
   - **Goal:** Add language specification to fenced code block at line 36.
   - **AC:** `markdownlint NEURONS.md` passes (no MD040 errors)
   - **If Blocked:** Add appropriate language identifier (likely `text` or `plaintext`) to the code fence.

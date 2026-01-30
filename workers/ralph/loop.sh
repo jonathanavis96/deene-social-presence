@@ -2219,8 +2219,12 @@ else
       # surface remaining errors for the LLM to handle manually.
       MARKDOWN_LINT_ERRORS=""
       if command -v markdownlint &>/dev/null; then
-        echo "Checking for markdown lint errors..."
-
+        echo "Running auto-fix for markdown lint errors..."
+        if [[ -f "$RALPH/fix-markdown.sh" ]]; then
+          bash "$RALPH/fix-markdown.sh" "$ROOT" 2>&1 | tail -10 || true
+        fi
+        
+        echo "Checking for remaining markdown lint errors..."
         lint_output=$(markdownlint "$ROOT" 2>&1 | grep -E "error MD" | head -40) || true
 
         if [[ -n "$lint_output" ]]; then

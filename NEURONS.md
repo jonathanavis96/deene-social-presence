@@ -33,7 +33,7 @@ A social media presence management website built with modern React and TypeScrip
 
 ### Components Structure
 
-```
+```text
 src/
 ├── components/
 │   ├── Hero.tsx
