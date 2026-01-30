@@ -49,7 +49,7 @@ diff workers/ralph/loop.sh templates/ralph/loop.sh
 - **If diff shows no differences** → Verifier false positive → Request waiver (skip to Step 5)
 - **If diff shows differences** → Continue to Step 2
 
-**Link to skill:** [Change Propagation](../domains/ralph/change-propagation.md) - Template sync patterns
+**Link to skill:** [Change Propagation](../../brain_upstream/skills/domains/ralph/change-propagation.md) - Template sync patterns
 
 ### Step 2: Categorize the Drift
 
@@ -106,7 +106,7 @@ markdownlint templates/ralph/<filename>
 
 **Checkpoint:** ✓ File copied successfully, validation passes
 
-**Link to skill:** [Shell Validation Patterns](../domains/languages/shell/validation-patterns.md) - Shellcheck usage
+**Link to skill:** [Shell Validation Patterns](../../brain_upstream/skills/domains/languages/shell/validation-patterns.md) - Shellcheck usage
 
 ### Step 4: Document Intentional Drift (Alternative Path)
 
@@ -234,10 +234,10 @@ Common issues and solutions:
 
 Core skills referenced by this playbook:
 
-- [Change Propagation](../domains/ralph/change-propagation.md) - Template sync patterns and drift management
-- [Shell Validation Patterns](../domains/languages/shell/validation-patterns.md) - Shellcheck usage for script validation
-- [Markdown Patterns](../domains/code-quality/markdown-patterns.md) - Markdown linting for documentation
-- [Code Hygiene](../domains/code-quality/code-hygiene.md) - General code quality checks
+- [Change Propagation](../../brain_upstream/skills/domains/ralph/change-propagation.md) - Template sync patterns and drift management
+- [Shell Validation Patterns](../../brain_upstream/skills/domains/languages/shell/validation-patterns.md) - Shellcheck usage for script validation
+- [Markdown Patterns](../../brain_upstream/skills/domains/code-quality/markdown-patterns.md) - Markdown linting for documentation
+- [Code Hygiene](../../brain_upstream/skills/domains/code-quality/code-hygiene.md) - General code quality checks
 
 ## Related Playbooks
 
