@@ -2196,6 +2196,8 @@ else
       fi
 
       # Snapshot plan BEFORE sync for drift detection (prevents direct-edit bypass)
+      # Ensure root .verify dir exists (some repos only have workers/ralph/.verify)
+      mkdir -p "$ROOT/.verify"
       PLAN_SNAPSHOT="$ROOT/.verify/plan_snapshot.md"
       if [[ -f "$ROOT/workers/IMPLEMENTATION_PLAN.md" ]]; then
         cp "$ROOT/workers/IMPLEMENTATION_PLAN.md" "$PLAN_SNAPSHOT"
