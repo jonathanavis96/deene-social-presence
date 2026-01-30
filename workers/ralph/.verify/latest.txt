@@ -1,6 +1,6 @@
 Ralph Verifier Report
-Time: 2026-01-30 14:48:31
-Git:  eb38e78
+Time: 2026-01-30 14:48:55
+Git:  2f682d9
 AC:   /home/grafe/code/deene-social/workers/ralph/rules/AC.rules
 Approvals: /home/grafe/code/deene-social/workers/ralph/rules/MANUAL_APPROVALS.rules
 ------------------------------------------------------------
@@ -75,13 +75,11 @@ Approvals: /home/grafe/code/deene-social/workers/ralph/rules/MANUAL_APPROVALS.ru
   cmd:  test -f THOUGHTS.md && echo yes
   exit: 0
   stdout: yes
-[WARN] Protected.1 (auto check failed but warn gate)
+[PASS] Protected.1
   desc: loop.sh differs from baseline (allowed in projects)
   cmd:  sha256sum loop.sh | cut -d' ' -f1 | diff -q - .verify/loop.sha256 >/dev/null 2>&1 && echo match || echo mismatch
   exit: 0
-  stdout: mismatch
-  reasons:
-    - stdout mismatch expected='match' got='mismatch'
+  stdout: match
 [PASS] Protected.2
   desc: verifier.sh differs from baseline (allowed in projects)
   cmd:  sha256sum verifier.sh | cut -d' ' -f1 | diff -q - .verify/verifier.sha256 >/dev/null 2>&1 && echo match || echo mismatch
@@ -119,9 +117,9 @@ NEURONS.md:76:81 error MD013/line-length Line length [Expected: 80; Actual: 102]
   stdout: 
 ------------------------------------------------------------
 SUMMARY
-  PASS: 20
+  PASS: 21
   FAIL: 0
-  WARN: 2 (manual_warn=1)
+  WARN: 1 (manual_warn=1)
   SKIP: 0
   Manual gate=block failures: 0
   Hash guard: OK
