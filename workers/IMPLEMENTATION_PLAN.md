@@ -29,7 +29,7 @@ We want to de-contaminate the deployable website from the repo’s agent/ops sca
 
 ## Phase 0: Fix Broken Internal Links
 
-- [ ] **0.1** Fix broken link in skills/conventions.md
+- [x] **0.1** Fix broken link in skills/conventions.md
   - **Goal:** Remove or correct the placeholder link at line 204
   - **Work:**
     - Open `skills/conventions.md` line 204
@@ -38,7 +38,7 @@ We want to de-contaminate the deployable website from the repo’s agent/ops sca
   - **AC:** `bash tools/validate_links.sh skills/conventions.md` passes
   - **If Blocked:** If this is an intentional example, wrap it in a code block instead of using actual markdown link syntax
 
-- [ ] **0.2** BATCH: Sync missing backend domain files from brain_upstream
+- [x] **0.2** BATCH: Sync missing backend domain files from brain_upstream
   - **Goal:** Copy backend pattern files that skills/index.md references but don't exist locally
   - **Scope:** 6 files in `skills/domains/backend/`
   - **Work:**
@@ -53,7 +53,7 @@ We want to de-contaminate the deployable website from the repo’s agent/ops sca
   - **AC:** All 6 files exist in `skills/domains/backend/` and `bash tools/validate_links.sh skills/index.md` shows no backend link errors
   - **If Blocked:** If files don't exist in brain_upstream, create stub files with basic structure per skills/conventions.md
 
-- [ ] **0.3** BATCH: Sync missing code-quality domain files from brain_upstream
+- [x] **0.3** BATCH: Sync missing code-quality domain files from brain_upstream
   - **Goal:** Copy code-quality pattern files that skills/index.md references but don't exist locally
   - **Scope:** 10 files in `skills/domains/code-quality/`
   - **Work:**
@@ -72,7 +72,7 @@ We want to de-contaminate the deployable website from the repo’s agent/ops sca
   - **AC:** All 10 files exist in `skills/domains/code-quality/` and `bash tools/validate_links.sh skills/index.md` shows no code-quality link errors
   - **If Blocked:** If files don't exist in brain_upstream, create stub files with basic structure per skills/conventions.md
 
-- [ ] **0.4** BATCH: Sync missing anti-patterns domain files from brain_upstream
+- [x] **0.4** BATCH: Sync missing anti-patterns domain files from brain_upstream
   - **Goal:** Copy anti-pattern files that skills/index.md references but don't exist locally
   - **Scope:** 5 files in `skills/domains/anti-patterns/`
   - **Work:**
