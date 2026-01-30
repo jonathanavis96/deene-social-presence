@@ -106,7 +106,7 @@ E   +  where 'miss' = <function cache_lookup at 0x7f...>()
 - Test fixtures outdated
 - Logic error in implementation
 
-**Link to skill:** [Testing Patterns](../domains/code-quality/testing-patterns.md) - See "Arrange-Act-Assert Pattern"
+**Link to skill:** [Testing Patterns](../../brain_upstream/skills/domains/code-quality/testing-patterns.md) - See "Arrange-Act-Assert Pattern"
 
 ### Step 3b: Fix Import/Dependency Errors
 
@@ -210,7 +210,7 @@ timeout 10s bash long_running_script.sh || {
 }
 ```
 
-**Link to skill:** [JavaScript Patterns](../domains/languages/javascript/javascript-patterns.md) - See "Async/Await Patterns"
+**Link to skill:** [JavaScript Patterns](../../brain_upstream/skills/domains/languages/javascript/javascript-patterns.md) - See "Async/Await Patterns"
 
 ### Step 3e: Fix Missing Test Fixtures
 
@@ -260,7 +260,7 @@ bash test_script.sh
 cleanup_test_environment
 ```
 
-**Link to skill:** [Testing Patterns](../domains/code-quality/testing-patterns.md) - See "Test Fixtures and Setup"
+**Link to skill:** [Testing Patterns](../../brain_upstream/skills/domains/code-quality/testing-patterns.md) - See "Test Fixtures and Setup"
 
 ### Step 3f: Fix Permission Issues
 
@@ -317,7 +317,7 @@ def test_process_items():
     assert result == 3
 ```
 
-**Link to skill:** [Python Patterns](../domains/languages/python/python-patterns.md) - See "Type Hints"
+**Link to skill:** [Python Patterns](../../brain_upstream/skills/domains/languages/python/python-patterns.md) - See "Type Hints"
 
 ### Step 3h: Fix Flaky Tests
 
@@ -355,7 +355,7 @@ def test_api_call(mock_get):
     assert result['data'] == 'test'
 ```
 
-**Link to skill:** [Testing Patterns](../domains/code-quality/testing-patterns.md) - See "Test Isolation and Independence"
+**Link to skill:** [Testing Patterns](../../brain_upstream/skills/domains/code-quality/testing-patterns.md) - See "Test Isolation and Independence"
 
 ### Step 4: Verify Fix
 
@@ -444,11 +444,11 @@ Common issues and solutions:
 
 Core skills referenced by this playbook:
 
-- [Testing Patterns](../domains/code-quality/testing-patterns.md) - Comprehensive testing strategies and patterns
-- [Python Patterns](../domains/languages/python/python-patterns.md) - Python-specific error handling and type hints
-- [JavaScript Patterns](../domains/languages/javascript/javascript-patterns.md) - Async/await and promise handling
-- [Error Handling Patterns](../domains/backend/error-handling-patterns.md) - Exception handling and retry strategies
-- [Code Hygiene](../domains/code-quality/code-hygiene.md) - Test maintenance and dead code removal
+- [Testing Patterns](../../brain_upstream/skills/domains/code-quality/testing-patterns.md) - Comprehensive testing strategies and patterns
+- [Python Patterns](../../brain_upstream/skills/domains/languages/python/python-patterns.md) - Python-specific error handling and type hints
+- [JavaScript Patterns](../../brain_upstream/skills/domains/languages/javascript/javascript-patterns.md) - Async/await and promise handling
+- [Error Handling Patterns](../../brain_upstream/skills/domains/backend/error-handling-patterns.md) - Exception handling and retry strategies
+- [Code Hygiene](../../brain_upstream/skills/domains/code-quality/code-hygiene.md) - Test maintenance and dead code removal
 
 ## Related Playbooks
 
