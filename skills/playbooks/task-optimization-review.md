@@ -140,9 +140,9 @@ After proposing optimizations:
 
 ## Related Skills
 
-- [Token Efficiency](../domains/code-quality/token-efficiency.md)
-- [Testing Patterns](../domains/code-quality/testing-patterns.md)
-- [Ralph Patterns](../domains/ralph/ralph-patterns.md)
+- [Token Efficiency](../../brain_upstream/skills/domains/code-quality/token-efficiency.md)
+- [Testing Patterns](../../brain_upstream/skills/domains/code-quality/testing-patterns.md)
+- [Ralph Patterns](../../brain_upstream/skills/domains/ralph/ralph-patterns.md)
 
 ---
 

@@ -31,7 +31,7 @@ docs/SETUP.md:120 MD024/no-duplicate-heading Multiple headings with same content
   - `workers/ralph/fix-markdown.sh` - Auto-fix script
 - **Knowledge:**
   - Basic markdown syntax
-  - [Markdown Patterns](../domains/code-quality/markdown-patterns.md) skill
+  - [Markdown Patterns](../../brain_upstream/skills/domains/code-quality/markdown-patterns.md) skill
 
 ## Steps
 
@@ -77,7 +77,7 @@ markdownlint . 2>&1 | grep "MD0"
 | MD036 | Emphasis instead of heading | LOW |
 | MD060 | Table column style inconsistent | LOW |
 
-**Decision Point:** If 10+ instances of same error → Consider bulk editing (see [Bulk Edit Patterns](../domains/code-quality/bulk-edit-patterns.md))
+**Decision Point:** If 10+ instances of same error → Consider bulk editing (see [Bulk Edit Patterns](../../brain_upstream/skills/domains/code-quality/bulk-edit-patterns.md))
 
 ### 3. Fix MD040 (Missing Fence Language)
 
@@ -117,7 +117,7 @@ grep -rn "^\`\`\`$" skills/ docs/
 # Manual edits required - no safe automated replacement
 ```
 
-**Reference:** [Markdown Patterns - MD040](../domains/code-quality/markdown-patterns.md#md040-fenced-code-blocks-should-have-language)
+**Reference:** [Markdown Patterns - MD040](../../brain_upstream/skills/domains/code-quality/markdown-patterns.md#md040-fenced-code-blocks-should-have-language)
 
 ### 4. Fix MD024 (Duplicate Headings)
 
@@ -145,7 +145,7 @@ grep -rn "^\`\`\`$" skills/ docs/
 - Rename to be more specific (`## Project Prerequisites` vs `## System Prerequisites`)
 - Consider if sections should be merged
 
-**Reference:** [Markdown Patterns - MD024](../domains/code-quality/markdown-patterns.md#md024-no-duplicate-headings)
+**Reference:** [Markdown Patterns - MD024](../../brain_upstream/skills/domains/code-quality/markdown-patterns.md#md024-no-duplicate-headings)
 
 ### 5. Fix MD032 (Blanks Around Lists)
 
@@ -220,7 +220,7 @@ Content here...
 
 **Note:** `.markdownlint.yaml` should configure this to "expanded" style.
 
-**Reference:** [Markdown Patterns - MD060](../domains/code-quality/markdown-patterns.md#md060-table-column-style)
+**Reference:** [Markdown Patterns - MD060](../../brain_upstream/skills/domains/code-quality/markdown-patterns.md#md060-table-column-style)
 
 ### 8. Verify Fixes
 
@@ -298,10 +298,10 @@ grep -rn "^\`\`\`$" skills/ docs/ | head -20
 
 ## Related Skills
 
-- [Markdown Patterns](../domains/code-quality/markdown-patterns.md) - Full reference for all MD rules
-- [Bulk Edit Patterns](../domains/code-quality/bulk-edit-patterns.md) - Efficient batch editing strategies
-- [Code Consistency](../domains/code-quality/code-consistency.md) - Documentation accuracy and consistency
-- [Code Hygiene](../domains/code-quality/code-hygiene.md) - General linting and formatting best practices
+- [Markdown Patterns](../../brain_upstream/skills/domains/code-quality/markdown-patterns.md) - Full reference for all MD rules
+- [Bulk Edit Patterns](../../brain_upstream/skills/domains/code-quality/bulk-edit-patterns.md) - Efficient batch editing strategies
+- [Code Consistency](../../brain_upstream/skills/domains/code-quality/code-consistency.md) - Documentation accuracy and consistency
+- [Code Hygiene](../../brain_upstream/skills/domains/code-quality/code-hygiene.md) - General linting and formatting best practices
 
 ## Related Playbooks
 

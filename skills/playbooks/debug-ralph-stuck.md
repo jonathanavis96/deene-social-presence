@@ -21,7 +21,7 @@ Before starting, ensure you have:
 - **Tools:** `bash`, `ps`, `tail`, `grep`, `git`
 - **Files:** Access to `workers/ralph/` directory and `.verify/` folder
 - **Permissions:** Read access to log files, write access if cleanup needed
-- **Knowledge:** Basic understanding of Ralph loop architecture (see [Ralph Patterns](../domains/ralph/ralph-patterns.md))
+- **Knowledge:** Basic understanding of Ralph loop architecture (see [Ralph Patterns](../../brain_upstream/skills/domains/ralph/ralph-patterns.md))
 
 ## Steps
 
@@ -134,7 +134,7 @@ Common error patterns:
 | `Rate limit exceeded` | API throttling | Step 5e (Rate Limits) |
 | Same task repeated 5+ times | Logic loop | Step 5f (Logic Loops) |
 
-**Link to skill:** [Ralph Patterns](../domains/ralph/ralph-patterns.md) - Troubleshooting section has detailed error patterns
+**Link to skill:** [Ralph Patterns](../../brain_upstream/skills/domains/ralph/ralph-patterns.md) - Troubleshooting section has detailed error patterns
 
 **Checkpoint:** ✓ You've categorized the error type
 
@@ -253,7 +253,7 @@ Common error patterns:
   - Check if `CACHE_SKIP=1` is set (disables cache, causes more API calls)
   - Verify cache is working: `ls -la artifacts/rollflow_cache/cache.sqlite`
 
-**Link to skill:** [Cache Debugging](../domains/ralph/cache-debugging.md) - Cache troubleshooting patterns
+**Link to skill:** [Cache Debugging](../../brain_upstream/skills/domains/ralph/cache-debugging.md) - Cache troubleshooting patterns
 
 ### Step 5f: Handle Logic Loops
 
@@ -351,9 +351,9 @@ Common issues during debugging:
 
 Core skills referenced by this playbook:
 
-- [Ralph Patterns](../domains/ralph/ralph-patterns.md) - Architecture, troubleshooting, and common patterns
-- [Cache Debugging](../domains/ralph/cache-debugging.md) - Cache-specific issues and solutions
-- [Token Efficiency](../code-quality/token-efficiency.md) - Performance optimization to prevent slowness
+- [Ralph Patterns](../../brain_upstream/skills/domains/ralph/ralph-patterns.md) - Architecture, troubleshooting, and common patterns
+- [Cache Debugging](../../brain_upstream/skills/domains/ralph/cache-debugging.md) - Cache-specific issues and solutions
+- [Token Efficiency](../../brain_upstream/skills/domains/code-quality/token-efficiency.md) - Performance optimization to prevent slowness
 
 ## Related Playbooks
 
