@@ -59,3 +59,7 @@ Started: 2026-01-30
 
 | 0-W.5 | Fix MD040 in docs/BRAIN_SETUP.md | Added `text` language specifier to directory structure code block at line 13. Markdownlint now passes. | 2026-01-30 |
 | 0-W.6 | Fix MD040 in NEURONS.md | Added `text` language specifier to directory structure code block at line 36. Markdownlint now passes with no MD040 errors. | 2026-01-30 |
+| 7 | 2026-01-30 14:56 | Fixed MD040 in workers/ralph/NEURONS.md | Added `text` language tag to code fence at line 36 | 0-W.7 | markdownlint passes |
+| 3 | 2026-01-30 | 0-W.8 | Fixed MD001 in workers/PLAN_DONE.md - changed h3 headings to h2 | verifier warning |
+| 4 | 2026-01-30 | 0.1 | Verified plan contains no legacy references - all content matches Deene Social codebase | sanity check |
+| 5 | 2026-01-30 | 0.2 | Verified RALPH.md already aligned to workers/IMPLEMENTATION_PLAN.md + workers/ralph/THUNK.md workflow - no fix_plan.md or progress.txt references found | documentation audit |
