@@ -27,6 +27,132 @@ We want to de-contaminate the deployable website from the repo’s agent/ops sca
 
 ---
 
+## Phase 0: Fix Broken Internal Links
+
+- [ ] **0.1** Fix broken link in skills/conventions.md
+  - **Goal:** Remove or correct the placeholder link at line 204
+  - **Work:**
+    - Open `skills/conventions.md` line 204
+    - The link `[link](../path/to/file.md)` is a placeholder/example that should be removed or made concrete
+    - Either remove the example or replace with a valid link (e.g., to `index.md`)
+  - **AC:** `bash tools/validate_links.sh skills/conventions.md` passes
+  - **If Blocked:** If this is an intentional example, wrap it in a code block instead of using actual markdown link syntax
+
+- [ ] **0.2** BATCH: Sync missing backend domain files from brain_upstream
+  - **Goal:** Copy backend pattern files that skills/index.md references but don't exist locally
+  - **Scope:** 6 files in `skills/domains/backend/`
+  - **Work:**
+    - Create directory: `mkdir -p skills/domains/backend`
+    - Copy files from `brain_upstream/skills/domains/backend/` to `skills/domains/backend/`:
+      - `api-design-patterns.md`
+      - `auth-patterns.md`
+      - `caching-patterns.md`
+      - `config-patterns.md`
+      - `database-patterns.md`
+      - `error-handling-patterns.md`
+  - **AC:** All 6 files exist in `skills/domains/backend/` and `bash tools/validate_links.sh skills/index.md` shows no backend link errors
+  - **If Blocked:** If files don't exist in brain_upstream, create stub files with basic structure per skills/conventions.md
+
+- [ ] **0.3** BATCH: Sync missing code-quality domain files from brain_upstream
+  - **Goal:** Copy code-quality pattern files that skills/index.md references but don't exist locally
+  - **Scope:** 10 files in `skills/domains/code-quality/`
+  - **Work:**
+    - Create directory: `mkdir -p skills/domains/code-quality`
+    - Copy files from `brain_upstream/skills/domains/code-quality/` to `skills/domains/code-quality/`:
+      - `bulk-edit-patterns.md`
+      - `code-consistency.md`
+      - `code-hygiene.md`
+      - `code-review-patterns.md`
+      - `markdown-patterns.md`
+      - `research-cheatsheet.md`
+      - `research-patterns.md`
+      - `test-coverage-patterns.md`
+      - `testing-patterns.md`
+      - `token-efficiency.md`
+  - **AC:** All 10 files exist in `skills/domains/code-quality/` and `bash tools/validate_links.sh skills/index.md` shows no code-quality link errors
+  - **If Blocked:** If files don't exist in brain_upstream, create stub files with basic structure per skills/conventions.md
+
+- [ ] **0.4** BATCH: Sync missing anti-patterns domain files from brain_upstream
+  - **Goal:** Copy anti-pattern files that skills/index.md references but don't exist locally
+  - **Scope:** 5 files in `skills/domains/anti-patterns/`
+  - **Work:**
+    - Create directory: `mkdir -p skills/domains/anti-patterns`
+    - Copy files from `brain_upstream/skills/domains/anti-patterns/` to `skills/domains/anti-patterns/`:
+      - `README.md`
+      - `documentation-anti-patterns.md`
+      - `markdown-anti-patterns.md`
+      - `ralph-anti-patterns.md`
+      - `shell-anti-patterns.md`
+  - **AC:** All 5 files exist in `skills/domains/anti-patterns/` and `bash tools/validate_links.sh skills/index.md` shows no anti-patterns link errors
+  - **If Blocked:** If files don't exist in brain_upstream, create stub files with basic structure per skills/conventions.md
+
+- [ ] **0.5** BATCH: Sync missing frontend domain files from brain_upstream
+  - **Goal:** Copy frontend pattern files that skills/index.md references but don't exist locally
+  - **Scope:** 3 files in `skills/domains/frontend/`
+  - **Work:**
+    - Create directory: `mkdir -p skills/domains/frontend`
+    - Copy files from `brain_upstream/skills/domains/frontend/` to `skills/domains/frontend/`:
+      - `README.md`
+      - `react-patterns.md`
+      - `accessibility-patterns.md`
+  - **AC:** All 3 files exist in `skills/domains/frontend/` and `bash tools/validate_links.sh skills/index.md` shows no frontend link errors
+  - **If Blocked:** If files don't exist in brain_upstream, create stub files with basic structure per skills/conventions.md
+
+- [ ] **0.6** BATCH: Sync missing infrastructure domain files from brain_upstream
+  - **Goal:** Copy infrastructure pattern files that skills/index.md references but don't exist locally
+  - **Scope:** 6 files in `skills/domains/infrastructure/`
+  - **Work:**
+    - Create directory: `mkdir -p skills/domains/infrastructure`
+    - Copy files from `brain_upstream/skills/domains/infrastructure/` to `skills/domains/infrastructure/`:
+      - `agent-observability-patterns.md`
+      - `deployment-patterns.md`
+      - `disaster-recovery-patterns.md`
+      - `observability-patterns.md`
+      - `security-patterns.md`
+      - `state-management-patterns.md`
+  - **AC:** All 6 files exist in `skills/domains/infrastructure/` and `bash tools/validate_links.sh skills/index.md` shows no infrastructure link errors
+  - **If Blocked:** If files don't exist in brain_upstream, create stub files with basic structure per skills/conventions.md
+
+- [ ] **0.7** BATCH: Sync missing language-specific domain files from brain_upstream
+  - **Goal:** Copy language pattern files that skills/index.md references but don't exist locally
+  - **Scope:** Multiple subdirectories under `skills/domains/languages/`
+  - **Work:**
+    - Create directories: `mkdir -p skills/domains/languages/{go,javascript,python}`
+    - Copy Go files from `brain_upstream/skills/domains/languages/go/`:
+      - `README.md`
+      - `go-patterns.md`
+    - Copy JavaScript files from `brain_upstream/skills/domains/languages/javascript/`:
+      - `README.md`
+      - `javascript-patterns.md`
+    - Copy Python file from `brain_upstream/skills/domains/languages/python/`:
+      - `python-patterns.md`
+    - Copy Shell files from `brain_upstream/skills/domains/languages/shell/` (if missing):
+      - `cleanup-patterns.md`
+      - `common-pitfalls.md`
+      - `strict-mode.md`
+  - **AC:** All language pattern files exist and `bash tools/validate_links.sh skills/index.md` shows no language link errors
+  - **If Blocked:** If files don't exist in brain_upstream, create stub files with basic structure per skills/conventions.md
+
+- [ ] **0.8** Create missing domains/README.md
+  - **Goal:** Fix the broken link to domains/README.md in skills/index.md
+  - **Work:**
+    - Create `skills/domains/README.md` with overview of domain categories
+    - Include sections: Backend, Code Quality, Anti-Patterns, Frontend, Infrastructure, Languages
+    - Follow structure from skills/conventions.md (Why, When, Details, Examples)
+  - **AC:** `bash tools/validate_links.sh skills/index.md` passes for domains/README.md link
+  - **If Blocked:** Copy from `brain_upstream/skills/domains/README.md` if it exists
+
+- [ ] **0.9** Verify all broken links are fixed
+  - **Goal:** Confirm all link validation passes
+  - **Work:**
+    - Run: `bash tools/validate_links.sh skills/conventions.md`
+    - Run: `bash tools/validate_links.sh skills/index.md`
+    - Fix any remaining broken links discovered
+  - **AC:** Both files pass validation with no `[ERROR]` lines
+  - **If Blocked:** If new errors appear, address them individually or request human review
+
+---
+
 ## Phase 1: Move Vite app into `website/` (repo structure cleanup)
 
 - [ ] **1.1** Create `website/` and move the Vite app + configs into it
