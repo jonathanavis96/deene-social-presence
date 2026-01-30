@@ -114,6 +114,6 @@ See `docs/BOOTSTRAPPING.md` for detailed setup instructions.
 ## See Also
 
 - [workers/ralph/README.md](../../workers/ralph/README.md) - Brain Ralph implementation documentation
-- [docs/BOOTSTRAPPING.md](../../docs/BOOTSTRAPPING.md) - New project bootstrapping guide
-- [skills/domains/ralph/ralph-patterns.md](../../skills/domains/ralph/ralph-patterns.md) - Ralph loop architecture
-- [skills/domains/ralph/change-propagation.md](../../skills/domains/ralph/change-propagation.md) - Template sync patterns
+- [docs/BOOTSTRAPPING.md](../../brain_upstream/docs/BOOTSTRAPPING.md) - New project bootstrapping guide
+- [skills/domains/ralph/ralph-patterns.md](../../brain_upstream/skills/domains/ralph/ralph-patterns.md) - Ralph loop architecture
+- [skills/domains/ralph/change-propagation.md](../../brain_upstream/skills/domains/ralph/change-propagation.md) - Template sync patterns

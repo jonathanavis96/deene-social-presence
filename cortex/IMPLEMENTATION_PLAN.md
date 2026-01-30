@@ -55,77 +55,92 @@ Brain skills (open only if relevant to the current item):
 
 ---
 
-## Phase 4: Fix broken links in brain_upstream templates (website)
-
-- [ ] **4.1** BATCH: Fix template placeholder links in brain_upstream/templates/website/
-  - **Scope:** `VALIDATION_CRITERIA.project.md`, `THOUGHTS.project.md`, `AGENTS.project.md`, `NEURONS.project.md`
-  - **Fix:** Update all template file cross-references to point to docs/ subdirectory
-    - `[AGENTS.md](AGENTS.md)` → `[AGENTS.md](docs/AGENTS.md)` (or remove if truly placeholder)
-    - `[NEURONS.md](NEURONS.md)` → `[NEURONS.md](docs/NEURONS.md)`
-    - `[THOUGHTS.md](THOUGHTS.md)` → `[THOUGHTS.md](docs/THOUGHTS.md)`
-    - `[VALIDATION_CRITERIA.md](VALIDATION_CRITERIA.md)` → `[VALIDATION_CRITERIA.md](docs/VALIDATION_CRITERIA.md)`
-    - `[sitemap.md](sitemap.md)` → `[sitemap.md](docs/sitemap.md)`
-    - `[sections.md](sections.md)` → `[sections.md](docs/sections.md)`
-  - **Rationale:** Template files are meant to be copied to new projects; links should reflect where docs will exist in instantiated projects
-  - **Steps:**
-    1. Check each file for link context (are they truly meant as relative links or just placeholders?)
-    2. Update all 11 broken links across 4 files
-    3. Validate: `bash tools/validate_links.sh brain_upstream/templates/website/`
-  - **AC:** All template files pass link validation
-  - **Estimated Time:** [M] 5-8 minutes (4 files, 11 links)
-
----
-
-## Phase 5: Fix broken links in brain_upstream core documentation
-
-- [ ] **5.1** Fix IMPLEMENTATION_PLAN.md reference in brain_upstream/THOUGHTS.md
-  - **Goal:** Correct path to implementation plan file
-  - **Fix:** Line 263: `[IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md)` → `[IMPLEMENTATION_PLAN.md](../workers/IMPLEMENTATION_PLAN.md)`
-  - **AC:** `bash tools/validate_links.sh brain_upstream/THOUGHTS.md` passes
-
-- [ ] **5.2** Fix skill doc references in brain_upstream/workers/ralph/THUNK.md
-  - **Goal:** Correct relative paths to skills documentation
-  - **Fix:**
-    - Line 614: `[code-hygiene.md](../code-hygiene.md)` → `[code-hygiene.md](../../skills/domains/code-quality/code-hygiene.md)`
-    - Line 614: `[ralph-patterns.md](../ralph-patterns.md)` → `[ralph-patterns.md](../../skills/domains/ralph/ralph-patterns.md)`
-    - Line 743: `[text](target.md)` → Remove or replace with valid example
-  - **AC:** `bash tools/validate_links.sh brain_upstream/workers/ralph/THUNK.md` passes
-
-- [ ] **5.3** BATCH: Fix broken skill cross-references in brain_upstream/skills/
-  - **Scope:** `debug-ralph-stuck.md`, `conventions.md`, `python-patterns.md`, `observability-patterns.md`, `deployment-patterns.md`
-  - **Fix:** Update all skill doc references to match current directory structure (11 broken links total)
-    - Example: `[Token Efficiency](../code-quality/token-efficiency.md)` → check if file exists, update path
-    - Example: `[error-handling-patterns.md](./error-handling-patterns.md)` → verify correct relative path
-    - Example: `[testing-patterns.md](../../code-quality/testing-patterns.md)` → verify path exists
-  - **Steps:**
-    1. Map current brain_upstream/skills/ structure: `find brain_upstream/skills -name "*.md" -type f | head -30`
-    2. For each broken link, find correct target path
-    3. Update all references
-    4. Validate each file after fixing
-  - **AC:** All 5 files pass `bash tools/validate_links.sh <file>`
-  - **Estimated Time:** [M] 10-15 minutes (5 files, 11 links, need path discovery)
-
----
-
 ## Phase 6: Fix broken links in workers/ralph and local skills/
 
-- [ ] **6.1** Fix relative path references in workers/ralph/README.md
-  - **Goal:** Update paths to work from project root structure
-  - **Fix:** Lines 117-119:
-    - `[docs/BOOTSTRAPPING.md](../../docs/BOOTSTRAPPING.md)` → Check if brain_upstream/docs/BOOTSTRAPPING.md exists, update accordingly
-    - `[skills/domains/ralph/ralph-patterns.md](../../skills/domains/ralph/ralph-patterns.md)` → Update to `../../brain_upstream/skills/domains/ralph/ralph-patterns.md` or local equivalent
-    - `[skills/domains/ralph/change-propagation.md](../../skills/domains/ralph/change-propagation.md)` → Update to `../../brain_upstream/skills/domains/ralph/change-propagation.md` or local equivalent
-  - **AC:** `bash tools/validate_links.sh workers/ralph/README.md` passes
+- [ ] **6.1** BATCH: Fix cortex/IMPLEMENTATION_PLAN.md broken links
+  - **Scope:** Lines 63-65, 71-72
+  - **Fix Type:** Point to brain_upstream/ locations (files exist there)
+    - Line 63: `../../docs/BOOTSTRAPPING.md` → `../brain_upstream/docs/BOOTSTRAPPING.md`
+    - Line 64: `../../skills/domains/ralph/ralph-patterns.md` → `../brain_upstream/skills/domains/ralph/ralph-patterns.md`
+    - Line 65: `../../skills/domains/ralph/change-propagation.md` → `../brain_upstream/skills/domains/ralph/change-propagation.md`
+    - Line 71: `../domains/code-quality/testing-patterns.md` → `../brain_upstream/skills/domains/code-quality/testing-patterns.md`
+    - Line 72: `../../templates/README.md` → `../brain_upstream/templates/README.md`
+  - **AC:** `bash tools/validate_links.sh cortex/IMPLEMENTATION_PLAN.md` passes
+  - **Estimated Time:** [S] 2-3 minutes (1 file, 5 links)
 
-- [ ] **6.2** BATCH: Fix broken skill references in local skills/playbooks/
-  - **Scope:** `investigate-test-failures.md`, `bootstrap-new-project.md`
-  - **Fix:** Update 5 broken links to match local skills/ structure
-    - Example: `[Testing Patterns](../domains/code-quality/testing-patterns.md)` → verify file exists or update path
-    - Example: `[Project Template Structure](../../templates/README.md)` → verify path or point to brain_upstream equivalent
-  - **Steps:**
-    1. Check local skills/ structure: `find skills -name "*.md" -type f`
-    2. For missing files, check if they exist in brain_upstream/skills/ instead
-    3. Update paths to point to correct location (local or brain_upstream)
-    4. Validate both files
-  - **AC:** Both files pass `bash tools/validate_links.sh <file>`
-  - **Estimated Time:** [S] 3-5 minutes (2 files, 5 links)
+- [ ] **6.2** BATCH: Fix workers/IMPLEMENTATION_PLAN.md broken links
+  - **Scope:** Lines 63-65, 71-72 (identical to cortex/)
+  - **Fix Type:** Point to brain_upstream/ locations (files exist there)
+    - Line 63: `../../docs/BOOTSTRAPPING.md` → `../brain_upstream/docs/BOOTSTRAPPING.md`
+    - Line 64: `../../skills/domains/ralph/ralph-patterns.md` → `../brain_upstream/skills/domains/ralph/ralph-patterns.md`
+    - Line 65: `../../skills/domains/ralph/change-propagation.md` → `../brain_upstream/skills/domains/ralph/change-propagation.md`
+    - Line 71: `../domains/code-quality/testing-patterns.md` → `../brain_upstream/skills/domains/code-quality/testing-patterns.md`
+    - Line 72: `../../templates/README.md` → `../brain_upstream/templates/README.md`
+  - **AC:** `bash tools/validate_links.sh workers/IMPLEMENTATION_PLAN.md` passes
+  - **Estimated Time:** [S] 2-3 minutes (1 file, 5 links)
+
+- [ ] **6.3** BATCH: Fix workers/ralph/THUNK.md broken links
+  - **Scope:** Line 83 (5 broken links in one line)
+  - **Fix Type:** Point to brain_upstream/ locations
+    - `../code-hygiene.md` → `../../brain_upstream/skills/domains/code-quality/code-hygiene.md`
+    - `../../skills/domains/code-quality/code-hygiene.md` → `../../brain_upstream/skills/domains/code-quality/code-hygiene.md`
+    - `../ralph-patterns.md` → `../../brain_upstream/skills/domains/ralph/ralph-patterns.md`
+    - `../../skills/domains/ralph/ralph-patterns.md` → `../../brain_upstream/skills/domains/ralph/ralph-patterns.md`
+    - `target.md` → Remove or fix (malformed link)
+  - **AC:** `bash tools/validate_links.sh workers/ralph/THUNK.md` passes
+  - **Estimated Time:** [S] 2-3 minutes (1 file, 1 line with 5 links)
+
+- [ ] **6.4** BATCH: Fix workers/ralph/README.md broken links
+  - **Scope:** Lines 117-119 (3 broken links)
+  - **Fix Type:** Point to brain_upstream/ locations
+    - Line 117: `../../docs/BOOTSTRAPPING.md` → `../../brain_upstream/docs/BOOTSTRAPPING.md`
+    - Line 118: `../../skills/domains/ralph/ralph-patterns.md` → `../../brain_upstream/skills/domains/ralph/ralph-patterns.md`
+    - Line 119: `../../skills/domains/ralph/change-propagation.md` → `../../brain_upstream/skills/domains/ralph/change-propagation.md`
+  - **AC:** `bash tools/validate_links.sh workers/ralph/README.md` passes
+  - **Estimated Time:** [S] 2-3 minutes (1 file, 3 links)
+
+- [ ] **6.5** BATCH: Fix .verify/plan_snapshot.md broken links
+  - **Scope:** Lines 63-65, 71-72 (identical to IMPLEMENTATION_PLAN.md files)
+  - **Fix Type:** Point to brain_upstream/ locations
+    - Line 63: `../../docs/BOOTSTRAPPING.md` → `../brain_upstream/docs/BOOTSTRAPPING.md`
+    - Line 64: `../../skills/domains/ralph/ralph-patterns.md` → `../brain_upstream/skills/domains/ralph/ralph-patterns.md`
+    - Line 65: `../../skills/domains/ralph/change-propagation.md` → `../brain_upstream/skills/domains/ralph/change-propagation.md`
+    - Line 71: `../domains/code-quality/testing-patterns.md` → `../brain_upstream/skills/domains/code-quality/testing-patterns.md`
+    - Line 72: `../../templates/README.md` → `../brain_upstream/templates/README.md`
+  - **AC:** `bash tools/validate_links.sh .verify/plan_snapshot.md` passes
+  - **Estimated Time:** [S] 2-3 minutes (1 file, 5 links)
+
+- [ ] **6.6** BATCH: Fix skills/playbooks/investigate-test-failures.md broken links
+  - **Scope:** Lines 109, 213, 263, 320, 358, 447-451 (10 broken links)
+  - **Fix Type:** Point to brain_upstream/ locations (most files exist there)
+    - Line 109: `../domains/code-quality/testing-patterns.md` → `../../brain_upstream/skills/domains/code-quality/testing-patterns.md`
+    - Line 213: `../domains/languages/javascript/javascript-patterns.md` → `../../brain_upstream/skills/domains/languages/javascript/javascript-patterns.md`
+    - Line 263: `../domains/code-quality/testing-patterns.md` → `../../brain_upstream/skills/domains/code-quality/testing-patterns.md`
+    - Line 320: `../domains/languages/python/python-patterns.md` → `../../brain_upstream/skills/domains/languages/python/python-patterns.md`
+    - Line 358: `../domains/code-quality/testing-patterns.md` → `../../brain_upstream/skills/domains/code-quality/testing-patterns.md`
+    - Line 447: `../domains/code-quality/testing-patterns.md` → `../../brain_upstream/skills/domains/code-quality/testing-patterns.md`
+    - Line 448: `../domains/languages/python/python-patterns.md` → `../../brain_upstream/skills/domains/languages/python/python-patterns.md`
+    - Line 449: `../domains/languages/javascript/javascript-patterns.md` → `../../brain_upstream/skills/domains/languages/javascript/javascript-patterns.md`
+    - Line 450: `../domains/backend/error-handling-patterns.md` → `../../brain_upstream/skills/domains/backend/error-handling-patterns.md`
+    - Line 451: `../domains/code-quality/code-hygiene.md` → `../../brain_upstream/skills/domains/code-quality/code-hygiene.md`
+  - **AC:** `bash tools/validate_links.sh skills/playbooks/investigate-test-failures.md` passes
+  - **Estimated Time:** [M] 3-5 minutes (1 file, 10 links)
+
+- [ ] **6.7** BATCH: Fix skills/playbooks/bootstrap-new-project.md broken links
+  - **Scope:** Lines 67, 203, 302-306 (6 broken links)
+  - **Fix Type:** Point to brain_upstream/ locations
+    - Line 67: `../../templates/README.md` → `../../brain_upstream/templates/README.md`
+    - Line 203: `../../docs/BOOTSTRAPPING.md` → `../../brain_upstream/docs/BOOTSTRAPPING.md`
+    - Line 302: `../../templates/README.md` → `../../brain_upstream/templates/README.md`
+    - Line 303: `../../docs/BOOTSTRAPPING.md` → `../../brain_upstream/docs/BOOTSTRAPPING.md`
+    - Line 304: `../domains/ralph/ralph-patterns.md` → `../../brain_upstream/skills/domains/ralph/ralph-patterns.md`
+    - Line 306: `../domains/infrastructure/deployment-patterns.md` → `../../brain_upstream/skills/domains/infrastructure/deployment-patterns.md`
+  - **AC:** `bash tools/validate_links.sh skills/playbooks/bootstrap-new-project.md` passes
+  - **Estimated Time:** [M] 3-5 minutes (1 file, 6 links)
+
+- [ ] **6.8** Fix brain_upstream/skills/domains/infrastructure/observability-patterns.md broken link
+  - **Scope:** Line 791 (1 broken link)
+  - **Fix Type:** Fix relative path within brain_upstream
+    - Line 791: `../../code-quality/testing-patterns.md` → `../code-quality/testing-patterns.md`
+  - **AC:** `bash tools/validate_links.sh brain_upstream/skills/domains/infrastructure/observability-patterns.md` passes
+  - **Estimated Time:** [S] 1-2 minutes (1 file, 1 link)
