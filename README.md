@@ -69,17 +69,66 @@ base: "/deene-social-presence/"
 
 This ensures all assets and routes work correctly when deployed to GitHub Pages.
 
+### Routing and Base Path Strategy
+
+**Important:** The base path must be consistent across three locations:
+
+1. **`vite.config.ts`** - Sets the base path for asset bundling:
+
+   ```typescript
+   base: "/deene-social-presence/"
+   ```
+
+2. **`src/App.tsx`** - Defines routes with the same base path:
+
+   ```tsx
+   <Route path="/deene-social-presence" element={<Index />} />
+   ```
+
+3. **Any internal links** - Must use the full path including base (or use `import.meta.env.BASE_URL`):
+
+   ```tsx
+   <a href="/deene-social-presence">Home</a>
+   // OR
+   <a href={import.meta.env.BASE_URL}>Home</a>
+   ```
+
+**Why this matters:**
+
+- Locally (`npm run dev`): Works because Vite serves from the base path
+- Production (`npm run build` + GitHub Pages): Assets and routes resolve correctly
+- If paths mismatch: App works locally but breaks on GitHub Pages (404s, broken assets)
+
+**When adding new routes:**
+
+- Always prefix with `/deene-social-presence` in `src/App.tsx`
+- Or use relative navigation with React Router's `<Link>` component (recommended)
+- Test with `npm run build && npm run preview` to verify production behavior
+
 ### Contact Form Setup
 
 The contact form uses Formspree for form handling. To configure:
 
 1. Sign up at [Formspree](https://formspree.io)
-2. Create a new form
-3. Update `src/components/Contact.tsx` with your form ID:
+2. Create a new form and copy your form ID (e.g., `abc123def` from `https://formspree.io/f/abc123def`)
+3. **Local Development:** Create a `.env.local` file in the project root:
 
-   ```typescript
-   const res = await fetch("https://formspree.io/f/YOUR_FORM_ID", {
+   ```bash
+   cp .env.example .env.local
    ```
+
+   Then edit `.env.local` and set your form ID:
+
+   ```bash
+   VITE_FORMSPREE_FORM_ID=your_form_id_here
+   ```
+
+4. **Deployment (GitHub Pages):** Set the environment variable in your repository settings:
+   - Go to Settings → Secrets and variables → Actions
+   - Add a new repository variable: `VITE_FORMSPREE_FORM_ID` with your form ID
+   - Update `.github/workflows/deploy.yml` to include the environment variable in the build step
+
+**Note:** The contact form will display "Contact form not configured yet" and the submit button will be disabled until `VITE_FORMSPREE_FORM_ID` is configured. The `.env.local` file is gitignored to prevent committing your form ID.
 
 ## Project Structure
 

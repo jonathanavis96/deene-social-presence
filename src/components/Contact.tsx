@@ -12,12 +12,20 @@ const Contact = () => {
     "idle" | "submitting" | "success" | "error"
   >("idle");
 
+  const formspreeId = import.meta.env.VITE_FORMSPREE_FORM_ID;
+  const isFormConfigured = formspreeId && formspreeId !== "";
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!isFormConfigured) {
+      return;
+    }
+
     setStatus("submitting");
 
     try {
-      const res = await fetch("https://formspree.io/f/YOUR_FORM_ID", {
+      const res = await fetch(`https://formspree.io/f/${formspreeId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -113,13 +121,18 @@ const Contact = () => {
           <div className="space-y-3">
             <button
               type="submit"
-              disabled={status === "submitting"}
+              disabled={status === "submitting" || !isFormConfigured}
               className="group flex items-center gap-3 font-sans text-sm uppercase tracking-widest text-foreground hover:text-accent transition-colors disabled:opacity-60"
             >
               {status === "submitting" ? "Sending..." : "Send Message"}
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </button>
 
+            {!isFormConfigured && (
+              <p className="text-xs font-sans text-muted-foreground">
+                Contact form not configured yet.
+              </p>
+            )}
             {status === "success" && (
               <p className="text-xs font-sans text-emerald-600">
                 Thank you — your message has been sent.
