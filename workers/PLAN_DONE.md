@@ -41,3 +41,8 @@ Completed tasks archived from `workers/IMPLEMENTATION_PLAN.md`.
 | 2026-01-30 | 0.9 | - [x] **0.9** Update `cortex/GAP_CAPTURE.md` header and format to reference Deene Social Presence |
 | 2026-01-30 | 0.10 | - [x] **0.10** Update `cortex/IMPLEMENTATION_PLAN.md` so it is not a bootstrapped template |
 | 2026-01-30 | 0.11 | - [x] **0.11** Fix Ralph loop scripts that still assume the plan is at repo root (`IMPLEMENTATION_PLAN.md`) |
+
+### Archived on 2026-01-30 15:25:18
+
+| Date | Task ID | Description |
+|------|---------|-------------|
