@@ -16,7 +16,7 @@ If the header contains `# LAST_VERIFIER_RESULT: FAIL`, you MUST:
 1. **STOP** - Do not pick a new task from workers/workers/IMPLEMENTATION_PLAN.md
 2. **CHECK** the `# VERIFIER STATUS` section above for failure details
 3. **FIX** the failing acceptance criteria listed in `# FAILED_RULES:`
-4. **COMMIT** your fix with message: `fix(ralph): resolve AC failure <RULE_ID>`
+4. **STAGE** your fix with `git add -A` (NO commit - loop.sh handles commits at PLAN phase)
 5. **THEN** output `:::BUILD_READY:::` so the verifier can re-run
 
 If the `# VERIFIER STATUS` section shows `[WARN]` lines:
@@ -336,13 +336,10 @@ for file in <glob>; do
   <validation-command> "$file" || echo "FAIL: $file"
 done
 
-# 4. Commit with batch context
-git add -A && git commit -m "fix(scope): resolve SC2162 across 8 shell scripts
-
-- Added -r flag to read commands in tools/*.sh
-- Added -r flag to read commands in workers/**/*.sh
-- Added -r flag to read commands in bin/*
-- All files now pass shellcheck validation"
+# 4. Stage all changes (loop.sh commits at PLAN phase)
+git add -A
+# NO commit - loop.sh batches commits at PLAN phase
+# Commit message will be: "fix(scope): resolve SC2162 across 8 shell scripts"
 ```
 
 ### Actions
@@ -442,7 +439,7 @@ rg -l "keyword" tools/ skills/domains/ | head -10
      - Pick ONE warning task (prioritize High > Medium > Low)
      - Fix that warning
      - Mark it complete `- [x]` in the Verifier Warnings section
-     - Commit with message: `fix(ralph): resolve verifier warning <RULE_ID>`
+     - Stage changes with `git add -A` (NO commit - loop.sh handles commits at PLAN phase)
      - Skip to step 3 (validate), then proceed to steps 4-8
    - If all warnings are checked `- [x]` or section doesn't exist, proceed to step 2
 

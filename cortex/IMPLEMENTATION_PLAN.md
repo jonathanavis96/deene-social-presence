@@ -55,30 +55,8 @@ Brain skills (open only if relevant to the current item):
 
 ---
 
-## Phase 0-Warn: Verifier Warnings
-
-
-- [ ] **0-W.7** Fix MD040 in workers/ralph/NEURONS.md
-  - **Goal:** Add language specification to fenced code block at line 36.
-  - **AC:** `markdownlint workers/ralph/NEURONS.md` passes (no MD040 errors)
-  - **If Blocked:** Add appropriate language identifier (likely `text` or `plaintext`) to the code fence.
-
 ## Phase 0: Align docs/contracts to the real project (HIGH PRIORITY)
 
-- [ ] **0.1** Replace this plan’s legacy content with Deene Social Presence plan (sanity check)
-  - **Goal:** Ensure the implementation plan matches the actual codebase and deployment model.
-  - **AC:**
-    - This file contains no references to RankSentinel, Next.js, FastAPI, Paystack, or unrelated docs.
-    - Phases/tasks reference real files in this repository.
-  - **If Blocked:** Ask the user to confirm the desired deployment target and base path.
-
-- [ ] **0.2** Update `workers/ralph/RALPH.md` to match this repo’s actual workflow
-  - **Goal:** Remove the conflicting “fix_plan.md/progress.txt” workflow and align to `workers/IMPLEMENTATION_PLAN.md` + `workers/ralph/THUNK.md`.
-  - **AC:**
-    - No references remain to `fix_plan.md` or `progress.txt`.
-    - PLAN/BUILD sections reference `workers/IMPLEMENTATION_PLAN.md` as the task source.
-    - Completion logging references `workers/ralph/THUNK.md`.
-  - **If Blocked:** Mirror the workflow described in `workers/ralph/PROMPT.md` except for commit policy (handled in next task).
 
 - [ ] **0.3** Update `workers/ralph/PROMPT.md` commit policy: do NOT commit in BUILD
   - **Goal:** Enforce the desired workflow: BUILD implements changes, PLAN performs the commit.
