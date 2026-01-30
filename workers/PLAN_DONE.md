@@ -46,3 +46,12 @@ Completed tasks archived from `workers/IMPLEMENTATION_PLAN.md`.
 
 | Date | Task ID | Description |
 |------|---------|-------------|
+
+### Archived on 2026-01-30 15:34:31
+
+| Date | Task ID | Description |
+|------|---------|-------------|
+| 2026-01-30 | 1.1 | - [x] **1.1** Verify and fix 404 "Return to Home" behavior under GitHub Pages base path |
+| 2026-01-30 | 1.2 | - [x] **1.2** Document (and keep consistent) the routing/base-path strategy |
+| 2026-01-30 | 2.1 | - [x] **2.1** Make Contact form configurable (Formspree) without committing the form id |
+| 2026-01-30 | 2.2 | - [x] **2.2** Validate contact success/error UX and ensure no console errors |
