@@ -97,3 +97,12 @@ Completed tasks archived from `workers/IMPLEMENTATION_PLAN.md`.
 | 2026-01-30 | 6.9 | - [x] **6.9** BATCH: Fix skills/playbooks/resolve-verifier-failures.md broken links |
 | 2026-01-30 | 6.10 | - [x] **6.10** BATCH: Fix skills/playbooks/fix-shellcheck-failures.md broken links |
 | 2026-01-30 | 6.11 | - [x] **6.11** BATCH: Fix skills/playbooks/safe-template-sync.md broken links |
+
+### Archived on 2026-01-30 16:45:49
+
+| Date | Task ID | Description |
+|------|---------|-------------|
+| 2026-01-30 | 6.12 | - [x] **6.12** BATCH: Fix skills/playbooks/task-optimization-review.md broken links |
+| 2026-01-30 | 6.13 | - [x] **6.13** BATCH: Fix skills/playbooks/debug-ralph-stuck.md broken links |
+| 2026-01-30 | 6.14 | - [x] **6.14** BATCH: Fix skills/playbooks/decompose-large-tasks.md broken links |
+| 2026-01-30 | 6.15 | - [x] **6.15** BATCH: Fix skills/playbooks/fix-markdown-lint.md broken links |
