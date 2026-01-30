@@ -58,50 +58,32 @@ Brain skills (open only if relevant to the current item):
 ## Phase 6: Fix broken links in workers/ralph and local skills/
 
 
-- [ ] **6.8** Fix brain_upstream/skills/domains/infrastructure/observability-patterns.md broken link
-  - **Scope:** Line 791 (1 broken link)
-  - **Fix Type:** Fix relative path within brain_upstream
-    - Line 791: `../../code-quality/testing-patterns.md` → `../code-quality/testing-patterns.md`
-  - **AC:** `bash tools/validate_links.sh brain_upstream/skills/domains/infrastructure/observability-patterns.md` passes
-  - **Estimated Time:** [S] 1-2 minutes (1 file, 1 link)
-
-- [ ] **6.9** BATCH: Fix skills/playbooks/resolve-verifier-failures.md broken links
-  - **Scope:** Lines 87, 104-105, 127, 170, 277-282 (11 broken links)
+- [ ] **6.12** BATCH: Fix skills/playbooks/task-optimization-review.md broken links
+  - **Scope:** Lines 143-145 (3 broken links)
   - **Fix Type:** Point to brain_upstream/ locations
-    - Line 87: `../domains/code-quality/code-consistency.md` → `../../brain_upstream/skills/domains/code-quality/code-consistency.md`
-    - Line 104: `../domains/languages/shell/variable-patterns.md` → `../../brain_upstream/skills/domains/languages/shell/variable-patterns.md`
-    - Line 105: `../domains/languages/shell/common-pitfalls.md` → `../../brain_upstream/skills/domains/languages/shell/common-pitfalls.md`
-    - Line 127: `../domains/code-quality/markdown-patterns.md` → `../../brain_upstream/skills/domains/code-quality/markdown-patterns.md`
-    - Line 170: `../domains/ralph/change-propagation.md` → `../../brain_upstream/skills/domains/ralph/change-propagation.md`
-    - Line 277: `../domains/code-quality/code-consistency.md` → `../../brain_upstream/skills/domains/code-quality/code-consistency.md`
-    - Line 278: `../domains/languages/shell/variable-patterns.md` → `../../brain_upstream/skills/domains/languages/shell/variable-patterns.md`
-    - Line 279: `../domains/languages/shell/common-pitfalls.md` → `../../brain_upstream/skills/domains/languages/shell/common-pitfalls.md`
-    - Line 280: `../domains/code-quality/markdown-patterns.md` → `../../brain_upstream/skills/domains/code-quality/markdown-patterns.md`
-    - Line 281: `../domains/ralph/change-propagation.md` → `../../brain_upstream/skills/domains/ralph/change-propagation.md`
-    - Line 282: `../domains/code-quality/code-hygiene.md` → `../../brain_upstream/skills/domains/code-quality/code-hygiene.md`
-  - **AC:** `bash tools/validate_links.sh skills/playbooks/resolve-verifier-failures.md` passes
-  - **Estimated Time:** [M] 4-6 minutes (1 file, 11 links)
+    - Line 143: `../domains/code-quality/token-efficiency.md` → `../../brain_upstream/skills/domains/code-quality/token-efficiency.md`
+    - Line 144: `../domains/code-quality/testing-patterns.md` → `../../brain_upstream/skills/domains/code-quality/testing-patterns.md`
+    - Line 145: `../domains/ralph/ralph-patterns.md` → `../../brain_upstream/skills/domains/ralph/ralph-patterns.md`
+  - **AC:** `bash tools/validate_links.sh skills/playbooks/task-optimization-review.md` passes
+  - **Estimated Time:** [S] 2-3 minutes (1 file, 3 links)
 
-- [ ] **6.10** BATCH: Fix skills/playbooks/fix-shellcheck-failures.md broken links
-  - **Scope:** Lines 85, 100, 117, 131, 145, 236-240 (9 broken links)
-  - **Fix Type:** Point to brain_upstream/ locations
-    - Line 85: `../domains/languages/shell/variable-patterns.md` → `../../brain_upstream/skills/domains/languages/shell/variable-patterns.md`
-    - Line 100: `../domains/languages/shell/variable-patterns.md` → `../../brain_upstream/skills/domains/languages/shell/variable-patterns.md`
-    - Line 117: `../domains/languages/shell/variable-patterns.md` → `../../brain_upstream/skills/domains/languages/shell/variable-patterns.md`
-    - Line 131: `../domains/languages/shell/common-pitfalls.md` → `../../brain_upstream/skills/domains/languages/shell/common-pitfalls.md`
-    - Line 145: `../domains/languages/shell/common-pitfalls.md` → `../../brain_upstream/skills/domains/languages/shell/common-pitfalls.md`
-    - Line 236: `../domains/languages/shell/variable-patterns.md` → `../../brain_upstream/skills/domains/languages/shell/variable-patterns.md`
-    - Line 237: `../domains/languages/shell/common-pitfalls.md` → `../../brain_upstream/skills/domains/languages/shell/common-pitfalls.md`
-    - Line 238: `../domains/languages/shell/strict-mode.md` → `../../brain_upstream/skills/domains/languages/shell/strict-mode.md`
-    - Line 239: `../domains/languages/shell/validation-patterns.md` → `../../brain_upstream/skills/domains/languages/shell/validation-patterns.md`
-    - Line 240: `../domains/code-quality/code-hygiene.md` → `../../brain_upstream/skills/domains/code-quality/code-hygiene.md`
-  - **AC:** `bash tools/validate_links.sh skills/playbooks/fix-shellcheck-failures.md` passes
-  - **Estimated Time:** [M] 4-6 minutes (1 file, 9 links)
+- [ ] **6.13** BATCH: Fix skills/playbooks/debug-ralph-stuck.md broken links
+  - **Scope:** Lines 24, 137, 256, 354-356 (6 broken links)
+  - **Fix Type:** Point to brain_upstream/ locations (note: line 356 has incorrect relative path)
+    - Line 24: `../domains/ralph/ralph-patterns.md` → `../../brain_upstream/skills/domains/ralph/ralph-patterns.md`
+    - Line 137: `../domains/ralph/ralph-patterns.md` → `../../brain_upstream/skills/domains/ralph/ralph-patterns.md`
+    - Line 256: `../domains/ralph/cache-debugging.md` → `../../brain_upstream/skills/domains/ralph/cache-debugging.md`
+    - Line 354: `../domains/ralph/ralph-patterns.md` → `../../brain_upstream/skills/domains/ralph/ralph-patterns.md`
+    - Line 355: `../domains/ralph/cache-debugging.md` → `../../brain_upstream/skills/domains/ralph/cache-debugging.md`
+    - Line 356: `../code-quality/token-efficiency.md` → `../../brain_upstream/skills/domains/code-quality/token-efficiency.md`
+  - **AC:** `bash tools/validate_links.sh skills/playbooks/debug-ralph-stuck.md` passes
+  - **Estimated Time:** [M] 3-4 minutes (1 file, 6 links)
 
-- [ ] **6.11** BATCH: Fix skills/playbooks/safe-template-sync.md broken links
-  - **Scope:** Lines 52, 109 (2 broken links)
-  - **Fix Type:** Point to brain_upstream/ locations
-    - Line 52: `../domains/ralph/change-propagation.md` → `../../brain_upstream/skills/domains/ralph/change-propagation.md`
-    - Line 109: `../domains/languages/shell/validation-patterns.md` → `../../brain_upstream/skills/domains/languages/shell/validation-patterns.md`
-  - **AC:** `bash tools/validate_links.sh skills/playbooks/safe-template-sync.md` passes
-  - **Estimated Time:** [S] 2-3 minutes (1 file, 2 links)
+- [ ] **6.14** BATCH: Fix skills/playbooks/decompose-large-tasks.md broken links
+  - **Scope:** Lines 202-204 (3 broken links)
+  - **Fix Type:** Point to brain_upstream/ locations (note: line 203 target file doesn't exist)
+    - Line 202: `../domains/code-quality/token-efficiency.md` → `../../brain_upstream/skills/domains/code-quality/token-efficiency.md`
+    - Line 203: `../../cortex/docs/PROMPT_REFERENCE.md#task-complexity-tags` → `../../brain_upstream/cortex/docs/PROMPT_REFERENCE.md#task-complexity-tags`
+    - Line 204: `../domains/ralph/ralph-patterns.md` → `../../brain_upstream/skills/domains/ralph/ralph-patterns.md`
+  - **AC:** `bash tools/validate_links.sh skills/playbooks/decompose-large-tasks.md` passes
+  - **Estimated Time:** [S] 2-3 minutes (1 file, 3 links)

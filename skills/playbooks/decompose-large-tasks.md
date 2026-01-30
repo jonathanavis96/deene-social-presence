@@ -199,9 +199,9 @@ Use these to verify decomposition quality:
 
 ## Related Skills
 
-- [Token Efficiency](../domains/code-quality/token-efficiency.md) - Minimize tool calls
-- [Task Complexity Tags](../../cortex/docs/PROMPT_REFERENCE.md#task-complexity-tags) - [S/M/L] estimation
-- [Ralph Patterns](../domains/ralph/ralph-patterns.md) - Ralph workflow architecture
+- [Token Efficiency](../../brain_upstream/skills/domains/code-quality/token-efficiency.md) - Minimize tool calls
+- [Task Complexity Tags](../../brain_upstream/cortex/docs/PROMPT_REFERENCE.md#task-complexity-tags) - [S/M/L] estimation
+- [Ralph Patterns](../../brain_upstream/skills/domains/ralph/ralph-patterns.md) - Ralph workflow architecture
 
 ## Related Playbooks
 
