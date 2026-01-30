@@ -57,7 +57,7 @@ Brain skills (open only if relevant to the current item):
 
 ## Phase 4: Fix broken links in brain_upstream templates (website)
 
-- [ ] **4.1** BATCH: Fix template placeholder links in brain_upstream/templates/website/
+- [x] **4.1** BATCH: Fix template placeholder links in brain_upstream/templates/website/
   - **Scope:** `VALIDATION_CRITERIA.project.md`, `THOUGHTS.project.md`, `AGENTS.project.md`, `NEURONS.project.md`
   - **Fix:** Update all template file cross-references to point to docs/ subdirectory
     - `[AGENTS.md](AGENTS.md)` → `[AGENTS.md](docs/AGENTS.md)` (or remove if truly placeholder)
@@ -78,12 +78,12 @@ Brain skills (open only if relevant to the current item):
 
 ## Phase 5: Fix broken links in brain_upstream core documentation
 
-- [ ] **5.1** Fix IMPLEMENTATION_PLAN.md reference in brain_upstream/THOUGHTS.md
+- [x] **5.1** Fix IMPLEMENTATION_PLAN.md reference in brain_upstream/THOUGHTS.md
   - **Goal:** Correct path to implementation plan file
   - **Fix:** Line 263: `[IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md)` → `[IMPLEMENTATION_PLAN.md](../workers/IMPLEMENTATION_PLAN.md)`
   - **AC:** `bash tools/validate_links.sh brain_upstream/THOUGHTS.md` passes
 
-- [ ] **5.2** Fix skill doc references in brain_upstream/workers/ralph/THUNK.md
+- [x] **5.2** Fix skill doc references in brain_upstream/workers/ralph/THUNK.md
   - **Goal:** Correct relative paths to skills documentation
   - **Fix:**
     - Line 614: `[code-hygiene.md](../code-hygiene.md)` → `[code-hygiene.md](../../skills/domains/code-quality/code-hygiene.md)`
@@ -91,7 +91,7 @@ Brain skills (open only if relevant to the current item):
     - Line 743: `[text](target.md)` → Remove or replace with valid example
   - **AC:** `bash tools/validate_links.sh brain_upstream/workers/ralph/THUNK.md` passes
 
-- [ ] **5.3** BATCH: Fix broken skill cross-references in brain_upstream/skills/
+- [x] **5.3** BATCH: Fix broken skill cross-references in brain_upstream/skills/
   - **Scope:** `debug-ralph-stuck.md`, `conventions.md`, `python-patterns.md`, `observability-patterns.md`, `deployment-patterns.md`
   - **Fix:** Update all skill doc references to match current directory structure (11 broken links total)
     - Example: `[Token Efficiency](../code-quality/token-efficiency.md)` → check if file exists, update path
