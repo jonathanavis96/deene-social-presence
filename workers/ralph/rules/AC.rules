@@ -71,7 +71,7 @@ expect_stdout=yes
 mode=auto
 gate=block
 desc="All workers/ralph/*.sh scripts pass bash -n syntax check"
-cmd="for f in ./*.sh; do [ -f \"$f\" ] && bash -n \"$f\" || exit 1; done && echo pass"
+cmd=bash -c 'for f in ./*.sh; do [ -f "$f" ] && bash -n "$f" || exit 1; done && echo pass'
 expect_stdout=pass
 
 [Syntax.JSON.1]
@@ -105,14 +105,14 @@ expect_stdout=valid
 mode=auto
 gate=block
 desc="All shell scripts have proper shebang"
-cmd="for f in ./*.sh; do head -1 \"$f\" | grep -q '#!/usr/bin/env bash' || exit 1; done && echo pass"
+cmd=bash -c 'for f in ./*.sh; do head -1 "$f" | grep -q "#!/usr/bin/env bash" || exit 1; done && echo pass'
 expect_stdout=pass
 
 [Standards.StrictMode.1]
 mode=auto
 gate=block
 desc="All shell scripts use set -euo pipefail"
-cmd="for f in ./*.sh; do grep -q 'set -euo pipefail' \"$f\" || exit 1; done && echo pass"
+cmd=bash -c 'for f in ./*.sh; do grep -q "set -euo pipefail" "$f" || exit 1; done && echo pass'
 expect_stdout=pass
 
 [Standards.Permissions.1]
@@ -131,14 +131,14 @@ expect_stdout=0
 mode=auto
 gate=block
 desc="No hardcoded passwords in scripts"
-cmd="grep -rn 'password\\s*=\\s*[\"'\\''\"'\\''']' ../../src/ --include='*.ts' --include='*.tsx' --include='*.js' 2>/dev/null | wc -l | xargs"
+cmd="grep -rnE password[[:space:]]*=[[:space:]]* ../../src/ --include='*.ts' --include='*.tsx' --include='*.js' 2>/dev/null | wc -l | xargs"
 expect_stdout=0
 
 [Security.NoHardcodedTokens.1]
 mode=auto
 gate=block
 desc="No hardcoded API tokens in scripts"
-cmd="grep -rn 'api_token\\s*=\\s*[\"'\\''\"'\\''']' ../../src/ --include='*.ts' --include='*.tsx' --include='*.js' 2>/dev/null | wc -l | xargs"
+cmd="grep -rnE api_token[[:space:]]*=[[:space:]]* ../../src/ --include='*.ts' --include='*.tsx' --include='*.js' 2>/dev/null | wc -l | xargs"
 expect_stdout=0
 
 # ============================================================
