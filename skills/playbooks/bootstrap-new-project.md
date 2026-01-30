@@ -64,7 +64,7 @@ Admins can manage widgets, regular users can view only.
 
 **Decision Point:** If you have an existing project structure, consider manual generator usage instead (see Step 7).
 
-**Link to skill:** [Project Template Structure](../../templates/README.md)
+**Link to skill:** [Project Template Structure](../../brain_upstream/templates/README.md)
 
 ### Step 2: Run Bootstrap Script
 
@@ -200,7 +200,7 @@ vim IMPLEMENTATION_PLAN.md  # Prioritize phases, add subtasks
 
 **Anti-pattern:** ❌ Don't run loop.sh without reviewing generated files. Instead: ✅ Customize THOUGHTS/NEURONS/PLAN first.
 
-**Link to skill:** [Project Structure Conventions](../../docs/BOOTSTRAPPING.md)
+**Link to skill:** [Project Structure Conventions](../../brain_upstream/docs/BOOTSTRAPPING.md)
 
 ### Step 7: First Ralph Run
 
@@ -299,11 +299,11 @@ Common issues and solutions:
 
 Core skills referenced by this playbook:
 
-- [Project Templates](../../templates/README.md) - Template structure and usage
-- [Bootstrapping Guide](../../docs/BOOTSTRAPPING.md) - Generator details and manual usage
-- [Ralph Loop Architecture](../domains/ralph/ralph-patterns.md) - How Ralph works
+- [Project Templates](../../brain_upstream/templates/README.md) - Template structure and usage
+- [Bootstrapping Guide](../../brain_upstream/docs/BOOTSTRAPPING.md) - Generator details and manual usage
+- [Ralph Loop Architecture](../../brain_upstream/skills/domains/ralph/ralph-patterns.md) - How Ralph works
 - [Project Structure Conventions](../../NEURONS.md) - Brain repository structure
-- [Git Workflow Patterns](../domains/infrastructure/deployment-patterns.md) - Branch strategies
+- [Git Workflow Patterns](../../brain_upstream/skills/domains/infrastructure/deployment-patterns.md) - Branch strategies
 
 ## Related Playbooks
 
