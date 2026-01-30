@@ -82,6 +82,16 @@ Brain skills (open only if relevant to the current item):
   - **AC:** `markdownlint docs/BRAIN_SETUP.md` passes (no MD040, MD032, MD022, MD031 errors)
   - **If Blocked:** Add `bash` language identifier and proper spacing per markdownlint rules.
 
+- [ ] **0-W.6** Fix MD040 in NEURONS.md
+  - **Goal:** Add language specification to fenced code block at line 36.
+  - **AC:** `markdownlint NEURONS.md` passes (no MD040 errors)
+  - **If Blocked:** Add appropriate language identifier (likely `text` or `plaintext`) to the code fence.
+
+- [ ] **0-W.7** Fix MD040 in workers/ralph/NEURONS.md
+  - **Goal:** Add language specification to fenced code block at line 36.
+  - **AC:** `markdownlint workers/ralph/NEURONS.md` passes (no MD040 errors)
+  - **If Blocked:** Add appropriate language identifier (likely `text` or `plaintext`) to the code fence.
+
 ## Phase 0: Align docs/contracts to the real project (HIGH PRIORITY)
 
 - [ ] **0.1** Replace this plan’s legacy content with Deene Social Presence plan (sanity check)
