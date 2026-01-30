@@ -84,7 +84,7 @@ Hygiene.Markdown.1: skills/README.md:15 MD040/fenced-code-language...
 
 **Anti-pattern:** ❌ Don't try to read/modify `.verify/*.sha256` files or "fix" the protected file to match baseline.
 
-**Link to skill:** [Code Consistency](../domains/code-quality/code-consistency.md) - Protected file policy
+**Link to skill:** [Code Consistency](../../brain_upstream/skills/domains/code-quality/code-consistency.md) - Protected file policy
 
 ### Step 3b: ShellCheck Failures
 
@@ -101,8 +101,8 @@ Hygiene.Markdown.1: skills/README.md:15 MD040/fenced-code-language...
 **Process:**
 
 1. Note the SC code and file from verifier output
-2. Open [Shell Variable Patterns](../domains/languages/shell/variable-patterns.md) for SC2034, SC2155, SC2086
-3. Open [Shell Common Pitfalls](../domains/languages/shell/common-pitfalls.md) for SC2162, SC2002
+2. Open [Shell Variable Patterns](../../brain_upstream/skills/domains/languages/shell/variable-patterns.md) for SC2034, SC2155, SC2086
+3. Open [Shell Common Pitfalls](../../brain_upstream/skills/domains/languages/shell/common-pitfalls.md) for SC2162, SC2002
 4. Apply the minimum fix from the skill document
 5. Re-run shellcheck to verify: `shellcheck -e SC1091 path/to/file.sh`
 
@@ -124,7 +124,7 @@ Hygiene.Markdown.1: skills/README.md:15 MD040/fenced-code-language...
 **Process:**
 
 1. Note the MD code and file/line from verifier output
-2. Open [Markdown Patterns](../domains/code-quality/markdown-patterns.md) for details
+2. Open [Markdown Patterns](../../brain_upstream/skills/domains/code-quality/markdown-patterns.md) for details
 3. Apply fix directly (these are usually formatting issues)
 4. Re-run markdownlint to verify: `markdownlint path/to/file.md`
 
@@ -167,7 +167,7 @@ bash workers/ralph/fix-markdown.sh
 2. Verify with diff: `diff -u templates/ralph/file.sh workers/ralph/file.sh`
 3. Run shellcheck on both versions
 
-**Link to skill:** [Change Propagation](../domains/ralph/change-propagation.md) - Template sync policy
+**Link to skill:** [Change Propagation](../../brain_upstream/skills/domains/ralph/change-propagation.md) - Template sync policy
 
 **Checkpoint:** ✓ Template drift resolved or documented with waiver
 
@@ -274,12 +274,12 @@ Common issues and solutions:
 
 Core skills referenced by this playbook:
 
-- [Code Consistency](../domains/code-quality/code-consistency.md) - Protected files, template sync, terminology
-- [Shell Variable Patterns](../domains/languages/shell/variable-patterns.md) - SC2034, SC2155, SC2086 fixes
-- [Shell Common Pitfalls](../domains/languages/shell/common-pitfalls.md) - SC2162, SC2002, SC2126 fixes
-- [Markdown Patterns](../domains/code-quality/markdown-patterns.md) - MD040, MD032, MD024 fixes
-- [Change Propagation](../domains/ralph/change-propagation.md) - Template sync policy and waiver protocol
-- [Code Hygiene](../domains/code-quality/code-hygiene.md) - Definition of Done checklist
+- [Code Consistency](../../brain_upstream/skills/domains/code-quality/code-consistency.md) - Protected files, template sync, terminology
+- [Shell Variable Patterns](../../brain_upstream/skills/domains/languages/shell/variable-patterns.md) - SC2034, SC2155, SC2086 fixes
+- [Shell Common Pitfalls](../../brain_upstream/skills/domains/languages/shell/common-pitfalls.md) - SC2162, SC2002, SC2126 fixes
+- [Markdown Patterns](../../brain_upstream/skills/domains/code-quality/markdown-patterns.md) - MD040, MD032, MD024 fixes
+- [Change Propagation](../../brain_upstream/skills/domains/ralph/change-propagation.md) - Template sync policy and waiver protocol
+- [Code Hygiene](../../brain_upstream/skills/domains/code-quality/code-hygiene.md) - Definition of Done checklist
 
 ## Related Playbooks
 

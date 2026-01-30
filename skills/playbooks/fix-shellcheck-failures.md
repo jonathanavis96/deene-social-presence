@@ -82,7 +82,7 @@ Common error groups:
 
 #### SC2155: Masked Return Values
 
-**Link to skill:** [Shell Variable Patterns](../domains/languages/shell/variable-patterns.md) - See "SC2155: Separate Declaration from Assignment"
+**Link to skill:** [Shell Variable Patterns](../../brain_upstream/skills/domains/languages/shell/variable-patterns.md) - See "SC2155: Separate Declaration from Assignment"
 
 **Pattern:**
 
@@ -97,7 +97,7 @@ result=$(command)
 
 #### SC2034: Unused Variables
 
-**Link to skill:** [Shell Variable Patterns](../domains/languages/shell/variable-patterns.md) - See "SC2034: Unused Variables"
+**Link to skill:** [Shell Variable Patterns](../../brain_upstream/skills/domains/languages/shell/variable-patterns.md) - See "SC2034: Unused Variables"
 
 **Pattern:**
 
@@ -114,7 +114,7 @@ echo "Value: $previously_unused_var"
 
 #### SC2086: Unquoted Variables
 
-**Link to skill:** [Shell Variable Patterns](../domains/languages/shell/variable-patterns.md)
+**Link to skill:** [Shell Variable Patterns](../../brain_upstream/skills/domains/languages/shell/variable-patterns.md)
 
 **Pattern:**
 
@@ -128,7 +128,7 @@ rm "$file_path"
 
 #### SC2162: Read Without -r
 
-**Link to skill:** [Shell Common Pitfalls](../domains/languages/shell/common-pitfalls.md)
+**Link to skill:** [Shell Common Pitfalls](../../brain_upstream/skills/domains/languages/shell/common-pitfalls.md)
 
 **Pattern:**
 
@@ -142,7 +142,7 @@ while read -r line; do
 
 #### SC2002: Useless Cat
 
-**Link to skill:** [Shell Common Pitfalls](../domains/languages/shell/common-pitfalls.md)
+**Link to skill:** [Shell Common Pitfalls](../../brain_upstream/skills/domains/languages/shell/common-pitfalls.md)
 
 **Pattern:**
 
@@ -233,11 +233,11 @@ Use these to verify you're on track:
 
 Core skills referenced by this playbook:
 
-- [Shell Variable Patterns](../domains/languages/shell/variable-patterns.md) - SC2155, SC2034, SC2086, quoting rules
-- [Shell Common Pitfalls](../domains/languages/shell/common-pitfalls.md) - SC2002, SC2162, SC2046, useless use of cat
-- [Shell Strict Mode](../domains/languages/shell/strict-mode.md) - SC2155 with pipefail, SC2181, SC2320
-- [Shell Validation Patterns](../domains/languages/shell/validation-patterns.md) - Running shellcheck, excluding rules, CI integration
-- [Code Hygiene](../domains/code-quality/code-hygiene.md) - Definition of Done checklist including shellcheck
+- [Shell Variable Patterns](../../brain_upstream/skills/domains/languages/shell/variable-patterns.md) - SC2155, SC2034, SC2086, quoting rules
+- [Shell Common Pitfalls](../../brain_upstream/skills/domains/languages/shell/common-pitfalls.md) - SC2002, SC2162, SC2046, useless use of cat
+- [Shell Strict Mode](../../brain_upstream/skills/domains/languages/shell/strict-mode.md) - SC2155 with pipefail, SC2181, SC2320
+- [Shell Validation Patterns](../../brain_upstream/skills/domains/languages/shell/validation-patterns.md) - Running shellcheck, excluding rules, CI integration
+- [Code Hygiene](../../brain_upstream/skills/domains/code-quality/code-hygiene.md) - Definition of Done checklist including shellcheck
 
 ## Related Playbooks
 
