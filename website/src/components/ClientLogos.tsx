@@ -16,10 +16,10 @@ const ClientLogos = ({ enableColorReveal = true }: ClientLogosProps) => {
   const logos = Array.from({ length: 15 }, (_, i) => `logo-${String(i + 1).padStart(2, '0')}.svg`);
 
   return (
-    <section id="clients" className="py-24 md:py-32 bg-background overflow-hidden" aria-labelledby="clients-heading">
+    <section id="clients" className="py-12 md:py-16 bg-background overflow-hidden" aria-labelledby="clients-heading">
       <div className="max-w-6xl mx-auto px-6">
         {/* Header */}
-        <div className="text-center mb-16 space-y-4">
+        <div className="text-center mb-8 space-y-4">
           <h2 id="clients-heading" className="text-spaced text-xs text-accent font-sans uppercase tracking-widest">
             Trusted By
           </h2>
@@ -27,8 +27,8 @@ const ClientLogos = ({ enableColorReveal = true }: ClientLogosProps) => {
       </div>
 
       {/* Scrolling Logo Strip */}
-      <div className="relative">
-        <div className="flex animate-marquee hover:pause-animation">
+      <div className="relative group">
+        <div className="flex animate-marquee group-hover:pause-animation">
           {/* First set of logos */}
           {logos.map((logo, index) => {
             const logoName = logo.replace('.svg', '');
