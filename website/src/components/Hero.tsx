@@ -168,10 +168,34 @@ const Hero = () => {
         {logoLocked && <div className="mb-16 h-20" aria-hidden="true" />}
 
         {/* Divider */}
-        {/* Vertical line with downward chevron */}
-        <div className="flex flex-col items-center mb-12 opacity-0 animate-fade-in animation-delay-400" aria-hidden="true">
-          <div className="w-px flex-1 bg-border" style={{ minHeight: '280px' }} />
-          <ChevronDown className="w-4 h-4 text-border -mt-1" strokeWidth={1.5} />
+        {/* Vertical line with downward chevron and traveling pulse */}
+        <div className="flex flex-col items-center mb-2 opacity-0 animate-fade-in animation-delay-400 relative" aria-hidden="true">
+          <div className="w-px flex-1 bg-border/30 relative overflow-hidden" style={{ minHeight: '280px' }}>
+            {/* Traveling dark pulse that widens the line */}
+            <div 
+              className="absolute left-1/2 -translate-x-1/2 bg-gradient-to-b from-transparent via-border to-transparent"
+              style={{ 
+                height: '40px',
+                width: '3px',
+                filter: 'brightness(0.6)',
+                animation: 'scroll-pulse-line 15s linear infinite'
+              }}
+            />
+          </div>
+          <div className="relative -mt-1">
+            {/* Base chevron (lighter) */}
+            <ChevronDown className="w-4 h-4 text-border/30" strokeWidth={1.5} />
+            {/* Darkened pulse overlay on chevron */}
+            <ChevronDown 
+              className="w-4 h-4 text-border absolute top-0 left-0" 
+              strokeWidth={1.5}
+              style={{ 
+                filter: 'brightness(0.6)',
+                animation: 'scroll-pulse-chevron 15s linear infinite',
+                opacity: 0
+              }}
+            />
+          </div>
         </div>
 
       </div>
