@@ -115,3 +115,11 @@ Completed tasks archived from `workers/IMPLEMENTATION_PLAN.md`.
 | 2026-02-06 | 0.W.2 | - [x] **0.W.2** Fix MD024 (duplicate heading) in workers/ralph/PROMPT.md |
 | 2026-02-06 | 0.W.3 | - [x] **0.W.3** BATCH: Fix MD033 (inline HTML) + MD025 (multiple H1) in workers/ralph/SKILL_TEMPLATE.md |
 | 2026-02-06 | 0.W.4 | - [x] **0.W.4** BATCH: Fix MD033 (inline HTML) in README.md |
+
+### Archived on 2026-02-06 12:57:18
+
+| Date | Task ID | Description |
+|------|---------|-------------|
+| 2026-02-06 | 0.W.5 | - [x] **0.W.5** Fix MD041 (first line not H1) in README.md |
+| 2026-02-06 | 0.W.6 | - [x] **0.W.6** Fix MD051 (invalid link fragment) in README.md |
+| 2026-02-06 | 0.W.7 | - [x] **0.W.7** BATCH: Fix MD036 (emphasis as heading) in README.md |
