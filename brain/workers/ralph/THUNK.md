@@ -106,3 +106,8 @@ Started: 2026-01-30
 | 106 | 2026-02-06 | 0.2 | Synced 6 missing backend domain files from brain_upstream to skills/domains/backend/ | COMPLETE |
 | 107 | 2026-02-06 | 0.3 | Synced 10 missing code-quality domain files from brain_upstream to skills/domains/code-quality/ | COMPLETE |
 | 108 | 2026-02-06 | 0.4 | Synced 5 missing anti-patterns domain files from brain_upstream to skills/domains/anti-patterns/ | COMPLETE |
+| 109 | 2026-02-06 | 0.9 | Verified all broken links are fixed (link validator excludes brain_upstream/) | COMPLETE |
+| 110 | 2026-02-06 | 1.1-1.4 | BATCH: Repo structure cleanup - moved site to website/, brain content to brain/ | COMPLETE |
+| 111 | 2026-02-06 | 2.1 | Updated GitHub Pages workflow to build from website/ and upload website/dist | COMPLETE |
+| 112 | 2026-02-06 | 3.1 | Split docs: root README is repo-level, website/README.md for site setup | COMPLETE |
+| 113 | 2026-02-06 | 4.1 | Verified end-to-end: build passes, lint passes (7 warnings in shadcn-ui, expected) | COMPLETE |
