@@ -38,57 +38,13 @@ This plan maintains and evolves the Deene Social Presence marketing site as a cl
 
 ---
 
-## Phase 0: Orientation guardrail (must run first)
-
-- [x] **0.1** Confirm repo root, app root, and deploy base path (orientation guardrail)
-  - **Goal:** Prevent wasted iterations by establishing the correct working directory and commands before any implementation work.
-  - **AC:**
-    - Identify the repo root (this directory) and confirm where the actual web app lives.
-      - Repo root contains: `cortex/`, `workers/`, `src/`, etc.
-      - App root is `./` for this repo (not `brain_upstream/`)
-    - Run and report results (non-interactive):
-      - `npm ci` (or `npm install` if needed)
-      - `npm run lint`
-      - `npm run build`
-    - Confirm the deploy base path target: `/deene-social-presence/`.
-    - Confirm which file controls base path (e.g., `vite.config.*`).
-  - **If Blocked:** If `npm` commands fail due to node version or missing deps, capture the exact error output and identify the required Node/npm version from repo docs or `package.json`.
-
----
-
 ## Phase 9: Logo system upgrade (realistic + embossed + hover reveal)
 
 > **Goal:** Replace simple placeholder logos with realistic-looking monochrome SVGs that have embossed/raised effect, with optional color reveal on hover.
 
 ### 9.1: Create logo conversion script
 
-- [ ] **9.1.1** Add a script to convert colored SVG logos to monochrome
-  - **Goal:** Make it easy and repeatable to generate monochrome stamped logos from the colored set.
-  - **AC:**
-    - Create a script at `../website/scripts/convert_logos_to_mono.py` (Python) or `../website/scripts/convert_logos_to_mono.js` (Node).
-    - Script input directory: `../website/public/logos/_colored/`
-    - Script output directory: `../website/public/logos/`
-    - Script converts *fill/stroke colors* to a single target monochrome color (default `#E5E7EB`).
-    - Script preserves SVG viewBox and adds consistent padding if required.
-    - Script is idempotent: running it multiple times produces the same output.
-  - **If Blocked:** If full SVG parsing is too heavy, implement a safe regex-based replacement that handles common `fill="..."` / `stroke="..."` patterns and document limitations.
-
-- [ ] **9.1.2** Add a one-line runner command and document usage
-  - **Goal:** Ensure future iterations can run the conversion reliably.
-  - **AC:**
-    - Add an npm script in `../website/package.json`, e.g. `"logos:mono": "python3 scripts/convert_logos_to_mono.py"` (or node equivalent).
-    - Document expected inputs/outputs at the top of the script (comment block) including color constant.
-    - Running the command produces `../website/public/logos/logo-01.svg` ... etc. (for whatever colored logos exist).
-
 ### 9.2: Generate realistic placeholder logos
-
-- [ ] **9.2.2** Create 5 realistic brand-style logos (colored): 06–10
-  - **Goal:** Continue building the realistic colored logo set in batches (keeps iteration atomic)
-  - **AC:**
-    - Create 5 additional unique logos under `../website/public/logos/_colored/logo-06-color.svg` through `logo-10-color.svg`
-    - Logos are visually distinct from 01–05 and from each other
-  - **If Blocked:** Same as 9.2.1
-  - **Estimated Time:** [M] 15-20 minutes
 
 - [ ] **9.2.3** Create 5 realistic brand-style logos (colored): 11–15
   - **Goal:** Complete the realistic colored logo set
