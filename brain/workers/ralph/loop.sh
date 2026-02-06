@@ -1040,8 +1040,8 @@ generate_iteration_summary() {
 **Ralph — Iteration ${iter_num} (${mode^^})** • ${timestamp}
 
 **Run**
-- Run ID: `${run_id}`
-- Log: `${logfile}`
+- Run ID: ${run_id}
+- Log: ${logfile}
 EOF
     return
   fi
@@ -1054,8 +1054,8 @@ EOF
 **Ralph — Iteration ${iter_num} (${mode^^})** • ${timestamp}
 
 **Run**
-- Run ID: `${run_id}`
-- Log: `${logfile}`
+- Run ID: ${run_id}
+- Log: ${logfile}
 EOF
     return
   fi
@@ -2138,7 +2138,7 @@ if [[ -n "$PROMPT_ARG" ]]; then
       # Avoid re-printing the full summary to the interactive terminal (too noisy).
       # Append any discord-post output/errors to a per-iteration completion log.
       completion_log="${LOGDIR}/iter${i}_completion.log"
-      if generate_iteration_summary "$i" "$current_phase" "$CURRENT_LOG_FILE" | "$ROOT/bin/discord-post" >>"$completion_log" 2>&1; then
+      if generate_iteration_summary "$i" "custom" "$CURRENT_LOG_FILE" | "$ROOT/bin/discord-post" >>"$completion_log" 2>&1; then
         echo "✓ Discord update posted"
       else
         echo "⚠ Discord post failed (non-blocking)"
@@ -2514,7 +2514,7 @@ else
       # Avoid re-printing the full summary to the interactive terminal (too noisy).
       # Append any discord-post output/errors to a per-iteration completion log.
       completion_log="${LOGDIR}/iter${i}_completion.log"
-      if generate_iteration_summary "$i" "$current_phase" "$CURRENT_LOG_FILE" | "$ROOT/bin/discord-post" >>"$completion_log" 2>&1; then
+      if generate_iteration_summary "$i" "build" "$CURRENT_LOG_FILE" | "$ROOT/bin/discord-post" >>"$completion_log" 2>&1; then
         echo "✓ Discord update posted"
       else
         echo "⚠ Discord post failed (non-blocking)"
