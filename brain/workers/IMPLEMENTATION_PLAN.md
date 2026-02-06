@@ -10,6 +10,11 @@ Last Updated: 2026-02-06 11:19:50
   - **Goal** (why)
   - **AC** (acceptance criteria; how we know it’s done)
   - **If Blocked** (what to do if dependencies are missing)
+- **Quality reference:** Before implementing any task, check `/brain/skills/` for relevant patterns and best practices:
+  - **Frontend work:** See `/brain/skills/domains/frontend/` (React patterns, accessibility, component architecture)
+  - **Code quality:** See `/brain/skills/domains/code-quality/` (testing, code hygiene, markdown patterns)
+  - **Shell scripts:** See `/brain/skills/domains/languages/shell/` (validation patterns, common pitfalls)
+  - **General patterns:** See `/brain/skills/playbooks/` for task-specific guidance
 
 ## Context / Why (source of truth)
 
@@ -27,65 +32,9 @@ We want to de-contaminate the deployable website from the repo’s agent/ops sca
 
 ---
 
-## Phase 0: Fix Broken Internal Links
+## Phase 0: Verify Documentation Links
 
-> **Summary:** Tasks 0.1-0.4 completed and logged to THUNK #105-108 on 2026-02-06.
-
-- [ ] **0.5** BATCH: Sync missing frontend domain files from brain_upstream
-  - **Goal:** Copy frontend pattern files that skills/index.md references but don't exist locally
-  - **Scope:** 3 files in `skills/domains/frontend/`
-  - **Work:**
-    - Create directory: `mkdir -p skills/domains/frontend`
-    - Copy files from `brain_upstream/skills/domains/frontend/` to `skills/domains/frontend/`:
-      - `README.md`
-      - `react-patterns.md`
-      - `accessibility-patterns.md`
-  - **AC:** All 3 files exist in `skills/domains/frontend/` and `bash tools/validate_links.sh skills/index.md` shows no frontend link errors
-  - **If Blocked:** If files don't exist in brain_upstream, create stub files with basic structure per skills/conventions.md
-
-- [ ] **0.6** BATCH: Sync missing infrastructure domain files from brain_upstream
-  - **Goal:** Copy infrastructure pattern files that skills/index.md references but don't exist locally
-  - **Scope:** 6 files in `skills/domains/infrastructure/`
-  - **Work:**
-    - Create directory: `mkdir -p skills/domains/infrastructure`
-    - Copy files from `brain_upstream/skills/domains/infrastructure/` to `skills/domains/infrastructure/`:
-      - `agent-observability-patterns.md`
-      - `deployment-patterns.md`
-      - `disaster-recovery-patterns.md`
-      - `observability-patterns.md`
-      - `security-patterns.md`
-      - `state-management-patterns.md`
-  - **AC:** All 6 files exist in `skills/domains/infrastructure/` and `bash tools/validate_links.sh skills/index.md` shows no infrastructure link errors
-  - **If Blocked:** If files don't exist in brain_upstream, create stub files with basic structure per skills/conventions.md
-
-- [ ] **0.7** BATCH: Sync missing language-specific domain files from brain_upstream
-  - **Goal:** Copy language pattern files that skills/index.md references but don't exist locally
-  - **Scope:** Multiple subdirectories under `skills/domains/languages/`
-  - **Work:**
-    - Create directories: `mkdir -p skills/domains/languages/{go,javascript,python}`
-    - Copy Go files from `brain_upstream/skills/domains/languages/go/`:
-      - `README.md`
-      - `go-patterns.md`
-    - Copy JavaScript files from `brain_upstream/skills/domains/languages/javascript/`:
-      - `README.md`
-      - `javascript-patterns.md`
-    - Copy Python file from `brain_upstream/skills/domains/languages/python/`:
-      - `python-patterns.md`
-    - Copy Shell files from `brain_upstream/skills/domains/languages/shell/` (if missing):
-      - `cleanup-patterns.md`
-      - `common-pitfalls.md`
-      - `strict-mode.md`
-  - **AC:** All language pattern files exist and `bash tools/validate_links.sh skills/index.md` shows no language link errors
-  - **If Blocked:** If files don't exist in brain_upstream, create stub files with basic structure per skills/conventions.md
-
-- [ ] **0.8** Create missing domains/README.md
-  - **Goal:** Fix the broken link to domains/README.md in skills/index.md
-  - **Work:**
-    - Create `skills/domains/README.md` with overview of domain categories
-    - Include sections: Backend, Code Quality, Anti-Patterns, Frontend, Infrastructure, Languages
-    - Follow structure from skills/conventions.md (Why, When, Details, Examples)
-  - **AC:** `bash tools/validate_links.sh skills/index.md` passes for domains/README.md link
-  - **If Blocked:** Copy from `brain_upstream/skills/domains/README.md` if it exists
+> **Summary:** Tasks 0.1-0.4 completed and logged to THUNK #105-108 on 2026-02-06. Tasks 0.5-0.8 removed (skills/ folder now complete from brain repo copy).
 
 - [ ] **0.9** Verify all broken links are fixed
   - **Goal:** Confirm all link validation passes

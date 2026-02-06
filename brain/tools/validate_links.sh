@@ -18,12 +18,13 @@ TOTAL_LINKS=0
 VERBOSE="${VERBOSE:-0}"
 
 # Paths to ignore when scanning for markdown files
-# (vendored deps, virtualenvs, caches)
+# (vendored deps, virtualenvs, caches, brain_upstream)
 IGNORE_FIND_PATHS=(
   "*/node_modules/*"
   "*/.venv/*"
   "*/.git/*"
   "*/.ruff_cache/*"
+  "*/brain_upstream/*"
 )
 
 # Files that intentionally contain placeholder links.
