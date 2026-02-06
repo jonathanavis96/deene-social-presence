@@ -102,3 +102,7 @@ Started: 2026-01-30
 | 2 | 2026-01-30 | 0.2 | Synced 6 backend domain pattern files from brain_upstream to skills/domains/backend/ | COMPLETE |
 | 3 | 2026-01-30 | 0.3 | Synced 10 code-quality domain pattern files from brain_upstream to skills/domains/code-quality/ | COMPLETE |
 | 4 | 2026-01-30 | 0.4 | Synced 5 anti-patterns domain pattern files from brain_upstream to skills/domains/anti-patterns/ | COMPLETE |
+| 105 | 2026-02-06 | 0.1 | Fixed broken link in skills/conventions.md line 204 | COMPLETE |
+| 106 | 2026-02-06 | 0.2 | Synced 6 missing backend domain files from brain_upstream to skills/domains/backend/ | COMPLETE |
+| 107 | 2026-02-06 | 0.3 | Synced 10 missing code-quality domain files from brain_upstream to skills/domains/code-quality/ | COMPLETE |
+| 108 | 2026-02-06 | 0.4 | Synced 5 missing anti-patterns domain files from brain_upstream to skills/domains/anti-patterns/ | COMPLETE |
