@@ -1,6 +1,6 @@
 Ralph Verifier Report
-Time: 2026-02-06 18:59:35
-Git:  b4b904d
+Time: 2026-02-06 20:09:26
+Git:  214b506
 AC:   /home/grafe/code/deene-social/brain/workers/ralph/rules/AC.rules
 Approvals: /home/grafe/code/deene-social/brain/workers/ralph/rules/MANUAL_APPROVALS.rules
 ------------------------------------------------------------
@@ -103,3 +103,22 @@ Approvals: /home/grafe/code/deene-social/brain/workers/ralph/rules/MANUAL_APPROV
   cmd:  bash -c 'command -v markdownlint &>/dev/null && markdownlint AGENTS.md 2>&1 | head -10 || echo "ok (markdownlint not installed)"'
   exit: 0
   stdout: 
+[PASS] Lint.Markdownlint.NEURONS
+  desc: NEURONS.md passes markdownlint (if installed)
+  cmd:  bash -c 'command -v markdownlint &>/dev/null && markdownlint NEURONS.md 2>&1 | head -10 || echo "ok (markdownlint not installed)"'
+  exit: 0
+  stdout: NEURONS.md:12:81 error MD013/line-length Line length [Expected: 80; Actual: 139]
+NEURONS.md:76:81 error MD013/line-length Line length [Expected: 80; Actual: 102]
+[PASS] Lint.Markdownlint.THOUGHTS
+  desc: THOUGHTS.md passes markdownlint (if installed)
+  cmd:  bash -c 'command -v markdownlint &>/dev/null && markdownlint THOUGHTS.md 2>&1 | head -10 || echo "ok (markdownlint not installed)"'
+  exit: 0
+  stdout: 
+------------------------------------------------------------
+SUMMARY
+  PASS: 21
+  FAIL: 0
+  WARN: 1 (manual_warn=1)
+  SKIP: 0
+  Manual gate=block failures: 0
+  Hash guard: OK

@@ -42,7 +42,7 @@ This plan maintains and evolves the Deene Social Presence marketing site as a cl
 
 > **Goal:** Make hero more impactful with 2x larger "DEENE SOCIAL" heading, connected scroll indicator lines, and animated pulse on arrow.
 
-- [ ] **11.1.1** Double Hero heading size
+- [x] **11.1.1** Double Hero heading size
   - **Goal:** Make main heading ("DEENE SOCIAL") significantly larger and more prominent
   - **AC:**
     - Update `Hero.tsx` heading styles to 2x current size
@@ -53,7 +53,7 @@ This plan maintains and evolves the Deene Social Presence marketing site as a cl
   - **If Blocked:** If 2x causes layout issues on mobile, use fluid typography (`clamp()` or `vw`-based sizing)
   - **Estimated Time:** [M] 10-15 minutes
 
-- [ ] **11.2.1** Connect scroll indicator lines
+- [x] **11.2.1** Connect scroll indicator lines
   - **Goal:** Create unified scroll indicator below hero heading (was 2 disconnected lines, now 1 connected line with arrow)
   - **AC:**
     - Locate existing scroll indicator in `Hero.tsx`

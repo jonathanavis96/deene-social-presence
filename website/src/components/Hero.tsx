@@ -86,8 +86,16 @@ const Hero = () => {
                 className={`font-serif tracking-tight text-foreground ${
                   logoLocked
                     ? "text-xl mb-0"
-                    : "text-5xl md:text-7xl lg:text-8xl mb-4"
+                    : "mb-4"
                 }`}
+                style={
+                  logoLocked
+                    ? undefined
+                    : {
+                        fontSize: "clamp(6rem, 15vw, 12rem)",
+                        lineHeight: "1",
+                      }
+                }
               >
                 DEENE
               </h1>
@@ -162,9 +170,9 @@ const Hero = () => {
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-12 left-1/2 -translate-x-1/2 opacity-0 animate-fade-in animation-delay-800 flex flex-col items-center">
-        <div className="w-px h-10 md:h-12 bg-muted-foreground/40 animate-scroll-pulse" />
+        <div className="w-px h-16 md:h-20 bg-muted-foreground/40" />
         <ChevronDown
-          className="w-4 h-4 text-muted-foreground/70 -mt-1 animate-scroll-pulse"
+          className="w-4 h-4 text-muted-foreground/70 -mt-[1px] animate-scroll-pulse"
           strokeWidth={1.5}
         />
       </div>
