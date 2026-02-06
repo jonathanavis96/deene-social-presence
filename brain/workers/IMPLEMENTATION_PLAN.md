@@ -44,7 +44,7 @@ This plan maintains and evolves the Deene Social Presence marketing site as a cl
 
 ### 13.1: Visual QA (split into atomic section checks)
 
-- [ ] **13.1.4** Visual QA: ClientLogos (emboss + hover behavior)
+- [x] **13.1.4** Visual QA: ClientLogos (emboss + hover behavior)
   - **Goal:** Confirm logos are present, styled correctly, and interactions work
   - **AC:**
     - 15 logos load successfully
