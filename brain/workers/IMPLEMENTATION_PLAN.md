@@ -22,15 +22,15 @@ Last Updated: 2026-02-06 12:01:18
 
 ## Context / Why (source of truth)
 
-We want to de-contaminate the deployable website from the repo’s agent/ops scaffolding (`cortex/`, `workers/`, `brain_upstream/`, etc.). The website should be fully self-contained under `website/`.
+We want to de-contaminate the deployable website from the repo’s agent/ops scaffolding (`cortex/`, `workers/`, `brain_upstream/`, etc.). The website is self-contained at `../website/` (relative to this `brain/` directory).
 
 **Note:** Phases 0–4 completed the repo cleanup. **Phase 5+ is post-cleanup content + UX updates** for the live marketing site.
 
 **User decisions:**
 
-- Dev/build commands will be run from inside `website/` (no need for root-level delegating scripts).
-- Keep a small root `README.md` explaining repo layout, plus a `website/README.md` for site setup.
-- Move site-only config files into `website/` so the site is self-contained.
+- Dev/build commands will be run from inside `../website/` (relative to this `brain/` directory).
+- Keep a small parent-root `README.md` explaining repo layout, plus a `../website/README.md` for site setup.
+- Keep site-only config files inside `../website/` so the site is self-contained.
 
 **Non-goals:**
 
@@ -41,7 +41,6 @@ We want to de-contaminate the deployable website from the repo’s agent/ops sca
 ## Phase 0-Links: Broken Internal Links
 
 > **Priority:** Fix before continuing with Phase 5+ feature work.
-
 
 - [ ] **0.L.2** Fix broken link in `README.md` (cortex/docs/RUNBOOK.md)
   - **Goal:** Ensure README doesn't link to a missing file.
@@ -65,13 +64,13 @@ We want to de-contaminate the deployable website from the repo’s agent/ops sca
   - **AC:**
     - [ ] Hero renders with no tagline/subheading text
     - [ ] No obvious spacing regressions on mobile + desktop
-  - **If Blocked:** If unsure which string is canonical, search for the tagline text across `website/src/` and remove where used.
+  - **If Blocked:** If unsure which string is canonical, search for the tagline text across `../website/src/` and remove where used.
 
 - [ ] **5.2** Navigation: remove “Clients” from nav (keep one-page scroll)
   - **Goal:** Match call decision: “Clients” removed from the navigation.
   - **Skills:** `brain/skills/domains/frontend/react-patterns.md`, `brain/skills/domains/code-quality/code-consistency.md`
   - **Work:**
-    - Update the nav buttons rendered inside `website/src/components/Hero.tsx` (logo-locked nav).
+    - Update the nav buttons rendered inside `../website/src/components/Hero.tsx` (logo-locked nav).
   - **AC:**
     - [ ] No “Clients” item in the main nav
     - [ ] Remaining nav links still scroll correctly
@@ -88,7 +87,7 @@ We want to de-contaminate the deployable website from the repo’s agent/ops sca
 - [ ] **5.4** “Created” gallery: ensure it exists + group photos + update category labels
   - **Goal:** Ensure the “Created” gallery exists, is grouped by brand/category, and uses the agreed label abbreviations.
   - **Skills:** `brain/skills/domains/frontend/react-patterns.md`, `brain/skills/domains/frontend/accessibility-patterns.md`
-  - **Where:** `website/src/components/` (check for an existing gallery/portfolio component first; update it in-place if found).
+  - **Where:** `../website/src/components/` (check for an existing gallery/portfolio component first; update it in-place if found).
   - **Target labels:** Coffee x2; Restaurants; Accommodation; Wine bars; Products; Wine Estates
   - **Work:**
     - Confirm whether a “Created” gallery already exists.
@@ -134,9 +133,9 @@ We want to de-contaminate the deployable website from the repo’s agent/ops sca
   - **Work:**
     - Generate 5 minimal SVG logos (simple geometric shapes or text-based placeholders)
     - Use a consistent style (monochrome, minimal, geometric)
-    - Save as `website/public/logos/logo-01.svg` through `logo-05.svg`
+    - Save as `../website/public/logos/logo-01.svg` through `logo-05.svg`
   - **AC:**
-    - [ ] 5 SVG files exist in `website/public/logos/`
+    - [ ] 5 SVG files exist in `../website/public/logos/`
     - [ ] Each logo is under 5KB and visually distinct
     - [ ] Logos render cleanly in browser (no broken SVG syntax)
   - **If Blocked:** If SVG generation is difficult, use simple text-based SVGs (company initials in a circle) or export from a tool like Figma/Canva.
@@ -146,9 +145,9 @@ We want to de-contaminate the deployable website from the repo’s agent/ops sca
   - **Skills:** `brain/skills/domains/code-quality/code-consistency.md`, `brain/skills/domains/code-quality/code-hygiene.md`
   - **Work:**
     - Generate 5 minimal SVG logos in the same style
-    - Save as `website/public/logos/logo-06.svg` through `logo-10.svg`
+    - Save as `../website/public/logos/logo-06.svg` through `logo-10.svg`
   - **AC:**
-    - [ ] 5 SVG files exist in `website/public/logos/`
+    - [ ] 5 SVG files exist in `../website/public/logos/`
     - [ ] Each logo is under 5KB and visually distinct
     - [ ] Logos render cleanly in browser (no broken SVG syntax)
   - **If Blocked:** If SVG generation is difficult, use simple text-based SVGs (company initials in a circle) or export from a tool like Figma/Canva.
@@ -158,9 +157,9 @@ We want to de-contaminate the deployable website from the repo’s agent/ops sca
   - **Skills:** `brain/skills/domains/code-quality/code-consistency.md`, `brain/skills/domains/code-quality/code-hygiene.md`
   - **Work:**
     - Generate 5 minimal SVG logos in the same style
-    - Save as `website/public/logos/logo-11.svg` through `logo-15.svg`
+    - Save as `../website/public/logos/logo-11.svg` through `logo-15.svg`
   - **AC:**
-    - [ ] 5 SVG files exist in `website/public/logos/`
+    - [ ] 5 SVG files exist in `../website/public/logos/`
     - [ ] Each logo is under 5KB and visually distinct
     - [ ] Logos render cleanly in browser (no broken SVG syntax)
   - **If Blocked:** If SVG generation is difficult, use simple text-based SVGs (company initials in a circle) or export from a tool like Figma/Canva.
@@ -171,9 +170,9 @@ We want to de-contaminate the deployable website from the repo’s agent/ops sca
   - **Categories identified:** coffee/FVC, coffee/KZ, wine/salt river, menu/wellington
   - **Work:**
     - Extract images from `brain/cortex/examples/brand-doc.pdf` (pages 1-4)
-    - Save **raw exports** to `website/public/gallery/_raw/` with category-based naming (e.g., `coffee-fvc-01.jpg`, `wine-saltriver-01.jpg`)
+    - Save **raw exports** to `../website/public/gallery/_raw/` with category-based naming (e.g., `coffee-fvc-01.jpg`, `wine-saltriver-01.jpg`)
   - **AC:**
-    - [ ] At least 12 raw images extracted and saved in `website/public/gallery/_raw/`
+    - [ ] At least 12 raw images extracted and saved in `../website/public/gallery/_raw/`
     - [ ] Filenames clearly indicate category
   - **If Blocked:** If PDF extraction is difficult, use a reproducible CLI where possible (`pdfimages`) or do manual screenshot+crop. If you must do manual steps, keep filenames + categories consistent.
 
@@ -183,10 +182,10 @@ We want to de-contaminate the deployable website from the repo’s agent/ops sca
   - **Work:**
     - Resize images to max width 1200px
     - Compress to roughly 80% quality
-    - Save optimized images to `website/public/gallery/` (same naming, no `_raw`)
-    - **Keep only optimized images in the shipped path** (`website/public/gallery/`); raw exports remain in `_raw/`.
+    - Save optimized images to `../website/public/gallery/` (same naming, no `_raw`)
+    - **Keep only optimized images in the shipped path** (`../website/public/gallery/`); raw exports remain in `_raw/`.
   - **AC:**
-    - [ ] Each optimized image in `website/public/gallery/` is under 300KB
+    - [ ] Each optimized image in `../website/public/gallery/` is under 300KB
     - [ ] Filenames clearly indicate category and match the raw set
   - **If Blocked:** If an optimizer isn't available locally, use an online compressor, then re-check file sizes locally and commit only the optimized outputs.
 
@@ -202,10 +201,10 @@ We want to de-contaminate the deployable website from the repo’s agent/ops sca
     - Write 2-3 paragraphs (~150-200 words total)
     - Focus on: who Deene is, what they do, why they do it, and what makes the approach unique
     - Use "I" or "we" (first-person voice)
-    - Save the copy in a comment block at the top of `website/src/components/About.tsx` **without changing layout** yet
+    - Save the copy in a comment block at the top of `../website/src/components/About.tsx` **without changing layout** yet
   - **AC:**
     - [ ] About copy text exists (first-person) and is 150-250 words
-    - [ ] Copy is stored in `website/src/components/About.tsx` as a temporary comment block (no layout changes)
+    - [ ] Copy is stored in `../website/src/components/About.tsx` as a temporary comment block (no layout changes)
   - **If Blocked:** If unsure of brand positioning, use themes: authenticity, conversation, intentional craft. Keep it simple and human.
 
 - [ ] **6.7** Insert About copy into `About.tsx` (layout-safe)
@@ -215,7 +214,7 @@ We want to de-contaminate the deployable website from the repo’s agent/ops sca
     - Replace placeholder About copy with the drafted text from task 6.6
     - Remove the temporary comment block when done
   - **AC:**
-    - [ ] `website/src/components/About.tsx` renders the new copy
+    - [ ] `../website/src/components/About.tsx` renders the new copy
     - [ ] No spacing/layout regressions on mobile + desktop
     - [ ] No console errors
   - **If Blocked:** If About component structure makes insertion risky, create a minimal `const aboutCopy = ...` string/array and render it without refactoring the component structure.
@@ -226,7 +225,7 @@ We want to de-contaminate the deployable website from the repo’s agent/ops sca
 
 - **Hosting:** Site is deployed on **GitHub Pages** at `https://{username}.github.io/deene-social-presence/`
 - **Timing:** **ASAP** (per user direction)
-- **Base path:** Configured in `website/vite.config.ts` as `/deene-social-presence/`
+- **Base path:** Configured in `../website/vite.config.ts` as `/deene-social-presence/`
 
 ---
 
