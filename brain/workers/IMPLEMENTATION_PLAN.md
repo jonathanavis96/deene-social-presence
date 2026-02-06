@@ -1,6 +1,6 @@
 # Implementation Plan — Deene Social Presence
 
-Last Updated: 2026-02-06 11:19:06
+Last Updated: 2026-02-06 11:19:50
 
 ## Execution rules (Ralph)
 
@@ -323,39 +323,73 @@ We want to de-contaminate the deployable website from the repo’s agent/ops sca
 
 - [ ] **5.6** Contact section: add WhatsApp button + show email address
   - **Goal:** Provide two clear contact options: form (if present) + WhatsApp, and show email visibly.
+  - **Details:**
+    - WhatsApp: +27 78 881 9656
+    - Email: alex@deenesocial.com
   - **AC:**
-    - [ ] WhatsApp button exists and opens a WhatsApp chat link
-    - [ ] Email address is visible in the contact section
+    - [ ] WhatsApp button exists and opens `https://wa.me/27788819656` (or equivalent)
+    - [ ] Email address `alex@deenesocial.com` is visible in the contact section
     - [ ] No console errors
-  - **If Blocked:** WhatsApp phone number and final email address must be confirmed (see “Waiting on Alex”). Use placeholders only if explicitly approved.
+  - **If Blocked:** If WhatsApp link format is unclear, use `https://wa.me/27788819656` (international format, no spaces/dashes).
 
 ---
 
-## Waiting on Alex (inputs/assets required)
+## Phase 6: Asset preparation (mock logos, gallery photos, About copy)
 
-These items are referenced in the call checklist notes but require Alex to supply/confirm details before they can be implemented cleanly:
+> **Context:** We now have `brain/cortex/examples/brand-doc.pdf` with sample photos organized by category (coffee/FVC, coffee/KZ, wine/salt river, menu/wellington). Contact details confirmed: WhatsApp +27 78 881 9656, email alex@deenesocial.com. Timing: ASAP. Site hosted on GitHub Pages.
 
-1. **Logos pack** (SVG/PNG), and confirmation of final logo list/order
-   - Needed for: client logos strip assets
+- [ ] **6.1** Create ~15 mock client logos for scroll animation testing
+  - **Goal:** Have enough logo assets to test the scrolling client logos strip with realistic density.
+  - **Work:**
+    - Generate 15 minimal SVG logos (simple geometric shapes or text-based placeholders)
+    - Use a consistent style (e.g., monochrome, minimal, geometric) that feels brand-appropriate
+    - Save as `website/public/logos/logo-01.svg` through `logo-15.svg`
+  - **AC:**
+    - [ ] 15 SVG files exist in `website/public/logos/`
+    - [ ] Each logo is under 5KB and visually distinct
+    - [ ] Logos render cleanly in browser (no broken SVG syntax)
+  - **If Blocked:** If SVG generation is difficult, use simple text-based SVGs (company initials in a circle) or export from a tool like Figma/Canva.
 
-2. **Brand doc / styling references** (typography/spacing rules, any do/don’t)
-   - Needed for: final polish decisions (“anything feels too much?”, spacing, minimal styling)
+- [ ] **6.2** Extract photos from brand-doc.pdf for gallery
+  - **Goal:** Populate the "Created" gallery with real photos from the brand doc.
+  - **Categories identified:** coffee/FVC, coffee/KZ, wine/salt river, menu/wellington
+  - **Work:**
+    - Extract images from `brain/cortex/examples/brand-doc.pdf` (pages 1-4)
+    - Save to `website/public/gallery/` with category-based naming (e.g., `coffee-fvc-01.jpg`, `wine-saltriver-01.jpg`)
+    - Optimize for web (max width 1200px, quality 80%)
+  - **AC:**
+    - [ ] At least 12 images extracted and saved in `website/public/gallery/`
+    - [ ] Images are web-optimized (each under 300KB)
+    - [ ] Filenames clearly indicate category
+  - **If Blocked:** If PDF extraction is difficult, use a tool like `pdfimages` (CLI) or `pdf.js` (JS) or manually screenshot and crop. Prioritize quality over quantity (at least 8 images is acceptable).
 
-3. **Photo assets**
-   - A OneDrive (or similar) folder link with final curated gallery images
-   - Needed for: “Created” gallery (and any hero/about photography updates)
+- [ ] **6.3** Draft first-person About section copy
+  - **Goal:** Write provisional About copy in first-person voice to replace placeholder text.
+  - **Tone:** Authentic, conversational, confident but not arrogant. Reflect Deene's brand personality (see checklist notes: "Where authenticity leads, conversation follows").
+  - **Work:**
+    - Write 2-3 paragraphs (~150-200 words total)
+    - Focus on: who Deene is, what they do, why they do it, and what makes their approach unique
+    - Use "I" or "we" (first-person voice)
+  - **AC:**
+    - [ ] About copy is written and saved (either directly in `website/src/components/About.tsx` or in a draft file `brain/cortex/about-copy-draft.md`)
+    - [ ] Copy is first-person voice
+    - [ ] Copy is 150-250 words
+  - **If Blocked:** If unsure of brand positioning, use the checklist context (authenticity, conversation, intentional/crafted) as thematic anchors. Keep it simple and human.
 
-4. **About section final rewrite**
-   - Checklist note indicates Alex will provide updated info and rewrite
-   - Needed for: about copy update (first-person voice)
+---
 
-5. **Services wording refinements**
-   - Alex to refine copy under service headings
-   - Needed for: services card body text
+## Deployment & Timing Notes
 
-6. **Contact details**
-   - **WhatsApp phone number** to use for the “Let’s chat” button
-   - Confirm final email address is **`alex@...`** (and the exact domain)
+- **Hosting:** Site is deployed on **GitHub Pages** at `https://{username}.github.io/deene-social-presence/`
+- **Timing:** **ASAP** (per user direction)
+- **Base path:** Configured in `website/vite.config.ts` as `/deene-social-presence/`
 
-7. **Go-live timing**
-   - Checklist indicates “No timing at all” right now; confirm when ready to schedule deploy checks
+---
+
+## Still Waiting on Alex (final polish only)
+
+These items can be refined later after the site is live (not blockers for ASAP launch):
+
+1. **Final client logos** (real SVGs/PNGs to replace mocks)
+2. **Services wording refinements** (copy polish under service headings)
+3. **Brand styling references** (detailed typography/spacing rules if needed for final polish)
