@@ -228,12 +228,15 @@
   }
 }
 
-.animate-marquee {
-  animation: marquee 30s linear infinite;
-}
+@layer utilities {
+  .animate-marquee {
+    animation: marquee 30s linear infinite;
+    will-change: transform;
+  }
 
-.group:hover .group-hover\:pause-animation {
-  animation-play-state: paused;
+  .group:hover .group-hover\:pause-animation {
+    animation-play-state: paused;
+  }
 }
 
 /* Accessibility: Respect prefers-reduced-motion */
