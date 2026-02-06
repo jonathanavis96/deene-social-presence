@@ -8,7 +8,7 @@ const Gallery = () => {
         {/* Header */}
         <div className="text-center mb-20 space-y-4">
           <p className="text-spaced text-xs text-accent font-sans uppercase tracking-widest">
-            Created
+            Portfolio
           </p>
           <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-foreground">
             Created
