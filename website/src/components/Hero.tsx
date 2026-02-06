@@ -173,13 +173,13 @@ const Hero = () => {
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 opacity-0 animate-fade-in animation-delay-800 flex flex-col items-center" aria-hidden="true">
-        <div className="relative w-px h-20 md:h-24 bg-muted-foreground/30">
+      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 opacity-0 animate-fade-in animation-delay-800 flex flex-col items-center gap-0" aria-hidden="true">
+        <div className="relative w-px h-20 md:h-24 bg-muted-foreground/30 mb-0">
           {/* Traveling pulse/wave effect on the line */}
           <div className="absolute inset-0 w-full bg-gradient-to-b from-transparent via-muted-foreground/50 to-transparent animate-scroll-line-pulse" />
         </div>
         <ChevronDown
-          className="w-4 h-4 text-muted-foreground/60 animate-scroll-pulse"
+          className="w-4 h-4 text-muted-foreground/60 animate-scroll-pulse -mt-px"
           strokeWidth={1.5}
         />
       </div>
