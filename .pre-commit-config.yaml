@@ -134,7 +134,7 @@ repos:
       - id: validate-links
         name: validate-links
         description: Validate internal markdown links resolve to existing files
-        entry: bash tools/validate_links.sh
+        entry: bash brain/tools/validate_links.sh
         language: system
         files: \.md$
         exclude: |
@@ -151,7 +151,7 @@ repos:
       - id: validate-code-examples
         name: validate-code-examples
         description: Validate code examples in markdown documentation
-        entry: python3 tools/validate_examples.py
+        entry: python3 brain/tools/validate_examples.py
         language: system
         files: \.md$
         exclude: |
@@ -173,7 +173,7 @@ repos:
       - id: validate-protected-hashes
         name: validate-protected-hashes
         description: Validate SHA256 hashes for protected files
-        entry: bash tools/validate_protected_hashes.sh
+        entry: bash brain/tools/validate_protected_hashes.sh
         language: system
         pass_filenames: false
         always_run: true
@@ -181,7 +181,7 @@ repos:
       - id: validate-doc-sync
         name: validate-doc-sync
         description: Validate documentation matches actual config files
-        entry: bash tools/validate_doc_sync.sh
+        entry: bash brain/tools/validate_doc_sync.sh
         language: system
         pass_filenames: false
         files: \.(md|yaml|sh)$
