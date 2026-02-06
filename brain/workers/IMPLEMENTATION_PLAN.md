@@ -40,7 +40,7 @@ This plan maintains and evolves the Deene Social Presence marketing site as a cl
 
 ## Phase 0: Orientation guardrail (must run first)
 
-- [ ] **0.1** Confirm repo root, app root, and deploy base path (orientation guardrail)
+- [x] **0.1** Confirm repo root, app root, and deploy base path (orientation guardrail)
   - **Goal:** Prevent wasted iterations by establishing the correct working directory and commands before any implementation work.
   - **AC:**
     - Identify the repo root (this directory) and confirm where the actual web app lives.
@@ -56,51 +56,29 @@ This plan maintains and evolves the Deene Social Presence marketing site as a cl
 
 ---
 
-## Phase 1: GitHub Pages routing + contact production readiness
-
-> **Goal:** Ensure the site works correctly under the GitHub Pages base path and contact form can be configured for real submissions.
-
-- [ ] **1.1** Ensure Vite base path and React Router basename work on GitHub Pages
-  - **Goal:** Prevent broken asset paths and SPA routing issues when deployed under `/deene-social-presence/`.
-  - **AC:**
-    - Identify the file that sets Vite base path (e.g., `vite.config.*`) and confirm it uses `/deene-social-presence/`.
-    - If React Router is used, ensure routes work under the base path:
-      - Direct navigation to `/deene-social-presence/` loads.
-      - Refreshing a non-root route does not 404 (or is handled by the chosen GH Pages SPA strategy).
-    - Document the chosen approach in a short comment in the relevant config (or in the component/router file): what sets base path, and why.
-  - **If Blocked:** If GH Pages SPA refresh support requires a 404.html redirect approach, implement the minimal standard GH Pages SPA workaround.
-
-- [ ] **1.2** Fix 404 / NotFound behavior to respect base path and provide correct "Return Home" navigation
-  - **Goal:** Ensure users can recover from bad URLs in production.
-  - **AC:**
-    - NotFound page renders correctly when hitting an unknown route.
-    - "Return Home" navigates to the app root under `/deene-social-presence/` (not `/`).
-    - No console errors.
-  - **If Blocked:** If route construction is unclear, use React Router helpers (e.g., `useNavigate`, `Link`) and avoid hardcoded absolute paths.
-
-- [ ] **1.3** Make contact form configurable via environment variables (Formspree)
-  - **Goal:** Remove placeholders and enable real submissions without code changes.
-  - **AC:**
-    - Contact component reads Formspree form id (or endpoint) from env (e.g., `VITE_FORMSPREE_FORM_ID`).
-    - If env var missing: show a clear non-breaking message in dev (and/or disable submit) rather than failing silently.
-    - Update `.env.example` (if present) with the required variable name.
-    - `npm run build` passes.
-  - **If Blocked:** If Formspree integration is currently hardcoded, refactor minimally to accept an env-configured id.
-
-- [ ] **1.4** Production preview sanity for base path
-  - **Goal:** Catch base-path issues before deploying.
-  - **AC:**
-    - Run `npm run build` and `npm run preview`.
-    - Verify the preview works when served with base path expectations (assets load; navigation works).
-  - **If Blocked:** Capture the exact broken URLs (assets or routes) and trace back to base/basename configuration.
-
----
-
 ## Phase 9: Logo system upgrade (realistic + embossed + hover reveal)
 
 > **Goal:** Replace simple placeholder logos with realistic-looking monochrome SVGs that have embossed/raised effect, with optional color reveal on hover.
 
 ### 9.1: Create logo conversion script
+
+- [ ] **9.1.1** Add a script to convert colored SVG logos to monochrome
+  - **Goal:** Make it easy and repeatable to generate monochrome stamped logos from the colored set.
+  - **AC:**
+    - Create a script at `../website/scripts/convert_logos_to_mono.py` (Python) or `../website/scripts/convert_logos_to_mono.js` (Node).
+    - Script input directory: `../website/public/logos/_colored/`
+    - Script output directory: `../website/public/logos/`
+    - Script converts *fill/stroke colors* to a single target monochrome color (default `#E5E7EB`).
+    - Script preserves SVG viewBox and adds consistent padding if required.
+    - Script is idempotent: running it multiple times produces the same output.
+  - **If Blocked:** If full SVG parsing is too heavy, implement a safe regex-based replacement that handles common `fill="..."` / `stroke="..."` patterns and document limitations.
+
+- [ ] **9.1.2** Add a one-line runner command and document usage
+  - **Goal:** Ensure future iterations can run the conversion reliably.
+  - **AC:**
+    - Add an npm script in `../website/package.json`, e.g. `"logos:mono": "python3 scripts/convert_logos_to_mono.py"` (or node equivalent).
+    - Document expected inputs/outputs at the top of the script (comment block) including color constant.
+    - Running the command produces `../website/public/logos/logo-01.svg` ... etc. (for whatever colored logos exist).
 
 ### 9.2: Generate realistic placeholder logos
 
