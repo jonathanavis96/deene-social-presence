@@ -182,19 +182,19 @@ const Hero = () => {
           className="animate-scroll-pulse"
           aria-hidden="true"
         >
-          {/* Vertical line */}
+          {/* Vertical line extending down to chevron */}
           <line 
             x1="12" 
             y1="0" 
             x2="12" 
-            y2="110" 
+            y2="108" 
             stroke="currentColor" 
             strokeWidth="1"
             className="text-muted-foreground/30"
           />
-          {/* Chevron arrow at the end (connected to line) */}
+          {/* Chevron arrow at the end (starts where line ends) */}
           <path 
-            d="M 6 106 L 12 112 L 18 106" 
+            d="M 6 108 L 12 114 L 18 108" 
             stroke="currentColor" 
             strokeWidth="1.5"
             strokeLinecap="round"
