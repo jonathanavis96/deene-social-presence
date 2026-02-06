@@ -155,7 +155,7 @@ Agent discovers gap → Log to GAP_BACKLOG.md → Review and refine → Promote 
 - ✅ **Pre-commit Hooks:** Linting tools (shellcheck, markdownlint, ruff) installed
 - ✅ **Template Sync:** Worker files synchronized to templates/
 
-### Next Objectives (from IMPLEMENTATION_PLAN.md)
+### Next Objectives (from workers/IMPLEMENTATION_PLAN.md)
 
 #### Phase 1: High Priority
 
@@ -260,7 +260,7 @@ Why keep skills/ and templates/ at root instead of workers/ralph/?
 ## References
 
 - [README.md](README.md) - Getting started guide
-- [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md) - Current task queue
+- [workers/IMPLEMENTATION_PLAN.md](workers/IMPLEMENTATION_PLAN.md) - Current task queue
 - [skills/SUMMARY.md](skills/SUMMARY.md) - Skills knowledge base entry point
 - [cortex/THOUGHTS.md](cortex/THOUGHTS.md) - Cortex manager planning
 - [workers/ralph/THOUGHTS.md](workers/ralph/THOUGHTS.md) - Ralph worker execution log

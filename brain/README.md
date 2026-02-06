@@ -111,7 +111,7 @@ bash ralph/loop.sh --iterations 5
 
 - ✅ GitHub repo created automatically
 - ✅ Complete Ralph loop infrastructure (worker + verifier)
-- ✅ Project files: `THOUGHTS.md`, `NEURONS.md`, `IMPLEMENTATION_PLAN.md`
+- ✅ Project files: `THOUGHTS.md`, `NEURONS.md`, `workers/IMPLEMENTATION_PLAN.md`
 - ✅ Connection to brain's skills library
 - ✅ Pre-configured validation rules
 
@@ -243,7 +243,6 @@ brain/
 │   └── cerebras/           # Fast inference worker
 │
 ├── cortex/                 # Manager layer (plans work)
-│   ├── IMPLEMENTATION_PLAN.md
 │   └── THOUGHTS.md
 │
 └── rules/                  # Acceptance criteria & validation
@@ -342,7 +341,7 @@ EOF
 
 ### Self-Improvement
 
-Brain improves itself using the Ralph loop. Tasks in `IMPLEMENTATION_PLAN.md` get executed automatically.
+Brain improves itself using the Ralph loop. Tasks in `workers/IMPLEMENTATION_PLAN.md` get executed automatically.
 
 ### Token Efficiency
 

@@ -283,7 +283,7 @@ When adding new markers:
 
 - **[docs/events.md](events.md)** - Event system design and philosophy
 - **[docs/CACHE_DESIGN.md](CACHE_DESIGN.md)** - Cache architecture and marker integration
-- **[tools/rollflow_analyze/README.md](../tools/rollflow_analyze/README.md)** - Analysis tool documentation
+- **[tools/rollflow_analyze/README.md](../brain_upstream/tools/rollflow_analyze/README.md)** - Analysis tool documentation
 - **[workers/ralph/loop.sh](../workers/ralph/loop.sh)** - Primary marker emission source
 
 ---

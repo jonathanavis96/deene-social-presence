@@ -12,7 +12,16 @@
 set -euo pipefail
 
 # Configuration
-BRAIN_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+# Resolve the effective repo root.
+# In some layouts, `git rev-parse --show-toplevel` points to a parent directory that does not
+# contain the canonical `workers/` directory. Prefer the directory that contains `workers/`.
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+BRAIN_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
+if GIT_ROOT="$(git rev-parse --show-toplevel 2>/dev/null)"; then
+  if [[ -d "${GIT_ROOT}/workers" ]]; then
+    BRAIN_ROOT="$GIT_ROOT"
+  fi
+fi
 BROKEN_LINKS=0
 TOTAL_LINKS=0
 VERBOSE="${VERBOSE:-0}"

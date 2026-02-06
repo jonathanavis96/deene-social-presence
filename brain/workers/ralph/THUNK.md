@@ -120,3 +120,6 @@ Started: 2026-01-30
 | 158 | 2026-02-06 | fix(docs) | Fixed MD036 errors in README.md - converted emphasis to proper format for Time fields | README.md | S | ✓ |
 | 79 | 2026-02-06 | Fix MD051 link fragments in CONTRIBUTING.md | Updated TOC links to match actual section headers | CONTRIBUTING.md | docs |
 | 80 | 2026-02-06 | Fix broken links in docs/TOOLS.md | Updated links to gap_radar and rollflow_analyze READMEs to point to brain_upstream/tools/ subdirectory | docs/TOOLS.md | docs |
+| 1 | 2026-02-06 | 0.1 | Fix broken link in docs/MARKER_SCHEMA.md | Updated rollflow_analyze README link to correct path (../brain_upstream/tools/rollflow_analyze/README.md) | COMPLETE |
+| 2 | 2026-02-06 | 0.2 | Create cortex/docs/RUNBOOK.md referenced from README | Copied brain_upstream/cortex/docs/RUNBOOK.md to cortex/docs/RUNBOOK.md to fix broken link | COMPLETE |
+| 79 | 2026-02-06 | 0.3 | Canonicalize plan references in root docs | Updated THOUGHTS.md heading and README.md directory tree to reference `workers/IMPLEMENTATION_PLAN.md` as single canonical plan | DONE |
