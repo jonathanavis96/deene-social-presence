@@ -1,17 +1,30 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ChevronDown } from "lucide-react";
 
 const Hero = () => {
   const [scrollY, setScrollY] = useState(0);
   const [viewportHeight, setViewportHeight] = useState<number | null>(null);
+  const headerRef = useRef<HTMLDivElement | null>(null);
+  const [headerHeight, setHeaderHeight] = useState(0);
+  const [reservedHeaderHeight, setReservedHeaderHeight] = useState(0);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       setViewportHeight(window.innerHeight);
+      const measuredHeight = headerRef.current?.offsetHeight ?? 0;
+      setHeaderHeight(measuredHeight);
+      if (measuredHeight > 0) {
+        setReservedHeaderHeight((prev) => (prev ? Math.max(prev, measuredHeight) : measuredHeight));
+      }
     }
 
     const handleResize = () => {
       setViewportHeight(window.innerHeight);
+      const measuredHeight = headerRef.current?.offsetHeight ?? 0;
+      setHeaderHeight(measuredHeight);
+      if (measuredHeight > 0) {
+        setReservedHeaderHeight((prev) => (prev ? Math.max(prev, measuredHeight) : measuredHeight));
+      }
     };
 
     const handleScroll = () => {
@@ -46,38 +59,43 @@ const Hero = () => {
   const logoScale = 1 - 0.725 * progress;
 
   return (
-    <section className="min-h-screen flex flex-col justify-center items-center px-6 pb-24 bg-card relative overflow-hidden" aria-label="Hero section">
+    <section className="min-h-screen flex flex-col justify-center items-center px-6 pb-[30px] bg-card relative overflow-hidden" aria-label="Hero section">
       {/* Background texture */}
       <div className="absolute inset-0 opacity-30 pointer-events-none bg-gradient-to-b from-transparent via-cream/20 to-transparent" />
 
       <div className="relative z-10 text-center max-w-4xl mx-auto">
         {/* Logo + Nav Container */}
-        <header
-          className={
-            logoLocked
-              ? "fixed top-0 left-0 right-0 z-50 py-4 bg-card/95 backdrop-blur-sm border-b border-border"
-              : "relative mb-16 mt-80"
-          }
-          style={
-            logoLocked
-              ? undefined
-              : {
-                  transform: `scale(${logoScale})`,
-                  transformOrigin: "center center",
-                  transition: "transform 0.08s ease-out",
-                }
-          }
+        <div
+          className="w-full mt-80 mb-16"
+          ref={headerRef}
+          style={{ minHeight: reservedHeaderHeight || headerHeight || undefined }}
         >
-          <div
+          <header
             className={
               logoLocked
-                ? "flex flex-col items-center gap-3"
-                : "flex flex-col items-center"
+                ? "fixed top-0 left-0 right-0 z-50 py-4 bg-card/95 backdrop-blur-sm border-b border-border"
+                : "relative"
+            }
+            style={
+              logoLocked
+                ? undefined
+                : {
+                    transform: `scale(${logoScale})`,
+                    transformOrigin: "center center",
+                    transition: "transform 0.08s ease-out",
+                  }
             }
           >
-            {/* Logo */}
-            <div className="flex flex-col items-center">
-              <h1
+            <div
+              className={
+                logoLocked
+                  ? "flex flex-col items-center gap-3"
+                  : "flex flex-col items-center"
+              }
+            >
+              {/* Logo */}
+              <div className="flex flex-col items-center">
+                <h1
                 className={`font-serif tracking-tight text-foreground ${
                   logoLocked
                     ? "text-xl mb-0"
@@ -114,90 +132,85 @@ const Hero = () => {
             </div>
 
             {/* Nav Links */}
-            {logoLocked && (
-              <nav
-                className="
-                  flex items-center justify-center
-                  gap-6 sm:gap-8
-                  px-4
-                  opacity-0 animate-fade-in
-                "
-                style={{
-                  animationDuration: "1s",
-                  animationDelay: "0.15s",
-                  animationFillMode: "forwards",
-                }}
-                aria-label="Main navigation"
+            <nav
+              className={`
+                flex items-center justify-center
+                gap-6 sm:gap-8
+                px-4
+                transition-opacity duration-500
+                ${logoLocked ? "opacity-100" : "opacity-0 pointer-events-none"}
+              `}
+              aria-label="Main navigation"
+            >
+              <button
+                onClick={() =>
+                  document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })
+                }
+                className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors font-sans font-light uppercase tracking-wider focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-sm px-1"
               >
-                <button
-                  onClick={() =>
-                    document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })
-                  }
-                  className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors font-sans font-light uppercase tracking-wider focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-sm px-1"
-                >
-                  About
-                </button>
+                About
+              </button>
 
-                <span className="text-border" aria-hidden="true">·</span>
+              <span className="text-border" aria-hidden="true">·</span>
 
-                <button
-                  onClick={() =>
-                    document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })
-                  }
-                  className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors font-sans font-light uppercase tracking-wider focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-sm px-1"
-                >
-                  Services
-                </button>
+              <button
+                onClick={() =>
+                  document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })
+                }
+                className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors font-sans font-light uppercase tracking-wider focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-sm px-1"
+              >
+                Services
+              </button>
 
-                <span className="text-border" aria-hidden="true">·</span>
+              <span className="text-border" aria-hidden="true">·</span>
 
-                <button
-                  onClick={() =>
-                    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
-                  }
-                  className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors font-sans font-light uppercase tracking-wider focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-sm px-1"
-                >
-                  Contact
-                </button>
-              </nav>
-            )}
+              <button
+                onClick={() =>
+                  document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
+                }
+                className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors font-sans font-light uppercase tracking-wider focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-sm px-1"
+              >
+                Contact
+              </button>
+            </nav>
           </div>
         </header>
-
-        {/* Spacer to prevent jump */}
-        {logoLocked && <div className="mb-16 h-20" aria-hidden="true" />}
-
-        {/* Divider */}
-        {/* Vertical line with downward chevron and traveling pulse */}
-        <div className="flex flex-col items-center mb-2 opacity-0 animate-fade-in animation-delay-400 relative" aria-hidden="true">
-          <div className="w-px flex-1 bg-border/30 relative overflow-hidden" style={{ minHeight: '280px' }}>
-            {/* Traveling dark pulse that widens the line */}
-            <div 
-              className="absolute left-1/2 -translate-x-1/2 bg-gradient-to-b from-transparent via-border to-transparent"
-              style={{ 
-                height: '40px',
-                width: '3px',
-                filter: 'brightness(0.6)',
-                animation: 'scroll-pulse-line 15s linear infinite'
-              }}
-            />
-          </div>
-          <div className="relative -mt-1">
-            {/* Base chevron (lighter) */}
-            <ChevronDown className="w-4 h-4 text-border/30" strokeWidth={1.5} />
-            {/* Darkened pulse overlay on chevron */}
-            <ChevronDown 
-              className="w-4 h-4 text-border absolute top-0 left-0" 
-              strokeWidth={1.5}
-              style={{ 
-                filter: 'brightness(0.6)',
-                animation: 'scroll-pulse-chevron 15s linear infinite',
-                opacity: 0
-              }}
-            />
-          </div>
         </div>
 
+      </div>
+
+      {/* Vertical line with downward chevron - outside header, scrolls naturally */}
+      <div className="flex flex-col items-center opacity-0 animate-fade-in animation-delay-400 relative" style={{ marginBottom: "30px" }} aria-hidden="true">
+        <div className="w-px bg-border/30 relative overflow-hidden" style={{ height: '280px' }}>
+          {/* Traveling dark pulse that widens the line */}
+          <div 
+            className="absolute left-1/2 -translate-x-1/2 bg-gradient-to-b from-transparent via-border to-transparent"
+            style={{ 
+              height: '40px',
+              width: '3px',
+              filter: 'brightness(0.6)',
+              animation: 'scroll-pulse-line 15s linear infinite'
+            }}
+          />
+        </div>
+        <div className="relative -mt-1">
+          {/* Base chevron (lighter) */}
+          <ChevronDown
+            className="w-4 h-4 text-border"
+            strokeWidth={1.5}
+            style={{ opacity: 0.3 }}
+          />
+          {/* Darkened pulse overlay on chevron */}
+          <ChevronDown 
+            className="w-4 h-4 text-border absolute top-0 left-0" 
+            strokeWidth={1.5}
+            style={{ 
+              filter: 'brightness(0.6)',
+              animation: 'scroll-pulse-chevron 15s linear infinite',
+              opacity: 0
+            }}
+          />
+        </div>
       </div>
     </section>
   );
