@@ -138,3 +138,8 @@ Completed tasks archived from `workers/IMPLEMENTATION_PLAN.md`.
 | 2026-02-06 | 5.4 | - [x] **5.4** “Created” gallery: ensure it exists + group photos + update category labels |
 | 2026-02-06 | 5.5 | - [x] **5.5** Client logos strip: add small “Trusted by” label (above logos) |
 | 2026-02-06 | 5.6 | - [x] **5.6** Contact section: add WhatsApp button + show email address |
+
+### Archived on 2026-02-06 14:54:12
+
+| Date | Task ID | Description |
+|------|---------|-------------|

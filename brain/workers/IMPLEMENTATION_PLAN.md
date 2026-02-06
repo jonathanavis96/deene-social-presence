@@ -42,6 +42,40 @@ We want to de-contaminate the deployable website from the repo’s agent/ops sca
 
 > **Context:** We now have `brain/cortex/examples/brand-doc.pdf` with sample photos organized by category (coffee/FVC, coffee/KZ, wine/salt river, menu/wellington). Contact details confirmed: WhatsApp +27 78 881 9656, email <alex@deenesocial.com>. Timing: ASAP. Site hosted on GitHub Pages.
 
+**Status:** Phase 6 complete - all assets created (15 logos, 28 gallery images, About copy integrated).
+
+---
+
+## Phase 7: Wire assets into components
+
+> **Goal:** Connect the created assets (logos, gallery images) to the React components so they display on the live site.
+
+- [ ] **7.1** Wire 15 client logos into ClientLogos.tsx
+  - **Goal:** Replace placeholder divs with actual SVG logo references
+  - **AC:** ClientLogos.tsx imports and displays all 15 logos from `/logos/logo-01.svg` through `/logos/logo-15.svg`, no placeholder divs remain, build passes
+  - **Estimated Time:** [S] 3-5 minutes
+
+- [ ] **7.2** Wire 28 gallery images into Gallery.tsx
+  - **Goal:** Replace placeholder paths with actual gallery image paths organized by category
+  - **AC:** Gallery.tsx displays 7 images each for coffee-fvc, coffee-kz, wine-saltriver, and menu-wellington categories (28 total), no placeholder paths remain, images load correctly in browser, build passes
+  - **Estimated Time:** [M] 5-8 minutes
+
+---
+
+## Phase 8: Pre-deployment validation
+
+> **Goal:** Verify site is ready for GitHub Pages deployment
+
+- [ ] **8.1** Visual QA check - test all sections in browser
+  - **Goal:** Ensure all content renders correctly and no broken images
+  - **AC:** Run `npm run dev` and verify: Hero loads, Services displays, Gallery shows 28 real images in 4 categories, ClientLogos shows 15 logos, About displays first-person copy, Contact has WhatsApp button and correct email
+  - **Estimated Time:** [M] 5-7 minutes
+
+- [ ] **8.2** Production build validation
+  - **Goal:** Verify production build succeeds and outputs correct assets
+  - **AC:** `npm run build` completes without errors, dist/ contains all assets (logos, gallery images), `npm run preview` serves site correctly with base path `/deene-social-presence/`
+  - **Estimated Time:** [S] 2-3 minutes
+
 ---
 
 ## Deployment & Timing Notes
