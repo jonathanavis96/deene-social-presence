@@ -38,88 +38,11 @@ We want to de-contaminate the deployable website from the repo’s agent/ops sca
 
 ---
 
-## Phase 0-Links: Broken Internal Links
-
-> **Priority:** Fix before continuing with Phase 5+ feature work.
-
-- [ ] **0.L.2** Fix broken link in `README.md` (cortex/docs/RUNBOOK.md)
-  - **Goal:** Ensure README doesn't link to a missing file.
-  - **Work:**
-    - Copy `brain_upstream/cortex/docs/RUNBOOK.md` to `cortex/docs/RUNBOOK.md` (source exists).
-    - Verify link target resolves correctly.
-  - **AC:** `bash tools/validate_links.sh README.md` passes.
-
----
-
 ## Phase 5: Apply call checklist updates (site content + UX)
 
 > Source: `brain/cortex/examples/deene-social-call-checklist-filled-2026-01-21-08-03.html`
 
-- [ ] **5.1** Hero/top banner: remove tagline + keep minimal “Deene” block
-  - **Goal:** Match agreed direction: clean white hero with the Deene block only.
-  - **Skills:** `brain/skills/domains/frontend/react-patterns.md`, `brain/skills/domains/frontend/accessibility-patterns.md`
-  - **Work:**
-    - Remove the tagline line “Where authenticity leads, conversation follows.” (or equivalent) from the Hero/banner.
-    - Ensure layout still looks intentional on mobile + desktop after removal.
-  - **AC:**
-    - [ ] Hero renders with no tagline/subheading text
-    - [ ] No obvious spacing regressions on mobile + desktop
-  - **If Blocked:** If unsure which string is canonical, search for the tagline text across `../website/src/` and remove where used.
-
-- [ ] **5.2** Navigation: remove “Clients” from nav (keep one-page scroll)
-  - **Goal:** Match call decision: “Clients” removed from the navigation.
-  - **Skills:** `brain/skills/domains/frontend/react-patterns.md`, `brain/skills/domains/code-quality/code-consistency.md`
-  - **Work:**
-    - Update the nav buttons rendered inside `../website/src/components/Hero.tsx` (logo-locked nav).
-  - **AC:**
-    - [ ] No “Clients” item in the main nav
-    - [ ] Remaining nav links still scroll correctly
-  - **If Blocked:** If section IDs are coupled to nav generation, remove only the nav item (not the section) unless specifically requested.
-
-- [ ] **5.3** Services section: rename heading to “Services” (remove “Intentionally Crafted”)
-  - **Goal:** Use literal naming per call notes.
-  - **Skills:** `brain/skills/domains/frontend/react-patterns.md`
-  - **AC:**
-    - [ ] Services section heading reads “Services”
-    - [ ] No remaining “Intentionally Crafted” heading text
-  - **If Blocked:** If there are multiple occurrences (e.g. on cards + section header), update all places that represent the section title.
-
-- [ ] **5.4** “Created” gallery: ensure it exists + group photos + update category labels
-  - **Goal:** Ensure the “Created” gallery exists, is grouped by brand/category, and uses the agreed label abbreviations.
-  - **Skills:** `brain/skills/domains/frontend/react-patterns.md`, `brain/skills/domains/frontend/accessibility-patterns.md`
-  - **Where:** `../website/src/components/` (check for an existing gallery/portfolio component first; update it in-place if found).
-  - **Target labels:** Coffee x2; Restaurants; Accommodation; Wine bars; Products; Wine Estates
-  - **Work:**
-    - Confirm whether a “Created” gallery already exists.
-    - If it exists: update the category labels to match the target list.
-    - If it does not exist: add a minimal “Created” gallery section **only where images already appear in the design**, grouped by brand/category (no new interactions).
-  - **AC:**
-    - [ ] A “Created” gallery exists (either pre-existing or newly added as a minimal section)
-    - [ ] Photos are grouped by brand/category (clear grouping headings or label clusters)
-    - [ ] Category labels match the target list (spelling/case consistent)
-    - [ ] Gallery remains scroll-only (no new click-throughs) unless it already supports click-to-advance
-  - **If Blocked:** If the gallery is currently label-free, add a minimal caption under each image using the existing text style used for any other captions (or `text-xs` + muted color if no caption style exists).
-
-- [ ] **5.5** Client logos strip: add small “Trusted by” label (above logos)
-  - **Goal:** Add the “Trusted by” micro-label above the scrolling client logos strip.
-  - **Skills:** `brain/skills/domains/frontend/react-patterns.md`, `brain/skills/domains/frontend/accessibility-patterns.md`
-  - **AC:**
-    - [ ] “Trusted by” appears above the logos strip
-    - [ ] Label styling is subtle (doesn’t compete with hero headings)
-  - **If Blocked:** If there is no logos section heading currently, ensure this label is the only heading (per call notes “no heading” except “Trusted by”).
-
-- [ ] **5.6** Contact section: add WhatsApp button + show email address
-  - **Goal:** Provide two clear contact options: form (if present) + WhatsApp, and show email visibly.
-  - **Skills:** `brain/skills/domains/frontend/react-patterns.md`, `brain/skills/domains/frontend/accessibility-patterns.md`
-  - **Details:**
-    - WhatsApp: +27 78 881 9656
-    - Email: <alex@deenesocial.com>
-  - **AC:**
-    - [ ] WhatsApp button exists and opens `https://wa.me/27788819656` (or equivalent)
-    - [ ] WhatsApp number is also shown as plain text near the button
-    - [ ] Email address `alex@deenesocial.com` is visible in the contact section
-    - [ ] No console errors
-  - **If Blocked:** If WhatsApp link format is unclear, use `https://wa.me/27788819656` (international format, no spaces/dashes).
+Phase 5 items have been completed and archived to `workers/PLAN_DONE.md`.
 
 ---
 

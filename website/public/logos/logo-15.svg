@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <rect width="120" height="120" fill="#2C5282" rx="8"/>
+  <rect x="30" y="30" width="25" height="25" fill="none" stroke="#63B3ED" stroke-width="3"/>
+  <rect x="47.5" y="47.5" width="25" height="25" fill="none" stroke="#63B3ED" stroke-width="3"/>
+  <rect x="65" y="65" width="25" height="25" fill="none" stroke="#63B3ED" stroke-width="3"/>
+  <text x="60" y="105" font-family="Arial, sans-serif" font-size="10" fill="#63B3ED" text-anchor="middle">LAYERSHIFT</text>
+</svg>

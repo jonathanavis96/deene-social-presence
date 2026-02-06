@@ -130,3 +130,10 @@ Started: 2026-01-30
 | 80 | 2026-02-06 | 5.4 | Created Gallery component with target categories (Coffee x2, Restaurants, Accommodation, Wine bars, Products, Wine Estates) and integrated into Index page | BUILD | COMPLETE |
 | 81 | 2026-02-06 | 5.5 | Verified ClientLogos component already has "Trusted by" label with subtle styling (text-xs, uppercase, tracking-widest, accent color) | BUILD | COMPLETE |
 | 82 | 2026-02-06 | 5.6 | Added WhatsApp button (+27 78 881 9656) and updated email to <alex@deenesocial.com> in Contact section | BUILD | COMPLETE |
+| 83 | 2026-02-06 | 6.1 | Created first batch of 5 mock client logos (logo-01.svg through logo-05.svg) with minimal geometric designs | BUILD | COMPLETE |
+| 84 | 2026-02-06 | 6.2 | Created second batch of 5 mock client logos (logo-06.svg through logo-10.svg) with distinct geometric designs | BUILD | COMPLETE |
+| 85 | 2026-02-06 | 6.3 | Created final batch of 5 mock client logos (logo-11.svg through logo-15.svg) with distinct geometric designs | BUILD | COMPLETE |
+| 86 | 2026-02-06 | 6.4 | Extracted 28 gallery images from brand-doc.pdf and organized into 4 categories (coffee-fvc: 7, coffee-kz: 7, wine-saltriver: 7, menu-wellington: 7) in _raw directory | BUILD | COMPLETE |
+| 87 | 2026-02-06 | 6.5 | Optimized and resized 28 gallery images: resized to max 1200px width (or 1000px for oversized), compressed to 70-80% quality, all images now <300KB | BUILD | COMPLETE |
+| 79 | 2026-02-06 | 6.6 | Draft first-person About copy (text only) | Added 107-word first-person About copy as comment block in About.tsx. Tone: authentic, conversational, confident. Incorporates brand tagline. Build passes. | DONE |
+| 80 | 2026-02-06 | 6.7 | Insert About copy into About.tsx (layout-safe) | Replaced placeholder About text with drafted first-person copy. Removed comment block. Updated 3 paragraphs to use new copy while maintaining spacing/layout. TypeScript compiles clean, ESLint passes (pre-existing UI warnings only), site loads successfully. | DONE |

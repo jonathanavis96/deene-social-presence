@@ -129,3 +129,12 @@ Completed tasks archived from `workers/IMPLEMENTATION_PLAN.md`.
 | Date | Task ID | Description |
 |------|---------|-------------|
 | 2026-02-06 | 0.L.1 | - [x] **0.L.1** Fix broken link in `docs/MARKER_SCHEMA.md` (rollflow_analyze README) |
+
+### Archived on 2026-02-06 14:16:07
+
+| Date | Task ID | Description |
+|------|---------|-------------|
+| 2026-02-06 | 0.L.2 | - [x] **0.L.2** Fix broken link in `README.md` (cortex/docs/RUNBOOK.md) |
+| 2026-02-06 | 5.4 | - [x] **5.4** “Created” gallery: ensure it exists + group photos + update category labels |
+| 2026-02-06 | 5.5 | - [x] **5.5** Client logos strip: add small “Trusted by” label (above logos) |
+| 2026-02-06 | 5.6 | - [x] **5.6** Contact section: add WhatsApp button + show email address |

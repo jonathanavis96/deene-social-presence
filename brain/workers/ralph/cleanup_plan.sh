@@ -89,20 +89,33 @@ echo "Cleaning up IMPLEMENTATION_PLAN.md..."
 # Detect: indented "- **Goal:**" or "- **Completed:**" lines that appear after a blank line
 # (legitimate sub-items follow their parent task directly, orphans follow blank lines or headers)
 
-# Build list of potentially orphaned entries by checking context
+# Build list of potentially orphaned entries by tracking whether we're inside a main task block.
+# A main task line looks like: `- [ ] **5.1** ...` (or [x]).
 orphaned_entries=""
-prev_line=""
 line_num=0
+in_task_block=false
+
 while IFS= read -r line; do
   line_num=$((line_num + 1))
-  # Check for indented sub-item pattern
-  if echo "$line" | grep -qE '^[[:space:]]+-[[:space:]]+\*\*(Goal|AC|Completed):\*\*'; then
-    # If previous line is blank or a header, this is orphaned
-    if [[ -z "$prev_line" ]] || echo "$prev_line" | grep -qE '^###'; then
+
+  # Enter a task block on a main task line
+  if echo "$line" | grep -qE '^[[:space:]]*-[[:space:]]*\[[[:space:]xX]\][[:space:]]*\*\*[^*]+\*\*'; then
+    in_task_block=true
+    continue
+  fi
+
+  # Leave task block when we hit a non-indented, non-blank line (e.g., header, horizontal rule)
+  if [[ -n "$line" ]] && ! echo "$line" | grep -qE '^[[:space:]]+'; then
+    in_task_block=false
+  fi
+
+  # Indented sub-item patterns that should be under a task
+  if echo "$line" | grep -qE '^[[:space:]]+-[[:space:]]+\*\*(Goal|AC|Completed|If Blocked):\*\*'; then
+    if [[ "$in_task_block" == "false" ]]; then
       orphaned_entries="${orphaned_entries}${line_num}: ${line}\n"
     fi
   fi
-  prev_line="$line"
+
 done <"$PLAN_FILE"
 
 if [[ -n "$orphaned_entries" ]]; then
@@ -115,23 +128,49 @@ if [[ -n "$orphaned_entries" ]]; then
 fi
 
 # Collect completed tasks for archiving
+# We archive the whole task block (task line + its indented/blank sub-lines) as a single row.
 archived_tasks=()
 current_date=$(date '+%Y-%m-%d')
 current_time=$(date '+%H:%M:%S')
 current_phase=""
 
-while IFS= read -r line; do
+mapfile -t plan_lines <"$PLAN_FILE"
+
+for ((i = 0; i < ${#plan_lines[@]}; i++)); do
+  line="${plan_lines[$i]}"
+
   # Track current phase
   if echo "$line" | grep -qE '^##[[:space:]]+Phase'; then
     current_phase=$(echo "$line" | sed -E 's/^##[[:space:]]+//')
   fi
 
-  # Collect completed tasks
-  if echo "$line" | grep -qE '^[[:space:]]*-[[:space:]]*\[[xX]\]'; then
+  # Completed *main task* line (e.g., `- [x] **5.1** ...`).
+  # Avoid matching nested AC checklist items like `    - [ ] ...`.
+  if echo "$line" | grep -qE '^[[:space:]]*-[[:space:]]*\[[xX]\][[:space:]]*\*\*[^*]+\*\*'; then
     task_id=$(echo "$line" | sed -E 's/^[[:space:]]*-[[:space:]]*\[[xX]\][[:space:]]*\*\*([^*]+)\*\*.*/\1/' || echo "unknown")
-    archived_tasks+=("| $current_date | $task_id | $line |")
+
+    # Capture following task-block lines (indented and/or blank) until the next non-indented line.
+    block_lines=("$line")
+    j=$((i + 1))
+    while [[ $j -lt ${#plan_lines[@]} ]]; do
+      next_line="${plan_lines[$j]}"
+      if [[ -z "$next_line" ]] || echo "$next_line" | grep -qE '^[[:space:]]+'; then
+        block_lines+=("$next_line")
+        j=$((j + 1))
+        continue
+      fi
+      break
+    done
+
+    # Condense block into a single-line description safe for a markdown table cell.
+    # - Trim indentation
+    # - Replace newlines with spaces
+    # - Collapse repeated whitespace
+    block_desc=$(printf '%s\n' "${block_lines[@]}" | sed -E 's/^[[:space:]]+//g' | tr '\n' ' ' | sed -E 's/[[:space:]]+/ /g; s/[[:space:]]+$//')
+
+    archived_tasks+=("| $current_date | $task_id | $block_desc |")
   fi
-done <"$PLAN_FILE"
+done
 
 if [[ ${#archived_tasks[@]} -eq 0 ]]; then
   echo "No completed tasks to archive."
@@ -222,8 +261,9 @@ while IFS= read -r line; do
     continue
   fi
 
-  # Detect new task (pending or completed) - resets sub-item skipping
-  if echo "$line" | grep -qE '^[[:space:]]*-[[:space:]]*\['; then
+  # Detect new *main task* (pending or completed) - resets sub-item skipping
+  # Avoid matching nested checklist items like `    - [ ] ...`.
+  if echo "$line" | grep -qE '^[[:space:]]*-[[:space:]]*\[[[:space:]xX]\][[:space:]]*\*\*[^*]+\*\*'; then
     # Check if this is a completed task
     if echo "$line" | grep -qE '^[[:space:]]*-[[:space:]]*\[[xX]\]'; then
       removed_count=$((removed_count + 1))
@@ -238,11 +278,13 @@ while IFS= read -r line; do
   # Skip indented sub-items of completed tasks
   # Sub-items are indented lines starting with "- **" (e.g., "  - **Goal:**")
   if [[ "$skip_task_subitems" == "true" ]]; then
-    if echo "$line" | grep -qE '^[[:space:]]+'; then
-      # Indented line - skip it (belongs to completed task)
+    # Continue skipping the whole completed task block:
+    # - indented lines (Goal/AC/etc)
+    # - blank lines (common between task line and its sub-items)
+    if [[ -z "$line" ]] || echo "$line" | grep -qE '^[[:space:]]+'; then
       continue
     else
-      # Non-indented line - stop skipping (new section or blank line between tasks)
+      # Non-indented, non-blank line - stop skipping (new section or next task)
       skip_task_subitems=false
     fi
   fi

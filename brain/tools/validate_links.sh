@@ -242,10 +242,29 @@ main() {
         ;;
       *)
         target_path="$1"
+
         # Convert to absolute path
         if [[ ! "$target_path" = /* ]]; then
           target_path="${BRAIN_ROOT}/${target_path}"
         fi
+
+        # Be tolerant of callers passing paths already prefixed with "brain/".
+        # If our effective root is ".../brain" and the resolved absolute path doesn't exist,
+        # try stripping a single leading "brain/" segment.
+        if [[ ! -e "$target_path" ]]; then
+          base_root="$(basename "$BRAIN_ROOT")"
+          if [[ "$base_root" == "brain" ]]; then
+            rel_from_root="${target_path#${BRAIN_ROOT}/}"
+            if [[ "$rel_from_root" == brain/* ]]; then
+              alt_rel="${rel_from_root#brain/}"
+              alt_path="${BRAIN_ROOT}/${alt_rel}"
+              if [[ -e "$alt_path" ]]; then
+                target_path="$alt_path"
+              fi
+            fi
+          fi
+        fi
+
         shift
         ;;
     esac
