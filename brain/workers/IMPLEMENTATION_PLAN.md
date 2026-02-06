@@ -42,33 +42,7 @@ We want to de-contaminate the deployable website from the repo’s agent/ops sca
 
 > Source: `brain/cortex/examples/deene-social-call-checklist-filled-2026-01-21-08-03.html`
 
-    - [ ] Hero renders with no tagline/subheading text
-    - [ ] No obvious spacing regressions on mobile + desktop
-  - **If Blocked:** If unsure which string is canonical, search for the tagline text across `../website/src/` and remove where used.
-
-    - [ ] No “Clients” item in the main nav
-    - [ ] Remaining nav links still scroll correctly
-  - **If Blocked:** If section IDs are coupled to nav generation, remove only the nav item (not the section) unless specifically requested.
-
-    - [ ] Services section heading reads “Services”
-    - [ ] No remaining “Intentionally Crafted” heading text
-  - **If Blocked:** If there are multiple occurrences (e.g. on cards + section header), update all places that represent the section title.
-
-    - [ ] A “Created” gallery exists (either pre-existing or newly added as a minimal section)
-    - [ ] Photos are grouped by brand/category (clear grouping headings or label clusters)
-    - [ ] Category labels match the target list (spelling/case consistent)
-    - [ ] Gallery remains scroll-only (no new click-throughs) unless it already supports click-to-advance
-  - **If Blocked:** If the gallery is currently label-free, add a minimal caption under each image using the existing text style used for any other captions (or `text-xs` + muted color if no caption style exists).
-
-    - [ ] “Trusted by” appears above the logos strip
-    - [ ] Label styling is subtle (doesn’t compete with hero headings)
-  - **If Blocked:** If there is no logos section heading currently, ensure this label is the only heading (per call notes “no heading” except “Trusted by”).
-
-    - [ ] WhatsApp button exists and opens `https://wa.me/27788819656` (or equivalent)
-    - [ ] WhatsApp number is also shown as plain text near the button
-    - [ ] Email address `alex@deenesocial.com` is visible in the contact section
-    - [ ] No console errors
-  - **If Blocked:** If WhatsApp link format is unclear, use `https://wa.me/27788819656` (international format, no spaces/dashes).
+Phase 5 items have been completed and archived to `workers/PLAN_DONE.md`.
 
 ---
 
