@@ -24,8 +24,13 @@ The Ralph loop runs from `workers/ralph/` and has **full access to the entire br
 
 ### Running Ralph
 
+Ralph is intended to be run from the **Brain directory** in this repo:
+
+- **Brain root:** `/home/grafe/code/deene-social/brain/` (this directory)
+- **Website root:** `/home/grafe/code/deene-social/website/` (refer to it as `../website/` from Brain)
+
 ```bash
-cd /path/to/brain/workers/ralph/ || exit 1
+cd /path/to/deene-social/brain/workers/ralph/ || exit 1
 bash loop.sh                    # Single iteration
 bash loop.sh --iterations 10    # Multiple iterations
 bash loop.sh --dry-run          # Preview changes

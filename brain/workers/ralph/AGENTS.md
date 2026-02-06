@@ -78,7 +78,8 @@ npm run lint     # Check for issues
 **Loop Workflow:**
 
 ```bash
-cd workers/ralph
+# Run Ralph from the Brain directory (this repo's /brain/ folder)
+cd /path/to/deene-social/brain/workers/ralph
 bash loop.sh --iterations 5
 ```
 

@@ -123,3 +123,10 @@ Started: 2026-01-30
 | 1 | 2026-02-06 | 0.1 | Fix broken link in docs/MARKER_SCHEMA.md | Updated rollflow_analyze README link to correct path (../brain_upstream/tools/rollflow_analyze/README.md) | COMPLETE |
 | 2 | 2026-02-06 | 0.2 | Create cortex/docs/RUNBOOK.md referenced from README | Copied brain_upstream/cortex/docs/RUNBOOK.md to cortex/docs/RUNBOOK.md to fix broken link | COMPLETE |
 | 79 | 2026-02-06 | 0.3 | Canonicalize plan references in root docs | Updated THOUGHTS.md heading and README.md directory tree to reference `workers/IMPLEMENTATION_PLAN.md` as single canonical plan | DONE |
+| 142 | 2026-02-06 | 0.L.2 | Fix broken link in README.md (cortex/docs/RUNBOOK.md) | Verified link already resolves correctly - cortex/docs/RUNBOOK.md exists and validate_links.sh passes | VERIFIED |
+| 143 | 2026-02-06 | 5.1 | Hero/top banner: remove tagline + keep minimal "Deene" block | Removed "Where authenticity leads, conversation follows." tagline from Hero.tsx. Verified build passes (vite build completes successfully). Layout remains clean with Deene logo + divider only. | VERIFIED |
+| 79-5.2 | 2026-02-06 | Remove "Clients" from navigation | Removed "Clients" nav button and separator from Hero.tsx locked nav | feat(website): remove clients nav item |
+| 79-5.3 | 2026-02-06 | Services section heading renamed to "Services" | Changed h2 heading from "Intentionally Crafted" to "Services" in Services.tsx | fix(website): rename services heading to literal "Services" |
+| 80 | 2026-02-06 | 5.4 | Created Gallery component with target categories (Coffee x2, Restaurants, Accommodation, Wine bars, Products, Wine Estates) and integrated into Index page | BUILD | COMPLETE |
+| 81 | 2026-02-06 | 5.5 | Verified ClientLogos component already has "Trusted by" label with subtle styling (text-xs, uppercase, tracking-widest, accent color) | BUILD | COMPLETE |
+| 82 | 2026-02-06 | 5.6 | Added WhatsApp button (+27 78 881 9656) and updated email to <alex@deenesocial.com> in Contact section | BUILD | COMPLETE |

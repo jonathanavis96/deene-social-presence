@@ -4,6 +4,8 @@ The brain repository provides intelligent generators for scaffolding new Ralph-e
 
 ## Quick Start
 
+> **This repo layout note (deene-social):** When this Brain repo is vendored under a parent mono-repo (like `deene-social/brain/`), run Ralph from inside the Brain directory and reference the website as `../website/`.
+
 ```bash
 # 1. Create project idea file from template
 cp templates/NEW_PROJECT_IDEA.template.md my-project-idea.md

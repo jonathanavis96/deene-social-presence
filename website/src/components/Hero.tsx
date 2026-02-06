@@ -141,17 +141,6 @@ const Hero = () => {
 
                 <button
                   onClick={() =>
-                    document.getElementById("clients")?.scrollIntoView({ behavior: "smooth" })
-                  }
-                  className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors font-sans font-light uppercase tracking-wider"
-                >
-                  Clients
-                </button>
-
-                <span className="text-border">·</span>
-
-                <button
-                  onClick={() =>
                     document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
                   }
                   className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors font-sans font-light uppercase tracking-wider"
@@ -169,10 +158,6 @@ const Hero = () => {
         {/* Divider */}
         <div className="w-px h-16 bg-border mx-auto mb-12 opacity-0 animate-fade-in animation-delay-400" />
 
-        {/* Tagline */}
-        <p className="font-serif text-lg md:text-xl lg:text-2xl text-muted-foreground italic opacity-0 animate-fade-in animation-delay-600">
-          Where authenticity leads, conversation follows.
-        </p>
       </div>
 
       {/* Scroll Indicator */}

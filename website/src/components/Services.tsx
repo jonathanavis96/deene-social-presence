@@ -27,7 +27,7 @@ const Services = () => {
             Services
           </p>
           <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-foreground">
-            Intentionally Crafted
+            Services
           </h2>
         </div>
 
@@ -42,13 +42,13 @@ const Services = () => {
                 <span className="text-spaced text-xs text-muted-foreground font-sans">
                   0{index + 1}
                 </span>
-                
+
                 <h3 className="font-serif text-xl md:text-2xl text-foreground group-hover:text-accent transition-colors duration-500">
                   {service.title}
                 </h3>
-                
+
                 <div className="w-8 h-px bg-border group-hover:bg-accent group-hover:w-12 transition-all duration-500" />
-                
+
                 <p className="font-sans text-muted-foreground text-sm md:text-base font-light leading-relaxed">
                   {service.description}
                 </p>

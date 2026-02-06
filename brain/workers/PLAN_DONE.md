@@ -123,3 +123,9 @@ Completed tasks archived from `workers/IMPLEMENTATION_PLAN.md`.
 | 2026-02-06 | 0.W.5 | - [x] **0.W.5** Fix MD041 (first line not H1) in README.md |
 | 2026-02-06 | 0.W.6 | - [x] **0.W.6** Fix MD051 (invalid link fragment) in README.md |
 | 2026-02-06 | 0.W.7 | - [x] **0.W.7** BATCH: Fix MD036 (emphasis as heading) in README.md |
+
+### Archived on 2026-02-06 13:43:15
+
+| Date | Task ID | Description |
+|------|---------|-------------|
+| 2026-02-06 | 0.L.1 | - [x] **0.L.1** Fix broken link in `docs/MARKER_SCHEMA.md` (rollflow_analyze README) |

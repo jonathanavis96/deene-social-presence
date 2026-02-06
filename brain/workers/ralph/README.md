@@ -103,6 +103,8 @@ Request a waiver via `.verify/request_waiver.sh` with detailed justification exp
 
 ## Using These Templates
 
+> **This repo layout note (deene-social):** Ralph is executed from the Brain subtree at `deene-social/brain/`. The deployable marketing site lives at `deene-social/website/` and is referenced from Brain as `../website/`.
+
 1. Copy entire `templates/ralph/` directory to your project's `workers/ralph/` or equivalent
 2. Customize `PROMPT.md`, `AGENTS.md`, `THOUGHTS.md` for your project
 3. Initialize verifier baselines: `bash init_verifier_baselines.sh`

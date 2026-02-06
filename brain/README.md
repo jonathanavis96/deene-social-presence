@@ -177,7 +177,8 @@ cd ~/code/brain
 bash setup.sh
 
 # 2. Run Ralph (brain's worker)
-cd workers/ralph
+# IMPORTANT: run from this repo's `brain/` directory (not the parent repo root).
+cd /path/to/deene-social/brain/workers/ralph
 bash loop.sh --iterations 5
 
 # 3. Monitor progress (in another terminal)

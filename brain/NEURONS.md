@@ -16,7 +16,7 @@ A social media presence management website built with modern React and TypeScrip
 ### Frontend Architecture
 
 - **Framework:** React 18.3 with TypeScript
-- **Build Tool:** Vite 5.4
+- **Build Tool:** Vite (see `../website/vite.config.ts`)
 - **UI Library:** shadcn-ui with Radix UI primitives
 - **Styling:** Tailwind CSS with custom configuration
 - **Routing:** React Router DOM 6.30
@@ -34,7 +34,7 @@ A social media presence management website built with modern React and TypeScrip
 ### Components Structure
 
 ```text
-src/
+../website/src/
 ├── components/
 │   ├── Hero.tsx
 │   ├── Navigation.tsx
