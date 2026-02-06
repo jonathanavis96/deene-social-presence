@@ -118,3 +118,5 @@ Started: 2026-01-30
 | 79.006 | 2026-02-06 | Fix MD041 in README.md | Added markdownlint-disable directive for MD041 (first line not H1) since HTML div for centering is intentional | README.md | S |
 | 157 | 2026-02-06 | fix(docs) | Fixed MD051 link fragment in README.md - updated Contributing link to match actual heading | README.md | S | ✓ |
 | 158 | 2026-02-06 | fix(docs) | Fixed MD036 errors in README.md - converted emphasis to proper format for Time fields | README.md | S | ✓ |
+| 79 | 2026-02-06 | Fix MD051 link fragments in CONTRIBUTING.md | Updated TOC links to match actual section headers | CONTRIBUTING.md | docs |
+| 80 | 2026-02-06 | Fix broken links in docs/TOOLS.md | Updated links to gap_radar and rollflow_analyze READMEs to point to brain_upstream/tools/ subdirectory | docs/TOOLS.md | docs |

@@ -11,7 +11,7 @@
 
 ### MD051 - Link Fragment Errors
 
-- [ ] **0.1** Fix MD051 link fragments in CONTRIBUTING.md
+- [x] **0.1** Fix MD051 link fragments in CONTRIBUTING.md
   - **File:** `CONTRIBUTING.md:11,12,13`
   - **Issue:** Link fragments reference non-existent section anchors
   - **Root Cause:** Section headers "Development Workflow", "Quality Standards", and "Common Tasks" do not exist in the document
@@ -27,7 +27,7 @@
 
 ## Phase 1-Links: Broken Internal Links
 
-- [ ] **1.1** Fix broken links in docs/TOOLS.md
+- [x] **1.1** Fix broken links in docs/TOOLS.md
   - **File:** `docs/TOOLS.md:423,424`
   - **Issue:** Links to `tools/gap_radar/README.md` and `tools/rollflow_analyze/README.md` point to wrong location
   - **Current Path:** `../tools/gap_radar/README.md` (relative from docs/)

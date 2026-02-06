@@ -38,6 +38,34 @@ We want to de-contaminate the deployable website from the repo’s agent/ops sca
 
 ---
 
+## Phase 0: Repo doc hygiene (links + small missing files)
+
+> **Why:** Keep the agent/ops documentation consistent so Ralph doesn’t get stuck on avoidable markdown/link failures.
+
+- [ ] **0.1** Fix broken link in `docs/MARKER_SCHEMA.md` (rollflow_analyze README)
+  - **Goal:** Remove broken internal link.
+  - **Work:** Update the link target to `../brain_upstream/tools/rollflow_analyze/README.md`.
+  - **AC:** `bash tools/validate_links.sh docs/MARKER_SCHEMA.md` passes.
+  - **If Blocked:** Confirm actual file path with `ls brain_upstream/tools/rollflow_analyze/README.md`.
+
+- [ ] **0.2** Create or fix `cortex/docs/RUNBOOK.md` referenced from README
+  - **Goal:** Ensure README doesn’t link to a missing file.
+  - **Work:**
+    - If `brain_upstream/cortex/docs/RUNBOOK.md` exists, copy it to `cortex/docs/RUNBOOK.md`.
+    - Otherwise, create a minimal `cortex/docs/RUNBOOK.md` with basic commands / troubleshooting pointers.
+  - **AC:** `bash tools/validate_links.sh README.md` passes.
+  - **If Blocked:** Prefer copying from upstream to avoid inventing docs.
+
+- [ ] **0.3** Canonicalize plan references in root docs (single canonical plan)
+  - **Goal:** Ensure there is exactly one authoritative plan file: `workers/IMPLEMENTATION_PLAN.md`.
+  - **Work:**
+    - Update any references that imply a repo-root plan exists to instead refer to `workers/IMPLEMENTATION_PLAN.md`.
+    - Prefer using a relative markdown link where appropriate.
+  - **AC:** `bash tools/validate_links.sh THOUGHTS.md README.md` passes.
+  - **If Blocked:** Search for old references with `rg "\bIMPLEMENTATION_PLAN\.md\b" THOUGHTS.md README.md`.
+
+---
+
 ## Phase 0-Links: Broken Internal Links
 
 > **Priority:** Fix before continuing with Phase 5+ feature work.

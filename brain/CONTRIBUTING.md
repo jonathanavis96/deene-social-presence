@@ -8,9 +8,11 @@ Thank you for your interest in contributing to the Brain repository! This guide 
 
 - [Quick Start](#quick-start)
 - [Types of Contributions](#types-of-contributions)
-- [Development Workflow](#development-workflow)
-- [Quality Standards](#quality-standards)
-- [Common Tasks](#common-tasks)
+- [Quality Gates](#quality-gates)
+- [Commit Message Format](#commit-message-format)
+- [Working with Ralph Loop](#working-with-ralph-loop)
+- [Validation Commands](#validation-commands)
+- [Pull Request Guidelines](#pull-request-guidelines)
 - [Getting Help](#getting-help)
 
 ---

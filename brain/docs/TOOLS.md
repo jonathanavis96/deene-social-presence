@@ -420,8 +420,8 @@ Checks: no forbidden file opens at startup, no THUNK lookups via open_files, no 
 - [skills/domains/ralph/thread-search-patterns.md](../skills/domains/ralph/thread-search-patterns.md) - Detailed search patterns
 - [docs/CACHE_DESIGN.md](CACHE_DESIGN.md) - Cache system design
 - [docs/events.md](events.md) - Event marker format
-- [tools/gap_radar/README.md](../tools/gap_radar/README.md) - Gap radar details
-- [tools/rollflow_analyze/README.md](../tools/rollflow_analyze/README.md) - Log analyzer details
+- [tools/gap_radar/README.md](../brain_upstream/tools/gap_radar/README.md) - Gap radar details
+- [tools/rollflow_analyze/README.md](../brain_upstream/tools/rollflow_analyze/README.md) - Log analyzer details
 
 ---
 
