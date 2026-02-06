@@ -46,7 +46,7 @@ const Hero = () => {
   const logoScale = 1 - 0.725 * progress;
 
   return (
-    <section className="min-h-screen flex flex-col justify-center items-center px-6 py-24 bg-card relative overflow-hidden" aria-label="Hero section">
+    <section className="min-h-screen flex flex-col justify-center items-center px-6 pb-24 bg-card relative overflow-hidden" aria-label="Hero section">
       {/* Background texture */}
       <div className="absolute inset-0 opacity-30 pointer-events-none bg-gradient-to-b from-transparent via-cream/20 to-transparent" />
 
@@ -56,7 +56,7 @@ const Hero = () => {
           className={
             logoLocked
               ? "fixed top-0 left-0 right-0 z-50 py-4 bg-card/95 backdrop-blur-sm border-b border-border"
-              : "relative mb-16"
+              : "relative mb-16 mt-80"
           }
           style={
             logoLocked
@@ -168,41 +168,12 @@ const Hero = () => {
         {logoLocked && <div className="mb-16 h-20" aria-hidden="true" />}
 
         {/* Divider */}
-        <div className="w-px h-16 bg-border mx-auto mb-12 opacity-0 animate-fade-in animation-delay-400" aria-hidden="true" />
+        {/* Vertical line with downward chevron */}
+        <div className="flex flex-col items-center mb-12 opacity-0 animate-fade-in animation-delay-400" aria-hidden="true">
+          <div className="w-px flex-1 bg-border" style={{ minHeight: '280px' }} />
+          <ChevronDown className="w-4 h-4 text-border -mt-1" strokeWidth={1.5} />
+        </div>
 
-      </div>
-
-      {/* Scroll Indicator - One continuous line with arrow */}
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 opacity-0 animate-fade-in animation-delay-800" aria-hidden="true">
-        <svg 
-          width="24" 
-          height="120" 
-          viewBox="0 0 24 120" 
-          fill="none" 
-          className="animate-scroll-pulse"
-          aria-hidden="true"
-        >
-          {/* Vertical line extending down to chevron */}
-          <line 
-            x1="12" 
-            y1="0" 
-            x2="12" 
-            y2="108" 
-            stroke="currentColor" 
-            strokeWidth="1"
-            className="text-muted-foreground/30"
-          />
-          {/* Chevron arrow at the end (starts where line ends) */}
-          <path 
-            d="M 6 108 L 12 114 L 18 108" 
-            stroke="currentColor" 
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            fill="none"
-            className="text-muted-foreground/40"
-          />
-        </svg>
       </div>
     </section>
   );
