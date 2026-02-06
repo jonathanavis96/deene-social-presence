@@ -11,6 +11,7 @@
 ## Project Status
 
 **Current State:** Website is functionally complete with all major features implemented:
+
 - ✅ Hero section with responsive heading and scroll indicator
 - ✅ Services section
 - ✅ About section with first-person copy
@@ -23,6 +24,7 @@
 - ✅ Lint passes (7 warnings in shadcn-ui only)
 
 **Focus Areas:**
+
 1. Content refinement and polish
 2. Performance optimization
 3. Accessibility enhancements
@@ -41,7 +43,7 @@ Currently clean - no verifier warnings to address.
 
 ### 1.1 Services Section Content
 
-- [ ] **1.1.1** Review and refine Services section copy
+- [x] **1.1.1** Review and refine Services section copy
   - **Scope:** `website/src/components/Services.tsx`
   - **Context:** Current content may be placeholder or generic
   - **Steps:**
@@ -54,7 +56,7 @@ Currently clean - no verifier warnings to address.
 
 ### 1.2 Gallery Image Alt Text
 
-- [ ] **1.2.1** Audit gallery image alt text for accessibility
+- [x] **1.2.1** Audit gallery image alt text for accessibility
   - **Scope:** `website/src/data/galleryData.ts`
   - **Context:** Alt text exists but may need refinement for screen readers
   - **Steps:**
@@ -71,7 +73,7 @@ Currently clean - no verifier warnings to address.
 
 ### 2.1 Image Optimization
 
-- [ ] **2.1.1** Verify all gallery images are optimized
+- [x] **2.1.1** Verify all gallery images are optimized
   - **Scope:** `website/public/gallery/*.jpg`
   - **Context:** Images were resized and compressed (THUNK #87), verify quality/size balance
   - **Steps:**
@@ -84,7 +86,7 @@ Currently clean - no verifier warnings to address.
 
 ### 2.2 Bundle Size Analysis
 
-- [ ] **2.2.1** Analyze production bundle for optimization opportunities
+- [x] **2.2.1** Analyze production bundle for optimization opportunities
   - **Scope:** `website/dist/assets/*`
   - **Context:** Current bundle is 352KB JS (113KB gzipped) - check for low-hanging fruit
   - **Steps:**
@@ -101,7 +103,7 @@ Currently clean - no verifier warnings to address.
 
 ### 3.1 Keyboard Navigation Audit
 
-- [ ] **3.1.1** Test keyboard navigation across all interactive elements
+- [x] **3.1.1** Test keyboard navigation across all interactive elements
   - **Scope:** All components with interactive elements
   - **Context:** Gallery carousel has keyboard support; verify other components
   - **Steps:**
@@ -115,7 +117,7 @@ Currently clean - no verifier warnings to address.
 
 ### 3.2 Screen Reader Testing
 
-- [ ] **3.2.1** Verify ARIA labels and semantic HTML
+- [x] **3.2.1** Verify ARIA labels and semantic HTML
   - **Scope:** All components
   - **Context:** GalleryCarousel has ARIA labels; verify other components
   - **Steps:**
@@ -132,7 +134,7 @@ Currently clean - no verifier warnings to address.
 
 ### 4.1 Meta Tags
 
-- [ ] **4.1.1** Add comprehensive meta tags for SEO and social sharing
+- [x] **4.1.1** Add comprehensive meta tags for SEO and social sharing
   - **Scope:** `website/index.html`
   - **Context:** Basic HTML exists; needs meta tags for SEO/OG
   - **Steps:**
@@ -146,7 +148,7 @@ Currently clean - no verifier warnings to address.
 
 ### 4.2 Structured Data
 
-- [ ] **4.2.1** Add JSON-LD structured data for local business
+- [x] **4.2.1** Add JSON-LD structured data for local business
   - **Scope:** `website/index.html`
   - **Context:** Helps search engines understand business type and contact info
   - **Steps:**

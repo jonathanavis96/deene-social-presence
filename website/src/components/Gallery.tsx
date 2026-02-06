@@ -16,7 +16,7 @@ const Gallery = () => {
         </div>
 
         {/* Gallery Carousel */}
-        <GalleryCarousel categories={galleryCategories} autoPlay={true} autoPlayInterval={6000} />
+        <GalleryCarousel categories={galleryCategories} autoPlay={true} autoPlayInterval={10000} />
       </div>
     </section>
   );

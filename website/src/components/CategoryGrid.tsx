@@ -8,22 +8,23 @@ const CategoryGrid = ({ images }: CategoryGridProps) => {
   // Define a pattern for mixed sizes - some images span 2 columns or 2 rows
   // This creates a visually interesting masonry-like layout
   const getGridItemClass = (index: number) => {
-    // Pattern: every 3rd and 4th image are larger (span 2 units)
-    // This creates a balanced masonry effect
+    // Pattern matching photos-numbered.png layout
+    // Target grid: Row1=[1(2x2), 2, 3] Row2=[1(cont), 6, 5(1x2)] Row3=[7, 4(2x1), 5(cont)]
+    // Order in DOM: [0]=1, [1]=2, [2]=3, [3]=6, [4]=5, [5]=7, [6]=4
     const pattern = index % 7;
     
     switch (pattern) {
       case 0:
-        // Large square - spans 2x2
+        // Photo 1: Large square - spans 2x2 (hero image top-left)
         return "col-span-2 row-span-2";
-      case 3:
-        // Wide rectangle - spans 2x1
-        return "col-span-2 row-span-1";
-      case 5:
-        // Tall rectangle - spans 1x2
+      case 4:
+        // Photo 5: Tall rectangle - spans 1x2 (right side, rows 2-3)
         return "col-span-1 row-span-2";
+      case 6:
+        // Photo 4: Wide rectangle - spans 2x1 (bottom row, cols 2-3)
+        return "col-span-2 row-span-1";
       default:
-        // Standard square - spans 1x1
+        // Photos 2, 3, 6, 7: Standard squares - span 1x1
         return "col-span-1 row-span-1";
     }
   };
@@ -46,6 +47,10 @@ const CategoryGrid = ({ images }: CategoryGridProps) => {
               src={image.src}
               alt={image.alt}
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              style={{
+                objectPosition: image.objectPosition,
+                transform: image.scale ? `scale(${image.scale})` : undefined,
+              }}
               loading="lazy"
             />
             {/* Subtle overlay on hover for interactivity */}

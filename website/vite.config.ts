@@ -5,7 +5,9 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: "/deene-social-presence/", // important for GitHub Pages
+  // In dev we want a root-served app (/) so localhost URLs are normal.
+  // In production (GitHub Pages) we need the repository base path.
+  base: mode === "development" ? "/" : "/deene-social-presence/",
 
   server: {
     host: "::",
