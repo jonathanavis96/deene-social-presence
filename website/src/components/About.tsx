@@ -35,8 +35,8 @@ const About = () => {
 
             <div className="space-y-6 font-sans text-muted-foreground leading-relaxed">
               <p className="text-base md:text-lg font-light">
-                I'm Deene, and I help brands show up online with clarity and intention. 
-                No fluff, no forced virality—just thoughtful content that feels like you.
+                I'm Alex-Deene, and I help brands show up online with clarity and intention. 
+                No fluff, no forced virality - just thoughtful content that feels like you.
               </p>
               <p className="text-base md:text-lg font-light">
                 I blend strategy with storytelling to create a digital presence that's 
@@ -47,14 +47,10 @@ const About = () => {
               <p className="text-base md:text-lg font-light">
                 My approach is simple: understand the brand, honor the vision, and let the 
                 work speak for itself. Clean, confident, never salesy. I work with founders 
-                and businesses who value substance over spectacle—people who know their 
+                and businesses who value substance over spectacle - people who know their 
                 story deserves to be told with care.
               </p>
             </div>
-
-            <p className="font-serif text-lg md:text-xl text-foreground italic pt-4">
-              When authenticity leads, conversation follows.
-            </p>
           </div>
         </div>
       </div>
