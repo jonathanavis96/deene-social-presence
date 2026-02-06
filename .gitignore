@@ -12,6 +12,11 @@ dist
 dist-ssr
 *.local
 
+# Website (moved into website/)
+website/node_modules
+website/dist
+website/dist-ssr
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

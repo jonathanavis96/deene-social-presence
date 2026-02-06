@@ -24,7 +24,7 @@ jobs:
           # Built-in npm cache (faster, fewer registry hits)
           cache: "npm"
           cache-dependency-path: |
-            package-lock.json
+            website/package-lock.json
 
       - name: Configure npm retries & optional auth
         run: |
@@ -44,21 +44,23 @@ jobs:
           fi
 
       - name: Install deps (ci)
+        working-directory: website
         run: npm ci --no-audit --no-fund
 
       - name: Build
+        working-directory: website
         run: npm run build
 
       - name: List dist
-        run: ls -la dist
+        run: ls -la website/dist
 
       - name: GH Pages SPA 404 fallback
-        run: cp dist/index.html dist/404.html
+        run: cp website/dist/index.html website/dist/404.html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: website/dist
 
   deploy:
     needs: build
