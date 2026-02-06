@@ -28,7 +28,19 @@ const ClientLogos = ({ enableColorReveal = true }: ClientLogosProps) => {
 
       {/* Scrolling Logo Strip */}
       <div className="relative group">
-        <div className="flex animate-marquee group-hover:pause-animation">
+        <div 
+          className="flex"
+          style={{
+            animation: 'marquee 30s linear infinite',
+            willChange: 'transform'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.animationPlayState = 'paused';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.animationPlayState = 'running';
+          }}
+        >
           {/* First set of logos */}
           {logos.map((logo, index) => {
             const logoName = logo.replace('.svg', '');
