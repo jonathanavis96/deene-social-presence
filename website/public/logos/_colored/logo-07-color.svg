@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <defs>
+    <linearGradient id="grad7" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#a8edea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fed6e3;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Healthcare/wellness logo with heart elements -->
+  <circle cx="60" cy="60" r="48" fill="url(#grad7)"/>
+  <path d="M 60 75 L 45 60 Q 45 48, 52 48 Q 60 48, 60 55 Q 60 48, 68 48 Q 75 48, 75 60 Z" fill="#ff6b9d"/>
+  <circle cx="52" cy="52" r="3" fill="#ffffff"/>
+  <circle cx="68" cy="52" r="3" fill="#ffffff"/>
+</svg>
