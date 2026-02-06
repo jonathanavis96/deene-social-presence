@@ -1,6 +1,6 @@
 # Implementation Plan — Deene Social Presence
 
-Last Updated: 2026-01-30 16:52:00
+Last Updated: 2026-02-06 11:19:06
 
 ## Execution rules (Ralph)
 
@@ -275,3 +275,87 @@ We want to de-contaminate the deployable website from the repo’s agent/ops sca
     - [ ] Home page renders
     - [ ] No obvious missing assets (favicon/images)
   - **If Blocked:** If preview routing fails due to base path, confirm `base` in `website/vite.config.ts` is still `/deene-social-presence/`.
+
+---
+
+## Phase 5: Apply call checklist updates (site content + UX)
+
+> Source: `brain/cortex/examples/deene-social-call-checklist-filled-2026-01-21-08-03.html`
+
+- [ ] **5.1** Hero/top banner: remove tagline + keep minimal “Deene” block
+  - **Goal:** Match agreed direction: clean white hero with the Deene block only.
+  - **Work:**
+    - Remove the tagline line “Where authenticity leads, conversation follows.” (or equivalent) from the Hero/banner.
+    - Ensure layout still looks intentional on mobile + desktop after removal.
+  - **AC:**
+    - [ ] Hero renders with no tagline/subheading text
+    - [ ] No obvious spacing regressions on mobile + desktop
+  - **If Blocked:** If unsure which string is canonical, search for the tagline text across `website/src/` and remove where used.
+
+- [ ] **5.2** Navigation: remove “Clients” from nav (keep one-page scroll)
+  - **Goal:** Match call decision: “Clients” removed from the navigation.
+  - **AC:**
+    - [ ] No “Clients” item in the main nav
+    - [ ] Remaining nav links still scroll correctly
+  - **If Blocked:** If section IDs are coupled to nav generation, remove only the nav item (not the section) unless specifically requested.
+
+- [ ] **5.3** Services section: rename heading to “Services” (remove “Intentionally Crafted”)
+  - **Goal:** Use literal naming per call notes.
+  - **AC:**
+    - [ ] Services section heading reads “Services”
+    - [ ] No remaining “Intentionally Crafted” heading text
+  - **If Blocked:** If there are multiple occurrences (e.g. on cards + section header), update all places that represent the section title.
+
+- [ ] **5.4** “Created” gallery: update category labels to agreed abbreviations
+  - **Goal:** Reflect agreed categories while staying mostly visual.
+  - **Target labels:** Coffee x2; Restaurants; Accommodation; Wine bars; Products; Wine Estates
+  - **AC:**
+    - [ ] Category labels match the target list (spelling/case consistent)
+    - [ ] Gallery remains scroll-only (no new click-throughs) unless it already supports click-to-advance
+  - **If Blocked:** If the gallery is currently fully label-free, add labels in the smallest/quietest way possible (e.g., visually subtle caption) and confirm in review.
+
+- [ ] **5.5** Client logos strip: add small “Trusted by” label (above logos)
+  - **Goal:** Add the “Trusted by” micro-label above the scrolling client logos strip.
+  - **AC:**
+    - [ ] “Trusted by” appears above the logos strip
+    - [ ] Label styling is subtle (doesn’t compete with hero headings)
+  - **If Blocked:** If there is no logos section heading currently, ensure this label is the only heading (per call notes “no heading” except “Trusted by”).
+
+- [ ] **5.6** Contact section: add WhatsApp button + show email address
+  - **Goal:** Provide two clear contact options: form (if present) + WhatsApp, and show email visibly.
+  - **AC:**
+    - [ ] WhatsApp button exists and opens a WhatsApp chat link
+    - [ ] Email address is visible in the contact section
+    - [ ] No console errors
+  - **If Blocked:** WhatsApp phone number and final email address must be confirmed (see “Waiting on Alex”). Use placeholders only if explicitly approved.
+
+---
+
+## Waiting on Alex (inputs/assets required)
+
+These items are referenced in the call checklist notes but require Alex to supply/confirm details before they can be implemented cleanly:
+
+1. **Logos pack** (SVG/PNG), and confirmation of final logo list/order
+   - Needed for: client logos strip assets
+
+2. **Brand doc / styling references** (typography/spacing rules, any do/don’t)
+   - Needed for: final polish decisions (“anything feels too much?”, spacing, minimal styling)
+
+3. **Photo assets**
+   - A OneDrive (or similar) folder link with final curated gallery images
+   - Needed for: “Created” gallery (and any hero/about photography updates)
+
+4. **About section final rewrite**
+   - Checklist note indicates Alex will provide updated info and rewrite
+   - Needed for: about copy update (first-person voice)
+
+5. **Services wording refinements**
+   - Alex to refine copy under service headings
+   - Needed for: services card body text
+
+6. **Contact details**
+   - **WhatsApp phone number** to use for the “Let’s chat” button
+   - Confirm final email address is **`alex@...`** (and the exact domain)
+
+7. **Go-live timing**
+   - Checklist indicates “No timing at all” right now; confirm when ready to schedule deploy checks
