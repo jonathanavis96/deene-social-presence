@@ -172,12 +172,37 @@ const Hero = () => {
 
       </div>
 
-      {/* Scroll Indicator - Single chevron arrow */}
+      {/* Scroll Indicator - One continuous line with arrow */}
       <div className="absolute bottom-12 left-1/2 -translate-x-1/2 opacity-0 animate-fade-in animation-delay-800" aria-hidden="true">
-        <ChevronDown
-          className="w-5 h-5 text-muted-foreground/40 animate-scroll-pulse"
-          strokeWidth={1}
-        />
+        <svg 
+          width="24" 
+          height="120" 
+          viewBox="0 0 24 120" 
+          fill="none" 
+          className="animate-scroll-pulse"
+          aria-hidden="true"
+        >
+          {/* Vertical line */}
+          <line 
+            x1="12" 
+            y1="0" 
+            x2="12" 
+            y2="110" 
+            stroke="currentColor" 
+            strokeWidth="1"
+            className="text-muted-foreground/30"
+          />
+          {/* Chevron arrow at the end (connected to line) */}
+          <path 
+            d="M 6 106 L 12 112 L 18 106" 
+            stroke="currentColor" 
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            fill="none"
+            className="text-muted-foreground/40"
+          />
+        </svg>
       </div>
     </section>
   );
