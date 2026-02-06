@@ -1,0 +1,667 @@
+<!doctype html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Deene Social Call Checklist (1–2pm) – Jono</title>
+  <style>
+    :root{
+      --bg:#0b0b0b;
+      --card:#121212;
+      --muted:#b9b9b9;
+      --text:#f4f4f4;
+      --line:#252525;
+      --accent:#e7e0cf; /* cream-ish (Prada vibe) */
+      --ok:#6ee7b7;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background:linear-gradient(180deg, #070707, #0f0f0f);
+      color:var(--text);
+      padding:18px;
+    }
+    .wrap{max-width:980px;margin:0 auto}
+    header{
+      padding:18px 18px 12px;
+      border:1px solid var(--line);
+      background:rgba(18,18,18,.82);
+      border-radius:16px;
+      margin-bottom:14px;
+    }
+    h1{
+      margin:0 0 8px;
+      font-size:22px; /* bigger */
+      letter-spacing:.2px;
+      line-height:1.2;
+    }
+    .sub{
+      margin:0;
+      color:var(--muted);
+      font-size:15px; /* bigger */
+      line-height:1.45;
+    }
+    .bar{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:14px;
+      align-items:center;
+    }
+    button{
+      appearance:none;
+      border:1px solid var(--line);
+      background:#0f0f0f;
+      color:var(--text);
+      padding:11px 13px;
+      border-radius:12px;
+      font-size:14px; /* bigger */
+      cursor:pointer;
+    }
+    button:hover{border-color:#333}
+    .stat{
+      margin-left:auto;
+      color:var(--muted);
+      font-size:14px; /* bigger */
+    }
+    .section{
+      border:1px solid var(--line);
+      background:rgba(18,18,18,.78);
+      border-radius:16px;
+      padding:16px;
+      margin-bottom:12px;
+    }
+    .section h2{
+      margin:0 0 12px;
+      font-size:14px;
+      letter-spacing:.3px;
+      color:var(--accent);
+      text-transform:uppercase;
+    }
+    .item{
+      display:flex;
+      gap:10px;
+      padding:12px 10px;
+      border-radius:12px;
+      border:1px solid transparent;
+      align-items:flex-start;
+    }
+    .item:hover{border-color:#1f1f1f;background:rgba(255,255,255,.02)}
+    input[type="checkbox"]{
+      margin-top:4px;
+      width:20px;height:20px; /* slightly bigger */
+      accent-color: var(--accent);
+      cursor:pointer;
+      flex:0 0 auto;
+    }
+    .txt{flex:1 1 auto}
+    .title{
+      font-size:16px; /* bigger */
+      margin:0 0 10px;
+      line-height:1.35;
+    }
+    .done .title{color:var(--ok)}
+    .noteBox{
+      width:100%;
+      min-height:58px;
+      resize:vertical;
+      padding:10px 10px;
+      border-radius:12px;
+      border:1px solid #2a2a2a;
+      background:#0c0c0c;
+      color:var(--text);
+      font-size:14px; /* bigger */
+      line-height:1.35;
+      outline:none;
+    }
+    .noteBox:focus{
+      border-color:#3a3a3a;
+      box-shadow:0 0 0 3px rgba(231,224,207,.08);
+    }
+    .hint{
+      margin:0 0 8px;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.4;
+    }
+    .foot{
+      color:var(--muted);
+      font-size:13px; /* bigger */
+      padding:10px 2px 2px;
+      text-align:center;
+    }
+    .pill{
+      display:inline-block;
+      padding:3px 10px;
+      border:1px solid #2a2a2a;
+      border-radius:999px;
+      font-size:13px;
+      color:var(--muted);
+      margin-left:10px;
+      vertical-align:middle;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Deene Social Call Checklist <span class="pill">1–2pm</span></h1>
+      <p class="sub">
+        Quick prompts (not scripts). Tick as you cover each point. Add your own notes under each prompt.
+      </p>
+      <div class="bar">
+        <button id="saveBtn" type="button">Save (download filled file)</button>
+        <button id="resetBtn" type="button">Reset checklist</button>
+        <span class="stat" id="stat">35/36 checked</span>
+      </div>
+    </header>
+
+    <!-- 1) Alignment -->
+    <section class="section">
+      <h2>1) Alignment</h2>
+
+      <label class="item done">
+        <input type="checkbox" data-id="align-1">
+        <div class="txt">
+          <p class="title">Goal of call aligned?</p>
+          <p class="hint">Notes (optional):</p>
+          <textarea class="noteBox" data-note-for="align-1" placeholder="Your notes..."></textarea>
+        </div>
+      </label>
+
+      <label class="item done">
+        <input type="checkbox" data-id="align-2">
+        <div class="txt">
+          <p class="title">Happy with one-page scroll approach?</p>
+          <p class="hint">Notes (optional):</p>
+          <textarea class="noteBox" data-note-for="align-2" placeholder="Your notes..."></textarea>
+        </div>
+      </label>
+    </section>
+
+    <!-- 2) Overall feel / scroll behaviour -->
+    <section class="section">
+      <h2>2) Overall feel / scroll behaviour</h2>
+
+      <label class="item done">
+        <input type="checkbox" data-id="feel-1">
+        <div class="txt">
+          <p class="title">Scroll feel okay?</p>
+          <p class="hint">Notes (optional):</p>
+          <textarea class="noteBox" data-note-for="feel-1" placeholder="Your notes..."></textarea>
+        </div>
+      </label>
+
+      <label class="item done">
+        <input type="checkbox" data-id="feel-2">
+        <div class="txt">
+          <p class="title">Sticky nav transition okay?</p>
+          <p class="hint">Notes (optional):</p>
+          <textarea class="noteBox" data-note-for="feel-2" placeholder="Your notes..."></textarea>
+        </div>
+      </label>
+
+      <label class="item">
+        <input type="checkbox" data-id="feel-3">
+        <div class="txt">
+          <p class="title">Anything feels “too much”?</p>
+          <p class="hint">Notes (optional):</p>
+          <textarea class="noteBox" data-note-for="feel-3" placeholder="Your notes..."></textarea>
+        </div>
+      </label>
+    </section>
+
+    <!-- 3) Top banner -->
+    <section class="section">
+      <h2>3) Top banner</h2>
+
+      <label class="item done">
+        <input type="checkbox" data-id="banner-1">
+        <div class="txt">
+          <p class="title">Minimal vs slightly descriptive?</p>
+          <p class="hint">Notes (optional):</p>
+          <textarea class="noteBox" data-note-for="banner-1" placeholder="Your notes..."></textarea>
+        </div>
+      </label>
+
+      <label class="item done">
+        <input type="checkbox" data-id="banner-2">
+        <div class="txt">
+          <p class="title">One short supporting line or none?</p>
+          <p class="hint">Notes (optional):</p>
+          <textarea class="noteBox" data-note-for="banner-2" placeholder="Your notes..."></textarea>
+        </div>
+      </label>
+    </section>
+
+    <!-- 4) About -->
+    <section class="section">
+      <h2>4) About section</h2>
+
+      <label class="item done">
+        <input type="checkbox" data-id="about-1">
+        <div class="txt">
+          <p class="title">Vibe right?</p>
+          <p class="hint">Notes (optional):</p>
+          <textarea class="noteBox" data-note-for="about-1" placeholder="Your notes..."></textarea>
+        </div>
+      </label>
+
+      <label class="item done">
+        <input type="checkbox" data-id="about-2">
+        <div class="txt">
+          <p class="title">First-person vs studio voice?</p>
+          <p class="hint">Notes (optional):</p>
+          <textarea class="noteBox" data-note-for="about-2" placeholder="Your notes..."></textarea>
+        </div>
+      </label>
+
+      <label class="item done">
+        <input type="checkbox" data-id="about-3">
+        <div class="txt">
+          <p class="title">Photo now or later?</p>
+          <p class="hint">Notes (optional):</p>
+          <textarea class="noteBox" data-note-for="about-3" placeholder="Your notes..."></textarea>
+        </div>
+      </label>
+
+      <label class="item done">
+        <input type="checkbox" data-id="about-4">
+        <div class="txt">
+          <p class="title">Length okay?</p>
+          <p class="hint">Notes (optional):</p>
+          <textarea class="noteBox" data-note-for="about-4" placeholder="Your notes..."></textarea>
+        </div>
+      </label>
+    </section>
+
+    <!-- 5) Services -->
+    <section class="section">
+      <h2>5) Services overview</h2>
+
+      <label class="item done">
+        <input type="checkbox" data-id="services-1">
+        <div class="txt">
+          <p class="title">Happy with services as-is?</p>
+          <p class="hint">Notes (optional):</p>
+          <textarea class="noteBox" data-note-for="services-1" placeholder="Your notes..."></textarea>
+        </div>
+      </label>
+
+      <label class="item done">
+        <input type="checkbox" data-id="services-2">
+        <div class="txt">
+          <p class="title">Literal vs creative naming?</p>
+          <p class="hint">Notes (optional):</p>
+          <textarea class="noteBox" data-note-for="services-2" placeholder="Your notes..."></textarea>
+        </div>
+      </label>
+
+      <label class="item done">
+        <input type="checkbox" data-id="services-3">
+        <div class="txt">
+          <p class="title">Order correct?</p>
+          <p class="hint">Notes (optional):</p>
+          <textarea class="noteBox" data-note-for="services-3" placeholder="Your notes..."></textarea>
+        </div>
+      </label>
+    </section>
+
+    <!-- 6) Created -->
+    <section class="section">
+      <h2>6) “Created” section (gallery)</h2>
+
+      <label class="item done">
+        <input type="checkbox" data-id="created-1">
+        <div class="txt">
+          <p class="title">Curated gallery vs portfolio?</p>
+          <p class="hint">Notes (optional):</p>
+          <textarea class="noteBox" data-note-for="created-1" placeholder="Your notes..."></textarea>
+        </div>
+      </label>
+
+      <label class="item done">
+        <input type="checkbox" data-id="created-2">
+        <div class="txt">
+          <p class="title">Clickable or scroll-only?</p>
+          <p class="hint">Notes (optional):</p>
+          <textarea class="noteBox" data-note-for="created-2" placeholder="Your notes..."></textarea>
+        </div>
+      </label>
+
+      <label class="item done">
+        <input type="checkbox" data-id="created-3">
+        <div class="txt">
+          <p class="title">Show names or stay visual?</p>
+          <p class="hint">Notes (optional):</p>
+          <textarea class="noteBox" data-note-for="created-3" placeholder="Your notes..."></textarea>
+        </div>
+      </label>
+
+      <label class="item done">
+        <input type="checkbox" data-id="created-4">
+        <div class="txt">
+          <p class="title">Categories confirmed?</p>
+          <p class="hint">Notes (optional):</p>
+          <textarea class="noteBox" data-note-for="created-4" placeholder="Your notes..."></textarea>
+        </div>
+      </label>
+
+      <label class="item done">
+        <input type="checkbox" data-id="created-5">
+        <div class="txt">
+          <p class="title">Placement okay (after Services)?</p>
+          <p class="hint">Notes (optional):</p>
+          <textarea class="noteBox" data-note-for="created-5" placeholder="Your notes..."></textarea>
+        </div>
+      </label>
+    </section>
+
+    <!-- 7) Logos -->
+    <section class="section">
+      <h2>7) Client logos row</h2>
+
+      <label class="item done">
+        <input type="checkbox" data-id="logos-1">
+        <div class="txt">
+          <p class="title">Click-through or visual only?</p>
+          <p class="hint">Notes (optional):</p>
+          <textarea class="noteBox" data-note-for="logos-1" placeholder="Your notes..."></textarea>
+        </div>
+      </label>
+
+      <label class="item done">
+        <input type="checkbox" data-id="logos-2">
+        <div class="txt">
+          <p class="title">Logos supplied by Alex?</p>
+          <p class="hint">Notes (optional):</p>
+          <textarea class="noteBox" data-note-for="logos-2" placeholder="Your notes..."></textarea>
+        </div>
+      </label>
+
+      <label class="item done">
+        <input type="checkbox" data-id="logos-3">
+        <div class="txt">
+          <p class="title">Monochrome / embossed look okay?</p>
+          <p class="hint">Notes (optional):</p>
+          <textarea class="noteBox" data-note-for="logos-3" placeholder="Your notes..."></textarea>
+        </div>
+      </label>
+
+      <label class="item done">
+        <input type="checkbox" data-id="logos-4">
+        <div class="txt">
+          <p class="title">Placement: below “Let’s Connect”, above footer?</p>
+          <p class="hint">Notes (optional):</p>
+          <textarea class="noteBox" data-note-for="logos-4" placeholder="Your notes..."></textarea>
+        </div>
+      </label>
+
+      <label class="item done">
+        <input type="checkbox" data-id="logos-5">
+        <div class="txt">
+          <p class="title">Static row or subtle scrolling strip?</p>
+          <p class="hint">Notes (optional):</p>
+          <textarea class="noteBox" data-note-for="logos-5" placeholder="Your notes..."></textarea>
+        </div>
+      </label>
+
+      <label class="item done">
+        <input type="checkbox" data-id="logos-6">
+        <div class="txt">
+          <p class="title">Heading or no heading?</p>
+          <p class="hint">Notes (optional):</p>
+          <textarea class="noteBox" data-note-for="logos-6" placeholder="Your notes..."></textarea>
+        </div>
+      </label>
+    </section>
+
+    <!-- 8) Contact -->
+    <section class="section">
+      <h2>8) Contact section</h2>
+
+      <label class="item done">
+        <input type="checkbox" data-id="contact-1">
+        <div class="txt">
+          <p class="title">WhatsApp vs form vs both?</p>
+          <p class="hint">Notes (optional):</p>
+          <textarea class="noteBox" data-note-for="contact-1" placeholder="Your notes..."></textarea>
+        </div>
+      </label>
+
+      <label class="item done">
+        <input type="checkbox" data-id="contact-2">
+        <div class="txt">
+          <p class="title">One clear action or choice?</p>
+          <p class="hint">Notes (optional):</p>
+          <textarea class="noteBox" data-note-for="contact-2" placeholder="Your notes..."></textarea>
+        </div>
+      </label>
+
+      <label class="item done">
+        <input type="checkbox" data-id="contact-3">
+        <div class="txt">
+          <p class="title">Email visible or hidden?</p>
+          <p class="hint">Notes (optional):</p>
+          <textarea class="noteBox" data-note-for="contact-3" placeholder="Your notes..."></textarea>
+        </div>
+      </label>
+    </section>
+
+    <!-- 9) Footer -->
+    <section class="section">
+      <h2>9) Footer</h2>
+
+      <label class="item done">
+        <input type="checkbox" data-id="footer-1">
+        <div class="txt">
+          <p class="title">Happy as-is?</p>
+          <p class="hint">Notes (optional):</p>
+          <textarea class="noteBox" data-note-for="footer-1" placeholder="Your notes..."></textarea>
+        </div>
+      </label>
+
+      <label class="item done">
+        <input type="checkbox" data-id="footer-2">
+        <div class="txt">
+          <p class="title">Go quieter / more minimal?</p>
+          <p class="hint">Notes (optional):</p>
+          <textarea class="noteBox" data-note-for="footer-2" placeholder="Your notes..."></textarea>
+        </div>
+      </label>
+    </section>
+
+    <!-- 10) Domain & email -->
+    <section class="section">
+      <h2>10) Domain &amp; email</h2>
+
+      <label class="item done">
+        <input type="checkbox" data-id="email-1">
+        <div class="txt">
+          <p class="title">Main address (hello@ / alex@)?</p>
+          <p class="hint">Notes (optional):</p>
+          <textarea class="noteBox" data-note-for="email-1" placeholder="Your notes..."></textarea>
+        </div>
+      </label>
+
+      <label class="item done">
+        <input type="checkbox" data-id="email-2">
+        <div class="txt">
+          <p class="title">One inbox or multiple aliases?</p>
+          <p class="hint">Notes (optional):</p>
+          <textarea class="noteBox" data-note-for="email-2" placeholder="Your notes..."></textarea>
+        </div>
+      </label>
+
+      <label class="item done">
+        <input type="checkbox" data-id="email-3">
+        <div class="txt">
+          <p class="title">Apple Mail setup okay?</p>
+          <p class="hint">Notes (optional):</p>
+          <textarea class="noteBox" data-note-for="email-3" placeholder="Your notes..."></textarea>
+        </div>
+      </label>
+    </section>
+
+    <!-- 11) Wrap -->
+    <section class="section">
+      <h2>11) Wrap-up</h2>
+
+      <label class="item done">
+        <input type="checkbox" data-id="wrap-1">
+        <div class="txt">
+          <p class="title">Next steps clear?</p>
+          <p class="hint">Notes (optional):</p>
+          <textarea class="noteBox" data-note-for="wrap-1" placeholder="Your notes..."></textarea>
+        </div>
+      </label>
+
+      <label class="item done">
+        <input type="checkbox" data-id="wrap-2">
+        <div class="txt">
+          <p class="title">Anything missing?</p>
+          <p class="hint">Notes (optional):</p>
+          <textarea class="noteBox" data-note-for="wrap-2" placeholder="Your notes..."></textarea>
+        </div>
+      </label>
+
+      <label class="item done">
+        <input type="checkbox" data-id="wrap-3">
+        <div class="txt">
+          <p class="title">Go-live timing?</p>
+          <p class="hint">Notes (optional):</p>
+          <textarea class="noteBox" data-note-for="wrap-3" placeholder="Your notes..."></textarea>
+        </div>
+      </label>
+    </section>
+
+    <div class="foot">Tip: glance → interpret → ask naturally. No scripts.</div>
+  </div>
+
+  <script>
+    // ---- Filled state injected on "Save" downloads (so the downloaded HTML keeps everything) ----
+    // The Save button will replace the null below with an object that contains checks + notes.
+    const INITIAL_STATE = /*__INITIAL_STATE__*/ {"checks":{"align-1":true,"align-2":true,"feel-1":true,"feel-2":true,"feel-3":false,"banner-1":true,"banner-2":true,"about-1":true,"about-2":true,"about-3":true,"about-4":true,"services-1":true,"services-2":true,"services-3":true,"created-1":true,"created-2":true,"created-3":true,"created-4":true,"created-5":true,"logos-1":true,"logos-2":true,"logos-3":true,"logos-4":true,"logos-5":true,"logos-6":true,"contact-1":true,"contact-2":true,"contact-3":true,"footer-1":true,"footer-2":true,"email-1":true,"email-2":true,"email-3":true,"wrap-1":true,"wrap-2":true,"wrap-3":true},"notes":{"align-1":"header 100%. blank white on the top. Photo shoot section. Sending through template example now. Memorabilia time of shoot. Styling - template together. 1 block that swipes thought the images, very simplistic. lets say. Title Curated. Clients going to be removed for nav bar. Little \"Trusted by\" above the scrolling clients logo. Billing on 25th","align-2":"Yes","feel-1":"Logo falls into the left side, no scroll down effect for the logo.","feel-2":"Yes. Sticky comes up after white first page.","feel-3":"","banner-1":"remove Where authenticity leads, conversation follows. Just white deene block","banner-2":"nonee","about-1":"Love vibe, simple, easy. Step by step with right information.","about-2":"First person","about-3":"Photo good.","about-4":"will provide new info and give me the rewrite. ","services-1":"yes. will just refine the wording under the headings.","services-2":"yes. Just have services instead of Intentionally Crafted. ","services-3":"yes","created-1":"Gallery","created-2":"Scroll only, click right side and goes to next image.","created-3":"Just abbreviate to Coffee x2, Restaurants, Accommodation, wine bars, Products, Wine Estates. ","created-4":"yes","created-5":"After yes","logos-1":"Visual only non clickable","logos-2":"yes - send through logos.","logos-3":"yes. almost same colour as the background. ","logos-4":"yes","logos-5":"7 with spaces with scrolling","logos-6":"No heading","contact-1":"Add in whatsapp button to her number lets chat. ","contact-2":"Can have both options","contact-3":"Visible","footer-1":"yes","footer-2":"footer perfect","email-1":"alex@","email-2":"One","email-3":"Yes","wrap-1":"services wording, brand doc, images, clients logo, one drive for photos.","wrap-2":"nope","wrap-3":"No timing at all"}};
+
+    const STORAGE_KEY = "deene_social_call_checklist_v2";
+    const checkboxes = Array.from(document.querySelectorAll('input[type="checkbox"][data-id]'));
+    const noteBoxes  = Array.from(document.querySelectorAll('textarea.noteBox[data-note-for]'));
+    const statEl     = document.getElementById("stat");
+    const resetBtn   = document.getElementById("resetBtn");
+    const saveBtn    = document.getElementById("saveBtn");
+
+    function safeParseJSON(raw){
+      try { return JSON.parse(raw); } catch { return null; }
+    }
+
+    function getDomState(){
+      const checks = {};
+      const notes  = {};
+      checkboxes.forEach(cb => { checks[cb.dataset.id] = !!cb.checked; });
+      noteBoxes.forEach(t => { notes[t.dataset.noteFor] = t.value || ""; });
+      return { checks, notes };
+    }
+
+    function applyState(state){
+      if(!state) return;
+      if(state.checks){
+        checkboxes.forEach(cb => {
+          const id = cb.dataset.id;
+          if(Object.prototype.hasOwnProperty.call(state.checks, id)){
+            cb.checked = !!state.checks[id];
+          }
+        });
+      }
+      if(state.notes){
+        noteBoxes.forEach(t => {
+          const id = t.dataset.noteFor;
+          if(Object.prototype.hasOwnProperty.call(state.notes, id)){
+            t.value = String(state.notes[id] ?? "");
+          }
+        });
+      }
+    }
+
+    function updateUI(){
+      const total = checkboxes.length;
+      const checked = checkboxes.filter(cb => cb.checked).length;
+      statEl.textContent = `${checked}/${total} checked`;
+
+      checkboxes.forEach(cb => {
+        const item = cb.closest(".item");
+        if(!item) return;
+        item.classList.toggle("done", cb.checked);
+      });
+    }
+
+    function loadFromLocalStorage(){
+      const raw = localStorage.getItem(STORAGE_KEY);
+      const parsed = raw ? safeParseJSON(raw) : null;
+      if(parsed) applyState(parsed);
+    }
+
+    function saveToLocalStorage(){
+      const state = getDomState();
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+
+    // Prefer embedded INITIAL_STATE (downloaded filled file), else localStorage
+    if(INITIAL_STATE && typeof INITIAL_STATE === "object"){
+      applyState(INITIAL_STATE);
+    } else {
+      loadFromLocalStorage();
+    }
+    updateUI();
+
+    // Persist on interactions
+    checkboxes.forEach(cb => {
+      cb.addEventListener("change", () => {
+        saveToLocalStorage();
+        updateUI();
+      });
+    });
+
+    noteBoxes.forEach(t => {
+      t.addEventListener("input", () => {
+        saveToLocalStorage();
+      });
+    });
+
+    // Reset
+    resetBtn.addEventListener("click", () => {
+      checkboxes.forEach(cb => cb.checked = false);
+      noteBoxes.forEach(t => t.value = "");
+      localStorage.removeItem(STORAGE_KEY);
+      updateUI();
+      window.scrollTo({top:0, behavior:"smooth"});
+    });
+
+    // Save (download a new HTML file that includes your current checks + notes)
+    saveBtn.addEventListener("click", () => {
+      const state = getDomState();
+
+      // Serialize full HTML and inject the state into INITIAL_STATE
+      let html = "<!doctype html>\n" + document.documentElement.outerHTML;
+
+      // Replace the marker "/*__INITIAL_STATE__*/ null" with injected JSON
+      const injected = "/*__INITIAL_STATE__*/ " + JSON.stringify(state);
+      html = html.replace(/\/\*__INITIAL_STATE__\*\/\s*null/, injected);
+
+      // Make a downloadable file
+      const blob = new Blob([html], { type: "text/html;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement("a");
+      a.href = url;
+      const stamp = new Date().toISOString().slice(0,16).replace(/[:T]/g,"-");
+      a.download = `deene-social-call-checklist-filled-${stamp}.html`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+
+      setTimeout(() => URL.revokeObjectURL(url), 2000);
+    });
+  </script>
+
+</body></html>
