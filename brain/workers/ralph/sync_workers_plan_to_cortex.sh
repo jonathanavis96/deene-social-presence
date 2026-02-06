@@ -34,8 +34,14 @@ log_verbose() {
 }
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-if REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null)"; then
-  :
+if GIT_ROOT="$(git rev-parse --show-toplevel 2>/dev/null)"; then
+  REPO_ROOT="$GIT_ROOT"
+
+  # If we're in a mono-repo layout where this project lives under a `brain/` folder,
+  # prefer that as the effective root when it contains the workers plan.
+  if [[ -f "${GIT_ROOT}/brain/workers/IMPLEMENTATION_PLAN.md" ]]; then
+    REPO_ROOT="${GIT_ROOT}/brain"
+  fi
 else
   REPO_ROOT="$(cd "${SCRIPT_DIR}/../.." && pwd)"
 fi

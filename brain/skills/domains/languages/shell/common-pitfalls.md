@@ -260,7 +260,7 @@ EOF
 
 # Indented (<<- strips leading tabs only)
 cat <<-EOF
-	Indented content
+ Indented content
 EOF
 ```text
 

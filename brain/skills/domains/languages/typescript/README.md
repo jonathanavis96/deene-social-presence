@@ -832,9 +832,9 @@ const url = config["apiUrl"] ?? "http://localhost:3000";
 }
 ```
 
-2. Fix errors module-by-module
-3. Use `// @ts-expect-error` for planned future fixes
-4. Avoid `// @ts-ignore` (hides all errors, not just one)
+1. Fix errors module-by-module
+2. Use `// @ts-expect-error` for planned future fixes
+3. Avoid `// @ts-ignore` (hides all errors, not just one)
 
 ---
 

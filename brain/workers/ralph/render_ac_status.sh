@@ -10,8 +10,18 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 LATEST_FILE="${SCRIPT_DIR}/.verify/latest.txt"
-# Repo layout: plan lives at workers/IMPLEMENTATION_PLAN.md (repo root relative)
+
+# Repo layout: plan lives at workers/IMPLEMENTATION_PLAN.md (effective repo root relative)
 REPO_ROOT="$(cd "${SCRIPT_DIR}/../.." && pwd)"
+if GIT_ROOT="$(git rev-parse --show-toplevel 2>/dev/null)"; then
+  # In mono-repo layout, prefer `<git-root>/brain` when it contains the workers plan.
+  if [[ -f "${GIT_ROOT}/brain/workers/IMPLEMENTATION_PLAN.md" ]]; then
+    REPO_ROOT="${GIT_ROOT}/brain"
+  else
+    REPO_ROOT="$GIT_ROOT"
+  fi
+fi
+
 PLAN_FILE="${REPO_ROOT}/workers/IMPLEMENTATION_PLAN.md"
 
 # Markers for inline update

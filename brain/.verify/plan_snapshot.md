@@ -112,7 +112,7 @@ We want to de-contaminate the deployable website from the repo’s agent/ops sca
   - **Skills:** `brain/skills/domains/frontend/react-patterns.md`, `brain/skills/domains/frontend/accessibility-patterns.md`
   - **Details:**
     - WhatsApp: +27 78 881 9656
-    - Email: alex@deenesocial.com
+    - Email: <alex@deenesocial.com>
   - **AC:**
     - [ ] WhatsApp button exists and opens `https://wa.me/27788819656` (or equivalent)
     - [ ] WhatsApp number is also shown as plain text near the button
@@ -124,7 +124,7 @@ We want to de-contaminate the deployable website from the repo’s agent/ops sca
 
 ## Phase 6: Asset preparation (mock logos, gallery photos, About copy)
 
-> **Context:** We now have `brain/cortex/examples/brand-doc.pdf` with sample photos organized by category (coffee/FVC, coffee/KZ, wine/salt river, menu/wellington). Contact details confirmed: WhatsApp +27 78 881 9656, email alex@deenesocial.com. Timing: ASAP. Site hosted on GitHub Pages.
+> **Context:** We now have `brain/cortex/examples/brand-doc.pdf` with sample photos organized by category (coffee/FVC, coffee/KZ, wine/salt river, menu/wellington). Contact details confirmed: WhatsApp +27 78 881 9656, email <alex@deenesocial.com>. Timing: ASAP. Site hosted on GitHub Pages.
 
 - [ ] **6.1** Create first batch of mock client logos (logos 01-05)
   - **Goal:** Start building logo density for the scrolling client logos strip.

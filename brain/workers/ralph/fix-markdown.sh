@@ -72,12 +72,45 @@ if [[ ${#VALID_TARGETS[@]} -eq 0 ]]; then
   exit 0
 fi
 
+# Expand directory targets into an explicit list of markdown files.
+# Why: Passing directories to markdownlint can unintentionally lint vendored content.
+# Policy: Exclude brain_upstream/ from auto-fix/lint (vendored upstream, not deployable site).
+LINT_TARGETS=()
+for target in "${VALID_TARGETS[@]}"; do
+  if [[ -f "$target" ]]; then
+    LINT_TARGETS+=("$target")
+    continue
+  fi
+
+  if [[ -d "$target" ]]; then
+    while IFS= read -r f; do
+      LINT_TARGETS+=("$f")
+    done < <(
+      find "$target" \
+        -type d \( \
+          -name .git -o -name node_modules -o -name dist -o -name build -o -name .next \
+          -o -name .verify \
+          -o -name brain_upstream \
+          -o -name skills \
+        \) -prune -false \
+        -o -type f -name '*.md' -print 2>/dev/null | LC_ALL=C sort
+    )
+  fi
+done
+
+# Dedupe while preserving deterministic ordering
+if [[ ${#LINT_TARGETS[@]} -gt 0 ]]; then
+  mapfile -t LINT_TARGETS < <(printf '%s\n' "${LINT_TARGETS[@]}" | LC_ALL=C sort -u)
+fi
+
 echo "=== Markdown Auto-Fix ==="
 if [[ ${#VALID_TARGETS[@]} -eq 1 ]]; then
   echo "Target: ${VALID_TARGETS[0]}"
 else
-  echo "Targets: ${#VALID_TARGETS[@]} files"
+  echo "Targets: ${#VALID_TARGETS[@]} inputs"
 fi
+
+echo "Markdown files to process (after excludes): ${#LINT_TARGETS[@]}"
 
 # Optional: shfmt auto-format for shell scripts (opt-in)
 if [[ "$RUN_SHFMT" == "true" ]]; then
@@ -108,8 +141,17 @@ fi
 
 echo ""
 
+# If there are no markdown files after exclusions, exit cleanly.
+if [[ ${#LINT_TARGETS[@]} -eq 0 ]]; then
+  echo -e "Issues before: ${GREEN}0${NC}"
+  echo "No markdown files found (after excludes), skipping"
+  echo ""
+  echo "Done."
+  exit 0
+fi
+
 # Count issues before
-BEFORE_OUTPUT=$(markdownlint "${VALID_TARGETS[@]}" 2>&1 || true)
+BEFORE_OUTPUT=$(markdownlint "${LINT_TARGETS[@]}" 2>&1 || true)
 # markdownlint reports rule IDs like MD040 rather than the literal word "error".
 # Count non-empty output lines so the script works across markdownlint versions.
 BEFORE=$(echo "$BEFORE_OUTPUT" | grep -cve '^\s*$' || true)
@@ -129,10 +171,10 @@ echo -e "Issues before: ${YELLOW}${BEFORE}${NC}"
 # Run the fix
 echo ""
 echo "Running markdownlint --fix..."
-markdownlint --fix "${VALID_TARGETS[@]}" 2>&1 || true
+markdownlint --fix "${LINT_TARGETS[@]}" 2>&1 || true
 
 # Count issues after
-AFTER_OUTPUT=$(markdownlint "${VALID_TARGETS[@]}" 2>&1 || true)
+AFTER_OUTPUT=$(markdownlint "${LINT_TARGETS[@]}" 2>&1 || true)
 AFTER=$(echo "$AFTER_OUTPUT" | grep -cve '^\s*$' || true)
 AFTER=${AFTER:-0}
 echo ""

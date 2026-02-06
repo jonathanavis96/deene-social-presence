@@ -583,22 +583,22 @@ describe('processOrder', () => {
 
 **Phase 2: Cover critical paths (Weeks 2-3)**
 
-4. Test authentication flows (login, logout, password reset)
-5. Test payment processing (charge, refund, webhook)
-6. Test API endpoints (error handling, validation)
-7. Target: 90%+ coverage in critical modules
+1. Test authentication flows (login, logout, password reset)
+2. Test payment processing (charge, refund, webhook)
+3. Test API endpoints (error handling, validation)
+4. Target: 90%+ coverage in critical modules
 
 **Phase 3: Enforce thresholds (Week 4)**
 
-8. Add coverage config to CI (80% global, 90% critical)
-9. Block PRs that drop coverage below threshold
-10. Review and merge
+1. Add coverage config to CI (80% global, 90% critical)
+2. Block PRs that drop coverage below threshold
+3. Review and merge
 
 **Phase 4: Maintain and improve (Ongoing)**
 
-11. Monthly coverage review (identify new gaps)
-12. Add coverage badge to README
-13. Celebrate coverage milestones (team visibility)
+1. Monthly coverage review (identify new gaps)
+2. Add coverage badge to README
+3. Celebrate coverage milestones (team visibility)
 
 ### Coverage Improvement Tactics
 

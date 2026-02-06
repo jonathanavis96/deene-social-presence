@@ -972,7 +972,7 @@ export function setupGlobalErrorHandlers() {
    }
    ```
 
-2. **Exposing sensitive error details to users:**
+1. **Exposing sensitive error details to users:**
 
    ```typescript
    // ❌ BAD: Leaks database details
@@ -989,7 +989,7 @@ export function setupGlobalErrorHandlers() {
    }
    ```
 
-3. **Not validating error types before accessing properties:**
+2. **Not validating error types before accessing properties:**
 
    ```typescript
    // ❌ BAD: Assumes error shape
@@ -1009,7 +1009,7 @@ export function setupGlobalErrorHandlers() {
    }
    ```
 
-4. **Not handling async errors in event handlers:**
+3. **Not handling async errors in event handlers:**
 
    ```typescript
    // ❌ BAD: Unhandled promise rejection
@@ -1025,7 +1025,7 @@ export function setupGlobalErrorHandlers() {
    }}>Click</button>
    ```
 
-5. **Retrying on non-transient errors:**
+4. **Retrying on non-transient errors:**
 
    ```typescript
    // ❌ BAD: Retries validation errors

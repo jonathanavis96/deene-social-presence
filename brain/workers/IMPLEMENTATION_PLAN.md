@@ -50,6 +50,65 @@ We want to de-contaminate the deployable website from the repo’s agent/ops sca
 
 ---
 
+## Phase 0-Warn: Verifier Warnings (Markdown Lint)
+
+> **Priority:** Fix before continuing with Phase 5+ feature work.
+
+- [ ] **0.W.1** BATCH: Fix MD036 (emphasis as heading) in workers/ralph/PROMPT.md
+  - **Scope:** 6 occurrences in workers/ralph/PROMPT.md (lines 258, 268, 275, 400, 407, 420)
+  - **Fix:** Convert `**Step X: ...**` to proper `#### Step X: ...` headings
+  - **AC:** `markdownlint workers/ralph/PROMPT.md` passes (no MD036 errors)
+  - **Estimated Time:** [S] 2-3 minutes
+
+- [ ] **0.W.2** Fix MD024 (duplicate heading) in workers/ralph/PROMPT.md
+  - **Issue:** Multiple "Actions" headings at line 435
+  - **Fix:** Make duplicate headings unique by adding context (e.g., "## Actions (PLAN Mode)" vs "## Actions (BUILD Mode)")
+  - **AC:** `markdownlint workers/ralph/PROMPT.md` passes (no MD024 errors)
+  - **Estimated Time:** [S] 1-2 minutes
+
+- [ ] **0.W.3** BATCH: Fix MD033 (inline HTML) + MD025 (multiple H1) in workers/ralph/SKILL_TEMPLATE.md
+  - **Scope:** 11 occurrences of MD033 (HTML tags like `<skill-short-name>`, `<what>`, `<brief>`, etc.) and 1 MD025
+  - **Fix:** Replace placeholder HTML tags with markdown formatting or actual examples
+  - **AC:** `markdownlint workers/ralph/SKILL_TEMPLATE.md` passes (no MD033 or MD025 errors)
+  - **Estimated Time:** [M] 5-7 minutes
+
+---
+
+## Phase 0-Links: Broken Internal Links
+
+> **Priority:** Fix before continuing with Phase 5+ feature work.
+
+- [ ] **0.L.1** Copy missing docs from brain_upstream/ to local brain/ workspace
+  - **Missing Files:**
+    - `docs/TOOLS.md`
+    - `docs/CACHE_DESIGN.md`
+    - `docs/MARKER_SCHEMA.md`
+    - `docs/QUALITY_GATES.md`
+    - `docs/CODERABBIT_PR5_ALL_ISSUES.md`
+    - `AGENTS.md` (root)
+    - `README.md` (root)
+    - `templates/ralph/IMPLEMENTATION_PLAN.project.md`
+  - **Work:** Copy files from `brain_upstream/` to corresponding paths in local workspace
+  - **AC:** `bash tools/validate_links.sh` passes with no broken link errors for the 8 affected files
+  - **Estimated Time:** [S] 3-5 minutes
+
+- [ ] **0.L.2** Fix broken links in skills/ markdown files
+  - **Affected Files (12 broken links):**
+    - `skills/index.md` (1 link)
+    - `skills/domains/code-quality/code-review-patterns.md` (1 link)
+    - `skills/domains/code-quality/semantic-code-review.md` (1 link)
+    - `skills/domains/anti-patterns/documentation-anti-patterns.md` (2 links)
+    - `skills/domains/ralph/cache-debugging.md` (1 link)
+    - `skills/domains/ralph/thread-search-patterns.md` (2 links)
+    - `skills/domains/ralph/tool-wrapper-patterns.md` (1 link)
+    - `skills/projects/brain-example.md` (3 links)
+  - **Work:** Update relative paths to point to correct locations (after 0.L.1 completes)
+  - **AC:** `bash tools/validate_links.sh` passes with no broken link errors
+  - **Estimated Time:** [M] 5-10 minutes
+  - **If Blocked:** Run task 0.L.1 first to ensure target files exist
+
+---
+
 ## Phase 5: Apply call checklist updates (site content + UX)
 
 > Source: `brain/cortex/examples/deene-social-call-checklist-filled-2026-01-21-08-03.html`

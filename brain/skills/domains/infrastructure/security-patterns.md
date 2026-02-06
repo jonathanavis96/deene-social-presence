@@ -965,36 +965,36 @@ const response = await fetch(url);
    console.log('User login:', { email });
    ```
 
-3. **❌ Exposing error details to users**
+1. **❌ Exposing error details to users**
    - Production errors should be generic
    - Log detailed errors server-side only
 
-4. **❌ Using weak cryptography**
+2. **❌ Using weak cryptography**
    - Don't use MD5 or SHA1 for passwords (use bcrypt, Argon2)
    - Don't implement your own encryption (use established libraries)
 
-5. **❌ Forgetting HTTPS in production**
+3. **❌ Forgetting HTTPS in production**
    - All production traffic must use HTTPS
    - Set `secure: true` on cookies
    - Use HSTS header to enforce HTTPS
 
-6. **❌ Hardcoding credentials**
+4. **❌ Hardcoding credentials**
    - Use environment variables
    - Never commit secrets to git
 
-7. **❌ Not implementing rate limiting**
+5. **❌ Not implementing rate limiting**
    - Every public API endpoint needs rate limiting
    - Authentication endpoints are critical (prevent brute force)
 
-8. **❌ Permissive CORS**
+6. **❌ Permissive CORS**
    - `Access-Control-Allow-Origin: *` is rarely correct
    - Whitelist specific origins
 
-9. **❌ Missing authentication on API routes**
+7. **❌ Missing authentication on API routes**
    - Every API route should explicitly handle authentication
    - Don't assume middleware catches everything
 
-10. **❌ Trusting user input**
+8. **❌ Trusting user input**
     - Validate everything: query params, body, headers, cookies
     - Sanitize before displaying or storing
 

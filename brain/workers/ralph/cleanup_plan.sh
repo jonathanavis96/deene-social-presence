@@ -16,8 +16,14 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Try git rev-parse first (most reliable in git repos)
-if REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null)"; then
-  : # Success - REPO_ROOT is set
+if GIT_ROOT="$(git rev-parse --show-toplevel 2>/dev/null)"; then
+  REPO_ROOT="$GIT_ROOT"
+
+  # If we're in a mono-repo layout where this project lives under a `brain/` folder,
+  # prefer that as the effective root when it contains the workers plan.
+  if [[ -f "${GIT_ROOT}/brain/workers/IMPLEMENTATION_PLAN.md" ]]; then
+    REPO_ROOT="${GIT_ROOT}/brain"
+  fi
 else
   # Fallback: deterministic path traversal from script location
   # Script is in workers/ralph/, so repo root is two levels up
