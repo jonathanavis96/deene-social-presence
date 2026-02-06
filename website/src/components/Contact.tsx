@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Instagram, ArrowRight } from "lucide-react";
+import { Instagram, ArrowRight, MessageCircle } from "lucide-react";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -152,10 +152,20 @@ const Contact = () => {
         {/* Contact Info */}
         <div className="text-center space-y-6">
           <a
-            href="mailto:Deenesocial@gmail.com"
+            href="mailto:alex@deenesocial.com"
             className="font-sans text-muted-foreground hover:text-foreground transition-colors block"
           >
-            Deenesocial@gmail.com
+            alex@deenesocial.com
+          </a>
+
+          <a
+            href="https://wa.me/27788819656"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <MessageCircle className="w-5 h-5" />
+            <span className="font-sans text-sm">+27 78 881 9656</span>
           </a>
 
           <a
