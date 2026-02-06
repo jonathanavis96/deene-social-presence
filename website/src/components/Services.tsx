@@ -19,14 +19,14 @@ const services = [
 
 const Services = () => {
   return (
-    <section id="services" className="py-24 md:py-32 px-6 bg-card">
+    <section id="services" className="py-24 md:py-32 px-6 bg-card" aria-labelledby="services-heading">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-20 space-y-4">
-          <p className="text-spaced text-xs text-accent font-sans uppercase tracking-widest">
+          <p className="text-spaced text-xs text-accent font-sans uppercase tracking-widest" aria-hidden="true">
             Services
           </p>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-foreground">
+          <h2 id="services-heading" className="font-serif text-3xl md:text-4xl lg:text-5xl text-foreground">
             Services
           </h2>
         </div>
@@ -39,7 +39,7 @@ const Services = () => {
               className="bg-card p-10 md:p-14 group hover:bg-secondary/30 transition-colors duration-500"
             >
               <div className="space-y-6">
-                <span className="text-spaced text-xs text-muted-foreground font-sans">
+                <span className="text-spaced text-xs text-muted-foreground font-sans" aria-hidden="true">
                   0{index + 1}
                 </span>
 
@@ -47,7 +47,7 @@ const Services = () => {
                   {service.title}
                 </h3>
 
-                <div className="w-8 h-px bg-border group-hover:bg-accent group-hover:w-12 transition-all duration-500" />
+                <div className="w-8 h-px bg-border group-hover:bg-accent group-hover:w-12 transition-all duration-500" aria-hidden="true" />
 
                 <p className="font-sans text-muted-foreground text-sm md:text-base font-light leading-relaxed">
                   {service.description}

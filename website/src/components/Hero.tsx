@@ -46,13 +46,13 @@ const Hero = () => {
   const logoScale = 1 - 0.725 * progress;
 
   return (
-    <section className="min-h-screen flex flex-col justify-center items-center px-6 py-24 bg-card relative overflow-hidden">
+    <section className="min-h-screen flex flex-col justify-center items-center px-6 py-24 bg-card relative overflow-hidden" aria-label="Hero section">
       {/* Background texture */}
       <div className="absolute inset-0 opacity-30 pointer-events-none bg-gradient-to-b from-transparent via-cream/20 to-transparent" />
 
       <div className="relative z-10 text-center max-w-4xl mx-auto">
         {/* Logo + Nav Container */}
-        <div
+        <header
           className={
             logoLocked
               ? "fixed top-0 left-0 right-0 z-50 py-4 bg-card/95 backdrop-blur-sm border-b border-border"
@@ -76,12 +76,7 @@ const Hero = () => {
             }
           >
             {/* Logo */}
-            <button
-              onClick={() =>
-                window.scrollTo({ top: 0, behavior: "smooth" })
-              }
-              className="flex flex-col items-center hover:opacity-70 transition-opacity cursor-pointer"
-            >
+            <div className="flex flex-col items-center">
               <h1
                 className={`font-serif tracking-tight text-foreground ${
                   logoLocked
@@ -97,7 +92,15 @@ const Hero = () => {
                       }
                 }
               >
-                DEENE
+                <button
+                  onClick={() =>
+                    window.scrollTo({ top: 0, behavior: "smooth" })
+                  }
+                  className="hover:opacity-70 transition-opacity cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-sm"
+                  aria-label="Scroll to top"
+                >
+                  DEENE
+                </button>
               </h1>
               <p
                 className={`text-muted-foreground font-sans font-light uppercase ${
@@ -108,7 +111,7 @@ const Hero = () => {
               >
                 {logoLocked ? "SOCIAL" : "S O C I A L"}
               </p>
-            </button>
+            </div>
 
             {/* Nav Links */}
             {logoLocked && (
@@ -124,52 +127,53 @@ const Hero = () => {
                   animationDelay: "0.15s",
                   animationFillMode: "forwards",
                 }}
+                aria-label="Main navigation"
               >
                 <button
                   onClick={() =>
                     document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })
                   }
-                  className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors font-sans font-light uppercase tracking-wider"
+                  className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors font-sans font-light uppercase tracking-wider focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-sm px-1"
                 >
                   About
                 </button>
 
-                <span className="text-border">·</span>
+                <span className="text-border" aria-hidden="true">·</span>
 
                 <button
                   onClick={() =>
                     document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })
                   }
-                  className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors font-sans font-light uppercase tracking-wider"
+                  className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors font-sans font-light uppercase tracking-wider focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-sm px-1"
                 >
                   Services
                 </button>
 
-                <span className="text-border">·</span>
+                <span className="text-border" aria-hidden="true">·</span>
 
                 <button
                   onClick={() =>
                     document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
                   }
-                  className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors font-sans font-light uppercase tracking-wider"
+                  className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors font-sans font-light uppercase tracking-wider focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-sm px-1"
                 >
                   Contact
                 </button>
               </nav>
             )}
           </div>
-        </div>
+        </header>
 
         {/* Spacer to prevent jump */}
-        {logoLocked && <div className="mb-16 h-20" />}
+        {logoLocked && <div className="mb-16 h-20" aria-hidden="true" />}
 
         {/* Divider */}
-        <div className="w-px h-16 bg-border mx-auto mb-12 opacity-0 animate-fade-in animation-delay-400" />
+        <div className="w-px h-16 bg-border mx-auto mb-12 opacity-0 animate-fade-in animation-delay-400" aria-hidden="true" />
 
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 opacity-0 animate-fade-in animation-delay-800 flex flex-col items-center">
+      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 opacity-0 animate-fade-in animation-delay-800 flex flex-col items-center" aria-hidden="true">
         <div className="relative w-px h-16 md:h-20 bg-muted-foreground/40">
           {/* Traveling pulse effect on the line */}
           <div className="absolute inset-0 w-full bg-gradient-to-b from-transparent via-muted-foreground/60 to-transparent animate-scroll-line-pulse" />

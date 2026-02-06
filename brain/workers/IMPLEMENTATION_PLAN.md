@@ -44,24 +44,6 @@ This plan maintains and evolves the Deene Social Presence marketing site as a cl
 
 ### 13.1: Visual QA (split into atomic section checks)
 
-- [x] **13.1.4** Visual QA: ClientLogos (emboss + hover behavior)
-  - **Goal:** Confirm logos are present, styled correctly, and interactions work
-  - **AC:**
-    - 15 logos load successfully
-    - Emboss effect is visible but subtle
-    - Hover behavior matches feature flags (color reveal if enabled, lift effect works)
-  - **If Blocked:** Confirm file paths under `public/logos/` and component path usage
-  - **Estimated Time:** [S] 5-8 minutes
-
-- [ ] **13.1.5** Visual QA: Footer contact hierarchy + WhatsApp link
-  - **Goal:** Confirm footer readability and WhatsApp link correctness
-  - **AC:**
-    - Footer contact info has improved spacing/sizing
-    - WhatsApp icon is present, styled in site palette
-    - Link opens `https://wa.me/27788819656`
-  - **If Blocked:** Verify anchor `href`, icon import, and Tailwind styling
-  - **Estimated Time:** [S] 5-8 minutes
-
 - [ ] **13.1.6** Visual QA: Console + Network sanity
   - **Goal:** Catch obvious runtime issues before deeper QA
   - **AC:**

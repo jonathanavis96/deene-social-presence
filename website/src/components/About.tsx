@@ -10,11 +10,11 @@ const About = () => {
             <div className="aspect-[3/4] bg-secondary/50 relative overflow-hidden">
               <img
                 src={portraitSrc}
-                alt="Portrait"
+                alt="Deene, founder of Deene Social"
                 className="absolute inset-0 w-full h-full object-cover"
               />
               {/* Subtle overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-foreground/5 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-foreground/5 to-transparent" aria-hidden="true" />
             </div>
           </div>
 
@@ -31,7 +31,7 @@ const About = () => {
               </h2>
             </div>
 
-            <div className="w-12 h-px bg-accent" />
+            <div className="w-12 h-px bg-accent" aria-hidden="true" />
 
             <div className="space-y-6 font-sans text-muted-foreground leading-relaxed">
               <p className="text-base md:text-lg font-light">

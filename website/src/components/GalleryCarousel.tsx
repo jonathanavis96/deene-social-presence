@@ -114,6 +114,7 @@ const GalleryCarousel = ({
         opts={{
           align: "start",
           loop: true,
+          duration: 50, // Slower transition (double duration = half speed)
         }}
         plugins={autoPlay ? [autoplayPlugin] : []}
         className="w-full"
@@ -134,9 +135,15 @@ const GalleryCarousel = ({
           ))}
         </CarouselContent>
 
-        {/* Navigation arrows */}
-        <CarouselPrevious className="left-4" aria-label="Previous category" />
-        <CarouselNext className="right-4" aria-label="Next category" />
+        {/* Navigation arrows - outside the grid, larger */}
+        <CarouselPrevious 
+          className="-left-16 md:-left-20 h-12 w-12 md:h-14 md:w-14" 
+          aria-label="Previous category" 
+        />
+        <CarouselNext 
+          className="-right-16 md:-right-20 h-12 w-12 md:h-14 md:w-14" 
+          aria-label="Next category" 
+        />
       </Carousel>
 
       {/* Dot indicators */}
