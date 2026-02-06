@@ -11,8 +11,21 @@ while [ -h "$SOURCE" ]; do
   [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
 done
 SCRIPT_DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
+# brain repo root (this script lives in brain/cortex)
 PROJECT_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 
+# If this brain repo sits inside a larger mono-folder (e.g. /deene-social) and
+# that folder contains a sibling website/ app, run RovoDev from the parent so
+# tooling can access both brain/ and website/.
+WORKSPACE_ROOT="$PROJECT_ROOT"
+PARENT_ROOT="$(cd "${PROJECT_ROOT}/.." && pwd)"
+if [[ -d "${PARENT_ROOT}/website" && -d "${PARENT_ROOT}/brain" ]]; then
+  WORKSPACE_ROOT="$PARENT_ROOT"
+fi
+
+echo "[cortex-deene] workspace root: ${WORKSPACE_ROOT}" >&2
+
+# Keep prompt generation anchored to brain/, but run the chat from WORKSPACE_ROOT.
 cd "${PROJECT_ROOT}"
 
 # Colors
@@ -35,6 +48,7 @@ usage() {
   echo "Options:"
   echo "  --help, -h           Show this help"
   echo "  --model MODEL        Override model (gpt52, codex, opus, sonnet, auto)"
+  echo "  --print-config       Build and print the generated acli config, then exit (no chat)"
   echo ""
 
   echo "Examples:"
@@ -52,6 +66,7 @@ usage() {
 }
 
 MODEL_ARG="gpt52" # Default to GPT-5.2 for Cortex
+PRINT_CONFIG=false
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -62,6 +77,10 @@ while [[ $# -gt 0 ]]; do
     --model)
       MODEL_ARG="${2:-}"
       shift 2
+      ;;
+    --print-config)
+      PRINT_CONFIG=true
+      shift
       ;;
     *)
       echo "Unknown: $1" >&2
@@ -172,7 +191,16 @@ else
   echo "  modelId: auto" >>"$CONFIG_FILE"
 fi
 
-LOGFIRE_DISABLE=1 acli rovodev run --config-file "$CONFIG_FILE" --yolo
+if [[ "$PRINT_CONFIG" == "true" ]]; then
+  cat "$CONFIG_FILE"
+  rm -f "$CONFIG_FILE"
+  exit 0
+fi
+
+(
+  cd "$WORKSPACE_ROOT"
+  LOGFIRE_DISABLE=1 acli rovodev run --config-file "$CONFIG_FILE" --yolo
+)
 EXIT_CODE=$?
 
 rm -f "$CONFIG_FILE"

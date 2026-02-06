@@ -26,15 +26,35 @@ echo ""
 
 # Task summary
 echo "## Tasks"
-total=$(grep -cE '^\- \[[ x?]\] \*\*[0-9]' IMPLEMENTATION_PLAN.md 2>/dev/null || echo 0)
-done=$(grep -cE '^\- \[x\] \*\*[0-9]' IMPLEMENTATION_PLAN.md 2>/dev/null || echo 0)
-echo "Progress: $done/$total"
-echo ""
 
-# Next tasks
-echo "## Next Tasks"
-grep -E '^\- \[ \] \*\*[0-9]' IMPLEMENTATION_PLAN.md | head -3
-echo ""
+PLAN_FILE=""
+if [[ -f "${ROOT}/workers/IMPLEMENTATION_PLAN.md" ]]; then
+  PLAN_FILE="${ROOT}/workers/IMPLEMENTATION_PLAN.md"
+elif [[ -f "${ROOT}/IMPLEMENTATION_PLAN.md" ]]; then
+  PLAN_FILE="${ROOT}/IMPLEMENTATION_PLAN.md"
+elif [[ -f "${ROOT}/cortex/IMPLEMENTATION_PLAN.md" ]]; then
+  PLAN_FILE="${ROOT}/cortex/IMPLEMENTATION_PLAN.md"
+fi
+
+if [[ -n "$PLAN_FILE" ]]; then
+  total=$(grep -cE '^\- \[[ x?]\] \*\*[0-9]' "$PLAN_FILE" 2>/dev/null || echo 0)
+  done=$(grep -cE '^\- \[x\] \*\*[0-9]' "$PLAN_FILE" 2>/dev/null || echo 0)
+  echo "Plan: $(basename "$(dirname "$PLAN_FILE")")/$(basename "$PLAN_FILE")"
+  echo "Progress: $done/$total"
+  echo ""
+
+  # Next tasks
+  echo "## Next Tasks"
+  grep -E '^\- \[ \] \*\*[0-9]' "$PLAN_FILE" | head -3
+  echo ""
+else
+  echo "Plan: (none found)"
+  echo "Progress: 0/0"
+  echo ""
+  echo "## Next Tasks"
+  echo "(no plan found)"
+  echo ""
+fi
 
 # Recent commits
 echo "## Recent Commits"

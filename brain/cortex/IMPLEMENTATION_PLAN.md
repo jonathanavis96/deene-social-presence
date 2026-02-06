@@ -46,39 +46,7 @@ This plan maintains and evolves the Deene Social Presence marketing site as a cl
 
 ### 9.2: Generate realistic placeholder logos
 
-- [ ] **9.2.3** Create 5 realistic brand-style logos (colored): 11–15
-  - **Goal:** Complete the realistic colored logo set
-  - **AC:**
-    - Create 5 additional unique logos under `../website/public/logos/_colored/logo-11-color.svg` through `logo-15-color.svg`
-    - Logos are visually distinct from 01–10 and from each other
-  - **If Blocked:** Same as 9.2.1
-  - **Estimated Time:** [M] 15-20 minutes
-
-- [ ] **9.2.4** Convert colored logos to monochrome using script
-  - **Goal:** Generate monochrome versions that match website background color
-  - **AC:**
-    - Run conversion script on all 15 colored logos
-    - Output monochrome SVGs to `../website/public/logos/logo-01.svg` through `logo-15.svg` (replace existing simple logos)
-    - Monochrome color: `#E5E7EB` (light gray, matches site background - adjust if background differs)
-    - All logos have consistent padding and aspect ratio
-    - Verify logos are visible but subtle against background
-  - **If Blocked:** If script needs adjustment for certain logos, document edge cases and tweak threshold/color values
-  - **Estimated Time:** [S] 5-8 minutes
-
 ### 9.3: Implement embossed/raised CSS effect
-
-- [ ] **9.3.1** Add emboss styling to ClientLogos component
-  - **Goal:** Make logos appear "raised" or "stamped" on the background (subtle 3D effect)
-  - **AC:**
-    - Add CSS class `.logo-embossed` with:
-      - `filter: drop-shadow()` for soft shadow beneath (subtle, ~2-4px blur, low opacity)
-      - Optional: inset highlight on top edge using pseudo-element or additional shadow
-      - Effect should be visible but not blatant (premium/clean aesthetic)
-    - Apply effect to all logo images in `ClientLogos.tsx`
-    - Reference: `cortex/examples/embossed-logo-example.avif` for visual target
-    - Check `skills/domains/websites/design/design-direction.md` for shadow best practices (subtle, soft shadows only)
-  - **If Blocked:** Test shadow values in browser DevTools to find right balance of visibility vs subtlety
-  - **Estimated Time:** [M] 10-15 minutes
 
 ### 9.4: Implement hover reveal (optional feature flag)
 
