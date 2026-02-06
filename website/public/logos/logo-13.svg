@@ -1,7 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
-  <rect width="120" height="120" fill="#322659" rx="8"/>
-  <circle cx="40" cy="60" r="18" fill="none" stroke="#D6BCFA" stroke-width="3"/>
-  <circle cx="80" cy="60" r="18" fill="none" stroke="#D6BCFA" stroke-width="3"/>
-  <line x1="58" y1="60" x2="62" y2="60" stroke="#D6BCFA" stroke-width="3"/>
-  <text x="60" y="105" font-family="Arial, sans-serif" font-size="10" fill="#D6BCFA" text-anchor="middle">LINKWAVE</text>
-</svg>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <ns0:defs>
+    <ns0:linearGradient id="grad13" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color: #ece8e2; stop-opacity: 1" />
+      <ns0:stop offset="100%" style="stop-color: #f4f2ee; stop-opacity: 1" />
+    </ns0:linearGradient>
+  </ns0:defs>
+  
+  <ns0:circle cx="60" cy="60" r="50" fill="url(#grad13)" />
+  <ns0:rect x="40" y="45" width="40" height="30" rx="5" fill="#fbfaf8" opacity="0.9" />
+  <ns0:circle cx="50" cy="55" r="4" fill="#ece8e2" />
+  <ns0:circle cx="60" cy="55" r="4" fill="#ece8e2" />
+  <ns0:circle cx="70" cy="55" r="4" fill="#ece8e2" />
+  <ns0:path d="M 45 65 Q 60 72, 75 65" stroke="#ece8e2" stroke-width="2" fill="none" />
+</ns0:svg>
