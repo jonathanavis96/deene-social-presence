@@ -1,6 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
-  <rect width="120" height="120" fill="#1A365D" rx="8"/>
-  <polygon points="60,25 85,50 85,75 60,100 35,75 35,50" fill="none" stroke="#90CDF4" stroke-width="3"/>
-  <rect x="50" y="50" width="20" height="20" fill="#90CDF4"/>
-  <text x="60" y="105" font-family="Arial, sans-serif" font-size="10" fill="#90CDF4" text-anchor="middle">HEXCORE</text>
-</svg>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <ns0:defs>
+    <ns0:linearGradient id="grad12" x1="0%" y1="0%" x2="100%" y2="100%">
+      <ns0:stop offset="0%" style="stop-color: #ede9e3; stop-opacity: 1" />
+      <ns0:stop offset="100%" style="stop-color: #f3f0ec; stop-opacity: 1" />
+    </ns0:linearGradient>
+  </ns0:defs>
+  
+  <ns0:circle cx="60" cy="60" r="50" fill="url(#grad12)" />
+  <ns0:ellipse cx="60" cy="50" rx="20" ry="25" fill="#fbfaf8" opacity="0.8" />
+  <ns0:ellipse cx="60" cy="70" rx="18" ry="20" fill="#fbfaf8" opacity="0.6" />
+  <ns0:circle cx="60" cy="40" r="5" fill="#ede9e3" />
+</ns0:svg>

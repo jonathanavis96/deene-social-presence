@@ -162,3 +162,23 @@ Completed tasks archived from `workers/IMPLEMENTATION_PLAN.md`.
 |------|---------|-------------|
 | 2026-02-06 | 9.1.2 | - [x] **9.1.2** Add a one-line runner command and document usage - **Goal:** Ensure future iterations can run the conversion reliably. - **AC:** - Add an npm script in `../website/package.json`, e.g. `"logos:mono": "python3 scripts/convert_logos_to_mono.py"` (or node equivalent). - Document expected inputs/outputs at the top of the script (comment block) including color constant. - Running the command produces `../website/public/logos/logo-01.svg` ... etc. (for whatever colored logos exist). |
 | 2026-02-06 | 9.2.2 | - [x] **9.2.2** Create 5 realistic brand-style logos (colored): 06–10 - **Goal:** Continue building the realistic colored logo set in batches (keeps iteration atomic) - **AC:** - Create 5 additional unique logos under `../website/public/logos/_colored/logo-06-color.svg` through `logo-10-color.svg` - Logos are visually distinct from 01–05 and from each other - **If Blocked:** Same as 9.2.1 - **Estimated Time:** [M] 15-20 minutes |
+
+### Archived on 2026-02-06 18:10:00
+
+| Date | Task ID | Description |
+|------|---------|-------------|
+| 2026-02-06 | 9.2.4-docs | Document updated monochrome logo conversion rules (paths + stamped palette + transparency punch-outs) in `workers/IMPLEMENTATION_PLAN.md` so Ralph has ground truth going forward |
+
+### Archived on 2026-02-06 18:45:00
+
+| Date | Task ID | Description |
+|------|---------|-------------|
+| 2026-02-06 | 9.1.3 | Mark 9.1.3 as irrelevant/complete (PNG→SVG handled externally; helper script exists for renaming to `*-color.svg`) |
+
+### Archived on 2026-02-06 18:42:51
+
+| Date | Task ID | Description |
+|------|---------|-------------|
+| 2026-02-06 | 9.2.3 | - [x] **9.2.3** Create 5 realistic brand-style logos (colored): 11–15 - **Goal:** Complete the realistic colored logo set - **AC:** - Create 5 additional unique logos under `../website/public/logos/_colored/logo-11-color.svg` through `logo-15-color.svg` - Logos are visually distinct from 01–10 and from each other - **If Blocked:** Same as 9.2.1 - **Estimated Time:** [M] 15-20 minutes |
+| 2026-02-06 | 9.2.4 | - [x] **9.2.4** Convert colored logos to monochrome using script - **Goal:** Generate monochrome versions that match website background color and composite correctly (no white boxes / transparent negative space) - **AC:** - Run `python3 scripts/monochrome_logos.py` from the **brain repo** root - Script reads input SVGs from `../website/public/logos/_colored/` (recursive) - Script writes output SVGs to `../website/public/logos/` with same filenames (minus `-color` naming convention) - Monochrome “stamped” palette (never pure white): - light: `#fbfaf8` (MUST NOT be `#ffffff`) - mid: `#f3f0ec` - dark: `#e6e1d8` - Shading preserved via relative luminance mapping for: - `fill`, `stroke`, `stop-color`, `color` (attrs + inline `style="..."`) - gradient stops (`<stop stop-color="...">`) - Transparency rules: - Full-canvas background `<rect>` is forced to `fill="none"` - "Obvious internal white holes" (near-white fill, no stroke, high opacity) are forced to `fill="none"` (fixes cases like a white center circle sitting on top of a gradient ring) - Verify logos are visible but subtle against background and negative space is truly transparent - **If Blocked:** If a logo gets punched out too aggressively or not enough, tweak constants in `scripts/monochrome_logos.py`: - `WHITE_HOLE_LUMINANCE_THRESHOLD` - `WHITE_HOLE_EFFECTIVE_OPACITY_MIN` - **Estimated Time:** [S] 5-8 minutes |
+| 2026-02-06 | 9.3.1 | - [x] **9.3.1** Add emboss styling to ClientLogos component - **Goal:** Make logos appear "raised" or "stamped" on the background (subtle 3D effect) - **AC:** - Add CSS class `.logo-embossed` with: - `filter: drop-shadow()` for soft shadow beneath (subtle, ~2-4px blur, low opacity) - Optional: inset highlight on top edge using pseudo-element or additional shadow - Effect should be visible but not blatant (premium/clean aesthetic) - Apply effect to all logo images in `ClientLogos.tsx` - Reference: `cortex/examples/embossed-logo-example.avif` for visual target - Check `skills/domains/websites/design/design-direction.md` for shadow best practices (subtle, soft shadows only) - **If Blocked:** Test shadow values in browser DevTools to find right balance of visibility vs subtlety - **Estimated Time:** [M] 10-15 minutes |

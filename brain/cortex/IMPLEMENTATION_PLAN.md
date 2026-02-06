@@ -1,6 +1,6 @@
 # Implementation Plan — Deene Social Presence
 
-Last Updated: 2026-02-06 15:30:39
+Last Updated: 2026-02-06 16:40:09
 
 ## Execution rules (Ralph)
 
@@ -24,20 +24,17 @@ Last Updated: 2026-02-06 15:30:39
 
 ## Context / Why (source of truth)
 
-This plan transforms the Deene Social Presence marketing site into a premium brand showcase with:
+This plan maintains and evolves the Deene Social Presence marketing site as a clean, minimal, brand-forward single-page experience (Hero → About → Services → Clients → Contact → Footer) deployed on GitHub Pages.
 
-- **Realistic, embossed monochrome logos** (raised stamp effect, hover reveal)
-- **Category-based gallery carousel** (masonry grid, auto-rotation, smart spacing)
-- **Enhanced hero typography** (2x larger heading, connected scroll indicator with animated arrow)
-- **Improved footer contact** (WhatsApp icon, larger spacing, better hierarchy)
+**Primary objectives (must-have):**
 
-**User decisions:**
+- GitHub Pages correctness under base path `/deene-social-presence/` (Vite base + SPA routing + 404 behavior)
+- Contact form production readiness (Formspree configured via env; clear success/error UX)
+- No console errors; solid responsive behavior; accessible interactions
 
-- Dev/build commands run from `../website/` (relative to this `brain/` directory)
-- Site hosted on GitHub Pages: `/deene-social-presence/`
-- Timing: **ASAP**
-- Gallery layout inspired by `cortex/examples/brand-doc.pdf` (masonry + mixed sizes)
-- Logo emboss reference: `cortex/examples/embossed-logo-example.avif` (subtle raised stamp effect)
+**Secondary objectives (nice-to-have / future):**
+
+- Premium visuals (e.g., improved logos, gallery refinements)
 
 ---
 
@@ -48,29 +45,6 @@ This plan transforms the Deene Social Presence marketing site into a premium bra
 ### 9.1: Create logo conversion script
 
 ### 9.2: Generate realistic placeholder logos
-
-- [ ] **9.2.1** Create 5 realistic brand-style logos (colored): 01–05
-  - **Goal:** Replace overly-simple logos with realistic designs that test the monochrome conversion + emboss system
-  - **AC:**
-    - Create 5 **unique, non-repeating** logos under:
-      - `../website/public/logos/_colored/logo-01-color.svg`
-      - `../website/public/logos/_colored/logo-02-color.svg`
-      - `../website/public/logos/_colored/logo-03-color.svg`
-      - `../website/public/logos/_colored/logo-04-color.svg`
-      - `../website/public/logos/_colored/logo-05-color.svg`
-    - **Logo format:** icon/symbol only, or self-contained wordmark/combination mark (no separate text label placed next to/below)
-    - Each logo uses 2–4 colors with realistic combinations (mix of flat + gradients OK)
-    - All 5 are visually distinct (shape/layout/color palette)
-  - **If Blocked:** Use placeholder generator tools or adapt open-source logo templates (ensure license allows modification)
-  - **Estimated Time:** [M] 15-20 minutes
-
-- [ ] **9.2.2** Create 5 realistic brand-style logos (colored): 06–10
-  - **Goal:** Continue building the realistic colored logo set in batches (keeps iteration atomic)
-  - **AC:**
-    - Create 5 additional unique logos under `../website/public/logos/_colored/logo-06-color.svg` through `logo-10-color.svg`
-    - Logos are visually distinct from 01–05 and from each other
-  - **If Blocked:** Same as 9.2.1
-  - **Estimated Time:** [M] 15-20 minutes
 
 - [ ] **9.2.3** Create 5 realistic brand-style logos (colored): 11–15
   - **Goal:** Complete the realistic colored logo set

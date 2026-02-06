@@ -183,3 +183,9 @@
   font-style: normal;
   font-display: swap;
 }
+
+/* Embossed logo effect - subtle 3D raised appearance */
+.logo-embossed {
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.15))
+          drop-shadow(0 1px 1px rgba(255, 255, 255, 0.4));
+}

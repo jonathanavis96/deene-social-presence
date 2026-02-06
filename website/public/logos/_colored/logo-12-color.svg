@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <defs>
+    <linearGradient id="grad12" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4facfe;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00f2fe;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Water/wellness brand with organic shapes -->
+  <circle cx="60" cy="60" r="50" fill="url(#grad12)"/>
+  <ellipse cx="60" cy="50" rx="20" ry="25" fill="#ffffff" opacity="0.8"/>
+  <ellipse cx="60" cy="70" rx="18" ry="20" fill="#ffffff" opacity="0.6"/>
+  <circle cx="60" cy="40" r="5" fill="#4facfe"/>
+</svg>
