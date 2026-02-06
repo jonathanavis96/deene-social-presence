@@ -170,7 +170,10 @@ const Hero = () => {
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-12 left-1/2 -translate-x-1/2 opacity-0 animate-fade-in animation-delay-800 flex flex-col items-center">
-        <div className="w-px h-16 md:h-20 bg-muted-foreground/40" />
+        <div className="relative w-px h-16 md:h-20 bg-muted-foreground/40">
+          {/* Traveling pulse effect on the line */}
+          <div className="absolute inset-0 w-full bg-gradient-to-b from-transparent via-muted-foreground/60 to-transparent animate-scroll-line-pulse" />
+        </div>
         <ChevronDown
           className="w-4 h-4 text-muted-foreground/70 -mt-[1px] animate-scroll-pulse"
           strokeWidth={1.5}

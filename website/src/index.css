@@ -171,8 +171,36 @@
   }
 }
 
+@keyframes scrollLinePulse {
+  0% {
+    opacity: 0.2;
+    transform: translateY(0) scaleY(0.8);
+  }
+  50% {
+    opacity: 0.6;
+    transform: translateY(25%) scaleY(1);
+  }
+  100% {
+    opacity: 0.2;
+    transform: translateY(50%) scaleY(0.8);
+  }
+}
+
 .animate-scroll-pulse {
   animation: scrollPulse 2s ease-in-out infinite;
+}
+
+.animate-scroll-line-pulse {
+  animation: scrollLinePulse 2.5s ease-in-out infinite;
+}
+
+/* Accessibility: Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-scroll-pulse,
+  .animate-scroll-line-pulse {
+    animation: none;
+    opacity: 0.5;
+  }
 }
 
 /* The Seasons font face - fallback to elegant serif */
