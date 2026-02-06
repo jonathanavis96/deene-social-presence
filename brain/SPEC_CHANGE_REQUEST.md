@@ -1,8 +1,8 @@
-# Spec Change Request - Ralph loop workspace root auto-detection (monorepo support)
+# Spec Change Request - Ralph prompt + loop efficiency improvements
 
 ## Problem
 
-When running Ralph from a monorepo that contains multiple top-level projects (e.g., `brain/` and `website/`), Ralph currently sets its workspace root (`ROOT`) to the **Brain directory** by default:
+Ralph sometimes wastes iterations on basic orientation (e.g., running `find`/`ls`/`grep` to rediscover repo structure) and can mis-identify which directory contains the actual app. This slows down delivery and causes plan drift.
 
 - Script location: `brain/workers/ralph/loop.sh`
 - Current default root derivation: `brain/workers/ralph -> brain`
@@ -17,13 +17,41 @@ This blocks tasks that legitimately need to write to sibling folders (e.g., `web
 
 ## Desired Behavior
 
-When `loop.sh` is executed inside a repo root that contains `brain/` and other sibling project directories, Ralph should:
+### Prompt efficiency / orientation
 
-1. Default to using the **repo root** as `ROOT` (workspace boundary = whole repo), not just the `brain/` directory.
-2. Continue to support explicit override via `RALPH_PROJECT_ROOT`.
-3. Remain backward-compatible for repos where `brain/` *is* the repo root (i.e., no monorepo).
+Ralph should stop spending iterations on basic orientation and instead:
 
-## Proposed Changes (workers/ralph/loop.sh)
+1. **Assume repo root = current workspace root** unless explicitly told otherwise.
+2. **Identify the app root once** (e.g., by checking for `package.json` + `src/` + Vite config) and then treat it as canonical.
+3. Follow a cheap-first startup sequence:
+   - Find the first unchecked task line number.
+   - Read only a small slice around it.
+   - Only run `find`/`ls` if the task requires it.
+
+### Monorepo/workspace boundary (if applicable)
+
+If the repo is a monorepo (e.g., contains `brain/` and `website/`), Ralph should default `ROOT` to the monorepo root so RovoDev can operate on sibling directories.
+
+## Proposed Changes
+
+### A) `workers/ralph/PROMPT.md`: add an explicit "Orientation Guardrail" + cheap-first startup
+
+Add a short section near the top of `workers/ralph/PROMPT.md` that:
+
+- Prohibits broad repo scans (`find .`, `ls -R`, opening large files) unless the *selected task* requires it.
+- Requires determining the first unchecked task with a single grep and reading only a 30-40 line slice around it.
+- Requires stating (in one line) the inferred app root (e.g., `APP_ROOT=.`) before implementation.
+
+### B) `workers/ralph/PROMPT.md`: add explicit guidance on "plan drift"
+
+Add a rule:
+
+- If the plan references paths that don't exist (e.g., `../website/`), do **not** spend an iteration exploring; instead:
+  1. Report the mismatch.
+  2. Propose a plan fix.
+  3. Stop.
+
+### C) `workers/ralph/loop.sh`: monorepo auto-detection for ROOT (existing content)
 
 ### A) Add monorepo auto-detection for ROOT
 
@@ -63,6 +91,21 @@ Add a debug line early in startup:
 - `echo "Workspace ROOT=$ROOT"`
 
 This makes it immediately obvious whether the workspace boundary is correct.
+
+## Hash / protection workflow
+
+`workers/ralph/PROMPT.md` is protected by a hash guard. Any change must update the corresponding hash file:
+
+- Update `workers/ralph/PROMPT.md`
+- Recompute SHA-256 and write it to `workers/ralph/.verify/prompt.sha256`
+
+Commands (run from repo root):
+
+```bash
+sha256sum workers/ralph/PROMPT.md | awk '{print $1}' > workers/ralph/.verify/prompt.sha256
+```
+
+(Current PROMPT sha256 at time of this request: `5bb353a565f11461ecd463590211e44bcb6aea5d7db4a9c857a4a65c5fda86cc`)
 
 ## Acceptance Criteria
 

@@ -2,6 +2,22 @@
 
 You are Ralph. AGENTS.md was injected above. Mode is in the header.
 
+## Orientation Guardrail (Efficiency Rule)
+
+- Assume the repo root is the current workspace root unless explicitly told otherwise.
+- Do NOT spend iterations on repo exploration. Avoid `find .`, `ls -R`, or opening large files unless
+the *selected task* requires it.
+- Startup must be cheap-first:
+  1) Identify the first unchecked task:
+     `LINE=$(grep -n "^- \\[ \\]" workers/IMPLEMENTATION_PLAN.md | head -1 | cut -d: -f1)`
+  2) Read only a small slice around it (<= 40 lines):
+     `sed -n "$((LINE-5)),$((LINE+35))p" workers/IMPLEMENTATION_PLAN.md`
+  3) State the inferred app root once (e.g., `APP_ROOT=.`) and proceed.
+- If the plan references paths that don’t exist (plan drift), do not explore:
+  1) Report mismatch
+  2) Propose a plan fix
+  3) Stop
+
 ## Verifier Feedback (CRITICAL - Already Injected!)
 
 **⚠️ DO NOT read `.verify/latest.txt` - verifier status is already injected in the header above.**
