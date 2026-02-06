@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <rect width="120" height="120" fill="#234E52" rx="8"/>
+  <path d="M35 75 L60 35 L85 75" fill="none" stroke="#81E6D9" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M45 75 L60 50 L75 75" fill="none" stroke="#81E6D9" stroke-width="3" stroke-linejoin="round"/>
+  <line x1="35" y1="78" x2="85" y2="78" stroke="#81E6D9" stroke-width="3"/>
+  <text x="60" y="105" font-family="Arial, sans-serif" font-size="10" fill="#81E6D9" text-anchor="middle">SUMMIT</text>
+</svg>

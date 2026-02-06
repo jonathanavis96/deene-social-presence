@@ -35,20 +35,25 @@ const About = () => {
 
             <div className="space-y-6 font-sans text-muted-foreground leading-relaxed">
               <p className="text-base md:text-lg font-light">
-                Deene Social brings clarity and intention to how brands show up online.
+                I'm Deene, and I help brands show up online with clarity and intention. 
+                No fluff, no forced virality—just thoughtful content that feels like you.
               </p>
               <p className="text-base md:text-lg font-light">
-                I blend creativity with strategy to shape a digital presence that feels
-                effortless, authentic, and true to you.
+                I blend strategy with storytelling to create a digital presence that's 
+                effortless, authentic, and unmistakably yours. Whether it's shaping your 
+                voice, crafting campaigns, or building a feed that people actually want to 
+                follow, I focus on what matters: connection over noise.
               </p>
               <p className="text-base md:text-lg font-light">
-                Clean, thoughtful storytelling — never loud, never salesy.
+                My approach is simple: understand the brand, honor the vision, and let the 
+                work speak for itself. Clean, confident, never salesy. I work with founders 
+                and businesses who value substance over spectacle—people who know their 
+                story deserves to be told with care.
               </p>
             </div>
 
             <p className="font-serif text-lg md:text-xl text-foreground italic pt-4">
-              Because when authenticity leads, conversation follows — and your brand
-              becomes the story people choose to tell and follow.
+              When authenticity leads, conversation follows.
             </p>
           </div>
         </div>
