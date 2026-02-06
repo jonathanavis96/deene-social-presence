@@ -105,8 +105,8 @@ const Hero = () => {
               <p
                 className={`text-muted-foreground font-sans font-light uppercase ${
                   logoLocked
-                    ? "text-[8px] tracking-[0.25em]"
-                    : "text-spaced text-xs md:text-sm"
+                    ? "text-[10px] tracking-[0.25em]"
+                    : "text-spaced text-sm md:text-lg"
                 }`}
               >
                 {logoLocked ? "SOCIAL" : "S O C I A L"}
@@ -174,12 +174,12 @@ const Hero = () => {
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-12 left-1/2 -translate-x-1/2 opacity-0 animate-fade-in animation-delay-800 flex flex-col items-center" aria-hidden="true">
-        <div className="relative w-px h-16 md:h-20 bg-muted-foreground/40">
-          {/* Traveling pulse effect on the line */}
-          <div className="absolute inset-0 w-full bg-gradient-to-b from-transparent via-muted-foreground/60 to-transparent animate-scroll-line-pulse" />
+        <div className="relative w-px h-20 md:h-24 bg-muted-foreground/30">
+          {/* Traveling pulse/wave effect on the line */}
+          <div className="absolute inset-0 w-full bg-gradient-to-b from-transparent via-muted-foreground/50 to-transparent animate-scroll-line-pulse" />
         </div>
         <ChevronDown
-          className="w-4 h-4 text-muted-foreground/70 -mt-[1px] animate-scroll-pulse"
+          className="w-4 h-4 text-muted-foreground/60 animate-scroll-pulse"
           strokeWidth={1.5}
         />
       </div>
