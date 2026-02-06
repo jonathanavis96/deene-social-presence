@@ -47,19 +47,6 @@ This plan transforms the Deene Social Presence marketing site into a premium bra
 
 ### 9.1: Create logo conversion script
 
-- [ ] **9.1.1** Create `../website/scripts/convert-logo-to-monochrome.sh`
-  - **Goal:** Automate conversion of arbitrary colored logos to clean monochrome SVGs
-  - **AC:**
-    - Script accepts input image (PNG/JPG/SVG) and outputs monochrome SVG
-    - Uses ImageMagick + potrace (or equivalent) to: (1) convert to grayscale, (2) threshold to single color, (3) trace to SVG if needed
-    - Normalizes padding/aspect ratio so logos are consistent
-    - Usage: `bash convert-logo-to-monochrome.sh input.png output.svg --color "#E5E7EB"`
-    - Script includes error handling (missing dependencies, invalid input)
-    - Documents dependencies in script header comments (at minimum: `imagemagick` / `convert`, and `potrace` for raster-to-SVG tracing)
-    - Script checks dependencies (`convert`, `potrace`) and prints a clear error message if missing
-  - **If Blocked:** Check `skills/domains/languages/shell/validation-patterns.md` for dependency checking patterns
-  - **Estimated Time:** [M] 15-20 minutes
-
 ### 9.2: Generate realistic placeholder logos
 
 - [ ] **9.2.1** Create 5 realistic brand-style logos (colored): 01–05

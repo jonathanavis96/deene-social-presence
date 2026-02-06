@@ -143,3 +143,15 @@ Completed tasks archived from `workers/IMPLEMENTATION_PLAN.md`.
 
 | Date | Task ID | Description |
 |------|---------|-------------|
+
+### Archived on 2026-02-06 15:54:57
+
+| Date | Task ID | Description |
+|------|---------|-------------|
+| 2026-02-06 | 9.1.1 | - [x] **9.1.1** Create `../website/scripts/convert-logo-to-monochrome.sh` - **Goal:** Automate conversion of arbitrary colored logos to clean monochrome SVGs - **AC:** - Script accepts input image (PNG/JPG/SVG) and outputs monochrome SVG - Uses ImageMagick + potrace (or equivalent) to: (1) convert to grayscale, (2) threshold to single color, (3) trace to SVG if needed - Normalizes padding/aspect ratio so logos are consistent - Usage: `bash convert-logo-to-monochrome.sh input.png output.svg --color "#E5E7EB"` - Script includes error handling (missing dependencies, invalid input) - Documents dependencies in script header comments (at minimum: `imagemagick` / `convert`, and `potrace` for raster-to-SVG tracing) - Script checks dependencies (`convert`, `potrace`) and prints a clear error message if missing - **If Blocked:** Check `skills/domains/languages/shell/validation-patterns.md` for dependency checking patterns - **Estimated Time:** [M] 15-20 minutes |
+
+### Archived on 2026-02-06 16:05:27
+
+| Date | Task ID | Description |
+|------|---------|-------------|
+| 2026-02-06 | 9.2.1 | - [x] **9.2.1** Create 5 realistic brand-style logos (colored): 01–05 - **Goal:** Replace overly-simple logos with realistic designs that test the monochrome conversion + emboss system - **AC:** - Create 5 **unique, non-repeating** logos under: - `../website/public/logos/_colored/logo-01-color.svg` - `../website/public/logos/_colored/logo-02-color.svg` - `../website/public/logos/_colored/logo-03-color.svg` - `../website/public/logos/_colored/logo-04-color.svg` - `../website/public/logos/_colored/logo-05-color.svg` - **Logo format:** icon/symbol only, or self-contained wordmark/combination mark (no separate text label placed next to/below) - Each logo uses 2–4 colors with realistic combinations (mix of flat + gradients OK) - All 5 are visually distinct (shape/layout/color palette) - **If Blocked:** Use placeholder generator tools or adapt open-source logo templates (ensure license allows modification) - **Estimated Time:** [M] 15-20 minutes |

@@ -1,88 +1,106 @@
-# Spec Change Request - AC.rules Path Correction
+# Spec Change Request - Ralph loop workspace root auto-detection (monorepo support)
 
 ## Problem
 
-The `workers/ralph/rules/AC.rules` file contains incorrect relative paths that point to the wrong directory level.
+When running Ralph from a monorepo that contains multiple top-level projects (e.g., `brain/` and `website/`), Ralph currently sets its workspace root (`ROOT`) to the **Brain directory** by default:
 
-**Current paths in AC.rules:**
+- Script location: `brain/workers/ralph/loop.sh`
+- Current default root derivation: `brain/workers/ralph -> brain`
 
-- `../../src` → resolves to `/home/grafe/code/src` (WRONG)
-- `../../public` → resolves to `/home/grafe/code/public` (WRONG)
-- `../../.gitignore` → resolves to `/home/grafe/code/.gitignore` (WRONG)
-- `../../package.json` → resolves to `/home/grafe/code/package.json` (WRONG)
+Ralph then runs `acli rovodev run` from within `brain/`.
 
-**Actual project structure:**
+**Result:** RovoDev’s workspace boundary is limited to the `brain/` directory, so any task that references `../website/...` fails with errors like:
 
-- Repository root: `/home/grafe/code/deene-social/`
-- Brain location: `/home/grafe/code/deene-social/brain/`
-- Ralph location: `/home/grafe/code/deene-social/brain/workers/ralph/`
-- Website files: `/home/grafe/code/deene-social/website/src`, `/home/grafe/code/deene-social/website/public`, etc.
+- “cannot create files outside workspace”
 
-**Required paths from `workers/ralph/`:**
+This blocks tasks that legitimately need to write to sibling folders (e.g., `website/`).
 
-- `../../../.gitignore` → `/home/grafe/code/deene-social/.gitignore` (EXISTS)
-- `../../../website/src` → `/home/grafe/code/deene-social/website/src` (EXISTS)
-- `../../../website/public` → `/home/grafe/code/deene-social/website/public` (EXISTS)
-- `../../../website/package.json` → `/home/grafe/code/deene-social/website/package.json` (EXISTS)
+## Desired Behavior
 
-## Affected Rules
+When `loop.sh` is executed inside a repo root that contains `brain/` and other sibling project directories, Ralph should:
 
-1. **Structure.Dirs.1** - src/ directory check
-2. **Structure.Dirs.2** - public/ directory check
-3. **Structure.Gitignore.1** - .gitignore check
-4. **Syntax.JSON.1** - package.json validation
+1. Default to using the **repo root** as `ROOT` (workspace boundary = whole repo), not just the `brain/` directory.
+2. Continue to support explicit override via `RALPH_PROJECT_ROOT`.
+3. Remain backward-compatible for repos where `brain/` *is* the repo root (i.e., no monorepo).
 
-## Requested Changes
+## Proposed Changes (workers/ralph/loop.sh)
 
-Update `workers/ralph/rules/AC.rules`:
+### A) Add monorepo auto-detection for ROOT
 
-```ini
-[Structure.Dirs.1]
-mode=auto
-gate=block
-desc="src/ directory exists at project root"
-cmd="test -d ../../../website/src && echo yes"
-expect_stdout=yes
+Current behavior (simplified):
 
-[Structure.Dirs.2]
-mode=auto
-gate=block
-desc="public/ directory exists"
-cmd="test -d ../../../website/public && echo yes"
-expect_stdout=yes
+- If `RALPH_PROJECT_ROOT` set: use it.
+- Else: set `ROOT` to `brain/`.
 
-[Structure.Gitignore.1]
-mode=auto
-gate=block
-desc=".gitignore exists"
-cmd="test -f ../../../.gitignore && echo yes"
-expect_stdout=yes
+**Change:** If `RALPH_PROJECT_ROOT` is not set, compute both:
 
-[Syntax.JSON.1]
-mode=auto
-gate=block
-desc="package.json is valid JSON"
-cmd="jq '.' ../../../website/package.json >/dev/null 2>&1 && echo valid"
-expect_stdout=valid
-```
+- `BRAIN_ROOT` = current logic (`brain/`)
+- `CANDIDATE_REPO_ROOT` = parent of `BRAIN_ROOT`
 
-## Verification
+Then choose `ROOT` as:
 
-After the change, these commands from `workers/ralph/` should succeed:
+- If `CANDIDATE_REPO_ROOT` contains `brain/` **and** at least one sibling “work” directory expected by this repo (e.g., `website/`), treat it as monorepo and set `ROOT=CANDIDATE_REPO_ROOT`.
+- Else, keep existing behavior (`ROOT=BRAIN_ROOT`).
 
-```bash
-test -d ../../../website/src && echo yes          # yes
-test -d ../../../website/public && echo yes       # yes
-test -f ../../../.gitignore && echo yes           # yes
-jq '.' ../../../website/package.json >/dev/null && echo valid  # valid
-```
+Concrete heuristic for this repo:
 
-## Impact
+- If `test -d "${CANDIDATE_REPO_ROOT}/brain"` AND `test -d "${CANDIDATE_REPO_ROOT}/website"`, then `ROOT="${CANDIDATE_REPO_ROOT}"`.
 
-- Unblocks Ralph loop execution
-- Fixes 4 failing AC rules
-- No functional changes to validation logic, only path corrections
+### B) Keep paths to Ralph worker folder correct
 
-## Priority
+When `ROOT` becomes the repo root, `RALPH` should be:
 
-**CRITICAL** - Ralph cannot proceed with any tasks until these AC failures are resolved.
+- `RALPH="$ROOT/brain/workers/ralph"`
+
+When `ROOT` is the brain root, `RALPH` should remain:
+
+- `RALPH="$ROOT/workers/ralph"`
+
+### C) Print effective workspace root early
+
+Add a debug line early in startup:
+
+- `echo "Workspace ROOT=$ROOT"`
+
+This makes it immediately obvious whether the workspace boundary is correct.
+
+## Acceptance Criteria
+
+- Running from monorepo root:
+
+  ```bash
+  bash brain/workers/ralph/loop.sh --iterations 1
+  ```
+
+  - `ROOT` resolves to the monorepo root (the folder that contains both `brain/` and `website/`).
+  - RovoDev can create/edit files under `website/`.
+
+- Running from inside brain-only repo:
+
+  ```bash
+  bash workers/ralph/loop.sh --iterations 1
+  ```
+
+  - `ROOT` resolves to the brain repo root as before.
+
+- `RALPH_PROJECT_ROOT` override still works:
+
+  ```bash
+  RALPH_PROJECT_ROOT="/path/to/repo-root" bash brain/workers/ralph/loop.sh --iterations 1
+  ```
+
+## Why this change matters
+
+This repo’s plan intentionally references `../website/...` from within `brain/`. Without widening the workspace boundary, Ralph is structurally unable to perform planned tasks.
+
+## Template Propagation
+
+This behavior should be updated in the upstream Ralph template so future projects don’t inherit the same limitation:
+
+- `brain_upstream/templates/ralph/loop.sh`
+
+Also consider updating any README/docs that instruct how to run Ralph in monorepos:
+
+- `workers/ralph/RALPH.md`
+- `workers/ralph/README.md`
+

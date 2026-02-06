@@ -49,21 +49,6 @@ This plan transforms the Deene Social Presence marketing site into a premium bra
 
 ### 9.2: Generate realistic placeholder logos
 
-- [ ] **9.2.1** Create 5 realistic brand-style logos (colored): 01–05
-  - **Goal:** Replace overly-simple logos with realistic designs that test the monochrome conversion + emboss system
-  - **AC:**
-    - Create 5 **unique, non-repeating** logos under:
-      - `../website/public/logos/_colored/logo-01-color.svg`
-      - `../website/public/logos/_colored/logo-02-color.svg`
-      - `../website/public/logos/_colored/logo-03-color.svg`
-      - `../website/public/logos/_colored/logo-04-color.svg`
-      - `../website/public/logos/_colored/logo-05-color.svg`
-    - **Logo format:** icon/symbol only, or self-contained wordmark/combination mark (no separate text label placed next to/below)
-    - Each logo uses 2–4 colors with realistic combinations (mix of flat + gradients OK)
-    - All 5 are visually distinct (shape/layout/color palette)
-  - **If Blocked:** Use placeholder generator tools or adapt open-source logo templates (ensure license allows modification)
-  - **Estimated Time:** [M] 15-20 minutes
-
 - [ ] **9.2.2** Create 5 realistic brand-style logos (colored): 06–10
   - **Goal:** Continue building the realistic colored logo set in batches (keeps iteration atomic)
   - **AC:**

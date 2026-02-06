@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <defs>
+    <linearGradient id="grad3" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#4facfe;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00f2fe;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Finance/consulting logo with overlapping triangles -->
+  <polygon points="60,25 90,75 30,75" fill="url(#grad3)"/>
+  <polygon points="60,45 85,85 35,85" fill="#0ea5e9" opacity="0.7"/>
+  <rect x="52" y="70" width="16" height="25" fill="#ffffff"/>
+</svg>
