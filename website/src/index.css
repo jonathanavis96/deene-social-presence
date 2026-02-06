@@ -245,3 +245,64 @@
     animation: none;
   }
 }
+
+/* Scroll pulse animation - travels down the line, total cycle 15s */
+@keyframes scroll-pulse-line {
+  /* Start - pulse appears at top (0s) */
+  0% {
+    top: 0;
+    opacity: 0;
+  }
+  1.33% { /* 0.2s - fade in */
+    top: 0;
+    opacity: 1;
+  }
+  /* Travel down line - bottom of pulse touches chevron at ~7.8s */
+  51.33% { /* 7.7s - bottom edge of 40px pulse starts touching chevron */
+    top: calc(100% - 20px);
+    opacity: 1;
+  }
+  /* Center of pulse reaches bottom at 8s */
+  53.33% { /* 8s - pulse center at 100% */
+    top: 100%;
+    opacity: 1;
+  }
+  /* Top of pulse disappears (pulse fully absorbed into chevron) at 8.5s */
+  56.67% { /* 8.5s - pulse top edge passes into chevron */
+    top: calc(100% + 20px);
+    opacity: 0;
+  }
+  /* Stay hidden while chevron is dark */
+  100% {
+    top: calc(100% + 20px);
+    opacity: 0;
+  }
+}
+
+/* Scroll pulse on chevron - fills as pulse passes through, holds 4s, then fades */
+@keyframes scroll-pulse-chevron {
+  /* Pulse traveling down line - don't darken yet */
+  0%, 51.33% { /* Until bottom of pulse touches chevron at 7.7s */
+    opacity: 0;
+  }
+  /* Bottom of pulse touches - start darkening (7.7s to 8.5s gradient fill) */
+  53.33% { /* 8s - halfway filled */
+    opacity: 0.5;
+  }
+  /* Top of pulse disappears - chevron 100% darkened */
+  56.67% { /* 8.5s - chevron fully darkened */
+    opacity: 1;
+  }
+  /* Hold dark for 4 seconds (8.5s to 12.5s) */
+  83.33% { /* 12.5s */
+    opacity: 1;
+  }
+  /* Fade back to normal (12.5s to 13.5s = 1s fade) */
+  90% { /* 13.5s */
+    opacity: 0;
+  }
+  /* Pause before restart (13.5s to 15s) */
+  100% {
+    opacity: 0;
+  }
+}
