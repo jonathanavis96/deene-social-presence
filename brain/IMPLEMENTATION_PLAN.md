@@ -76,9 +76,25 @@
 
 ---
 
+## Phase 0-Lint: Markdown Lint Fixes (continued)
+
+### MD036 - Emphasis Used Instead of Heading
+
+- [ ] **0.2** Fix MD036 in IMPLEMENTATION_PLAN.md
+  - **File:** `IMPLEMENTATION_PLAN.md:81`
+  - **Issue:** Italic text "*Future phases to be added as project requirements emerge*" used instead of proper heading
+  - **Fix:** Convert to proper heading or regular text
+  - **Steps:**
+    1. Change italic emphasis to regular paragraph text
+    2. Validate: `markdownlint IMPLEMENTATION_PLAN.md` passes with no MD036 errors
+  - **AC:** `markdownlint IMPLEMENTATION_PLAN.md` shows no MD036 errors
+  - **Priority:** Low
+
+---
+
 ## Phase 2-Future: Feature Development
 
-*Future phases to be added as project requirements emerge*
+Future phases to be added as project requirements emerge.
 
 ---
 

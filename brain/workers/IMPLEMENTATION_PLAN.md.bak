@@ -1,6 +1,6 @@
 # Implementation Plan — Deene Social Presence
 
-Last Updated: 2026-01-30 14:05:00
+Last Updated: 2026-02-06 12:01:18
 
 ## Execution rules (Ralph)
 
@@ -10,249 +10,286 @@ Last Updated: 2026-01-30 14:05:00
   - **Goal** (why)
   - **AC** (acceptance criteria; how we know it’s done)
   - **If Blocked** (what to do if dependencies are missing)
+- **Quality reference:** Before implementing any task, check `/brain/skills/` for relevant patterns and best practices:
+  - **Frontend work:** See `/brain/skills/domains/frontend/` (React patterns, accessibility, component architecture)
+  - **Code quality:** See `/brain/skills/domains/code-quality/` (testing, code hygiene, markdown patterns)
+  - **Shell scripts:** See `/brain/skills/domains/languages/shell/` (validation patterns, common pitfalls)
+  - **General patterns:** See `/brain/skills/playbooks/` for task-specific guidance
+  - **Specific guides:**
+    - `brain/skills/domains/frontend/react-patterns.md`
+    - `brain/skills/domains/code-quality/code-review-patterns.md`
+    - `brain/skills/domains/code-quality/code-hygiene.md`
 
-## Project reality (source of truth)
+## Context / Why (source of truth)
 
-- This repo is a **static marketing site** for Deene Social Presence.
-- **Stack:** React + TypeScript + Vite + Tailwind + shadcn-ui.
-- **Deployment:** GitHub Pages under the base path `/deene-social-presence/`.
-  - `vite.config.ts` sets `base: "/deene-social-presence/"`.
-  - `src/App.tsx` routes `"/deene-social-presence"` to `<Index />`.
-- **Site IA:** Single-page sections:
-  - Hero (with fixed/locked header behavior)
-  - About
-  - Services
-  - Clients
-  - Contact (Formspree)
-  - Footer
+We want to de-contaminate the deployable website from the repo’s agent/ops scaffolding (`cortex/`, `workers/`, `brain_upstream/`, etc.). The website should be fully self-contained under `website/`.
 
-## Mandatory references
+**Note:** Phases 0–4 completed the repo cleanup. **Phase 5+ is post-cleanup content + UX updates** for the live marketing site.
 
-Repo files:
+**User decisions:**
 
-- `vite.config.ts`
-- `src/App.tsx`
-- `src/pages/Index.tsx`
-- `src/pages/NotFound.tsx`
-- `src/components/Hero.tsx`
-- `src/components/About.tsx`
-- `src/components/Services.tsx`
-- `src/components/ClientLogos.tsx`
-- `src/components/Contact.tsx`
-- `README.md`
-- `docs/BRAIN_SETUP.md`
-- `docs/SETUP_COMPLETE.md`
+- Dev/build commands will be run from inside `website/` (no need for root-level delegating scripts).
+- Keep a small root `README.md` explaining repo layout, plus a `website/README.md` for site setup.
+- Move site-only config files into `website/` so the site is self-contained.
 
-Brain skills (open only if relevant to the current item):
+**Non-goals:**
 
-- Frontend:
-  - `brain/skills/domains/frontend/react-patterns.md`
-  - `brain/skills/domains/frontend/accessibility-patterns.md`
-- Websites:
-  - `brain/skills/domains/websites/architecture/section-composer.md`
-  - `brain/skills/domains/websites/design/spacing-layout.md`
-  - `brain/skills/domains/marketing/seo/seo-audit.md`
+- Do not refactor UI/UX, routing strategy, or features unless required to keep build/deploy working.
 
 ---
 
-## Phase 0-Warn: Verifier Warnings
+## Phase 0-Links: Broken Internal Links
 
-- [x] **0-W.1** Fix MD024 in brain_upstream/cortex/PLAN_DONE.md
-  - **Goal:** Resolve duplicate heading "Archived on 2026-01-26".
-  - **AC:** `markdownlint brain_upstream/cortex/PLAN_DONE.md` passes (no MD024 errors)
-  - **If Blocked:** Rename one instance to include time or add distinguishing context.
+> **Priority:** Fix before continuing with Phase 5+ feature work.
 
-- [ ] **0-W.2** Fix MD056 table column count errors in brain_upstream/TEMPLATE_DRIFT_REPORT.md
-  - **Goal:** Correct table structure inconsistencies (lines 61, 77, 87).
-  - **AC:** `markdownlint brain_upstream/TEMPLATE_DRIFT_REPORT.md` passes (no MD056 errors)
-  - **If Blocked:** Add missing pipe separators or merge cells to match expected column count.
+- [ ] **0.L.1** Copy missing markdown files from brain_upstream/ to local workspace
+  - **Missing Files:**
+    - `THOUGHTS.md` (root level)
+    - `CONTRIBUTING.md` (root level)
+    - `docs/BOOTSTRAPPING.md`
+    - `docs/events.md`
+    - `docs/CODERABBIT_ISSUES_TRACKER.md`
+  - **Work:** Copy files from `brain_upstream/` to corresponding paths in local workspace
+  - **AC:** All 5 files exist and `bash tools/validate_links.sh AGENTS.md README.md` shows fewer broken links
+  - **Estimated Time:** [S] 2-3 minutes
 
-- [ ] **0-W.3** Fix MD032/MD009/MD040 in brain_upstream/TEMPLATE_DRIFT_REPORT.md
-  - **Goal:** Add blank lines around lists, remove trailing spaces, add language to fenced code blocks.
-  - **AC:** `markdownlint brain_upstream/TEMPLATE_DRIFT_REPORT.md` passes (no MD032, MD009, MD040 errors)
-  - **If Blocked:** Follow markdownlint rules for list spacing and code block language identifiers.
+- [ ] **0.L.2** Create cortex/docs/ directory and copy RUNBOOK.md
+  - **Work:**
+    1. Create `cortex/docs/` directory
+    2. Copy `brain_upstream/cortex/docs/RUNBOOK.md` to `cortex/docs/RUNBOOK.md`
+  - **AC:** `ls cortex/docs/RUNBOOK.md` succeeds
+  - **Estimated Time:** [S] 1 minute
 
-- [ ] **0-W.4** Fix MD056 table column count errors in brain_upstream/workers/ralph/THUNK.md
-  - **Goal:** Correct table structure inconsistencies (lines 829, 839, 841-848).
-  - **AC:** `markdownlint brain_upstream/workers/ralph/THUNK.md` passes (no MD056 errors)
-  - **If Blocked:** Adjust pipe separators to match expected 5-column format.
+- [ ] **0.L.3** Copy tools documentation from brain_upstream/
+  - **Missing Files:**
+    - `tools/gap_radar/README.md`
+    - `tools/rollflow_analyze/README.md`
+  - **Work:** Copy both README files from `brain_upstream/tools/` to corresponding local paths
+  - **AC:** Both files exist and `bash tools/validate_links.sh docs/TOOLS.md docs/MARKER_SCHEMA.md` passes
+  - **Estimated Time:** [S] 1-2 minutes
 
-- [ ] **0-W.5** Fix MD040/MD032/MD022/MD031 in docs/BRAIN_SETUP.md
-  - **Goal:** Add language specs to code blocks, add blank lines around lists/headings/fences.
-  - **AC:** `markdownlint docs/BRAIN_SETUP.md` passes (no MD040, MD032, MD022, MD031 errors)
-  - **If Blocked:** Add `bash` language identifier and proper spacing per markdownlint rules.
+- [ ] **0.L.4** Fix broken links in AGENTS.md and README.md
+  - **Affected Files:**
+    - `AGENTS.md` (2 broken links to THOUGHTS.md and docs/BOOTSTRAPPING.md)
+    - `README.md` (6 broken links to CONTRIBUTING.md, THOUGHTS.md, docs/BOOTSTRAPPING.md, cortex/docs/RUNBOOK.md)
+  - **Work:** Verify all links now resolve after files copied in 0.L.1-0.L.3
+  - **AC:** `bash tools/validate_links.sh AGENTS.md README.md` passes with no broken link errors
+  - **Estimated Time:** [S] 1 minute (verification only)
+  - **If Blocked:** Requires tasks 0.L.1, 0.L.2, 0.L.3 completed first
 
-- [ ] **0-W.6** Fix MD040 in NEURONS.md
-  - **Goal:** Add language specification to fenced code block at line 36.
-  - **AC:** `markdownlint NEURONS.md` passes (no MD040 errors)
-  - **If Blocked:** Add appropriate language identifier (likely `text` or `plaintext`) to the code fence.
+- [ ] **0.L.5** Fix broken links in docs/ markdown files
+  - **Affected Files:**
+    - `docs/QUALITY_GATES.md` (1 link to CODERABBIT_ISSUES_TRACKER.md)
+    - `docs/TOOLS.md` (3 links to events.md, gap_radar/README.md, rollflow_analyze/README.md)
+    - `docs/MARKER_SCHEMA.md` (2 links to events.md, rollflow_analyze/README.md)
+  - **Work:** Verify all links now resolve after files copied in 0.L.1 and 0.L.3
+  - **AC:** `bash tools/validate_links.sh docs/QUALITY_GATES.md docs/TOOLS.md docs/MARKER_SCHEMA.md` passes
+  - **Estimated Time:** [S] 1 minute (verification only)
+  - **If Blocked:** Requires tasks 0.L.1, 0.L.3 completed first
 
-- [ ] **0-W.7** Fix MD040 in workers/ralph/NEURONS.md
-  - **Goal:** Add language specification to fenced code block at line 36.
-  - **AC:** `markdownlint workers/ralph/NEURONS.md` passes (no MD040 errors)
-  - **If Blocked:** Add appropriate language identifier (likely `text` or `plaintext`) to the code fence.
-
-## Phase 0: Align docs/contracts to the real project (HIGH PRIORITY)
-
-- [ ] **0.1** Replace this plan’s legacy content with Deene Social Presence plan (sanity check)
-  - **Goal:** Ensure the implementation plan matches the actual codebase and deployment model.
-  - **AC:**
-    - This file contains no references to RankSentinel, Next.js, FastAPI, Paystack, or unrelated docs.
-    - Phases/tasks reference real files in this repository.
-  - **If Blocked:** Ask the user to confirm the desired deployment target and base path.
-
-- [ ] **0.2** Update `workers/ralph/RALPH.md` to match this repo’s actual workflow
-  - **Goal:** Remove the conflicting “fix_plan.md/progress.txt” workflow and align to `workers/IMPLEMENTATION_PLAN.md` + `workers/ralph/THUNK.md`.
-  - **AC:**
-    - No references remain to `fix_plan.md` or `progress.txt`.
-    - PLAN/BUILD sections reference `workers/IMPLEMENTATION_PLAN.md` as the task source.
-    - Completion logging references `workers/ralph/THUNK.md`.
-  - **If Blocked:** Mirror the workflow described in `workers/ralph/PROMPT.md` except for commit policy (handled in next task).
-
-- [ ] **0.3** Update `workers/ralph/PROMPT.md` commit policy: do NOT commit in BUILD
-  - **Goal:** Enforce the desired workflow: BUILD implements changes, PLAN performs the commit.
-  - **AC:**
-    - BUILD completion instructions do not require committing.
-    - PLAN completion instructions clearly require committing after updating plan + THUNK.
-    - Any other files that contradict this are updated (or explicitly documented as legacy).
-  - **If Blocked:** Add a short “Commit Policy” section and mark other conflicting instructions as deprecated.
-
-- [ ] **0.4** Update `workers/ralph/VALIDATION_CRITERIA.md` and remove `[PROJECT_NAME]` placeholders
-  - **Goal:** Ensure quality gates are project-specific and runnable.
-  - **AC:**
-    - Title references “Deene Social Presence”.
-    - Includes the actual commands used in this repo:
-      - `npm run lint`
-      - `npm run build`
-      - `npm run preview` (optional)
-  - **If Blocked:** Keep criteria minimal (lint + build) and add a follow-up task for optional checks.
-
-- [ ] **0.5** Rewrite root `README.md` to remove Lovable boilerplate and document the actual site
-  - **Goal:** Make the repo understandable without Lovable references.
-  - **AC:** README includes:
-    - What the site is (Deene Social Presence landing page)
-    - Local dev commands (`npm i`, `npm run dev`, `npm run build`, `npm run preview`)
-    - GitHub Pages base path details (`/deene-social-presence/`)
-    - Contact form setup notes (Formspree)
-  - **If Blocked:** Provide a minimal README and add TODO bullets for missing details.
-
-- [ ] **0.6** Clarify “monitoring tools” in `docs/BRAIN_SETUP.md` / `docs/SETUP_COMPLETE.md`
-  - **Goal:** Keep monitors as human-only utilities and ensure agents don’t run interactive scripts.
-  - **AC:**
-    - Docs explicitly say: humans may run `current_ralph_tasks.sh` / `thunk_ralph_tasks.sh`, but Cortex/Ralph agents should avoid interactive scripts.
-    - Timestamp formatting is consistent where practical.
-  - **If Blocked:** Add a short note under “Monitoring Tools” stating the policy.
-
-- [ ] **0.7** Update `cortex/AGENTS.md` to be Deene Social Presence–specific (remove placeholders)
-  - **Goal:** Make Cortex guidance reflect this repo’s actual project and prevent outdated/template behaviors.
-  - **AC:**
-    - No `{{PROJECT_NAME}}`, `{{PROJECT_PURPOSE}}`, or `{{TECH_STACK}}` placeholders remain.
-    - Replace project-specific context with:
-      - Project: `Deene Social Presence`
-      - Purpose: static marketing site / landing page
-      - Tech stack: React + TypeScript + Vite + Tailwind + shadcn-ui + React Router
-    - Remove or rewrite any example tasks that refer to unrelated backends (e.g., FastAPI/JWT).
-  - **If Blocked:** Keep the file’s structure but replace placeholders and add a short “Project-Specific Context” section only.
-
-- [ ] **0.8** Update `cortex/CORTEX_SYSTEM_PROMPT.md` to be Deene Social Presence–specific + fix THUNK path typo
-  - **Goal:** Ensure Cortex prompt aligns with the repo, and remove known incorrect references.
-  - **AC:**
-    - No `{{PROJECT_NAME}}`, `{{PROJECT_PURPOSE}}`, or `{{TIMESTAMP}}` placeholders remain.
-    - Fix the incorrect THUNK path string:
-      - Replace `workers/ralph/workers/ralph/THUNK.md` with `workers/ralph/THUNK.md` wherever it appears.
-    - Ensure the “Project” metadata at the bottom is real:
-      - Project: `Deene Social Presence`
-      - Last updated: uses seconds (`YYYY-MM-DD HH:MM:SS`).
-  - **If Blocked:** At minimum, fix the THUNK path typo and replace placeholders in headings/identity sections.
-
-- [ ] **0.9** Update `cortex/GAP_CAPTURE.md` header and format to reference Deene Social Presence
-  - **Goal:** Make gap capture entries unambiguous for this project.
-  - **AC:**
-    - Header reads: `# Gap Capture - Deene Social Presence`
-    - The template “Project:” line uses `Deene Social Presence` (not `PROJECT_NAME`).
-    - Timestamp format guidance remains consistent with seconds standard where applicable.
-  - **If Blocked:** Only update the header + template “Project:” line.
-
-- [ ] **0.10** Update `cortex/IMPLEMENTATION_PLAN.md` so it is not a bootstrapped template
-  - **Goal:** Make Cortex’s view of the plan match the Deene Social mission (even if Ralph primarily uses `workers/IMPLEMENTATION_PLAN.md`).
-  - **AC:**
-    - No `{{PROJECT_NAME}}`, `{{PROJECT_PURPOSE}}`, or `{{TIMESTAMP}}` placeholders remain.
-    - Mission/purpose reflects the real site:
-      - single-page marketing site deployed on GitHub Pages under `/deene-social-presence/`.
-    - Remove or rewrite any tasks that reference unrelated infrastructure (e.g., “produce `.verify/latest.txt`”).
-    - Ensure any suggested tasks point to real files and real commands (`npm run build`, `npm run lint`).
-  - **If Blocked:** Minimal acceptable: replace placeholders + delete the fake bootstrap tasks section.
-
-- [ ] **0.11** Fix Ralph loop scripts that still assume the plan is at repo root (`IMPLEMENTATION_PLAN.md`)
-  - **Goal:** Eliminate the startup error: `Error: IMPLEMENTATION_PLAN.md not found at <repo>/IMPLEMENTATION_PLAN.md`.
-  - **Context:** This repo’s canonical plan is `workers/IMPLEMENTATION_PLAN.md`, but some Ralph infrastructure scripts still hard-code `$ROOT/IMPLEMENTATION_PLAN.md`.
-  - **AC:**
-    - `workers/ralph/cleanup_plan.sh` uses `PLAN_FILE="${REPO_ROOT}/workers/IMPLEMENTATION_PLAN.md"`.
-    - `workers/ralph/loop.sh` uses `workers/IMPLEMENTATION_PLAN.md` consistently for:
-      - plan cleanup pre-PLAN (`cleanup_plan.sh`)
-      - plan snapshot / drift detection
-      - “all tasks done” check
-      - scoped staging default plan path (should stage `workers/IMPLEMENTATION_PLAN.md`, not root)
-    - `workers/ralph/render_ac_status.sh` uses `PLAN_FILE="${SCRIPT_DIR}/../IMPLEMENTATION_PLAN.md"` (or otherwise correctly targets `workers/IMPLEMENTATION_PLAN.md`).
-    - Running `bash loop.sh --iterations 1 --plan-every 1` no longer prints a plan-not-found error.
-  - **If Blocked:** As a short-term workaround, create a root `IMPLEMENTATION_PLAN.md` that clearly redirects humans to `workers/IMPLEMENTATION_PLAN.md`, but still fix scripts in a follow-up.
+- [ ] **0.L.6** BATCH: Fix broken links in skills/ markdown files (12 links across 8 files)
+  - **Affected Files:**
+    - `skills/index.md` (1 link)
+    - `skills/domains/code-quality/code-review-patterns.md` (1 link)
+    - `skills/domains/code-quality/semantic-code-review.md` (1 link)
+    - `skills/domains/anti-patterns/documentation-anti-patterns.md` (2 links)
+    - `skills/domains/ralph/cache-debugging.md` (1 link)
+    - `skills/domains/ralph/thread-search-patterns.md` (2 links)
+    - `skills/domains/ralph/tool-wrapper-patterns.md` (1 link)
+    - `skills/projects/brain-example.md` (3 links)
+  - **Work:** Update relative paths to correct locations after all file copying is complete
+  - **Steps:**
+    1. Run `bash tools/validate_links.sh skills/` to get current broken link list
+    2. Fix each broken link with correct relative path
+    3. Re-run validation to confirm all fixed
+  - **AC:** `bash tools/validate_links.sh skills/` passes with no broken link errors
+  - **Estimated Time:** [M] 8-12 minutes
+  - **If Blocked:** Requires tasks 0.L.1-0.L.3 completed first to ensure target files exist
 
 ---
 
-## Phase 1: Website correctness for GitHub Pages (routing + assets)
+## Phase 5: Apply call checklist updates (site content + UX)
 
-- [ ] **1.1** Verify and fix 404 “Return to Home” behavior under GitHub Pages base path
-  - **Goal:** Ensure navigation works when hosted at `/deene-social-presence/`.
-  - **AC:**
-    - `src/pages/NotFound.tsx` returns the user to the real home route under base path.
-    - Works with `npm run build` + `npm run preview`.
-  - **If Blocked:** Replace hard-coded `/` with `import.meta.env.BASE_URL` and document why.
+> Source: `brain/cortex/examples/deene-social-call-checklist-filled-2026-01-21-08-03.html`
 
-- [ ] **1.2** Document (and keep consistent) the routing/base-path strategy
-  - **Goal:** Prevent regressions where the app works locally but breaks on GH Pages.
+- [ ] **5.1** Hero/top banner: remove tagline + keep minimal “Deene” block
+  - **Goal:** Match agreed direction: clean white hero with the Deene block only.
+  - **Skills:** `brain/skills/domains/frontend/react-patterns.md`, `brain/skills/domains/frontend/accessibility-patterns.md`
+  - **Work:**
+    - Remove the tagline line “Where authenticity leads, conversation follows.” (or equivalent) from the Hero/banner.
+    - Ensure layout still looks intentional on mobile + desktop after removal.
   - **AC:**
-    - README documents the relationship between `vite.config.ts` base and `src/App.tsx` routes.
-    - Any future route additions follow the documented rule.
-  - **If Blocked:** Add a short “Deployment notes” section to README only.
+    - [ ] Hero renders with no tagline/subheading text
+    - [ ] No obvious spacing regressions on mobile + desktop
+  - **If Blocked:** If unsure which string is canonical, search for the tagline text across `website/src/` and remove where used.
+
+- [ ] **5.2** Navigation: remove “Clients” from nav (keep one-page scroll)
+  - **Goal:** Match call decision: “Clients” removed from the navigation.
+  - **Skills:** `brain/skills/domains/frontend/react-patterns.md`, `brain/skills/domains/code-quality/code-consistency.md`
+  - **Work:**
+    - Update the nav buttons rendered inside `website/src/components/Hero.tsx` (logo-locked nav).
+  - **AC:**
+    - [ ] No “Clients” item in the main nav
+    - [ ] Remaining nav links still scroll correctly
+  - **If Blocked:** If section IDs are coupled to nav generation, remove only the nav item (not the section) unless specifically requested.
+
+- [ ] **5.3** Services section: rename heading to “Services” (remove “Intentionally Crafted”)
+  - **Goal:** Use literal naming per call notes.
+  - **Skills:** `brain/skills/domains/frontend/react-patterns.md`
+  - **AC:**
+    - [ ] Services section heading reads “Services”
+    - [ ] No remaining “Intentionally Crafted” heading text
+  - **If Blocked:** If there are multiple occurrences (e.g. on cards + section header), update all places that represent the section title.
+
+- [ ] **5.4** “Created” gallery: ensure it exists + group photos + update category labels
+  - **Goal:** Ensure the “Created” gallery exists, is grouped by brand/category, and uses the agreed label abbreviations.
+  - **Skills:** `brain/skills/domains/frontend/react-patterns.md`, `brain/skills/domains/frontend/accessibility-patterns.md`
+  - **Where:** `website/src/components/` (check for an existing gallery/portfolio component first; update it in-place if found).
+  - **Target labels:** Coffee x2; Restaurants; Accommodation; Wine bars; Products; Wine Estates
+  - **Work:**
+    - Confirm whether a “Created” gallery already exists.
+    - If it exists: update the category labels to match the target list.
+    - If it does not exist: add a minimal “Created” gallery section **only where images already appear in the design**, grouped by brand/category (no new interactions).
+  - **AC:**
+    - [ ] A “Created” gallery exists (either pre-existing or newly added as a minimal section)
+    - [ ] Photos are grouped by brand/category (clear grouping headings or label clusters)
+    - [ ] Category labels match the target list (spelling/case consistent)
+    - [ ] Gallery remains scroll-only (no new click-throughs) unless it already supports click-to-advance
+  - **If Blocked:** If the gallery is currently label-free, add a minimal caption under each image using the existing text style used for any other captions (or `text-xs` + muted color if no caption style exists).
+
+- [ ] **5.5** Client logos strip: add small “Trusted by” label (above logos)
+  - **Goal:** Add the “Trusted by” micro-label above the scrolling client logos strip.
+  - **Skills:** `brain/skills/domains/frontend/react-patterns.md`, `brain/skills/domains/frontend/accessibility-patterns.md`
+  - **AC:**
+    - [ ] “Trusted by” appears above the logos strip
+    - [ ] Label styling is subtle (doesn’t compete with hero headings)
+  - **If Blocked:** If there is no logos section heading currently, ensure this label is the only heading (per call notes “no heading” except “Trusted by”).
+
+- [ ] **5.6** Contact section: add WhatsApp button + show email address
+  - **Goal:** Provide two clear contact options: form (if present) + WhatsApp, and show email visibly.
+  - **Skills:** `brain/skills/domains/frontend/react-patterns.md`, `brain/skills/domains/frontend/accessibility-patterns.md`
+  - **Details:**
+    - WhatsApp: +27 78 881 9656
+    - Email: <alex@deenesocial.com>
+  - **AC:**
+    - [ ] WhatsApp button exists and opens `https://wa.me/27788819656` (or equivalent)
+    - [ ] WhatsApp number is also shown as plain text near the button
+    - [ ] Email address `alex@deenesocial.com` is visible in the contact section
+    - [ ] No console errors
+  - **If Blocked:** If WhatsApp link format is unclear, use `https://wa.me/27788819656` (international format, no spaces/dashes).
 
 ---
 
-## Phase 2: Contact form (Formspree) correctness and configuration
+## Phase 6: Asset preparation (mock logos, gallery photos, About copy)
 
-- [ ] **2.1** Make Contact form configurable (Formspree) without committing the form id
-  - **Goal:** Keep contact functional when configured, while ensuring the Formspree form id is not committed to git.
-  - **AC:**
-    - `src/components/Contact.tsx` uses `import.meta.env.VITE_FORMSPREE_FORM_ID` and posts to `https://formspree.io/f/<id>`.
-    - If `VITE_FORMSPREE_FORM_ID` is missing/empty:
-      - Submit is disabled, and
-      - A small note is displayed: “Contact form not configured yet”.
-    - If `VITE_FORMSPREE_FORM_ID` is present, submission works normally.
-    - `README.md` documents how to set `VITE_FORMSPREE_FORM_ID` locally (e.g., `.env.local`) and in deployment.
-  - **If Blocked:** Keep the placeholder URL but block submission unless the placeholder is replaced.
+> **Context:** We now have `brain/cortex/examples/brand-doc.pdf` with sample photos organized by category (coffee/FVC, coffee/KZ, wine/salt river, menu/wellington). Contact details confirmed: WhatsApp +27 78 881 9656, email <alex@deenesocial.com>. Timing: ASAP. Site hosted on GitHub Pages.
 
-- [ ] **2.2** Validate contact success/error UX and ensure no console errors
-  - **Goal:** Preserve a polished brand impression.
+- [ ] **6.1** Create first batch of mock client logos (logos 01-05)
+  - **Goal:** Start building logo density for the scrolling client logos strip.
+  - **Skills:** `brain/skills/domains/code-quality/code-consistency.md`, `brain/skills/domains/code-quality/code-hygiene.md`
+  - **Work:**
+    - Generate 5 minimal SVG logos (simple geometric shapes or text-based placeholders)
+    - Use a consistent style (monochrome, minimal, geometric)
+    - Save as `website/public/logos/logo-01.svg` through `logo-05.svg`
   - **AC:**
-    - Success message shown only on successful submission.
-    - Error message shown on failure.
-    - No React warnings or console errors in normal use.
-  - **If Blocked:** Keep existing UX and add a follow-up task for deeper validation.
+    - [ ] 5 SVG files exist in `website/public/logos/`
+    - [ ] Each logo is under 5KB and visually distinct
+    - [ ] Logos render cleanly in browser (no broken SVG syntax)
+  - **If Blocked:** If SVG generation is difficult, use simple text-based SVGs (company initials in a circle) or export from a tool like Figma/Canva.
+
+- [ ] **6.2** Create second batch of mock client logos (logos 06-10)
+  - **Goal:** Expand logo density for the scrolling client logos strip.
+  - **Skills:** `brain/skills/domains/code-quality/code-consistency.md`, `brain/skills/domains/code-quality/code-hygiene.md`
+  - **Work:**
+    - Generate 5 minimal SVG logos in the same style
+    - Save as `website/public/logos/logo-06.svg` through `logo-10.svg`
+  - **AC:**
+    - [ ] 5 SVG files exist in `website/public/logos/`
+    - [ ] Each logo is under 5KB and visually distinct
+    - [ ] Logos render cleanly in browser (no broken SVG syntax)
+  - **If Blocked:** If SVG generation is difficult, use simple text-based SVGs (company initials in a circle) or export from a tool like Figma/Canva.
+
+- [ ] **6.3** Create final batch of mock client logos (logos 11-15)
+  - **Goal:** Complete logo density for the scrolling client logos strip.
+  - **Skills:** `brain/skills/domains/code-quality/code-consistency.md`, `brain/skills/domains/code-quality/code-hygiene.md`
+  - **Work:**
+    - Generate 5 minimal SVG logos in the same style
+    - Save as `website/public/logos/logo-11.svg` through `logo-15.svg`
+  - **AC:**
+    - [ ] 5 SVG files exist in `website/public/logos/`
+    - [ ] Each logo is under 5KB and visually distinct
+    - [ ] Logos render cleanly in browser (no broken SVG syntax)
+  - **If Blocked:** If SVG generation is difficult, use simple text-based SVGs (company initials in a circle) or export from a tool like Figma/Canva.
+
+- [ ] **6.4** Extract gallery images from brand-doc.pdf (raw exports)
+  - **Goal:** Extract source images from the brand doc so we can populate the “Created” gallery.
+  - **Skills:** `brain/skills/domains/code-quality/code-hygiene.md`, `brain/skills/domains/languages/shell/validation-patterns.md`
+  - **Categories identified:** coffee/FVC, coffee/KZ, wine/salt river, menu/wellington
+  - **Work:**
+    - Extract images from `brain/cortex/examples/brand-doc.pdf` (pages 1-4)
+    - Save **raw exports** to `website/public/gallery/_raw/` with category-based naming (e.g., `coffee-fvc-01.jpg`, `wine-saltriver-01.jpg`)
+  - **AC:**
+    - [ ] At least 12 raw images extracted and saved in `website/public/gallery/_raw/`
+    - [ ] Filenames clearly indicate category
+  - **If Blocked:** If PDF extraction is difficult, use a reproducible CLI where possible (`pdfimages`) or do manual screenshot+crop. If you must do manual steps, keep filenames + categories consistent.
+
+- [ ] **6.5** Optimize and resize gallery images (final assets)
+  - **Goal:** Produce web-optimized gallery images that we actually ship.
+  - **Skills:** `brain/skills/domains/code-quality/code-hygiene.md`, `brain/skills/domains/languages/shell/validation-patterns.md`
+  - **Work:**
+    - Resize images to max width 1200px
+    - Compress to roughly 80% quality
+    - Save optimized images to `website/public/gallery/` (same naming, no `_raw`)
+    - **Keep only optimized images in the shipped path** (`website/public/gallery/`); raw exports remain in `_raw/`.
+  - **AC:**
+    - [ ] Each optimized image in `website/public/gallery/` is under 300KB
+    - [ ] Filenames clearly indicate category and match the raw set
+  - **If Blocked:** If an optimizer isn't available locally, use an online compressor, then re-check file sizes locally and commit only the optimized outputs.
+
+- [ ] **6.6** Draft first-person About copy (text only)
+  - **Goal:** Produce final-ish About copy content before editing components.
+  - **Skills:**
+    - `brain/skills/domains/marketing/content/copywriting.md`
+    - `brain/skills/domains/marketing/content/objection-handler.md`
+    - `brain/skills/domains/marketing/strategy/value-proposition.md`
+    - `brain/skills/domains/marketing/strategy/competitor-alternatives.md`
+  - **Tone:** Authentic, conversational, confident but not arrogant. Reflect Deene's brand personality (checklist note: “Where authenticity leads, conversation follows”).
+  - **Work:**
+    - Write 2-3 paragraphs (~150-200 words total)
+    - Focus on: who Deene is, what they do, why they do it, and what makes the approach unique
+    - Use "I" or "we" (first-person voice)
+    - Save the copy in a comment block at the top of `website/src/components/About.tsx` **without changing layout** yet
+  - **AC:**
+    - [ ] About copy text exists (first-person) and is 150-250 words
+    - [ ] Copy is stored in `website/src/components/About.tsx` as a temporary comment block (no layout changes)
+  - **If Blocked:** If unsure of brand positioning, use themes: authenticity, conversation, intentional craft. Keep it simple and human.
+
+- [ ] **6.7** Insert About copy into `About.tsx` (layout-safe)
+  - **Goal:** Replace placeholder About text with the approved draft, keeping layout stable.
+  - **Skills:** `brain/skills/domains/frontend/react-patterns.md`, `brain/skills/domains/frontend/accessibility-patterns.md`
+  - **Work:**
+    - Replace placeholder About copy with the drafted text from task 6.6
+    - Remove the temporary comment block when done
+  - **AC:**
+    - [ ] `website/src/components/About.tsx` renders the new copy
+    - [ ] No spacing/layout regressions on mobile + desktop
+    - [ ] No console errors
+  - **If Blocked:** If About component structure makes insertion risky, create a minimal `const aboutCopy = ...` string/array and render it without refactoring the component structure.
 
 ---
 
-## Phase 3: Small UX/content alignment and cleanup
+## Deployment & Timing Notes
 
-- [ ] **3.1** Decide what to do with `src/components/Navigation.tsx` (currently renders null)
-  - **Goal:** Avoid confusing dead code and document intent.
-  - **AC:**
-    - Either remove the component (and references) OR document why it intentionally returns null.
-    - Index page remains correct.
-  - **If Blocked:** Add a comment in `Navigation.tsx` explaining the design decision and add a follow-up task.
+- **Hosting:** Site is deployed on **GitHub Pages** at `https://{username}.github.io/deene-social-presence/`
+- **Timing:** **ASAP** (per user direction)
+- **Base path:** Configured in `website/vite.config.ts` as `/deene-social-presence/`
 
-- [ ] **3.2** Add a short “non-obvious behaviors” section to README
-  - **Goal:** Capture easy-to-break UI details.
-  - **AC:** README notes:
-    - Hero “logo lock” / fixed header behavior
-    - Base path + routing constraints
-    - Contact Formspree configuration
-  - **If Blocked:** Put these notes under a “Notes” heading.
+---
+
+## Still Waiting on Alex (final polish only)
+
+These items can be refined later after the site is live (not blockers for ASAP launch):
+
+1. **Final client logos** (real SVGs/PNGs to replace mocks)
+2. **Services wording refinements** (copy polish under service headings)
+3. **Brand styling references** (detailed typography/spacing rules if needed for final polish)
