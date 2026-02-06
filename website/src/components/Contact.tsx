@@ -153,10 +153,10 @@ const Contact = () => {
         <div className="w-px h-16 bg-border mx-auto my-16" aria-hidden="true" />
 
         {/* Contact Info */}
-        <div className="text-center space-y-6">
+        <div className="text-center space-y-8">
           <a
             href="mailto:alex@deenesocial.com"
-            className="font-sans text-muted-foreground hover:text-foreground transition-colors block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-sm"
+            className="font-sans text-lg md:text-xl text-muted-foreground hover:text-foreground transition-colors block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-sm"
           >
             alex@deenesocial.com
           </a>
@@ -165,20 +165,20 @@ const Contact = () => {
             href="https://wa.me/27788819656"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-sm px-1"
+            className="inline-flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-sm px-1"
           >
-            <MessageCircle className="w-5 h-5" />
-            <span className="font-sans text-sm">+27 78 881 9656</span>
+            <MessageCircle className="w-7 h-7" />
+            <span className="font-sans text-lg md:text-xl">+27 78 881 9656</span>
           </a>
 
           <a
             href="https://www.instagram.com/deenesocial/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-sm px-1"
+            className="inline-flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-sm px-1"
           >
-            <Instagram className="w-5 h-5" />
-            <span className="font-sans text-sm">@deenesocial</span>
+            <Instagram className="w-7 h-7" />
+            <span className="font-sans text-lg md:text-xl">@deenesocial</span>
           </a>
         </div>
       </div>
