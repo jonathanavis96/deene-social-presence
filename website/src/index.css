@@ -232,7 +232,7 @@
   animation: marquee 30s linear infinite;
 }
 
-.pause-animation:hover {
+.group:hover .group-hover\:pause-animation {
   animation-play-state: paused;
 }
 
