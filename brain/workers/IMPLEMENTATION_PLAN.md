@@ -38,34 +38,6 @@ We want to de-contaminate the deployable website from the repo’s agent/ops sca
 
 ---
 
-## Phase 0-Warn: Verifier Warnings (Markdown Lint)
-
-> **Priority:** Fix before continuing with Phase 5+ feature work.
-
-
-
-
-
-- [ ] **0.W.5** Fix MD041 (first line not H1) in README.md
-  - **Issue:** First line is `<div align="center">` instead of a heading
-  - **Fix:** Add `<!-- markdownlint-disable MD041 -->` at top of file (HTML div is intentional for centering)
-  - **AC:** `markdownlint README.md` passes (no MD041 errors)
-  - **Estimated Time:** [S] 1 minute
-
-- [ ] **0.W.6** Fix MD051 (invalid link fragment) in README.md
-  - **Issue:** Link to `[Contributing](#contributing)` at line 25, but no matching `## Contributing` section
-  - **Fix:** Either add `## Contributing` section or update link to point to CONTRIBUTING.md file
-  - **AC:** `markdownlint README.md` passes (no MD051 errors)
-  - **Estimated Time:** [S] 2-3 minutes
-
-- [ ] **0.W.7** BATCH: Fix MD036 (emphasis as heading) in README.md
-  - **Scope:** 3 occurrences at lines 85, 129, 164 (e.g., `**Time: ~2 minutes**`)
-  - **Fix:** Convert bold text to proper subheadings or plain text depending on context
-  - **AC:** `markdownlint README.md` passes (no MD036 errors)
-  - **Estimated Time:** [S] 3-4 minutes
-
----
-
 ## Phase 0-Links: Broken Internal Links
 
 > **Priority:** Fix before continuing with Phase 5+ feature work.

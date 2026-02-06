@@ -1,4 +1,4 @@
-<!-- markdownlint-disable-next-line MD033 -->
+<!-- markdownlint-disable MD041 MD033 -->
 <div align="center">
 
 # 🧠 Brain
@@ -23,7 +23,7 @@
 - [The Workers](#the-workers)
 - [Skills Library](#skills-library)
 - [Key Features](#key-features)
-- [Contributing](#contributing)
+- [Contributing](#how-to-contribute)
 
 ---
 
@@ -83,7 +83,7 @@ Cortex plans → Ralph builds → Brain improves → Your projects benefit.
 
 **Best for:** Starting a new project with Brain's templates and full AI development infrastructure.
 
-**Time: ~2 minutes**
+**Time:** ~2 minutes
 
 ```bash
 # 1. Clone brain
@@ -127,7 +127,7 @@ bash ralph/loop.sh --iterations 5
 
 **Best for:** Enhancing your AI coding assistant with proven patterns and best practices.
 
-**Time: ~30 seconds**
+**Time:** ~30 seconds
 
 ```bash
 # Clone brain to a known location
@@ -162,7 +162,7 @@ ls domains/  # shell, python, frontend, backend, infrastructure, etc.
 
 **Best for:** Contributing to Brain's development or understanding how it maintains itself.
 
-**Time: ~5 minutes setup**
+**Time:** ~5 minutes setup
 
 **Prerequisites:**
 

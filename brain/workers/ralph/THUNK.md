@@ -115,3 +115,6 @@ Started: 2026-01-30
 | 79.7 | Fix MD024 duplicate "Actions" headings in PROMPT.md | Made headings unique by adding context (Planning Mode vs Build Mode) | 2026-02-06 | workers/ralph/PROMPT.md | S |
 | 27 | 2026-02-06 | fix(docs) | Fixed MD033 (inline HTML) and MD025 (multiple H1) in workers/ralph/SKILL_TEMPLATE.md by replacing HTML-style placeholders with markdown formatting and converting second H1 to H2 | workers/ralph/SKILL_TEMPLATE.md | S |
 | 28 | 2026-02-06 | fix(docs) | Fixed MD033 (inline HTML) in README.md by adding markdownlint disable comments above two div tags used for centering | README.md | S |
+| 79.006 | 2026-02-06 | Fix MD041 in README.md | Added markdownlint-disable directive for MD041 (first line not H1) since HTML div for centering is intentional | README.md | S |
+| 157 | 2026-02-06 | fix(docs) | Fixed MD051 link fragment in README.md - updated Contributing link to match actual heading | README.md | S | ✓ |
+| 158 | 2026-02-06 | fix(docs) | Fixed MD036 errors in README.md - converted emphasis to proper format for Time fields | README.md | S | ✓ |

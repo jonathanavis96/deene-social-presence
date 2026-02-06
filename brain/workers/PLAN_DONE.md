@@ -106,3 +106,12 @@ Completed tasks archived from `workers/IMPLEMENTATION_PLAN.md`.
 | 2026-01-30 | 6.13 | - [x] **6.13** BATCH: Fix skills/playbooks/debug-ralph-stuck.md broken links |
 | 2026-01-30 | 6.14 | - [x] **6.14** BATCH: Fix skills/playbooks/decompose-large-tasks.md broken links |
 | 2026-01-30 | 6.15 | - [x] **6.15** BATCH: Fix skills/playbooks/fix-markdown-lint.md broken links |
+
+### Archived on 2026-02-06 12:51:14
+
+| Date | Task ID | Description |
+|------|---------|-------------|
+| 2026-02-06 | 0.W.1 | - [x] **0.W.1** BATCH: Fix MD036 (emphasis as heading) in workers/ralph/PROMPT.md |
+| 2026-02-06 | 0.W.2 | - [x] **0.W.2** Fix MD024 (duplicate heading) in workers/ralph/PROMPT.md |
+| 2026-02-06 | 0.W.3 | - [x] **0.W.3** BATCH: Fix MD033 (inline HTML) + MD025 (multiple H1) in workers/ralph/SKILL_TEMPLATE.md |
+| 2026-02-06 | 0.W.4 | - [x] **0.W.4** BATCH: Fix MD033 (inline HTML) in README.md |
