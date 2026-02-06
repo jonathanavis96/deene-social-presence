@@ -172,16 +172,20 @@ const Hero = () => {
 
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 opacity-0 animate-fade-in animation-delay-800 flex flex-col items-center gap-0" aria-hidden="true">
-        <div className="relative w-px h-20 md:h-24 bg-muted-foreground/30 mb-0">
-          {/* Traveling pulse/wave effect on the line */}
-          <div className="absolute inset-0 w-full bg-gradient-to-b from-transparent via-muted-foreground/50 to-transparent animate-scroll-line-pulse" />
+      {/* Scroll Indicator - One continuous line with arrow */}
+      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 opacity-0 animate-fade-in animation-delay-800 flex flex-col items-center" aria-hidden="true">
+        <div className="relative flex flex-col items-center">
+          {/* Single continuous line extending down to the arrow */}
+          <div className="relative w-px h-24 md:h-28 bg-muted-foreground/30">
+            {/* Traveling pulse/wave effect on the line */}
+            <div className="absolute inset-0 w-full bg-gradient-to-b from-transparent via-muted-foreground/50 to-transparent animate-scroll-line-pulse" />
+          </div>
+          {/* Arrow at the end, positioned to continue the line */}
+          <ChevronDown
+            className="w-4 h-4 text-muted-foreground/60 animate-scroll-pulse -mt-2"
+            strokeWidth={1.5}
+          />
         </div>
-        <ChevronDown
-          className="w-4 h-4 text-muted-foreground/60 animate-scroll-pulse -mt-px"
-          strokeWidth={1.5}
-        />
       </div>
     </section>
   );
