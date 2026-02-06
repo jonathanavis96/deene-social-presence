@@ -255,7 +255,7 @@ At the end of every iteration (PLAN/BUILD), immediately before the marker line (
 
 ### Context Gathering (Cheap First - NO Large File Opens)
 
-**Step 1: Use grep/head to understand state (DO NOT open full files)**
+#### Step 1: Use grep/head to understand state (DO NOT open full files)
 
 ```bash
 # What tasks exist?
@@ -265,14 +265,14 @@ grep -n "^## Phase\|^- \[ \]" workers/IMPLEMENTATION_PLAN.md | head -40
 ls skills/domains/*/
 ```
 
-**Step 2: Only slice specific sections if needed**
+#### Step 2: Only slice specific sections if needed
 
 ```bash
 # Example: need Phase 21 details (found at line 518)
 sed -n '515,580p' workers/IMPLEMENTATION_PLAN.md
 ```
 
-**Step 3: Search for existing tools before proposing new ones**
+#### Step 3: Search for existing tools before proposing new ones
 
 ```bash
 ls bin/ tools/*.py tools/*.sh 2>/dev/null | head -20
@@ -342,7 +342,7 @@ git add -A
 # Commit message will be: "fix(scope): resolve SC2162 across 8 shell scripts"
 ```
 
-### Actions
+### Actions (Planning Mode)
 
 1. Create/update workers/IMPLEMENTATION_PLAN.md:
    - **⚠️ CRITICAL:** ALL task sections MUST be "## Phase X:" format (e.g., "## Phase 0-Quick: Quick Wins", "## Phase 1: Maintenance")
@@ -397,14 +397,14 @@ Awaiting approval before adding to workers/IMPLEMENTATION_PLAN.md.
 
 ### Context Gathering (Cheap First - STRICT)
 
-**Step 1: Find your ONE task (mandatory first step)**
+#### Step 1: Find your ONE task (mandatory first step)
 
 ```bash
 # Find the FIRST unchecked task only
 grep -n "^- \[ \]" workers/IMPLEMENTATION_PLAN.md | head -1
 ```
 
-**Step 2: Slice only the task block you need (STRICT RULES)**
+#### Step 2: Slice only the task block you need (STRICT RULES)
 
 ```bash
 # RULES:
@@ -417,7 +417,7 @@ grep -n "^- \[ \]" workers/IMPLEMENTATION_PLAN.md | head -1
 sed -n '231,270p' workers/IMPLEMENTATION_PLAN.md
 ```
 
-**Step 3: Search before assuming things are missing**
+#### Step 3: Search before assuming things are missing
 
 ```bash
 # Check for existing tools/scripts
@@ -432,7 +432,7 @@ rg -l "keyword" tools/ skills/domains/ | head -10
 - `workers/IMPLEMENTATION_PLAN.md` (full) - always grep then slice
 - `workers/ralph/THUNK.md` - only `tail` when appending
 
-### Actions
+### Actions (Build Mode)
 
 1. **CHECK FOR VERIFIER WARNINGS FIRST:**
    - If `workers/IMPLEMENTATION_PLAN.md` has a "## Verifier Warnings" section with unchecked `- [ ]` tasks:

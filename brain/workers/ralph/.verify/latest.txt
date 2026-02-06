@@ -1,51 +1,39 @@
 Ralph Verifier Report
-Time: 2026-02-06 12:17:48
-Git:  6a4cf65
+Time: 2026-02-06 12:49:51
+Git:  8c56dff
 AC:   /home/grafe/code/deene-social/brain/workers/ralph/rules/AC.rules
 Approvals: /home/grafe/code/deene-social/brain/workers/ralph/rules/MANUAL_APPROVALS.rules
 ------------------------------------------------------------
-[FAIL] Structure.Dirs.1
+[PASS] Structure.Dirs.1
   desc: src/ directory exists at project root
   cmd:  test -d ../../src && echo yes
-  exit: 1
-  stdout: 
-  reasons:
-    - exit=1 expected=0
-    - stdout mismatch expected='yes' got=''
-[FAIL] Structure.Dirs.2
+  exit: 0
+  stdout: yes
+[PASS] Structure.Dirs.2
   desc: public/ directory exists
   cmd:  test -d ../../public && echo yes
-  exit: 1
-  stdout: 
-  reasons:
-    - exit=1 expected=0
-    - stdout mismatch expected='yes' got=''
+  exit: 0
+  stdout: yes
 [PASS] Structure.Dirs.3
   desc: docs/ directory exists
   cmd:  test -d ../../docs && echo yes
   exit: 0
   stdout: yes
-[FAIL] Structure.Gitignore.1
+[PASS] Structure.Gitignore.1
   desc: .gitignore exists
   cmd:  test -f ../../.gitignore && echo yes
-  exit: 1
-  stdout: 
-  reasons:
-    - exit=1 expected=0
-    - stdout mismatch expected='yes' got=''
+  exit: 0
+  stdout: yes
 [PASS] Syntax.Bash.1
   desc: All workers/ralph/*.sh scripts pass bash -n syntax check
   cmd:  bash -c 'for f in ./*.sh; do [ -f "$f" ] && bash -n "$f" || exit 1; done && echo pass'
   exit: 0
   stdout: pass
-[FAIL] Syntax.JSON.1
+[PASS] Syntax.JSON.1
   desc: package.json is valid JSON
   cmd:  jq '.' ../../package.json >/dev/null 2>&1 && echo valid
-  exit: 2
-  stdout: 
-  reasons:
-    - exit=2 expected=0
-    - stdout mismatch expected='valid' got=''
+  exit: 0
+  stdout: valid
 [PASS] Standards.Shebang.1
   desc: All shell scripts have proper shebang
   cmd:  bash -c 'for f in ./*.sh; do head -1 "$f" | grep -q "#!/usr/bin/env bash" || exit 1; done && echo pass'
@@ -72,14 +60,11 @@ Approvals: /home/grafe/code/deene-social/brain/workers/ralph/rules/MANUAL_APPROV
   cmd:  grep -rnE api_token[[:space:]]*=[[:space:]]* ../../src/ --include='*.ts' --include='*.tsx' --include='*.js' 2>/dev/null | wc -l | xargs
   exit: 0
   stdout: 0
-[FAIL] Docs.README.1
+[PASS] Docs.README.1
   desc: README.md exists
   cmd:  test -f ../../README.md && echo yes
-  exit: 1
-  stdout: 
-  reasons:
-    - exit=1 expected=0
-    - stdout mismatch expected='yes' got=''
+  exit: 0
+  stdout: yes
 [PASS] Docs.NEURONS.1
   desc: ralph/NEURONS.md exists
   cmd:  test -f NEURONS.md && echo yes
@@ -90,13 +75,11 @@ Approvals: /home/grafe/code/deene-social/brain/workers/ralph/rules/MANUAL_APPROV
   cmd:  test -f THOUGHTS.md && echo yes
   exit: 0
   stdout: yes
-[WARN] Protected.1 (auto check failed but warn gate)
+[PASS] Protected.1
   desc: loop.sh differs from baseline (allowed in projects)
   cmd:  sha256sum loop.sh | cut -d' ' -f1 | diff -q - .verify/loop.sha256 >/dev/null 2>&1 && echo match || echo mismatch
   exit: 0
-  stdout: mismatch
-  reasons:
-    - stdout mismatch expected='match' got='mismatch'
+  stdout: match
 [PASS] Protected.2
   desc: verifier.sh differs from baseline (allowed in projects)
   cmd:  sha256sum verifier.sh | cut -d' ' -f1 | diff -q - .verify/verifier.sha256 >/dev/null 2>&1 && echo match || echo mismatch
@@ -128,3 +111,16 @@ Approvals: /home/grafe/code/deene-social/brain/workers/ralph/rules/MANUAL_APPROV
   exit: 0
   stdout: NEURONS.md:12:81 error MD013/line-length Line length [Expected: 80; Actual: 139]
 NEURONS.md:76:81 error MD013/line-length Line length [Expected: 80; Actual: 102]
+[PASS] Lint.Markdownlint.THOUGHTS
+  desc: THOUGHTS.md passes markdownlint (if installed)
+  cmd:  bash -c 'command -v markdownlint &>/dev/null && markdownlint THOUGHTS.md 2>&1 | head -10 || echo "ok (markdownlint not installed)"'
+  exit: 0
+  stdout: 
+------------------------------------------------------------
+SUMMARY
+  PASS: 20
+  FAIL: 0
+  WARN: 2 (manual_warn=1)
+  SKIP: 0
+  Manual gate=block failures: 0
+  Hash guard: OK

@@ -111,3 +111,7 @@ Started: 2026-01-30
 | 111 | 2026-02-06 | 2.1 | Updated GitHub Pages workflow to build from website/ and upload website/dist | COMPLETE |
 | 112 | 2026-02-06 | 3.1 | Split docs: root README is repo-level, website/README.md for site setup | COMPLETE |
 | 113 | 2026-02-06 | 4.1 | Verified end-to-end: build passes, lint passes (7 warnings in shadcn-ui, expected) | COMPLETE |
+| 114 | 2026-02-06 | 0.W.1 | Fixed MD036 (emphasis as heading) in workers/ralph/PROMPT.md - converted 6 **Step X:** to #### Step X: | COMPLETE |
+| 79.7 | Fix MD024 duplicate "Actions" headings in PROMPT.md | Made headings unique by adding context (Planning Mode vs Build Mode) | 2026-02-06 | workers/ralph/PROMPT.md | S |
+| 27 | 2026-02-06 | fix(docs) | Fixed MD033 (inline HTML) and MD025 (multiple H1) in workers/ralph/SKILL_TEMPLATE.md by replacing HTML-style placeholders with markdown formatting and converting second H1 to H2 | workers/ralph/SKILL_TEMPLATE.md | S |
+| 28 | 2026-02-06 | fix(docs) | Fixed MD033 (inline HTML) in README.md by adding markdownlint disable comments above two div tags used for centering | README.md | S |

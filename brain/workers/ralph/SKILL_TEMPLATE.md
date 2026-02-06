@@ -10,7 +10,7 @@ Tables enable fast scanning without reading prose. Always include:
 
 ---
 
-# Skill: <skill-short-name>
+## Skill: [Your Skill Name]
 
 ## 1) Intent (1 sentence)
 
@@ -96,15 +96,15 @@ This skill is complete when these exist:
 
 | Concept | Description | Example |
 | --------- | ------------- | --------- |
-| `<key-concept-1>` | <what it means> | <brief example> |
-| `<key-concept-2>` | <what it means> | <brief example> |
+| `key-concept-1` | What it means | Brief example here |
+| `key-concept-2` | What it means | Brief example here |
 
 ### Common Mistakes
 
 | ❌ Don't | ✅ Do | Why |
 | ---------- | ------- | ----- |
-| <bad pattern> | <good pattern> | <brief explanation> |
-| <bad pattern> | <good pattern> | <brief explanation> |
+| Bad pattern example | Good pattern example | Brief explanation |
+| Bad pattern example | Good pattern example | Brief explanation |
 
 ## 10) Gotchas / Failure Modes
 
@@ -118,16 +118,18 @@ Common ways the agent fails here:
 ## 11) Minimal Example (repo-specific)
 
 **Context:**
-<describe the situation>
+
+Describe the situation here.
 
 **Steps taken:**
 
-1. <step 1>
+1. Step 1 description
 
-2. <step 2>
+2. Step 2 description
 
 **Result:**
-<what was produced>
+
+What was produced as a result.
 
 ---
 

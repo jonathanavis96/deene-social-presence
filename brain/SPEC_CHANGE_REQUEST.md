@@ -5,18 +5,21 @@
 The `workers/ralph/rules/AC.rules` file contains incorrect relative paths that point to the wrong directory level.
 
 **Current paths in AC.rules:**
+
 - `../../src` → resolves to `/home/grafe/code/src` (WRONG)
 - `../../public` → resolves to `/home/grafe/code/public` (WRONG)
 - `../../.gitignore` → resolves to `/home/grafe/code/.gitignore` (WRONG)
 - `../../package.json` → resolves to `/home/grafe/code/package.json` (WRONG)
 
 **Actual project structure:**
+
 - Repository root: `/home/grafe/code/deene-social/`
 - Brain location: `/home/grafe/code/deene-social/brain/`
 - Ralph location: `/home/grafe/code/deene-social/brain/workers/ralph/`
 - Website files: `/home/grafe/code/deene-social/website/src`, `/home/grafe/code/deene-social/website/public`, etc.
 
 **Required paths from `workers/ralph/`:**
+
 - `../../../.gitignore` → `/home/grafe/code/deene-social/.gitignore` (EXISTS)
 - `../../../website/src` → `/home/grafe/code/deene-social/website/src` (EXISTS)
 - `../../../website/public` → `/home/grafe/code/deene-social/website/public` (EXISTS)

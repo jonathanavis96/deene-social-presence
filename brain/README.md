@@ -1,3 +1,4 @@
+<!-- markdownlint-disable-next-line MD033 -->
 <div align="center">
 
 # 🧠 Brain
@@ -460,6 +461,7 @@ MIT
 
 ---
 
+<!-- markdownlint-disable-next-line MD033 -->
 <div align="center">
 
 **Get Started:** `bash setup.sh` then `bash workers/ralph/new-project.sh MY_PROJECT.md`
