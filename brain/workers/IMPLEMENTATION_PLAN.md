@@ -153,41 +153,75 @@ We want to de-contaminate the deployable website from the repo’s agent/ops sca
 
 ---
 
-## Phase 1: Move Vite app into `website/` (repo structure cleanup)
+## Phase 1: Repo structure cleanup (split into `website/` + `brain/`)
 
-- [ ] **1.1** Create `website/` and move the Vite app + configs into it
+> **Target layout:**
+>
+> - `website/` = the Vite/React app (run `npm` commands from here)
+> - `brain/` = all brain-related content (cortex/workers/skills/tools/docs/.verify/NEURONS)
+> - Keep `.github/` at repo root
+
+- [ ] **1.1** Pre-flight: get to a clean working tree before any `git mv`
+  - **Goal:** Avoid losing changes during large moves.
+  - **Work:**
+    - Run: `git status --short`
+    - If there are uncommitted changes, either commit them or `git stash -u`.
+  - **AC:** `git status --short` shows clean working tree
+  - **If Blocked:** If you must keep local-only changes, stash them and re-apply after the move.
+
+- [ ] **1.2** Create `website/` and move the Vite app + configs into it
   - **Goal:** Make the deployable site fully contained under `website/`.
-  - **Move these into `website/`** (git mv):
-    - `src/`
-    - `public/`
-    - `index.html`
-    - `vite.config.ts`
-    - `postcss.config.js`
-    - `tailwind.config.ts`
-    - `components.json`
-    - `tsconfig.json`, `tsconfig.app.json`, `tsconfig.node.json`
-    - `eslint.config.js`
-    - `.env.example`
-    - `package.json`
-    - `package-lock.json`
-    - `bun.lockb` (if present/used; keep in sync with chosen package manager)
-  - **Do NOT move**: `.github/`, `cortex/`, `workers/`, `brain/`, `brain_upstream/`, `skills/`, `tools/`, `.verify/`.
+  - **Work:**
+    - Create folder: `mkdir -p website`
+    - **Move these into `website/`** (use `git mv`):
+      - `src/`
+      - `public/`
+      - `index.html`
+      - `vite.config.ts`
+      - `postcss.config.js`
+      - `tailwind.config.ts`
+      - `components.json`
+      - `tsconfig.json`, `tsconfig.app.json`, `tsconfig.node.json`
+      - `eslint.config.js`
+      - `.env.example`
+      - `package.json`
+      - `package-lock.json`
+      - `bun.lockb`
   - **AC:**
     - [ ] Tree shows `website/src`, `website/public`, `website/vite.config.ts`, `website/package.json`
-    - [ ] Running `npm ci` inside `website/` succeeds
-    - [ ] Running `npm run build` inside `website/` produces `website/dist/`
-  - **If Blocked:** If `npm ci` fails due to lockfile mismatch, pick one package manager (npm preferred) and ensure lockfiles are consistent (remove unused lockfile only if necessary).
+    - [ ] `cd website && npm ci` succeeds
+    - [ ] `cd website && npm run build` produces `website/dist/`
+  - **If Blocked:** If `npm ci` fails due to lockfile mismatch, prefer npm and ensure `website/package-lock.json` matches `website/package.json`.
 
-- [ ] **1.2** Fix path assumptions caused by the move (Vite/TS/Tailwind/aliases)
-  - **Goal:** Ensure moved config files still point at the right `src/` and build inputs.
+- [ ] **1.3** Move brain-related content under `brain/`
+  - **Goal:** Make brain tooling/docs self-contained under `brain/`.
   - **Work:**
-    - Confirm `website/vite.config.ts` alias `@` still resolves to `website/src` (it should, because it uses `__dirname`).
-    - Confirm `website/tailwind.config.ts` content globs include `./src/**/*.{ts,tsx}` etc. relative to `website/`.
-    - Confirm TS configs’ `include`/`references` (if any) are correct relative to `website/`.
+    - Confirm `brain/` exists (it is currently empty)
+    - **Move these into `brain/`** (use `git mv`):
+      - `brain_upstream/` → `brain/brain_upstream/`
+      - `cortex/` → `brain/cortex/`
+      - `workers/` → `brain/workers/`
+      - `skills/` → `brain/skills/`
+      - `tools/` → `brain/tools/`
+      - `docs/` → `brain/docs/`
+      - `.verify/` → `brain/.verify/`
+      - `NEURONS.md` → `brain/NEURONS.md`
+  - **AC:**
+    - [ ] `brain/brain_upstream/` exists and contains the upstream content
+    - [ ] `brain/cortex/`, `brain/workers/`, `brain/skills/`, `brain/tools/`, `brain/docs/` exist
+    - [ ] No remaining top-level `brain_upstream/`, `cortex/`, `workers/`, `skills/`, `tools/`, `docs/`, `.verify/`, `NEURONS.md`
+  - **If Blocked:** If `brain/` has unexpected contents, pause and confirm what should be preserved.
+
+- [ ] **1.4** Fix path assumptions caused by the move (website configs + any root-relative paths)
+  - **Goal:** Ensure moved config files still point at the right inputs and tooling works when run from `website/`.
+  - **Work:**
+    - Confirm `website/vite.config.ts` alias `@` resolves to `website/src`.
+    - Confirm `website/tailwind.config.ts` content globs are correct relative to `website/`.
+    - Confirm TS configs still reference the right files relative to `website/`.
   - **AC:**
     - [ ] `cd website && npm run build` passes
     - [ ] `cd website && npm run lint` passes
-  - **If Blocked:** If ESLint config expects root paths, update it to use `import.meta.dirname` / relative globs, or adjust `eslint` invocation paths.
+  - **If Blocked:** If ESLint/TS expects repo-root paths, adjust config globs/paths to be relative to `website/`.
 
 ---
 
