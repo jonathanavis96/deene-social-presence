@@ -1,0 +1,8 @@
+# markdownlint configuration (repo root)
+#
+# Purpose: Keep linting focused on structural correctness rather than hard line wraps.
+# Disable MD013 (line-length) entirely.
+MD013: false
+
+# Disable MD060 (table column style). This rule is noisy for historical / generated reports.
+MD060: false

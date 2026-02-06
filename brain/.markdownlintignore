@@ -1,0 +1,10 @@
+# markdownlint ignore file (repo root)
+# Exclude vendored upstream + generated artifacts from linting.
+
+brain_upstream/
+skills/
+.verify/
+node_modules/
+dist/
+build/
+.next/
