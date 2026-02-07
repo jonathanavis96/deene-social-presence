@@ -180,8 +180,15 @@ const Hero = () => {
       </div>
 
       {/* Vertical line with downward chevron - outside header, scrolls naturally */}
-      <div className="flex flex-col items-center opacity-0 animate-fade-in animation-delay-400 relative" style={{ marginBottom: "30px" }} aria-hidden="true">
-        <div className="w-px bg-border/30 relative overflow-hidden" style={{ height: '280px' }}>
+      <div
+        className="flex flex-col items-center opacity-0 animate-fade-in animation-delay-400 relative mt-auto md:mt-0"
+        style={{
+          marginBottom: "30px",
+          marginTop: "auto",
+        }}
+        aria-hidden="true"
+      >
+        <div className="w-px bg-border/30 relative overflow-hidden h-[200px] md:h-[280px]">
           {/* Traveling dark pulse that widens the line */}
           <div 
             className="absolute left-1/2 -translate-x-1/2 bg-gradient-to-b from-transparent via-border to-transparent"
