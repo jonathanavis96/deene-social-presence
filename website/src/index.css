@@ -265,13 +265,8 @@
   }
 }
 
-/* Accessibility: Respect prefers-reduced-motion */
-@media (prefers-reduced-motion: reduce) {
-  .animate-marquee,
-  .animate-marquee-reverse {
-    animation: none;
-  }
-}
+/* Note: We intentionally do NOT disable the client logo marquee for prefers-reduced-motion.
+   If we want an accessibility-friendly version later, prefer slowing it down rather than turning it off. */
 
 /* Scroll pulse animation - travels down the line, total cycle 15s */
 @keyframes scroll-pulse-line {
