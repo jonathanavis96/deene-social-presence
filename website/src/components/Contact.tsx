@@ -12,7 +12,10 @@ const Contact = () => {
     "idle" | "submitting" | "success" | "error"
   >("idle");
 
-  const formspreeId = import.meta.env.VITE_FORMSPREE_FORM_ID;
+  // Production uses Formspree. Prefer configuration via env var, but fall back to
+  // the current production form ID so the deployed site works even if the variable
+  // is not set in GitHub Actions.
+  const formspreeId = import.meta.env.VITE_FORMSPREE_FORM_ID || "mpqjzrwb";
   const isFormConfigured = formspreeId && formspreeId !== "";
 
   const handleSubmit = async (e: React.FormEvent) => {
