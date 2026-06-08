@@ -14,6 +14,19 @@ const Footer = () => {
             © {new Date().getFullYear()} Deene Social. All rights reserved.
           </p>
         </div>
+
+        {/* Build credit */}
+        <p className="mt-6 text-center font-sans text-xs opacity-50">
+          Built and maintained by{" "}
+          <a
+            href="https://alldonesites.com"
+            target="_blank"
+            rel="noopener"
+            className="underline-offset-2 transition hover:opacity-100 hover:underline"
+          >
+            All Done Sites
+          </a>
+        </p>
       </div>
     </footer>
   );
