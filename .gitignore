@@ -28,3 +28,4 @@ website/dist-ssr
 *.sln
 *.sw?
 *.env.local
+*:Zone.Identifier
