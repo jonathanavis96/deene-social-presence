@@ -1,3 +1,5 @@
+import Reveal from "@/components/Reveal";
+
 const services = [
   {
     title: "Social Media Management",
@@ -34,17 +36,19 @@ const Services = () => {
     <section id="services" className="py-24 md:py-32 px-6 bg-card" aria-labelledby="services-heading">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-20 space-y-4">
-          <p className="text-spaced text-xs text-accent font-sans uppercase tracking-widest" aria-hidden="true">
-            What I Offer
-          </p>
-          <h2 id="services-heading" className="font-serif text-3xl md:text-4xl lg:text-5xl text-foreground">
-            Services
-          </h2>
-        </div>
+        <Reveal>
+          <div className="text-center mb-20 space-y-4">
+            <p className="text-spaced text-xs text-accent font-sans uppercase tracking-widest" aria-hidden="true">
+              What I Offer
+            </p>
+            <h2 id="services-heading" className="font-serif text-3xl md:text-4xl lg:text-5xl text-foreground">
+              Services
+            </h2>
+          </div>
+        </Reveal>
 
         {/* Services Grid */}
-        <div className="grid md:grid-cols-2 gap-px bg-border">
+        <Reveal delay={120} className="grid md:grid-cols-2 gap-px bg-border">
           {services.map((service, index) => {
             // A lone trailing card (odd count) spans both columns and centres its
             // content, so it sits balanced under the row above with no empty cell.
@@ -73,14 +77,14 @@ const Services = () => {
                     aria-hidden="true"
                   />
 
-                  <p className="font-sans text-muted-foreground text-sm md:text-base font-light leading-relaxed">
+                  <p className="font-sans text-muted-foreground text-sm md:text-base font-light leading-relaxed text-justify hyphens-auto">
                     {service.description}
                   </p>
                 </div>
               </div>
             );
           })}
-        </div>
+        </Reveal>
       </div>
     </section>
   );

@@ -218,6 +218,30 @@
           drop-shadow(0 1px 1px rgba(255, 255, 255, 0.4));
 }
 
+/* Portrait — DIPPED into the warm surface (intaglio / debossed).
+   No outer lift: the photo sits in a recess. The top + left inner edges fall
+   into shadow while the bottom + right catch light, reading as concave —
+   pressed into the page rather than raised off it. */
+.portrait-well {
+  /* Warm-white mat border (kept) — the raised plane the photo dips into. */
+  background: hsl(var(--warm-white));
+  padding: clamp(0.5rem, 1.1vw, 0.85rem);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.7),             /* lit top lip of the mat */
+    0 2px 6px -2px rgba(34, 22, 15, 0.12),        /* soft contact shadow */
+    0 14px 28px -16px rgba(34, 22, 15, 0.18);     /* gentle ground — not a lift */
+}
+
+/* Overlay that carves the photo into the surface (intaglio). */
+.portrait-deboss {
+  box-shadow:
+    inset 0 14px 24px -4px rgba(34, 22, 15, 0.62),   /* deep top inner shadow */
+    inset 10px 0 22px -8px rgba(34, 22, 15, 0.44),   /* left inner shadow */
+    inset 0 -9px 18px -4px rgba(255, 255, 255, 0.36), /* bottom inner highlight */
+    inset -7px 0 16px -8px rgba(255, 255, 255, 0.20), /* right inner highlight */
+    inset 0 0 0 1px rgba(34, 22, 15, 0.18);           /* crisp recessed lip */
+}
+
 /* Infinite scrolling marquee animation */
 @keyframes marquee {
   0% {

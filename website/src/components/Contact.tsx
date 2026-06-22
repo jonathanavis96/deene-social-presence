@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Instagram, ArrowRight, MessageCircle } from "lucide-react";
+import Reveal from "@/components/Reveal";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -53,18 +54,20 @@ const Contact = () => {
     <section id="contact" className="py-24 md:py-32 px-6 bg-card" aria-labelledby="contact-heading">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-16 space-y-6">
-          <p className="text-spaced text-xs text-accent font-sans uppercase tracking-widest" aria-hidden="true">
-            Contact
-          </p>
-          <h2 id="contact-heading" className="font-serif text-3xl md:text-4xl lg:text-5xl text-foreground">
-            Let's Connect
-          </h2>
-          <p className="font-sans text-muted-foreground text-base md:text-lg font-light max-w-lg mx-auto">
-            If you'd like to work together or chat through your vision, reach
-            out anytime.
-          </p>
-        </div>
+        <Reveal>
+          <div className="text-center mb-16 space-y-6">
+            <p className="text-spaced text-xs text-accent font-sans uppercase tracking-widest" aria-hidden="true">
+              Contact
+            </p>
+            <h2 id="contact-heading" className="font-serif text-3xl md:text-4xl lg:text-5xl text-foreground">
+              Let's Connect
+            </h2>
+            <p className="font-sans text-muted-foreground text-base md:text-lg font-light max-w-lg mx-auto">
+              If you'd like to work together or chat through your vision, reach
+              out anytime.
+            </p>
+          </div>
+        </Reveal>
 
         {/* Contact Form */}
         <form onSubmit={handleSubmit} className="space-y-8 max-w-xl mx-auto" aria-label="Contact form">
