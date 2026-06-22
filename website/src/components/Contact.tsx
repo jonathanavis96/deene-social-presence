@@ -161,10 +161,10 @@ const Contact = () => {
         {/* Contact Info */}
         <div className="text-center space-y-8">
           <a
-            href="mailto:alex@deenesocial.com"
+            href="mailto:info@deenesocial.com"
             className="font-sans text-base md:text-lg text-muted-foreground hover:text-foreground transition-colors block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-sm"
           >
-            alex@deenesocial.com
+            info@deenesocial.com
           </a>
 
           <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
