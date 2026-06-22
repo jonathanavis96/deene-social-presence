@@ -17,6 +17,9 @@ website/node_modules
 website/dist
 website/dist-ssr
 
+# Private client correspondence — kept locally, never published to the public repo
+correspondence/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
