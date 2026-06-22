@@ -1,13 +1,10 @@
-# Deene Social Presence (monorepo)
+# Deene Social
 
-This repository contains two top-level areas:
+Marketing website for Deene Social — built with React, TypeScript, and Vite, styled with Tailwind CSS and shadcn/ui. Deployed to GitHub Pages and served at [deenesocial.com](https://deenesocial.com).
 
-- `website/` — the Deene Social Presence marketing site (React + TypeScript + Vite)
-- `brain/` — Cortex/Ralph/skills/tools/docs used to plan and operate work in this repo
+The site lives in `website/`.
 
-## Website
-
-### Local development
+## Local development
 
 ```bash
 cd website
@@ -15,63 +12,39 @@ cd website
 # Install dependencies
 npm ci
 
-# Start dev server
+# Start the dev server
 npm run dev
 ```
 
 The site will be available at `http://localhost:5173`.
 
-### Available commands
+## Available commands
 
 ```bash
 cd website
 
 npm run dev      # Start development server with hot reload
 npm run build    # Build for production (outputs website/dist)
-npm run preview  # Preview production build locally
-npm run lint     # Run ESLint to check code quality
+npm run preview  # Preview the production build locally
+npm run lint     # Run ESLint
 ```
 
-### Deployment (GitHub Pages)
+## Deployment (GitHub Pages)
 
-The site is deployed via `.github/workflows/deploy.yml` and builds from `website/`.
+Pushing to `main` triggers `.github/workflows/deploy.yml`, which builds `website/`
+and publishes it to GitHub Pages. The production base path is `/` (served at the
+custom domain `deenesocial.com`); override with the `VITE_BASE_PATH` build variable
+if hosting under a sub-path instead.
 
-The website is configured for GitHub Pages deployment with base path `/deene-social-presence/`.
+## Contact form (Formspree)
 
-- Vite config: `website/vite.config.ts`:
+The contact form posts to [Formspree](https://formspree.io).
 
-  ```ts
-  base: "/deene-social-presence/"
-  ```
-
-### Contact form setup (Formspree)
-
-1. Sign up at <https://formspree.io>
-2. Create a new form and copy your form ID (e.g. `abc123def` from `https://formspree.io/f/abc123def`)
-3. Local dev:
-
-   ```bash
-   cd website
-   cp .env.example .env.local
-   ```
-
-   Then edit `website/.env.local`:
+1. Create a form and copy its form ID (e.g. `abc123def` from `https://formspree.io/f/abc123def`).
+2. Local dev — create `website/.env.local`:
 
    ```bash
    VITE_FORMSPREE_FORM_ID=your_form_id_here
    ```
 
-4. Deployment (GitHub Pages): set a repository variable `VITE_FORMSPREE_FORM_ID`.
-
-## Brain
-
-All planning/agent tooling lives under `brain/`:
-
-- `brain/cortex/`
-- `brain/workers/`
-- `brain/skills/`
-- `brain/tools/`
-- `brain/docs/`
-- `brain/brain_upstream/`
-
-(See `brain/docs/` for setup notes.)
+3. Deployment — set a repository variable `VITE_FORMSPREE_FORM_ID` in GitHub.

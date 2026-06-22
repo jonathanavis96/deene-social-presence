@@ -3,7 +3,7 @@ const About = () => {
 
   return (
     <section id="about" className="py-24 md:py-32 px-6 bg-background">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         {/* Heading — full width, above the photo */}
         <div className="space-y-4">
           <p className="text-spaced text-xs text-accent font-sans uppercase tracking-widest">
@@ -32,7 +32,7 @@ const About = () => {
         {/* Photo floats right; the remaining copy wraps alongside it and then
             flows full-width beneath, so the section reads as one continuous piece. */}
         <div className="mt-10 font-sans text-muted-foreground leading-relaxed text-base md:text-lg font-light">
-          <div className="w-full max-w-sm mx-auto md:max-w-none md:float-right md:w-[40%] md:ml-12 md:mb-6 mb-8">
+          <div className="w-full max-w-sm mx-auto md:max-w-none md:float-left md:w-[46%] md:mr-12 md:mb-6 mb-8">
             <div className="aspect-[3/4] bg-secondary/50 relative overflow-hidden">
               <img
                 src={portraitSrc}

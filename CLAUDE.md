@@ -1,8 +1,8 @@
-# Deene Social Presence
+# Deene Social
 
 ## Overview
 
-Monorepo containing the Deene Social Presence marketing website and associated planning/agent tooling. Deployed to GitHub Pages.
+Marketing website for Deene Social. Deployed to GitHub Pages and served at the custom domain `deenesocial.com`.
 
 ## Tech Stack
 
@@ -27,19 +27,21 @@ npm run lint         # ESLint
 
 ```
 website/             # React + Vite SPA (the deliverable)
-  src/               # Components, pages, hooks, lib
+  src/
+    components/      # UI components (sections + shadcn/ui primitives)
+    pages/           # Routed pages (Index, NotFound)
+    hooks/ lib/ data/
   public/            # Static assets
   tailwind.config.ts
-brain/               # Cortex/Ralph agent planning and tooling
-  cortex/            # Strategic planning
-  workers/           # Task execution (Ralph)
-  skills/            # Vendored brain skills
-  tools/             # Utility scripts
 ```
+
+Homepage section order lives in `website/src/pages/Index.tsx`. The "Trusted By"
+(`ClientLogos`) and "Creative Portfolio" (`Gallery`) sections are currently
+commented out there — re-enable by uncommenting their import + element.
 
 ## Conventions
 
-- Base path configured as `/deene-social-presence/` for GitHub Pages
+- Production base path is `/` (custom domain); override with `VITE_BASE_PATH` for sub-path hosting
 - Formspree form ID set via `VITE_FORMSPREE_FORM_ID` env var
-- Pre-commit hooks: markdownlint, ruff (Python linting)
+- Pre-commit hook: markdownlint
 - Uses lovable-tagger dev dependency
