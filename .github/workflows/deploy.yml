@@ -50,6 +50,11 @@ jobs:
       - name: Build
         working-directory: website
         run: npm run build
+        env:
+          # Both are optional repository variables. An unset one arrives empty and the
+          # code falls back: the production Formspree form and base path "/".
+          VITE_FORMSPREE_FORM_ID: ${{ vars.VITE_FORMSPREE_FORM_ID }}
+          VITE_BASE_PATH: ${{ vars.VITE_BASE_PATH }}
 
       - name: List dist
         run: ls -la website/dist

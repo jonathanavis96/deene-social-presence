@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import {
   Carousel,
   CarouselContent,
@@ -26,12 +26,22 @@ const GalleryCarousel = ({
   const [current, setCurrent] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
-  // Setup autoplay plugin
-  const autoplayPlugin = Autoplay({
-    delay: autoPlayInterval,
-    stopOnInteraction: false,
-    stopOnMouseEnter: true,
-  });
+  const regionRef = useRef<HTMLDivElement>(null);
+
+  // One instance per interval: Embla only ever initialises the instance it was first
+  // given, so a new one on each render would be a dead object. The plugin handles
+  // hover pause itself; a keyboard pause removes it from the carousel (see below),
+  // so its hover and focus handlers cannot restart a carousel the user has paused.
+  const autoplayPlugin = useMemo(
+    () =>
+      Autoplay({
+        delay: autoPlayInterval,
+        stopOnInteraction: false,
+        stopOnMouseEnter: true,
+        rootNode: (emblaRoot) => regionRef.current ?? emblaRoot,
+      }),
+    [autoPlayInterval]
+  );
 
   // Track current slide
   useEffect(() => {
@@ -56,40 +66,27 @@ const GalleryCarousel = ({
 
       switch (event.key) {
         case "ArrowLeft":
+          // <Carousel> already handled it when focus is inside it.
+          if (event.defaultPrevented) return;
           event.preventDefault();
           api.scrollPrev();
           break;
         case "ArrowRight":
+          if (event.defaultPrevented) return;
           event.preventDefault();
           api.scrollNext();
           break;
         case " ":
         case "Enter":
+          // Only on the region itself: the arrows and dots inside it are real buttons.
+          if (event.target !== event.currentTarget) return;
           event.preventDefault();
           setIsPaused((prev) => !prev);
-          if (isPaused) {
-            autoplayPlugin.play();
-          } else {
-            autoplayPlugin.stop();
-          }
           break;
       }
     },
-    [api, isPaused, autoplayPlugin]
+    [api]
   );
-
-  // Pause on hover
-  const handleMouseEnter = () => {
-    if (autoPlay && autoplayPlugin) {
-      autoplayPlugin.stop();
-    }
-  };
-
-  const handleMouseLeave = () => {
-    if (autoPlay && !isPaused && autoplayPlugin) {
-      autoplayPlugin.play();
-    }
-  };
 
   // Navigate to specific slide
   const goToSlide = (index: number) => {
@@ -100,9 +97,8 @@ const GalleryCarousel = ({
 
   return (
     <div
+      ref={regionRef}
       className="relative"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
       onKeyDown={handleKeyDown}
       role="region"
       aria-label="Gallery carousel"
@@ -116,7 +112,7 @@ const GalleryCarousel = ({
           loop: true,
           duration: 50, // Slower transition (double duration = half speed)
         }}
-        plugins={autoPlay ? [autoplayPlugin] : []}
+        plugins={autoPlay && !isPaused ? [autoplayPlugin] : []}
         className="w-full"
       >
         <CarouselContent>

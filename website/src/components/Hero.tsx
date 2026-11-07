@@ -131,14 +131,18 @@ const Hero = () => {
               </p>
             </div>
 
-            {/* Nav Links */}
+            {/* Nav Links: hidden until the header locks, but shown to anyone tabbing to them */}
             <nav
               className={`
                 flex items-center justify-center
                 gap-6 sm:gap-8
                 px-4
                 transition-opacity duration-500
-                ${logoLocked ? "opacity-100" : "opacity-0 pointer-events-none"}
+                ${
+                  logoLocked
+                    ? "opacity-100"
+                    : "opacity-0 pointer-events-none has-[:focus-visible]:opacity-100 has-[:focus-visible]:pointer-events-auto"
+                }
               `}
               aria-label="Main navigation"
             >
