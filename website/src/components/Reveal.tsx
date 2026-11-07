@@ -27,7 +27,9 @@ const Reveal = ({ children, className = "", delay = 0 }: RevealProps) => {
           observer.disconnect();
         }
       },
-      { threshold: 0.15, rootMargin: "0px 0px -8% 0px" }
+      // Threshold 0: a block taller than the viewport divided by a ratio threshold
+      // could never reach that ratio, and would stay invisible for good.
+      { threshold: 0, rootMargin: "0px 0px -8% 0px" }
     );
 
     observer.observe(el);
